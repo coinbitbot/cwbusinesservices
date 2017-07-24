@@ -9,82 +9,85 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 
 -- -----------------------------------------------------
--- Table `role`
+-- Table `cwbusinesservices`.`ROLE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `role` (
-  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `name` VARCHAR(45) NOT NULL COMMENT '',
-  PRIMARY KEY (`id`)  COMMENT '')
-  ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `cwbusinesservices`.`ROLE` (
+  `ID` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `NAME` VARCHAR(45) NOT NULL COMMENT '',
+  PRIMARY KEY (`ID`)  COMMENT '')
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `users`
+-- Table `cwbusinesservices`.`USERS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `email` VARCHAR(45) NOT NULL COMMENT '',
-  `name` VARCHAR(45) COMMENT '',
-  `password` VARCHAR(45) NOT NULL COMMENT '',
-  `active` TINYINT(1) NULL DEFAULT 1 COMMENT '',
-  `role_id` INT NOT NULL COMMENT '',
-  PRIMARY KEY (`id`)  COMMENT '',
-  INDEX `fk_user_to_role_idx` (`role_id` ASC)  COMMENT '',
-  CONSTRAINT `fk_user_to_role`
-  FOREIGN KEY (`role_id`)
-  REFERENCES `role` (`id`)
+CREATE TABLE IF NOT EXISTS `cwbusinesservices`.`USERS` (
+  `ID` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `EMAIL` VARCHAR(45) NOT NULL COMMENT '',
+  `FIRST_NAME` VARCHAR(45) NULL COMMENT '',
+  `LAST_NAME` VARCHAR(45) NULL COMMENT '',
+  `PASSWORD` VARCHAR(45) NOT NULL COMMENT '',
+  `ACTIVE` TINYINT NULL DEFAULT 1 COMMENT '',
+  `ROLE_ID` INT NOT NULL COMMENT '',
+  `PHONE` VARCHAR(45) NULL COMMENT '',
+  PRIMARY KEY (`ID`)  COMMENT '',
+  INDEX `fk_USER_TO_ROLE_idx` (`ROLE_ID` ASC)  COMMENT '',
+  CONSTRAINT `fk_USER_TO_ROLE`
+    FOREIGN KEY (`ROLE_ID`)
+    REFERENCES `cwbusinesservices`.`ROLE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-  ENGINE = InnoDB;
+ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
--- table `permissions`
+-- Table `cwbusinesservices`.`PERMISSIONS`
 -- -----------------------------------------------------
-create table if not exists `permissions` (
-  `id` int not null auto_increment,
-  `name` varchar(45) not null,
-  primary key (`id`),
-  unique index `name_unique` (`name` asc))
-  engine = innodb;
+CREATE TABLE IF NOT EXISTS `cwbusinesservices`.`PERMISSIONS` (
+  `ID` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `NAME` VARCHAR(45) NOT NULL COMMENT '',
+  PRIMARY KEY (`ID`)  COMMENT '')
+ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
--- table `role_permissions`
+-- Table `cwbusinesservices`.`ROLE_PERMISSIONS`
 -- -----------------------------------------------------
-create table if not exists `role_permissions` (
-  `id` int not null auto_increment,
-  `role_id` int not null,
-  `permission_id` int not null,
-  primary key (`id`),
-  index `role_to_permission_idx` (`role_id` asc),
-  index `permission_to_role_idx` (`permission_id` asc),
-  constraint `role_to_permission`
-  foreign key (`role_id`)
-  references `role` (`id`)
-    on delete no action
-    on update no action,
-  constraint `permission_to_role`
-  foreign key (`permission_id`)
-  references `permissions` (`id`)
-    on delete no action
-    on update no action)
-  engine = innodb;
+CREATE TABLE IF NOT EXISTS `cwbusinesservices`.`ROLE_PERMISSIONS` (
+  `ID` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `ROLE_ID` INT NOT NULL COMMENT '',
+  `PERMISSION_ID` INT NOT NULL COMMENT '',
+  PRIMARY KEY (`ID`)  COMMENT '',
+  INDEX `fk_ROLE_TO_PERMISSION_idx` (`PERMISSION_ID` ASC)  COMMENT '',
+  INDEX `fk_PERMISSION_TO_ROLE_idx` (`ROLE_ID` ASC)  COMMENT '',
+  CONSTRAINT `fk_ROLE_TO_PERMISSION`
+    FOREIGN KEY (`PERMISSION_ID`)
+    REFERENCES `cwbusinesservices`.`PERMISSIONS` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_PERMISSION_TO_ROLE`
+    FOREIGN KEY (`ROLE_ID`)
+    REFERENCES `cwbusinesservices`.`ROLE` (`ID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
-insert into `role` (`name`) values ('user');
-insert into `role` (`name`) values ('moderator');
-insert into `role` (`name`) values ('admin');
+insert into `ROLE` (`NAME`) values ('user');
+insert into `ROLE` (`NAME`) values ('moderator');
+insert into `ROLE` (`NAME`) values ('admin');
 
-INSERT INTO `permissions` (`name`) VALUES ('ROLE_USER');
-INSERT INTO `permissions` (`name`) VALUES ('ROLE_MODERATOR');
-INSERT INTO `permissions` (`name`) VALUES ('ROLE_ADMIN');
+INSERT INTO `permissions` (`NAME`) VALUES ('ROLE_USER');
+INSERT INTO `permissions` (`NAME`) VALUES ('ROLE_MODERATOR');
+INSERT INTO `permissions` (`NAME`) VALUES ('ROLE_ADMIN');
 
-insert into `role_permissions` (`role_id`, `permission_id`) values ('1', '1');
-insert into `role_permissions` (`role_id`, `permission_id`) values ('2', '1');
-insert into `role_permissions` (`role_id`, `permission_id`) values ('2', '2');
-insert into `role_permissions` (`role_id`, `permission_id`) values ('3', '1');
-insert into `role_permissions` (`role_id`, `permission_id`) values ('3', '2');
-insert into `role_permissions` (`role_id`, `permission_id`) values ('3', '3');
+insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('1', '1');
+insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '1');
+insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '2');
+insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '1');
+insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '2');
+insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '3');
 
-insert into `users` (`email`, `name`, `password`, `active`, `role_id`) VALUES ('admin@cwbusinesservices.com', 'admin', MD5('admin'),1,3);
+insert into `USERS` (`EMAIL`, `NAME`, `PASSWORD`, `ACTIVE`, `ROLE_ID`) VALUES ('admin@cwbusinesservices.com', 'admin', MD5('admin'),1,3);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
