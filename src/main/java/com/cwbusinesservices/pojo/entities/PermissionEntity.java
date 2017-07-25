@@ -6,15 +6,15 @@ import javax.persistence.*;
  * Created by Andrii on 18.08.2016.
  */
 @Entity
-@Table(name = "permissions")
+@Table(name = "PERMISSIONS")
 public class PermissionEntity {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "ID")
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
 
     public Integer getId() {

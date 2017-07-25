@@ -34,11 +34,11 @@ public class UserApiController {
     )
     public
     @ResponseBody Response<Map<String, Object>>
-    getUser(
+    get(
             @PathVariable("id") int userId,
             @RequestParam(value = "fields", required = false, defaultValue = Fields.User.DEFAULT) Set<String> fields
     ) throws BaseException {
-        return responseFactory.get(userService.getUserByIdMap(userId, fields));
+        return responseFactory.get(userService.getById(userId, fields));
     }
 
     @RequestMapping(
@@ -46,13 +46,13 @@ public class UserApiController {
             method = RequestMethod.GET
     )
     public @ResponseBody Response<List<Map<String, Object>>>
-    getUsers(
+    getList(
             @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
             @RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
             @RequestParam(value = "fields", required = false, defaultValue = Fields.User.DEFAULT) Set<String> fields,
             @RequestParam(value = "restrict", required = false) String restrict
     ) throws BaseException {
-        return responseFactory.get(userService.getUsersMap(offset, limit, fields, restrict));
+        return responseFactory.get(userService.getList(offset, limit, fields, restrict));
     }
 
     @RequestMapping(

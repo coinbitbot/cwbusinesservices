@@ -21,8 +21,12 @@ public class UserConverter extends Converter<UserEntity> {
             map.put(ID, object.getId());
         if(fields.contains(EMAIL))
             map.put(EMAIL, object.getEmail());
-        if(fields.contains(NAME))
-            map.put(NAME, object.getName());
+        if(fields.contains(FIRST_NAME))
+            map.put(FIRST_NAME, object.getFirstName());
+        if(fields.contains(LAST_NAME))
+            map.put(LAST_NAME, object.getLastName());
+        if(fields.contains(PHONE))
+            map.put(PHONE, object.getPhone());
         if(fields.contains(PASSWORD))
             map.put(PASSWORD, object.getPassword());
         if(fields.contains(ACTIVE))

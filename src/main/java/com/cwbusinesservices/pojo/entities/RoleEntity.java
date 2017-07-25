@@ -4,26 +4,28 @@ package com.cwbusinesservices.pojo.entities;
 import com.cwbusinesservices.pojo.enums.RolesEnum;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 /**
  * Created by Andrii on 18.08.2016.
  */
 @Entity
-@Table(name = "role")
-public class RoleEntity {
+@Table(name = "ROLE")
+public class RoleEntity implements Serializable{
 
+    private static final long serialVersionUID = 1733101596308114392L;
     @Id
-    @Column(name = "id")
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     @Enumerated(EnumType.STRING)
     private RolesEnum name;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "role_permissions", joinColumns = { @JoinColumn(name = "role_id") }, inverseJoinColumns = { @JoinColumn(name = "permission_id") })
+    @JoinTable(name = "ROLE_PERMISSIONS", joinColumns = { @JoinColumn(name = "ROLE_ID") }, inverseJoinColumns = { @JoinColumn(name = "PERMISSION_ID") })
     private Set<PermissionEntity> permissions;
 
     public Integer getId() {

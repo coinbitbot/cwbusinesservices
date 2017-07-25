@@ -48,38 +48,38 @@ import java.util.Set;
 public class UserServiceImpl implements IUserService {
 
     @Resource
-    private UsersRepository usersRepository;
+    private UsersRepository repository;
 
     @Autowired
     private SessionUtils sessionUtils;
 
     @Autowired
-    private IUserValidateService userValidateService;
+    private IUserValidateService validateService;
 
     @Resource
     private RolesRepository rolesRepository;
 
     @Autowired
-    private Converter<UserEntity> userConverter;
+    private Converter<UserEntity> converter;
 
     @Autowired
     private ICriteriaRepository criteriaRepository;
 
     @Override
-    public UserEntity getUserById(int userId) throws NoSuchEntityException {
-        UserEntity user = usersRepository.findOne(userId);
+    public UserEntity getById(int userId) throws NoSuchEntityException {
+        UserEntity user = repository.findOne(userId);
         if (user == null)
             throw new NoSuchEntityException("user", "id: " + userId);
         return user;
     }
 
     @Override
-    public Map<String, Object> getUserByIdMap(int userId, Set<String> fields) throws NoSuchEntityException {
-        return userConverter.convert(getUserById(userId), fields);
+    public Map<String, Object> getById(int userId, Set<String> fields) throws NoSuchEntityException {
+        return converter.convert(getById(userId), fields);
     }
 
     @Override
-    public List<UserEntity> getUsers(UserCriteria criteria) throws NoSuchEntityException {
+    public List<UserEntity> getList(UserCriteria criteria) throws NoSuchEntityException {
         List<UserEntity> users = criteriaRepository.find(criteria);
 
         if (users == null || users.isEmpty()) {
@@ -90,17 +90,17 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public List<Map<String, Object>> getUsersMap(int offset, int limit, Set<String> fields, String restrict) throws NoSuchEntityException, WrongRestrictionException {
+    public List<Map<String, Object>> getList(int offset, int limit, Set<String> fields, String restrict) throws NoSuchEntityException, WrongRestrictionException {
         UserCriteria criteria = new UserCriteria(offset, limit, restrict);
 
-        List<UserEntity> entities = getUsers(criteria);
+        List<UserEntity> entities = getList(criteria);
 
-        return userConverter.convert(entities, fields);
+        return converter.convert(entities, fields);
     }
 
     @Override
     public UserEntity getByEmail(String email) throws NoSuchEntityException {
-        UserEntity entity = usersRepository.findByEmail(email);
+        UserEntity entity = repository.findByEmail(email);
 
         if (entity == null)
             throw new NoSuchEntityException("users", "user email " + email);
@@ -110,12 +110,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public int create(UserView view) throws EmailExistsException, ServiceErrorException, ValidationException {
-        try {
-            getByEmail(view.getEmail());
-            // should be exception
-            // otherwise user exists and exception should be thrown
-            throw new EmailExistsException();
-        } catch (NoSuchEntityException e) {
             UserEntity entity = new UserEntity();
             if (view.getRole() == null)
                 view.setRole(RolesEnum.user);
@@ -126,29 +120,28 @@ public class UserServiceImpl implements IUserService {
             }
 
             merge(entity, view);
-            userValidateService.validForCreate(view);
-            entity = usersRepository.saveAndFlush(entity);
+            validateService.validForCreate(view);
+            entity = repository.saveAndFlush(entity);
             if(entity == null){
                 throw new ServiceErrorException();
             }
             entity.setActive(true);
-            entity = usersRepository.saveAndFlush(entity);
+            entity = repository.saveAndFlush(entity);
             if (!sessionUtils.isAuthorized()){
                 sessionUtils.logeInUser(entity);
             }
             return entity.getId();
-        }
     }
 
     @Override
     public boolean update(UserView view) throws NoSuchEntityException {
-        UserEntity entity = usersRepository.findOne(view.getId());
+        UserEntity entity = repository.findOne(view.getId());
         if (entity == null)
             throw new NoSuchEntityException(UserEntity.class.getName(), "id" + view.getId());
 
         merge(entity, view);
 
-        entity = usersRepository.saveAndFlush(entity);
+        entity = repository.saveAndFlush(entity);
 
         return entity != null && entity.getId() > 0;
     }
@@ -196,9 +189,16 @@ public class UserServiceImpl implements IUserService {
     }
 
     public void merge(UserEntity entity, UserView view){
-        if(view.getName() != null)
-            entity.setName(view.getName());
-        else view.setName(entity.getName());
+        if(view.getFirst_name() != null)
+            entity.setFirstName(view.getFirst_name());
+        else view.setFirst_name(entity.getFirstName());
+
+        if(view.getLast_name() != null)
+            entity.setLastName(view.getLast_name());
+        else view.setLast_name(entity.getLastName());
+
+        if (view.getPhone()!=null&&!"".equals(view.getPhone())) entity.setPhone(view.getPhone());
+        else view.setPhone(entity.getPhone());
 
         if(view.getEmail() != null)
             entity.setEmail(view.getEmail());

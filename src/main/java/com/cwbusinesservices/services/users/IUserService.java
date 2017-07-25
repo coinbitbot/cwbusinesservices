@@ -19,13 +19,13 @@ import java.util.*;
  */
 public interface IUserService {
 
-    UserEntity getUserById(int userId) throws NoSuchEntityException;
+    UserEntity getById(int userId) throws NoSuchEntityException;
 
-    Map<String, Object> getUserByIdMap(int userId, Set<String> fields) throws NoSuchEntityException;
+    Map<String, Object> getById(int userId, Set<String> fields) throws NoSuchEntityException;
 
-    List<UserEntity> getUsers(UserCriteria criteria) throws NoSuchEntityException;
+    List<UserEntity> getList(UserCriteria criteria) throws NoSuchEntityException;
 
-    List<Map<String, Object>> getUsersMap(int offset, int limit, Set<String> fields, String restrict) throws NoSuchEntityException, WrongRestrictionException;
+    List<Map<String, Object>> getList(int offset, int limit, Set<String> fields, String restrict) throws NoSuchEntityException, WrongRestrictionException;
 
     UserEntity getByEmail(String email) throws NoSuchEntityException;
 

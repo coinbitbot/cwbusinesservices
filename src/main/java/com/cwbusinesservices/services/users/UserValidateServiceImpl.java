@@ -1,5 +1,7 @@
 package com.cwbusinesservices.services.users;
 
+import com.cwbusinesservices.exceptions.conflict.EmailExistsException;
+import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cwbusinesservices.exceptions.service_error.ServiceErrorException;
@@ -25,18 +27,29 @@ public class UserValidateServiceImpl implements IUserValidateService {
     @Autowired
     private Validator validator;
 
+    @Autowired
+    private IUserService userService;
+
     @Override
-    public void validForCreate(UserView user) throws ServiceErrorException, ValidationException {
-        Set<ConstraintViolation<UserView>> violations = validator.validate(user);
-        if(violations != null && !violations.isEmpty()) {
-            throw new ValidationException(UserEntity.class.getName(), violations);
-        }
-        if (!sessionUtils.isAuthorized()){
-            if (user.getRole()==null||!user.getRole().equals(RolesEnum.user)){
+    public void validForCreate(UserView user) throws ServiceErrorException, ValidationException, EmailExistsException {
+
+        try{
+            userService.getByEmail(user.getEmail());
+            throw new EmailExistsException();
+        } catch (NoSuchEntityException e) {
+            if (user.getId()>0)
+                throw new ServiceErrorException("User should be updated");
+            Set<ConstraintViolation<UserView>> violations = validator.validate(user);
+            if(violations != null && !violations.isEmpty()) {
+                throw new ValidationException(UserEntity.class.getName(), violations);
+            }
+            if (!sessionUtils.isAuthorized()){
+                if (user.getRole()==null||!user.getRole().equals(RolesEnum.user)){
+                    throw new ServiceErrorException();
+                }
+            }else if (!sessionUtils.isUserWithRole(RolesEnum.admin)){
                 throw new ServiceErrorException();
             }
-        }else if (!sessionUtils.isUserWithRole(RolesEnum.admin)){
-            throw new ServiceErrorException();
         }
     }
 }

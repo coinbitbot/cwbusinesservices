@@ -1,34 +1,43 @@
 package com.cwbusinesservices.pojo.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Andrii on 18.08.2016.
  */
 @Entity
-@Table(name = "users")
-public class UserEntity {
+@Table(name = "USERS")
+public class UserEntity implements Serializable{
+
+    private static final long serialVersionUID = 4276897615739047528L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "ID")
     private int id;
 
-    @Column(name = "email")
+    @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "FIRST_NAME")
+    private String firstName;
 
-    @Column(name = "active")
+    @Column(name = "LAST_NAME")
+    private String lastName;
+
+    @Column(name = "ACTIVE")
     private boolean active;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id", nullable = false)
+    @JoinColumn(name = "ROLE_ID", nullable = false)
     private RoleEntity roleEntity;
+
+    @Column(name="PHONE")
+    private String phone;
 
     @PrePersist
     protected void onCreate() {
@@ -59,14 +68,6 @@ public class UserEntity {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public boolean isActive() {
         return active;
     }
@@ -83,6 +84,30 @@ public class UserEntity {
         this.roleEntity = roleEntity;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -94,8 +119,10 @@ public class UserEntity {
         if (active != that.active) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return roleEntity != null ? roleEntity.equals(that.roleEntity) : that.roleEntity == null;
+        if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
+        if (roleEntity != null ? roleEntity.getId()!=that.roleEntity.getId() : that.roleEntity != null) return false;
+        return phone != null ? phone.equals(that.phone) : that.phone == null;
 
     }
 
@@ -104,9 +131,11 @@ public class UserEntity {
         int result = id;
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (active ? 1 : 0);
-        result = 31 * result + (roleEntity != null ? roleEntity.hashCode() : 0);
+        result = 31 * result + (roleEntity != null ? roleEntity.getId() : 0);
+        result = 31 * result + (phone != null ? phone.hashCode() : 0);
         return result;
     }
 
@@ -116,9 +145,11 @@ public class UserEntity {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", active=" + active +
                 ", roleEntity=" + roleEntity +
+                ", phone='" + phone + '\'' +
                 '}';
     }
 }

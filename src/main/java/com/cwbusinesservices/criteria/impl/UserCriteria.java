@@ -53,10 +53,13 @@ public class UserCriteria extends Criteria<UserEntity> {
             Expression<String> expression = root.get("email");
             Predicate p1 = cb.like(expression, likeQuery);
 
-            expression = root.get("name");
+            expression = root.get("firstName");
             Predicate p2 = cb.like(expression, likeQuery);
 
-            predicates.add(cb.or(p1, p2));
+            expression = root.get("lastName");
+            Predicate p3 = cb.like(expression, likeQuery);
+
+            predicates.add(cb.or(p1, p2, p3));
         }
 
         if (this.roles != null && !this.roles.isEmpty()) {
