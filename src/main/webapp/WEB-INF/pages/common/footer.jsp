@@ -1,6 +1,13 @@
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<div style="height: 100px; background: #ccc">
+    footer
+    <Br />
+    <a href="/info_pages/catalog">All info pages</a>
+</div>
+
+
 <script src="/resources/js/ejs.min.js"></script>
 <script src="/resources/js/ajax.js"></script>
 <script>

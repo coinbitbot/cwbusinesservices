@@ -4,6 +4,8 @@ import com.cwbusinesservices.criteria.impl.InfoPageCriteria;
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
 import com.cwbusinesservices.services.infopages.IInfoPageService;
+import com.cwbusinesservices.services.utils.Utils;
+import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,13 +25,16 @@ public class InfoPageController {
     @Autowired
     private IInfoPageService infoPageService;
 
+    @Autowired
+    private Utils utils;
+
     @RequestMapping(value = "/catalog", method = RequestMethod.GET)
     public String catalog(
             Model model
     ) {
         formCatalog(1, model);
 
-        return "";
+        return "info_pages/catalog";
     }
 
     @RequestMapping(value = "/catalog/{page}/page", method = RequestMethod.GET)
@@ -37,9 +42,13 @@ public class InfoPageController {
             @PathVariable("page") int page,
             Model model
     ) {
+        if (page < 1) {
+            return "redirect:/info_pages/catalog/1/page";
+        }
+
         formCatalog(page, model);
 
-        return "";
+        return "info_pages/catalog";
     }
 
     @RequestMapping(value = "/{page_id}", method = RequestMethod.GET)
@@ -63,7 +72,27 @@ public class InfoPageController {
                     null
             );
 
-            //infoPageService.getList()
+            try {
+                List<Map<String, Object>> list = infoPageService.getList(criteria, CATALOG_PAGE_FIELDS);
+                for (Map<String, Object> map : list) {
+                    String text = (String)map.get("text");
+                    if (text != null && !text.isEmpty()) {
+                        text = Jsoup.parse(text).text();
+
+                        if (text.length() > 160) {
+                            text = text.substring(0, 160) + "...";
+                        }
+                    }
+                    map.put("text", text);
+                }
+                int count = infoPageService.count(criteria);
+
+                model.addAttribute("info_pages", list);
+                model.addAttribute("total_number", count);
+                model.addAttribute("number_of_pages", utils.numberOfPages(count, INFO_PAGES_PER_PAGE));
+            } catch (BaseException e) {
+                // TODO: redirect to 404 or just show warning message?
+            }
         } catch (WrongRestrictionException e) {
             // can not be thrown as we did not pass string restriction
         }
@@ -73,7 +102,7 @@ public class InfoPageController {
             "header", "sub_header", "text", "meta_title", "meta_description", "meta_keywords"
     ));
     private final Set<String> CATALOG_PAGE_FIELDS = new HashSet<>(Arrays.asList(
-            "url", "header", "sub_header"
+            "url", "header", "sub_header", "text"
     ));
-    private final int INFO_PAGES_PER_PAGE = 1;
+    private final int INFO_PAGES_PER_PAGE = 10;
 }
