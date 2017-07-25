@@ -64,7 +64,7 @@ public class UserCriteria extends Criteria<UserEntity> {
 
         if (this.roles != null && !this.roles.isEmpty()) {
             Join<UserEntity, RoleEntity> userRole = root.join("roleEntity");
-            Expression<String> expression = userRole.get("name");
+            Expression<Boolean> expression = userRole.get("name");
 
             predicates.add(expression.in(this.roles));
         }

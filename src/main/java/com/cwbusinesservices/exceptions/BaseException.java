@@ -12,13 +12,14 @@ import java.util.Locale;
 public abstract class BaseException extends Exception {
 
     private int code;
+    private String messageCode;
 
     public BaseException(){
-        this("BaseException");
+        this("errors.BaseException");
     }
 
     public BaseException(String message){
-        super(message);
+        this.messageCode = message;
     }
 
     public int getCode() {
@@ -27,6 +28,14 @@ public abstract class BaseException extends Exception {
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    public String getMessageCode() {
+        return messageCode;
+    }
+
+    public void setMessageCode(String messageCode) {
+        this.messageCode = messageCode;
     }
 
     /**

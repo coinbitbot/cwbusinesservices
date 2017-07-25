@@ -126,6 +126,7 @@
             <security:password-encoder hash="md5"/>
         </security:authentication-provider>
     </security:authentication-manager>
+    <security:global-method-security secured-annotations="enabled"/>
 
     <bean id="customUserDetailsService" class="com.cwbusinesservices.services.users.CustomUserDetailsService"/>
 

@@ -18,4 +18,18 @@ public class Fields {
 
         public static final String DEFAULT = ID + ',' + EMAIL;
     }
+
+    public static class InfoPage {
+        public static final String ID = "id";
+        public static final String URL = "url";
+        public static final String HEADER = "header";
+        public static final String SUB_HEADER = "sub_header";
+        public static final String TEXT = "text";
+        public static final String ACTIVE = "active";
+        public static final String META_TITLE = "meta_title";
+        public static final String META_DESCRIPTION = "meta_description";
+        public static final String META_KEYWORDS = "meta_keywords";
+
+        public static final String DEFAULT = ID + ',' + URL;
+    }
 }

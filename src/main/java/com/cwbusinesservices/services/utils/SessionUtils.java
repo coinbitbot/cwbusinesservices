@@ -1,5 +1,6 @@
 package com.cwbusinesservices.services.utils;
 
+import com.cwbusinesservices.pojo.enums.PermissionsEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -62,6 +63,16 @@ public class SessionUtils {
                     return true; // user has this role, so it's not forbidden
                 }
             }
+        }
+        return false;
+    }
+
+    public boolean isUserWithPermission(PermissionsEnum... permissions){
+        if(isAuthorized()) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            for (PermissionsEnum permission : permissions)
+                if (authentication.getAuthorities().contains(new SimpleGrantedAuthority(permission.toString())))
+                    return true;
         }
         return false;
     }

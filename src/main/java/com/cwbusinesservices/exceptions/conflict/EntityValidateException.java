@@ -1,23 +1,23 @@
 package com.cwbusinesservices.exceptions.conflict;
 
-import org.springframework.context.MessageSource;
 import com.cwbusinesservices.exceptions.BaseException;
+import org.springframework.context.MessageSource;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Locale;
 
 /**
- * Created by oleh_kurpiak on 07.09.2016.
+ * Created by Andrii on 25.07.2017.
  */
-public class EmailExistsException extends BaseException {
+public class EntityValidateException extends BaseException{
 
-    public EmailExistsException(){
+    public EntityValidateException(){
         super("errors.EmailExistsException");
     }
 
-    public EmailExistsException(String customCode){
-        super(customCode);
+    public EntityValidateException(String custom){
+        super(custom);
     }
 
     @Override
