@@ -11,15 +11,14 @@ import com.cwbusinesservices.pojo.enums.RolesEnum;
 import com.cwbusinesservices.pojo.view.UserView;
 import com.cwbusinesservices.services.utils.SessionUtils;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
+import javax.validation.*;
 import java.util.Set;
 
 /**
  * Created by Andrii on 10.09.2016.
  */
 @Service
-public class UserValidateServiceImpl implements IUserValidateService {
+public class UserValidateServiceImpl implements IUserValidateService{
 
     @Autowired
     private SessionUtils sessionUtils;
@@ -32,17 +31,16 @@ public class UserValidateServiceImpl implements IUserValidateService {
 
     @Override
     public void validForCreate(UserView user) throws ServiceErrorException, ValidationException, EmailExistsException {
-
+        if (user.getId()>0)
+            throw new ServiceErrorException("User should be updated");
+        Set<ConstraintViolation<UserView>> violations = validator.validate(user);
+        if(violations != null && !violations.isEmpty()) {
+            throw new ValidationException(UserEntity.class.getName(), violations);
+        }
         try{
             userService.getByEmail(user.getEmail());
             throw new EmailExistsException();
         } catch (NoSuchEntityException e) {
-            if (user.getId()>0)
-                throw new ServiceErrorException("User should be updated");
-            Set<ConstraintViolation<UserView>> violations = validator.validate(user);
-            if(violations != null && !violations.isEmpty()) {
-                throw new ValidationException(UserEntity.class.getName(), violations);
-            }
             if (!sessionUtils.isAuthorized()){
                 if (user.getRole()==null||!user.getRole().equals(RolesEnum.user)){
                     throw new ServiceErrorException();
@@ -52,4 +50,6 @@ public class UserValidateServiceImpl implements IUserValidateService {
             }
         }
     }
+
+
 }
