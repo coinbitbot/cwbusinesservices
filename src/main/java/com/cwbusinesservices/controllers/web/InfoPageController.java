@@ -63,7 +63,7 @@ public class InfoPageController {
                     null
             );
 
-            infoPageService.getList()
+            //infoPageService.getList()
         } catch (WrongRestrictionException e) {
             // can not be thrown as we did not pass string restriction
         }
