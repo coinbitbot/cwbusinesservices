@@ -87,7 +87,7 @@ insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '1');
 insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '2');
 insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '3');
 
-insert into `USERS` (`EMAIL`, `NAME`, `PASSWORD`, `ACTIVE`, `ROLE_ID`) VALUES ('admin@cwbusinesservices.com', 'admin', MD5('admin'),1,3);
+insert into `USERS` (`EMAIL`, `LAST_NAME`, `PASSWORD`, `ACTIVE`, `ROLE_ID`) VALUES ('admin@cwbusinesservices.com', 'admin', MD5('admin'),1,3);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
