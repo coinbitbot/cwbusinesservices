@@ -10,6 +10,7 @@ import com.cwbusinesservices.exceptions.service_error.ValidationException;
 import com.cwbusinesservices.pojo.entities.InfoPageEntity;
 import com.cwbusinesservices.pojo.enums.PermissionsEnum;
 import com.cwbusinesservices.services.utils.SessionUtils;
+import com.cwbusinesservices.services.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,8 @@ public class InfoPageValidationServiceImpl implements IInfoPageValidationService
     private Validator validator;
     @Autowired
     private IInfoPageService service;
+    @Autowired
+    private Utils utils;
 
     @Override
     public void validForCreate(InfoPageEntity entity) throws BaseException {
@@ -41,6 +44,8 @@ public class InfoPageValidationServiceImpl implements IInfoPageValidationService
         if(violations != null && !violations.isEmpty()) {
             throw new ValidationException(InfoPageEntity.class.getName(), violations);
         }
+        if (!utils.validUrl(entity.getUrl()))
+            throw new EntityValidateException("errors.InfoPage.url.is.not.valid");
         try{
             service.getByUrl(entity.getUrl());
             throw new EntityValidateException("errors.InfoPage.url.is.not.uniq");
@@ -58,6 +63,8 @@ public class InfoPageValidationServiceImpl implements IInfoPageValidationService
         if(violations != null && !violations.isEmpty()) {
             throw new ValidationException(InfoPageEntity.class.getName(), violations);
         }
+        if (!utils.validUrl(entity.getUrl()))
+            throw new EntityValidateException("errors.InfoPage.url.is.not.valid");
         try{
             InfoPageEntity dbEntity = service.getByUrl(entity.getUrl());
             if (dbEntity.getId()!=entity.getId())
