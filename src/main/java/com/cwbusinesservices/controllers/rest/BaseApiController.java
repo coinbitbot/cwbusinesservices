@@ -1,0 +1,102 @@
+package com.cwbusinesservices.controllers.rest;
+
+import com.cwbusinesservices.convertors.Fields;
+import com.cwbusinesservices.exceptions.BaseException;
+import com.cwbusinesservices.pojo.entities.GetableById;
+import com.cwbusinesservices.pojo.response.Response;
+import com.cwbusinesservices.pojo.response.ResponseFactory;
+import com.cwbusinesservices.services.BaseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+/**
+ * Created by Oleh on 25.07.2017.
+ */
+public class BaseApiController<E extends GetableById<I>, V extends GetableById<I>, I extends Serializable> {
+
+    @Autowired
+    BaseService<E, V, I> service;
+
+    @Autowired
+    ResponseFactory responseFactory;
+
+    @RequestMapping(
+            value = "/{id}",
+            method = RequestMethod.GET
+    )
+    public
+    @ResponseBody
+    Response<Map<String, Object>>
+    get(
+            @PathVariable("id") I id,
+            @RequestParam(value = "fields", required = false, defaultValue = Fields.InfoPage.DEFAULT) Set<String> fields
+    ) throws BaseException {
+        return responseFactory.get(service.getById(id, fields));
+    }
+
+    @RequestMapping(
+            value = "/",
+            method = RequestMethod.GET
+    )
+    public @ResponseBody Response<List<Map<String, Object>>>
+    getList(
+            @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
+            @RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
+            @RequestParam(value = "fields", required = false, defaultValue = Fields.InfoPage.DEFAULT) Set<String> fields,
+            @RequestParam(value = "restrict", required = false) String restrict
+    ) throws BaseException {
+        return responseFactory.get(service.getList(offset, limit, fields, restrict));
+    }
+
+    @RequestMapping(
+            value = "/count",
+            method = RequestMethod.GET
+    )
+    public @ResponseBody Response<Integer>
+    count(
+            @RequestParam(value = "restrict", required = false) String restrict
+    ) throws BaseException {
+        return responseFactory.get(service.count(restrict));
+    }
+
+    @RequestMapping(
+            value = "/",
+            method = RequestMethod.PUT
+    )
+    public
+    @ResponseBody Response<I>
+    create(
+            @RequestBody V view
+    ) throws BaseException, InstantiationException, IllegalAccessException {
+        return responseFactory.get(service.create(view));
+    }
+
+    @RequestMapping(
+            value = "/",
+            method = RequestMethod.POST
+    )
+    public
+    @ResponseBody Response<Boolean>
+    update(
+            @RequestBody V view
+    ) throws BaseException {
+        return responseFactory.get(service.update(view));
+    }
+
+    @RequestMapping(
+            value = "/{id}",
+            method = RequestMethod.DELETE
+    )
+    public
+    @ResponseBody Response<Boolean>
+    delete(
+            @PathVariable("id") I id
+    ) throws BaseException {
+        return responseFactory.get(service.delete(id));
+    }
+}
