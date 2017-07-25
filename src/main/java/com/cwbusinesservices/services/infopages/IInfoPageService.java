@@ -1,11 +1,9 @@
 package com.cwbusinesservices.services.infopages;
 
-import com.cwbusinesservices.criteria.impl.InfoPageCriteria;
 import com.cwbusinesservices.exceptions.BaseException;
-import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;
 import com.cwbusinesservices.pojo.entities.InfoPageEntity;
 import com.cwbusinesservices.pojo.view.InfoPageView;
-import com.cwbusinesservices.services.IService;
+import com.cwbusinesservices.services.BaseService;
 
 import java.util.Map;
 import java.util.Set;
@@ -13,9 +11,13 @@ import java.util.Set;
 /**
  * Created by Andrii on 25.07.2017.
  */
-public interface IInfoPageService extends IService<InfoPageEntity,InfoPageView,InfoPageCriteria> {
+public abstract class IInfoPageService extends BaseService<InfoPageEntity,InfoPageView,Integer> {
 
-    InfoPageEntity getByUrl(String url) throws BaseException;
-    Map<String,Object> getByUrl(String url,Set<String> fields) throws BaseException;
+    public IInfoPageService(){
+        super(InfoPageEntity.class);
+    }
+
+    public abstract InfoPageEntity getByUrl(String url) throws BaseException;
+    public abstract Map<String,Object> getByUrl(String url,Set<String> fields) throws BaseException;
 
 }

@@ -40,6 +40,20 @@ public class InfoPageApiController {
     }
 
     @RequestMapping(
+            value = "/url/{url}",
+            method = RequestMethod.GET
+    )
+    public
+    @ResponseBody
+    Response<Map<String, Object>>
+    getByUrl(
+            @PathVariable("url") String url,
+            @RequestParam(value = "fields", required = false, defaultValue = Fields.InfoPage.DEFAULT) Set<String> fields
+    ) throws BaseException {
+        return responseFactory.get(service.getByUrl(url, fields));
+    }
+
+    @RequestMapping(
             value = "/",
             method = RequestMethod.GET
     )
@@ -72,7 +86,7 @@ public class InfoPageApiController {
     @ResponseBody Response<Integer>
     create(
             @RequestBody InfoPageView view
-    ) throws BaseException {
+    ) throws BaseException, InstantiationException, IllegalAccessException {
         return responseFactory.get(service.create(view));
     }
 

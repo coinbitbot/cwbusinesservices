@@ -1,5 +1,6 @@
 package com.cwbusinesservices.pojo.view;
 
+import com.cwbusinesservices.pojo.entities.GetableById;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
@@ -7,7 +8,7 @@ import java.io.Serializable;
 /**
  * Created by Andrii on 25.07.2017.
  */
-public class InfoPageView implements Serializable{
+public class InfoPageView implements Serializable,GetableById<Integer>{
 
     private static final long serialVersionUID = -6567992192957088108L;
 
