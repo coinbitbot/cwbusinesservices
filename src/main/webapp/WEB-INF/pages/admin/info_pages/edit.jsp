@@ -10,7 +10,7 @@
         <form ng-submit="save();">
             <div class="form-group">
                 <label>URL</label>
-                <input type="text" ng-model="entity.url" class="form-control">
+                <input type="text" ng-model="entity.url" ng-change="validateUrl()" class="form-control">
             </div>
             <div class="form-group">
                 <label>Header</label>

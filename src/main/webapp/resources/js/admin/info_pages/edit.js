@@ -26,10 +26,16 @@
         }
 
         save($scope, $http);
+        validateUrl($scope);
     });
 
     function save($scope, $http) {
         $scope.save = function() {
+            if (!isUrlValid($scope.entity.url)) {
+                showErrorMessage('url has an invalid value');
+
+                return;
+            }
             $scope.entity.text = tinymce.activeEditor.getContent();
 
             var id = $scope.entity.id;
@@ -47,5 +53,25 @@
                     }
                 });
         };
+    }
+
+    function validateUrl($scope) {
+        $scope.validateUrl = function(){
+            var url = $scope.entity.url;
+
+            if (!url) {
+                return;
+            }
+
+            if (!isUrlValid(url)) {
+                showErrorMessage('url has an invalid value');
+            }
+        };
+    }
+
+    function isUrlValid(url) {
+        var regex = /^[A-Z1-9a-z_-]+$/g;
+
+        return regex.test(url);
     }
 })();

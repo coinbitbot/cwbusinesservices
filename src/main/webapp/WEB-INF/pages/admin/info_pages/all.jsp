@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html ng-app="all">
 <head>
-    <title>Users</title>
+    <title>Info pages</title>
 </head>
 <body>
 <jsp:include page="../header.jsp" />
