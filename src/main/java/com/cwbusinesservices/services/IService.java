@@ -1,5 +1,6 @@
 package com.cwbusinesservices.services;
 
+import com.cwbusinesservices.criteria.Criteria;
 import com.cwbusinesservices.criteria.impl.UserCriteria;
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.exceptions.bad_request.WrongPasswordException;
@@ -10,6 +11,7 @@ import com.cwbusinesservices.exceptions.service_error.ValidationException;
 import com.cwbusinesservices.pojo.entities.UserEntity;
 import com.cwbusinesservices.pojo.view.UserView;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -17,13 +19,22 @@ import java.util.Set;
 /**
  * Created by Andrii on 25.07.2017.
  */
-public interface IService<E,V,C> {
-    E getById(int id) throws BaseException;
-    Map<String, Object> getById(int id, Set<String> fields) throws BaseException;
-    List<E> getList(C criteria) throws BaseException;
+
+/**
+ *
+ * @param <E> Entity class
+ * @param <V> View class
+ * @param <I> Entity primary key
+ */
+public interface IService<E,V,I extends Serializable> {
+    E getById(I id) throws BaseException;
+    Map<String, Object> getById(I id, Set<String> fields) throws BaseException;
+    List<E> getList(Criteria<E> criteria) throws BaseException;
+    List<Map<String, Object>> getList(Criteria<E> criteria, Set<String> fields) throws BaseException;
     List<Map<String, Object>> getList(int offset, int limit, Set<String> fields, String restrict) throws BaseException;
-    int create(V view) throws BaseException;
+    I create(V view) throws BaseException, IllegalAccessException, InstantiationException;
     boolean update(V view) throws BaseException;
     int count(String restrict) throws WrongRestrictionException;
-    boolean delete(int id) throws BaseException;
+    boolean delete(I id) throws BaseException;
+    int count(Criteria<E> criteria) throws WrongRestrictionException;
 }

@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name="INFO_PAGES")
-public class InfoPageEntity implements Serializable{
+public class InfoPageEntity implements Serializable, GetableById<Integer>{
 
     private static final long serialVersionUID = -6206383240428127461L;
     public static final int MAX_URL_SIZE = 150;
@@ -72,7 +72,7 @@ public class InfoPageEntity implements Serializable{
         this.metaKeywords = metaKeywords;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
