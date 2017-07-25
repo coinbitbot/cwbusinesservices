@@ -76,11 +76,13 @@ public class InfoPageServiceImpl implements IInfoPageService{
     }
 
     @Override
-    public boolean update(InfoPageView view) throws NoSuchEntityException {
+    public boolean update(InfoPageView view) throws BaseException {
         InfoPageEntity entity = repository.findOne(view.getId());
         if (entity == null)
             throw new NoSuchEntityException(InfoPageEntity.class.getName(), "id" + view.getId());
+
         merger.merge(entity,view);
+        validationService.validForUpdate(entity);
         entity = repository.saveAndFlush(entity);
         return entity != null && entity.getId() > 0;
     }

@@ -23,7 +23,7 @@ public interface IService<E,V,C> {
     List<E> getList(C criteria) throws BaseException;
     List<Map<String, Object>> getList(int offset, int limit, Set<String> fields, String restrict) throws BaseException;
     int create(V view) throws BaseException;
-    boolean update(V view) throws NoSuchEntityException;
+    boolean update(V view) throws BaseException;
     int count(String restrict) throws WrongRestrictionException;
     boolean delete(int id) throws BaseException;
 }

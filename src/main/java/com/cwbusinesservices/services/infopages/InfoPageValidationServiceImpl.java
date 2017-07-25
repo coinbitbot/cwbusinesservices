@@ -1,5 +1,6 @@
 package com.cwbusinesservices.services.infopages;
 
+import com.cwbusinesservices.criteria.impl.InfoPageCriteria;
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.exceptions.conflict.EntityValidateException;
 import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;

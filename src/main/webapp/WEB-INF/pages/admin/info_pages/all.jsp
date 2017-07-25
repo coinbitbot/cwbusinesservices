@@ -1,14 +1,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html ng-app="all_users">
+<html ng-app="all">
 <head>
     <title>Users</title>
 </head>
 <body>
 <jsp:include page="../header.jsp" />
 
-<div class="row main_row" ng-controller="all_users">
-    <div class="row">
-        Total number: {{total_count}}, on page: {{number_on_page}}
+<div class="row main_row" ng-controller="all">
+    <div class="col-md-12">
+        <div class="col-md-3">
+            <a href="/admin/info_pages/create" class="btn btn-success" target="_blank">Add new info page</a>
+        </div>
+        <div class="col-md-3">
+            total count: {{total_count}}, on page: {{number_on_page}}
+        </div>
     </div>
     <div class="col-md-3">
         <form ng-submit="moveToPage()">
@@ -27,15 +32,6 @@
                 <input ng-model="filters.query" class="form-control">
             </div>
             <div class="form-group">
-                <label>role</label>
-                <select ng-model="filters.role" class="form-control">
-                    <option value="">all</option>
-                    <option value="user">user</option>
-                    <option value="admin">admin</option>
-                    <option value="moderator">moderator</option>
-                </select>
-            </div>
-            <div class="form-group">
                 <label>active</label>
                 <select ng-model="filters.active" class="form-control">
                     <option value="">ignore</option>
@@ -50,21 +46,17 @@
         <table class="table">
             <thead>
             <tr>
-                <th>name</th>
-                <th>role</th>
+                <th>url</th>
+                <th>header</th>
                 <th>actions</th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="user in entities">
+            <tr ng-repeat="entity in entities">
+                <td>{{entity.url}}</td>
+                <td>{{entity.header}}</td>
                 <td>
-                    {{user.name}}
-                    <br />
-                    {{user.email || '-'}}
-                </td>
-                <td>{{user.role}}</td>
-                <td>
-                    <a href="/admin/users/{{user.id}}/edit" target="_blank" class="btn btn-success">Edit user</a>
+                    <a href="/admin/info_pages/{{entity.id}}/edit" target="_blank" class="btn btn-success">Edit</a>
                 </td>
             </tr>
             </tbody>
@@ -73,6 +65,6 @@
 </div>
 
 <jsp:include page="../include.jsp" />
-<script src="/resources/js/admin/users/all.js"></script>
+<script src="/resources/js/admin/info_pages/all.js"></script>
 </body>
 </html>
