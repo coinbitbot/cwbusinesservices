@@ -1,10 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: oleh_kurpiak
-  Date: 05.09.2016
-  Time: 12:31
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib uri="http://htmlcompressor.googlecode.com/taglib/compressor" prefix="compress"%>
+<compress:html removeIntertagSpaces="true">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -80,4 +75,5 @@
 <jsp:include page="../common/footer.jsp" />
 </body>
 </html>
+</compress:html>
 

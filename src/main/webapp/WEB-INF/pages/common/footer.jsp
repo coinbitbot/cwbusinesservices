@@ -31,8 +31,3 @@
 <%= script %>
 <%= catch_error %>
 <%-- /show js error mssages setup --%>
-<!-- top scroll -->
-
-<script>
-    console.log(a);
-</script>

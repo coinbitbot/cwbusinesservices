@@ -1,3 +1,5 @@
+<%@ taglib uri="http://htmlcompressor.googlecode.com/taglib/compressor" prefix="compress"%>
+<compress:html removeIntertagSpaces="true">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -12,3 +14,4 @@
 <jsp:include page="../common/footer.jsp" />
 </body>
 </html>
+</compress:html>

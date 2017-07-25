@@ -1,0 +1,26 @@
+{
+  "name": "cwbusinesservices",
+  "description": "cwbusinesservices",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glibovet/cwbusinesservices.git"
+  },
+  "bugs": {
+    "url": "https://github.com/glibovet/cwbusinesservices/issues"
+  },
+  "version": "0.0.1",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-filenames": "^4.0.1",
+    "gulp-uglyfly": "^1.4.2",
+    "gulp-using": "^0.1.1",
+    "gulp-util": "^3.0.8"
+  },
+  "scripts": {
+    "prebuild": "npm install",
+    "build": "gulp"
+  }
+}
