@@ -8,6 +8,7 @@ import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
 import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;
 import com.cwbusinesservices.persistence.dao.repositories.InfoPagesRepository;
 import com.cwbusinesservices.pojo.entities.InfoPageEntity;
+import com.cwbusinesservices.services.IValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -21,6 +22,7 @@ import java.util.Set;
  * Created by Andrii on 25.07.2017.
  */
 @Service
+@Transactional(propagation= Propagation.REQUIRED)
 public class InfoPageServiceImpl extends IInfoPageService{
 
     @Autowired
@@ -30,7 +32,7 @@ public class InfoPageServiceImpl extends IInfoPageService{
     private Converter<InfoPageEntity> converter;
 
     @Autowired
-    private IInfoPageValidationService validationService;
+    private IValidator<InfoPageEntity> validationService;
 
 
     @Override

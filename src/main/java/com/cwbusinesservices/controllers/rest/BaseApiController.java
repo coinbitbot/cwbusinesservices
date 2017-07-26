@@ -6,7 +6,9 @@ import com.cwbusinesservices.pojo.entities.GetableById;
 import com.cwbusinesservices.pojo.response.Response;
 import com.cwbusinesservices.pojo.response.ResponseFactory;
 import com.cwbusinesservices.services.BaseService;
+import com.cwbusinesservices.services.IService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
@@ -17,10 +19,10 @@ import java.util.Set;
 /**
  * Created by Oleh on 25.07.2017.
  */
-public class BaseApiController<E extends GetableById<I>, V extends GetableById<I>, I extends Serializable> {
+public abstract class BaseApiController<E extends GetableById<I>, V extends GetableById<I>, I extends Serializable> {
 
     @Autowired
-    BaseService<E, V, I> service;
+    IService<E, V, I> service;
 
     @Autowired
     ResponseFactory responseFactory;
