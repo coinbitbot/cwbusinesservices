@@ -13,7 +13,6 @@ import java.util.List;
 /**
  * Created by Andrii on 18.08.2016.
  */
-@Transactional(propagation= Propagation.REQUIRED)
 public interface UsersRepository extends BaseRepository<UserEntity,Integer>{
     public UserEntity findByEmail(String email);
 }

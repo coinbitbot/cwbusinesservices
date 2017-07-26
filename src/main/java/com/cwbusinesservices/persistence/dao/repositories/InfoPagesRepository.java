@@ -15,7 +15,6 @@ import java.util.List;
 /**
  * Created by Andrii on 25.07.2017.
  */
-@Transactional(propagation= Propagation.REQUIRED)
 public interface InfoPagesRepository extends BaseRepository<InfoPageEntity,Integer> {
     InfoPageEntity findByUrl(String url);
 }
