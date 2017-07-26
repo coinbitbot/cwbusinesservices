@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * Created by Andrii on 26.07.2017.
  */
-@Controller
-@RequestMapping(value = "/api/company")
+//@Controller
+//@RequestMapping(value = "/api/company")
 public class CompanyApiController extends BaseApiController<CompanyEntity,CompanyView,Integer>{
 }

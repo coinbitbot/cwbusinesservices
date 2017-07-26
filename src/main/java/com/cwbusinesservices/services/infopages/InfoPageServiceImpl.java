@@ -8,6 +8,8 @@ import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
 import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;
 import com.cwbusinesservices.persistence.dao.repositories.InfoPagesRepository;
 import com.cwbusinesservices.pojo.entities.InfoPageEntity;
+import com.cwbusinesservices.pojo.view.InfoPageView;
+import com.cwbusinesservices.services.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -21,7 +23,10 @@ import java.util.Set;
  * Created by Andrii on 25.07.2017.
  */
 @Service
-public class InfoPageServiceImpl extends IInfoPageService{
+@Transactional(propagation = Propagation.REQUIRED)
+public class InfoPageServiceImpl
+        extends BaseService<InfoPageEntity,InfoPageView,Integer>
+        implements IInfoPageService {
 
     @Autowired
     private InfoPagesRepository infoPagesRepository;
@@ -32,6 +37,9 @@ public class InfoPageServiceImpl extends IInfoPageService{
     @Autowired
     private IInfoPageValidationService validationService;
 
+    public InfoPageServiceImpl(){
+        super(InfoPageEntity.class);
+    }
 
     @Override
     public List<Map<String, Object>> getList(int offset, int limit, Set<String> fields, String restrict) throws BaseException {

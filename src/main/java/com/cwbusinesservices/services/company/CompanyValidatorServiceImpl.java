@@ -21,7 +21,7 @@ import java.util.Set;
 /**
  * Created by Andrii on 26.07.2017.
  */
-@Service
+//@Service
 public class CompanyValidatorServiceImpl implements ICompanyValidationService{
 
     @Autowired

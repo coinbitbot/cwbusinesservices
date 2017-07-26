@@ -6,6 +6,7 @@ import com.cwbusinesservices.pojo.entities.GetableById;
 import com.cwbusinesservices.pojo.response.Response;
 import com.cwbusinesservices.pojo.response.ResponseFactory;
 import com.cwbusinesservices.services.BaseService;
+import com.cwbusinesservices.services.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ import java.util.Set;
 public class BaseApiController<E extends GetableById<I>, V extends GetableById<I>, I extends Serializable> {
 
     @Autowired
-    BaseService<E, V, I> service;
+    IService<E, V, I> service;
 
     @Autowired
     ResponseFactory responseFactory;

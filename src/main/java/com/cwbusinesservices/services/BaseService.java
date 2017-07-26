@@ -31,7 +31,7 @@ import java.util.Set;
  * @param <I> Entity primary key
  */
 
-public abstract class BaseService<E extends GetableById<I>,V extends GetableById<I>,I extends Serializable> implements IService<E,V,I>{
+public class BaseService<E extends GetableById<I>,V extends GetableById<I>,I extends Serializable> implements IService<E,V,I>{
 
     @Autowired
     private BaseRepository<E,I> repository;
@@ -73,11 +73,14 @@ public abstract class BaseService<E extends GetableById<I>,V extends GetableById
         return entities;
     }
 
-    public abstract List<Map<String, Object>> getList(int offset, int limit, Set<String> fields, String restrict) throws BaseException;
-
     @Override
     public List<Map<String, Object>> getList(Criteria<E> criteria, Set<String> fields) throws BaseException{
         return converter.convert(getList(criteria),fields);
+    }
+
+    @Override
+    public List<Map<String, Object>> getList(int offset, int limit, Set<String> fields, String restrict) throws BaseException {
+        return null;
     }
 
     @Override
@@ -103,7 +106,9 @@ public abstract class BaseService<E extends GetableById<I>,V extends GetableById
     }
 
     @Override
-    public abstract int count(String restrict) throws WrongRestrictionException;
+    public int count(String restrict) throws WrongRestrictionException {
+        return 0;
+    }
 
     @Override
     public int count(Criteria<E> criteria){
