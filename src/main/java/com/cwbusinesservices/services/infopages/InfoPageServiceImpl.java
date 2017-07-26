@@ -21,7 +21,6 @@ import java.util.Set;
  * Created by Andrii on 25.07.2017.
  */
 @Service
-@Transactional(propagation= Propagation.REQUIRED)
 public class InfoPageServiceImpl extends IInfoPageService{
 
     @Autowired
