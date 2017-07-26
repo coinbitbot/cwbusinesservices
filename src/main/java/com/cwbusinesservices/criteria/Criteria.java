@@ -71,7 +71,7 @@ public abstract class Criteria<T> {
 
         List<Predicate> predicates = query(root, cb);
         if (!predicates.isEmpty()) {
-            query.where(predicates.toArray(new Predicate[predicates.size()]));
+            query.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
         }
 
         return em.createQuery(query);
@@ -86,7 +86,7 @@ public abstract class Criteria<T> {
 
         List<Predicate> predicates = query(root, cb);
         if (!predicates.isEmpty()) {
-            query.where(predicates.toArray(new Predicate[predicates.size()]));
+            query.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
         }
 
         return em.createQuery(query);

@@ -10,6 +10,8 @@ import com.cwbusinesservices.persistence.dao.repositories.InfoPagesRepository;
 import com.cwbusinesservices.pojo.entities.InfoPageEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -19,6 +21,7 @@ import java.util.Set;
  * Created by Andrii on 25.07.2017.
  */
 @Service
+@Transactional(propagation= Propagation.REQUIRED)
 public class InfoPageServiceImpl extends IInfoPageService{
 
     @Autowired

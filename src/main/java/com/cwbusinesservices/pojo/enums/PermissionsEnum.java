@@ -6,5 +6,8 @@ package com.cwbusinesservices.pojo.enums;
 public enum PermissionsEnum {
     CREATE_INFO_PAGE,
     EDIT_INFO_PAGE,
-    DELETE_INFO_PAGE
+    DELETE_INFO_PAGE,
+    CREATE_COMPANY,
+    DELETE_COMPANY,
+    EDIT_COMPANY
 }
