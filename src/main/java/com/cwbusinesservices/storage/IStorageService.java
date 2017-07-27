@@ -14,9 +14,15 @@ import java.io.IOException;
  * Created by Andrii on 05.10.2016.
  */
 public interface IStorageService {
-    boolean uploadRequestFile(int id, MultipartFile file) throws NoSuchEntityException, ServiceErrorException, IOException, ValidationException;
+    boolean uploadRequestFile(int id, MultipartFile file) throws NoSuchEntityException, ServiceErrorException;
 
-    void getRequestFile(int id, HttpServletResponse response) throws NoSuchEntityException, ForbiddenException, ServiceErrorException, StorageException;
+    void getRequestFile(int id, HttpServletResponse response) throws NoSuchEntityException, StorageException;
 
-    boolean requestHasFile(int id) throws NoSuchEntityException, ForbiddenException, ServiceErrorException;
+    boolean requestHasFile(int id) throws NoSuchEntityException;
+
+    boolean uploadServiceFile(int id, MultipartFile file) throws NoSuchEntityException, ServiceErrorException;
+
+    void getServiceFile(int id, HttpServletResponse response) throws NoSuchEntityException, ServiceErrorException, StorageException;
+
+    boolean serviceHasFile(int id) throws NoSuchEntityException;
 }
