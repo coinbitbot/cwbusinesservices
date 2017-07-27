@@ -1,6 +1,8 @@
 package com.cwbusinesservices.convertors;
 
 import com.cwbusinesservices.pojo.entities.ServiceEntity;
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -11,6 +13,7 @@ import static com.cwbusinesservices.convertors.Fields.Service.*;
 /**
  * Created by Andrii on 27.07.2017.
  */
+@Component
 public class ServiceConverter extends Converter<ServiceEntity>{
     @Override
     public Map<String, Object> convert(ServiceEntity object, Set<String> fields) {
