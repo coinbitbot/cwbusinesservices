@@ -9,5 +9,8 @@ public enum PermissionsEnum {
     DELETE_INFO_PAGE,
     CREATE_COMPANY,
     DELETE_COMPANY,
-    EDIT_COMPANY
+    EDIT_COMPANY,
+    CREATE_SERVICE,
+    EDIT_SERVICE,
+    DELETE_SERVICE
 }

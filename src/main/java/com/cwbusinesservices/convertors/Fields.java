@@ -43,5 +43,15 @@ public class Fields {
         public static final String DEFAULT = ID + ',' + NAME;
     }
 
+    public static class Service{
+        public static final String ID = "id";
+        public static final String NAME = "NAME";
+        public static final String HAS_IMG = "has_logo";
+        public static final String DESCRIPTION = "text";
+        public static final String ACTIVE ="active";
+
+        public static final String DEFAULT = ID + ',' + NAME;
+    }
+
     public static final String DEFAULT ="id";
 }

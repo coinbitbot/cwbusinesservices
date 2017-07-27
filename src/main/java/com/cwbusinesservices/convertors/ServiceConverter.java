@@ -1,0 +1,30 @@
+package com.cwbusinesservices.convertors;
+
+import com.cwbusinesservices.pojo.entities.ServiceEntity;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+import static com.cwbusinesservices.convertors.Fields.Service.*;
+
+
+/**
+ * Created by Andrii on 27.07.2017.
+ */
+public class ServiceConverter extends Converter<ServiceEntity>{
+    @Override
+    public Map<String, Object> convert(ServiceEntity object, Set<String> fields) {
+        Map<String, Object> map = new HashMap<>();
+        if(fields.contains(ID))
+            map.put(ID, object.getId());
+        if(fields.contains(ACTIVE))
+            map.put(ACTIVE, object.isActive());
+        if(fields.contains(HAS_IMG))
+            map.put(HAS_IMG,object.isHasIcon());
+        if(fields.contains(DESCRIPTION))
+            map.put(DESCRIPTION,object.getDescription());
+        if (fields.contains(NAME))
+            map.put(NAME,object.getName());
+        return map;
+    }
+}

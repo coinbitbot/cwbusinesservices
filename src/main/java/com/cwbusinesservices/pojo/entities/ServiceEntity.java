@@ -1,19 +1,17 @@
 package com.cwbusinesservices.pojo.entities;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
- * Created by Andrii on 26.07.2017.
+ * Created by Andrii on 27.07.2017.
  */
 @Entity
-@Table(name="COMPANY")
-public class CompanyEntity implements Serializable, GetableById<Integer> {
+@Table(name="SERVICE")
+public class ServiceEntity implements Serializable, GetableById<Integer>{
 
-    private static final long serialVersionUID = 8132279800338374807L;
+    private static final long serialVersionUID = -713669045447385621L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,14 +19,14 @@ public class CompanyEntity implements Serializable, GetableById<Integer> {
     private int id;
 
     @Column(name="NAME")
-    @NotNull(message = "company.name.required")
+    @NotNull(message = "service.name.required")
     private String name;
 
-    @Column(name="HAS_LOGO")
-    private boolean hasLogo;
+    @Column(name="HAS_ICON")
+    private boolean hasIcon;
 
-    @Column(name="TEXT")
-    private String text;
+    @Column(name="DESCRIPTION")
+    private String description;
 
     @Column(name="STATUS")
     private boolean active;
@@ -50,20 +48,20 @@ public class CompanyEntity implements Serializable, GetableById<Integer> {
         this.name = name;
     }
 
-    public boolean isHasLogo() {
-        return hasLogo;
+    public boolean isHasIcon() {
+        return hasIcon;
     }
 
-    public void setHasLogo(boolean hasLogo) {
-        this.hasLogo = hasLogo;
+    public void setHasIcon(boolean hasIcon) {
+        this.hasIcon = hasIcon;
     }
 
-    public String getText() {
-        return text;
+    public String getDescription() {
+        return description;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public boolean isActive() {
@@ -79,13 +77,13 @@ public class CompanyEntity implements Serializable, GetableById<Integer> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CompanyEntity that = (CompanyEntity) o;
+        ServiceEntity that = (ServiceEntity) o;
 
         if (id != that.id) return false;
-        if (hasLogo != that.hasLogo) return false;
+        if (hasIcon != that.hasIcon) return false;
         if (active != that.active) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return text != null ? text.equals(that.text) : that.text == null;
+        return description != null ? description.equals(that.description) : that.description == null;
 
     }
 
@@ -93,19 +91,19 @@ public class CompanyEntity implements Serializable, GetableById<Integer> {
     public int hashCode() {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (hasLogo ? 1 : 0);
-        result = 31 * result + (text != null ? text.hashCode() : 0);
+        result = 31 * result + (hasIcon ? 1 : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (active ? 1 : 0);
         return result;
     }
 
     @Override
     public String toString() {
-        return "CompanyEntity{" +
+        return "ServiceEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", hasLogo=" + hasLogo +
-                ", text='" + text + '\'' +
+                ", hasIcon=" + hasIcon +
+                ", description='" + description + '\'' +
                 ", active=" + active +
                 '}';
     }
