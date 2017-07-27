@@ -53,5 +53,15 @@ public class Fields {
         public static final String DEFAULT = ID + ',' + NAME;
     }
 
+    public static class Testimonial{
+        public static final String ID = "id";
+        public static final String NAME = "NAME";
+        public static final String TEXT = "TEXT";
+        public static final String POSITION = "position";
+        public static final String ACTIVE ="active";
+
+        public static final String DEFAULT = ID + ',' + NAME;
+    }
+
     public static final String DEFAULT ="id";
 }
