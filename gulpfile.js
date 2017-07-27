@@ -9,6 +9,7 @@ gulp.task('minify', function(){
 
 function minimizeJs() {
     gulp.src([
+        '!src/main/webapp/assets/js/**/*.min.js',
         'src/main/webapp/assets/js/**/*.js'
     ])
         .pipe(using({}))
@@ -18,6 +19,7 @@ function minimizeJs() {
 
 function minimizeCss() {
     gulp.src([
+        '!src/main/webapp/assets/css/**/*.min.css',
         'src/main/webapp/assets/css/**/*.css'
     ])
         .pipe(using({}))
