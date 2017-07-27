@@ -73,7 +73,7 @@ public abstract class BaseService<E extends GetableById<I>,V extends GetableById
         return entities;
     }
 
-    public abstract List<Map<String, Object>> getList(int offset, int limit, Set<String> fields, String restrict) throws BaseException;
+    public abstract List<Map<String, Object>> getList(Set<String> fields, String restrict) throws BaseException;
 
     @Override
     public List<Map<String, Object>> getList(Criteria<E> criteria, Set<String> fields) throws BaseException{

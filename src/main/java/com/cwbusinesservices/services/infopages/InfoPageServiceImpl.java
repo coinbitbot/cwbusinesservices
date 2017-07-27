@@ -36,8 +36,8 @@ public class InfoPageServiceImpl extends IInfoPageService{
 
 
     @Override
-    public List<Map<String, Object>> getList(int offset, int limit, Set<String> fields, String restrict) throws BaseException {
-        Criteria<InfoPageEntity> criteria = new InfoPageCriteria(offset,limit,restrict);
+    public List<Map<String, Object>> getList(Set<String> fields, String restrict) throws BaseException {
+        Criteria<InfoPageEntity> criteria = new InfoPageCriteria(restrict);
         return getList(criteria,fields);
     }
 

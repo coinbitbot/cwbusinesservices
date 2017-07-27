@@ -31,7 +31,7 @@ public interface IService<E,V,I extends Serializable> {
     Map<String, Object> getById(I id, Set<String> fields) throws BaseException;
     List<E> getList(Criteria<E> criteria) throws BaseException;
     List<Map<String, Object>> getList(Criteria<E> criteria, Set<String> fields) throws BaseException;
-    List<Map<String, Object>> getList(int offset, int limit, Set<String> fields, String restrict) throws BaseException;
+    List<Map<String, Object>> getList(Set<String> fields, String restrict) throws BaseException;
     I create(V view) throws BaseException, IllegalAccessException, InstantiationException;
     boolean update(V view) throws BaseException;
     int count(String restrict) throws WrongRestrictionException;

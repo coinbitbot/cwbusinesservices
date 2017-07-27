@@ -20,8 +20,8 @@ import java.util.Set;
 @Transactional(propagation= Propagation.REQUIRED)
 public class ServiceServiceImpl extends IServiceService{
     @Override
-    public List<Map<String, Object>> getList(int offset, int limit, Set<String> fields, String restrict) throws BaseException {
-        Criteria<ServiceEntity> criteria = new ServiceCriteria(offset,limit,restrict);
+    public List<Map<String, Object>> getList(Set<String> fields, String restrict) throws BaseException {
+        Criteria<ServiceEntity> criteria = new ServiceCriteria(restrict);
         return getList(criteria,fields);
     }
 

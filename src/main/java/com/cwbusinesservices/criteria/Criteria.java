@@ -109,6 +109,14 @@ public abstract class Criteria<T> {
             Gson gson = new Gson();
             T parsed = gson.fromJson(restriction, clazz);
 
+            if (parsed.getLimit() > 0) {
+                setLimit(parsed.getLimit());
+            }
+
+            if (parsed.getOffset() > 0) {
+                setOffset(parsed.getOffset());
+            }
+
             return parsed;
         } catch (Exception e){
             throw new WrongRestrictionException();

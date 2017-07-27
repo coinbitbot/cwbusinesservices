@@ -21,8 +21,8 @@ import java.util.Set;
 public class CompanyServiceImpl extends ICompanyService{
 
     @Override
-    public List<Map<String, Object>> getList(int offset, int limit, Set<String> fields, String restrict) throws BaseException {
-        Criteria<CompanyEntity> criteria = new CompanyCriteria(offset,limit,restrict);
+    public List<Map<String, Object>> getList(Set<String> fields, String restrict) throws BaseException {
+        Criteria<CompanyEntity> criteria = new CompanyCriteria(restrict);
         return getList(criteria,fields);
     }
 

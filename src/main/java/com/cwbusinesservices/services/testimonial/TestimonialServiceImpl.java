@@ -20,8 +20,8 @@ import java.util.Set;
 @Transactional(propagation= Propagation.REQUIRED)
 public class TestimonialServiceImpl extends ITestimonialService{
     @Override
-    public List<Map<String, Object>> getList(int offset, int limit, Set<String> fields, String restrict) throws BaseException {
-        Criteria<TestimonialEntity> criteria = new TestimonialCriteria(offset,limit,restrict);
+    public List<Map<String, Object>> getList(Set<String> fields, String restrict) throws BaseException {
+        Criteria<TestimonialEntity> criteria = new TestimonialCriteria(restrict);
         return getList(criteria,fields);
     }
 

@@ -47,12 +47,10 @@ public abstract class BaseApiController<E extends GetableById<I>, V extends Geta
     )
     public @ResponseBody Response<List<Map<String, Object>>>
     getList(
-            @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
-            @RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
             @RequestParam(value = "fields", required = false, defaultValue = Fields.InfoPage.DEFAULT) Set<String> fields,
             @RequestParam(value = "restrict", required = false) String restrict
     ) throws BaseException {
-        return responseFactory.get(service.getList(offset, limit, fields, restrict));
+        return responseFactory.get(service.getList(fields, restrict));
     }
 
     @RequestMapping(
