@@ -35,7 +35,7 @@ public class Fields {
 
     public static class Company{
         public static final String ID = "id";
-        public static final String NAME = "NAME";
+        public static final String NAME = "name";
         public static final String HAS_IMG = "has_image";
         public static final String TEXT = "text";
         public static final String ACTIVE ="active";

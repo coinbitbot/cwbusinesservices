@@ -67,4 +67,47 @@ public class CompanyCriteria extends Criteria<CompanyEntity> {
         }
         return predicates;
     }
+
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
+    public List<Integer> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public Boolean getHas_img() {
+        return has_img;
+    }
+
+    public void setHas_img(Boolean has_img) {
+        this.has_img = has_img;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("CompanyCriteria{");
+        sb.append("query='").append(query).append('\'');
+        sb.append(", ids=").append(ids);
+        sb.append(", active=").append(active);
+        sb.append(", has_img=").append(has_img);
+        sb.append('}');
+        return sb.toString();
+    }
 }
