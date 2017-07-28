@@ -5,6 +5,7 @@ import com.cwbusinesservices.pojo.enums. ImageEntityTypeEnum;
 import com.cwbusinesservices.pojo.response.Response;
 import com.cwbusinesservices.pojo.response.ResponseFactory;
 import com.cwbusinesservices.services.images.IImageServiceImpl;
+import com.cwbusinesservices.services.images.IImagesService;
 import com.cwbusinesservices.storage.IStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,7 @@ public class ImagesApiController {
     @Autowired
     private ResponseFactory responseFactory;
     @Autowired
-    private IImageServiceImpl imageService;
+    private IImagesService imageService;
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public @ResponseBody
@@ -35,6 +36,15 @@ public class ImagesApiController {
         return responseFactory.get(imageService.uploadFile(id, file, type));
     }
 
+    @RequestMapping(value = "/", method = RequestMethod.DELETE)
+    public @ResponseBody
+    Response<Boolean> deleteFile(
+            @RequestParam("id") int id,
+            @RequestParam("type") ImageEntityTypeEnum type
+    ) throws BaseException {
+        return responseFactory.get(imageService.deleteFile(id, type));
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public void getFile(
             @PathVariable("id") int id,
@@ -42,5 +52,13 @@ public class ImagesApiController {
             HttpServletResponse response
     ) throws BaseException {
         imageService.getFile(id, response, type);
+    }
+
+    @RequestMapping(value = "/has_file/{id}", method = RequestMethod.GET)
+    public void hasFile(
+            @PathVariable("id") int id,
+            @RequestParam("type") ImageEntityTypeEnum type
+    ) throws BaseException {
+        imageService.hasFile(id, type);
     }
 }
