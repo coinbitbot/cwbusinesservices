@@ -5,6 +5,8 @@
     footer
     <Br />
     <a href="/info_pages/catalog">All info pages</a>
+    <Br />
+    <a href="/companies/catalog">All companies</a>
 </div>
 
 
