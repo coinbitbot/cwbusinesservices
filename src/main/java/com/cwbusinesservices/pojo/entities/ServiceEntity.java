@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name="SERVICE")
-public class ServiceEntity implements Serializable, GetableById<Integer>{
+public class ServiceEntity implements Serializable, GetableById<Integer>, IHasImage{
 
     private static final long serialVersionUID = -713669045447385621L;
 
@@ -23,7 +23,7 @@ public class ServiceEntity implements Serializable, GetableById<Integer>{
     private String name;
 
     @Column(name="HAS_ICON")
-    private boolean hasIcon;
+    private boolean hasImage;
 
     @Column(name="DESCRIPTION")
     private String description;
@@ -48,12 +48,14 @@ public class ServiceEntity implements Serializable, GetableById<Integer>{
         this.name = name;
     }
 
-    public boolean isHasIcon() {
-        return hasIcon;
+    @Override
+    public Boolean isHasImage() {
+        return hasImage;
     }
 
-    public void setHasIcon(boolean hasIcon) {
-        this.hasIcon = hasIcon;
+    @Override
+    public void setHasImage(boolean hasImage) {
+        this.hasImage = hasImage;
     }
 
     public String getDescription() {
@@ -80,7 +82,7 @@ public class ServiceEntity implements Serializable, GetableById<Integer>{
         ServiceEntity that = (ServiceEntity) o;
 
         if (id != that.id) return false;
-        if (hasIcon != that.hasIcon) return false;
+        if (hasImage != that.hasImage) return false;
         if (active != that.active) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         return description != null ? description.equals(that.description) : that.description == null;
@@ -91,7 +93,7 @@ public class ServiceEntity implements Serializable, GetableById<Integer>{
     public int hashCode() {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (hasIcon ? 1 : 0);
+        result = 31 * result + (hasImage ? 1 : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (active ? 1 : 0);
         return result;
@@ -102,7 +104,7 @@ public class ServiceEntity implements Serializable, GetableById<Integer>{
         return "ServiceEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", hasIcon=" + hasIcon +
+                ", hasImage=" + hasImage +
                 ", description='" + description + '\'' +
                 ", active=" + active +
                 '}';

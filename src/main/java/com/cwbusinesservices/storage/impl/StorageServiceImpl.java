@@ -1,5 +1,6 @@
 package com.cwbusinesservices.storage.impl;
 
+import com.cwbusinesservices.pojo.enums.ImageEtityTypeEnum;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Stream;
 
 /**
@@ -62,6 +65,23 @@ public class StorageServiceImpl implements IStorageService {
     @Override
     public boolean serviceHasFile(int id) throws NoSuchEntityException {
         return checkIfSingleFileExists(id, SERVICES_FOLDER);
+    }
+
+    @Override
+    public Boolean uploadFile(int id, MultipartFile file, ImageEtityTypeEnum type) throws ServiceErrorException {
+        uploadSingleFile(id, file, folders.get(type));
+        return true;
+    }
+
+    @Override
+    public Boolean deleteFile(int id, ImageEtityTypeEnum type) throws ServiceErrorException {
+        //TODO add functionality for delete file
+        return false;
+    }
+
+    @Override
+    public void getFile(int id, HttpServletResponse response, ImageEtityTypeEnum type) throws NoSuchEntityException, ServiceErrorException, StorageException {
+        getSingleFile(id, response, folders.get(type));
     }
 
     /**
@@ -200,8 +220,17 @@ public class StorageServiceImpl implements IStorageService {
 
     private final String ROOT_DIR = System.getProperty("catalina.home") + "/cw-business-services";
 
-    private final String REQUESTS_FOLDER = "/requests";
-    private final String SERVICES_FOLDER = "/services";
+    private static final String REQUESTS_FOLDER = "/requests";
+    private static final String SERVICES_FOLDER = "/services";
+    private static final String COMPANY_FOLDER = "/services";
+
+    private static final Map<ImageEtityTypeEnum, String> folders = new HashMap<ImageEtityTypeEnum, String>(){
+        {
+            put(ImageEtityTypeEnum.COMPANY, COMPANY_FOLDER);
+            put(ImageEtityTypeEnum.SERVICE, SERVICES_FOLDER);
+            put(ImageEtityTypeEnum.REQUEST, REQUESTS_FOLDER);
+        }
+    };
 
     @Value("${remote_storage.use}")
     private boolean useRemote;

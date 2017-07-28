@@ -1,5 +1,6 @@
 package com.cwbusinesservices.storage;
 
+import com.cwbusinesservices.pojo.enums.ImageEtityTypeEnum;
 import org.springframework.web.multipart.MultipartFile;
 import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;
 import com.cwbusinesservices.exceptions.service_error.ForbiddenException;
@@ -25,4 +26,10 @@ public interface IStorageService {
     void getServiceFile(int id, HttpServletResponse response) throws NoSuchEntityException, ServiceErrorException, StorageException;
 
     boolean serviceHasFile(int id) throws NoSuchEntityException;
+
+    Boolean uploadFile(int id, MultipartFile file, ImageEtityTypeEnum type) throws ServiceErrorException;
+
+    Boolean deleteFile(int id, ImageEtityTypeEnum type) throws ServiceErrorException;
+
+    void getFile(int id, HttpServletResponse response, ImageEtityTypeEnum type) throws NoSuchEntityException, ServiceErrorException, StorageException;
 }

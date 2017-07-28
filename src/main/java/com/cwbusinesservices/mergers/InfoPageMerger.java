@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * Created by Andrii on 25.07.2017.
  */
 @Component
-public class InfoPageMerger extends Merger<InfoPageEntity,InfoPageView>{
+public class InfoPageMerger implements Merger<InfoPageEntity,InfoPageView>{
 
     @Autowired
     private Utils utils;

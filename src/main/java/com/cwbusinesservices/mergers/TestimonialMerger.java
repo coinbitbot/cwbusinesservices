@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * Created by Andrii on 27.07.2017.
  */
 @Component
-public class TestimonialMerger extends Merger<TestimonialEntity,TestimonialView>{
+public class TestimonialMerger implements Merger<TestimonialEntity,TestimonialView>{
 
     @Autowired
     private Utils utils;

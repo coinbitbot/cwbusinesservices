@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name="COMPANY")
-public class CompanyEntity implements Serializable, GetableById<Integer> {
+public class CompanyEntity implements Serializable, GetableById<Integer>, IHasImage {
 
     private static final long serialVersionUID = 8132279800338374807L;
 
@@ -25,7 +25,7 @@ public class CompanyEntity implements Serializable, GetableById<Integer> {
     private String name;
 
     @Column(name="HAS_LOGO")
-    private boolean hasLogo;
+    private boolean hasImage;
 
     @Column(name="TEXT")
     private String text;
@@ -50,12 +50,12 @@ public class CompanyEntity implements Serializable, GetableById<Integer> {
         this.name = name;
     }
 
-    public boolean isHasLogo() {
-        return hasLogo;
+    public Boolean isHasImage() {
+        return hasImage;
     }
 
-    public void setHasLogo(boolean hasLogo) {
-        this.hasLogo = hasLogo;
+    public void setHasImage(boolean hasImage) {
+        this.hasImage = hasImage;
     }
 
     public String getText() {
@@ -79,13 +79,13 @@ public class CompanyEntity implements Serializable, GetableById<Integer> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CompanyEntity that = (CompanyEntity) o;
+        CompanyEntity entity = (CompanyEntity) o;
 
-        if (id != that.id) return false;
-        if (hasLogo != that.hasLogo) return false;
-        if (active != that.active) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return text != null ? text.equals(that.text) : that.text == null;
+        if (id != entity.id) return false;
+        if (hasImage != entity.hasImage) return false;
+        if (active != entity.active) return false;
+        if (name != null ? !name.equals(entity.name) : entity.name != null) return false;
+        return text != null ? text.equals(entity.text) : entity.text == null;
 
     }
 
@@ -93,7 +93,7 @@ public class CompanyEntity implements Serializable, GetableById<Integer> {
     public int hashCode() {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (hasLogo ? 1 : 0);
+        result = 31 * result + (hasImage ? 1 : 0);
         result = 31 * result + (text != null ? text.hashCode() : 0);
         result = 31 * result + (active ? 1 : 0);
         return result;
@@ -104,7 +104,7 @@ public class CompanyEntity implements Serializable, GetableById<Integer> {
         return "CompanyEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", hasLogo=" + hasLogo +
+                ", hasImage=" + hasImage +
                 ", text='" + text + '\'' +
                 ", active=" + active +
                 '}';
