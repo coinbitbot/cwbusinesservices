@@ -32,6 +32,7 @@
                         <li><a href="/admin/info_pages/all" class="active">All info pages</a></li>
                         <li><a href="/admin/services/all" class="active">All service</a></li>
                         <li><a href="/admin/companies/all" class="active">All companies</a></li>
+                        <li><a href="/admin/testimonials/all" class="active">All testimonials</a></li>
                     </ul>
                 </li>
             </ul>
