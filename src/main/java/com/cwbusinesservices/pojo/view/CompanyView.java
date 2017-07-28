@@ -1,19 +1,20 @@
 package com.cwbusinesservices.pojo.view;
 
 import com.cwbusinesservices.pojo.entities.GetableById;
+import com.cwbusinesservices.pojo.entities.IHasImage;
 
 import java.io.Serializable;
 
 /**
  * Created by Andrii on 26.07.2017.
  */
-public class CompanyView implements Serializable,GetableById<Integer> {
+public class CompanyView implements Serializable,GetableById<Integer>,IHasImage {
 
     private static final long serialVersionUID = 3731762957032873019L;
 
     private Integer id;
     private String name;
-    private Boolean hasLogo;
+    private Boolean has_image;
     private String text;
     private Boolean active;
 
@@ -33,12 +34,12 @@ public class CompanyView implements Serializable,GetableById<Integer> {
         this.name = name;
     }
 
-    public Boolean getHasLogo() {
-        return hasLogo;
+    public Boolean getHas_image() {
+        return has_image;
     }
 
-    public void setHasLogo(Boolean hasLogo) {
-        this.hasLogo = hasLogo;
+    public void setHas_image(Boolean has_image) {
+        this.has_image = has_image;
     }
 
     public String getText() {
@@ -66,7 +67,7 @@ public class CompanyView implements Serializable,GetableById<Integer> {
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (hasLogo != null ? !hasLogo.equals(that.hasLogo) : that.hasLogo != null) return false;
+        if (has_image != null ? !has_image.equals(that.has_image) : that.has_image != null) return false;
         if (text != null ? !text.equals(that.text) : that.text != null) return false;
         return active != null ? active.equals(that.active) : that.active == null;
 
@@ -76,7 +77,7 @@ public class CompanyView implements Serializable,GetableById<Integer> {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (hasLogo != null ? hasLogo.hashCode() : 0);
+        result = 31 * result + (has_image != null ? has_image.hashCode() : 0);
         result = 31 * result + (text != null ? text.hashCode() : 0);
         result = 31 * result + (active != null ? active.hashCode() : 0);
         return result;
@@ -87,9 +88,19 @@ public class CompanyView implements Serializable,GetableById<Integer> {
         return "CompanyView{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", hasLogo=" + hasLogo +
+                ", has_image=" + has_image +
                 ", text='" + text + '\'' +
                 ", active=" + active +
                 '}';
+    }
+
+    @Override
+    public Boolean isHasImage() {
+        return getHas_image();
+    }
+
+    @Override
+    public void setHasImage(boolean hasImage) {
+        setHas_image(hasImage);
     }
 }

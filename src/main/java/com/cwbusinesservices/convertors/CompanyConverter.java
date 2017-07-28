@@ -21,8 +21,8 @@ public class CompanyConverter extends Converter<CompanyEntity>{
             map.put(ID, object.getId());
         if(fields.contains(ACTIVE))
             map.put(ACTIVE, object.isActive());
-        if(fields.contains(HAS_LOGO))
-            map.put(HAS_LOGO,object.isHasLogo());
+        if(fields.contains(HAS_IMG))
+            map.put(HAS_IMG,object.isHasImage());
         if(fields.contains(TEXT))
             map.put(TEXT,object.getText());
         if (fields.contains(NAME))

@@ -55,7 +55,8 @@
             <thead>
             <tr>
                 <th>name</th>
-                <th>other</th>
+                <th>image</th>
+                <th>active</th>
                 <th>actions</th>
             </tr>
             </thead>
@@ -63,9 +64,10 @@
             <tr ng-repeat="entity in entities">
                 <td>{{entity.name}}</td>
                 <td>
+                    <img ng-src="/api/image/{{entity.id}}?type=SERVICE" style="width: 300px;">
+                </td>
+                <td>
                     active: <input type="checkbox" ng-model="entity.active" disabled>
-                    <br />
-                    has icon: <input type="checkbox" ng-model="entity.has_icon" disabled>
                 </td>
                 <td>
                     <a href="/admin/services/{{entity.id}}/edit" target="_blank" class="btn btn-success">Edit</a>

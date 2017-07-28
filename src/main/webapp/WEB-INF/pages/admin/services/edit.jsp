@@ -24,7 +24,7 @@
         </form>
         <div ng-show="entity.id">
             <hr>
-            <img ng-src="{{service_icon}}">
+            <img ng-src="{{service_icon}}" style="width: 300px;">
             <form ng-submit="uploadFile();">
                 <input type="file" id="image" accept="image/*">
                 <button class="btn btn-success">Save</button>

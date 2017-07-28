@@ -4,7 +4,9 @@ import com.cwbusinesservices.criteria.Criteria;
 import com.cwbusinesservices.criteria.impl.ServiceCriteria;
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
+import com.cwbusinesservices.persistence.dao.repositories.ServiceRepository;
 import com.cwbusinesservices.pojo.entities.ServiceEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,10 @@ import java.util.Set;
 @Service
 @Transactional(propagation= Propagation.REQUIRED)
 public class ServiceServiceImpl extends IServiceService{
+
+    @Autowired
+    private ServiceRepository repository;
+
     @Override
     public List<Map<String, Object>> getList(Set<String> fields, String restrict) throws BaseException {
         Criteria<ServiceEntity> criteria = new ServiceCriteria(restrict);

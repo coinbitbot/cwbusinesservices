@@ -1,25 +1,22 @@
 package com.cwbusinesservices.storage.impl;
 
+import com.cwbusinesservices.pojo.enums.ImageEntityTypeEnum;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;
-import com.cwbusinesservices.exceptions.service_error.ForbiddenException;
 import com.cwbusinesservices.exceptions.service_error.ServiceErrorException;
 import com.cwbusinesservices.exceptions.service_error.StorageException;
-import com.cwbusinesservices.exceptions.service_error.ValidationException;
 import com.cwbusinesservices.storage.IStorage;
 import com.cwbusinesservices.storage.IStorageService;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.net.URL;
 import java.nio.file.Files;
-import java.util.stream.Stream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Andrii on 05.10.2016.
@@ -30,51 +27,19 @@ public class StorageServiceImpl implements IStorageService {
     @Autowired
     private IStorage storage;
 
-    @Override
-    public boolean uploadRequestFile(int id, MultipartFile file) throws NoSuchEntityException, ServiceErrorException {
-        uploadSingleFile(id, file, REQUESTS_FOLDER);
-
-        return true;
-    }
-
-    @Override
-    public void getRequestFile(int id, HttpServletResponse response) throws NoSuchEntityException, StorageException {
-        getSingleFile(id, response, REQUESTS_FOLDER);
-    }
-
-    @Override
-    public boolean requestHasFile(int id) throws NoSuchEntityException {
-        return checkIfSingleFileExists(id, REQUESTS_FOLDER);
-    }
-
-    @Override
-    public boolean uploadServiceFile(int id, MultipartFile file) throws NoSuchEntityException, ServiceErrorException {
-        uploadSingleFile(id, file, SERVICES_FOLDER);
-
-        return true;
-    }
-
-    @Override
-    public void getServiceFile(int id, HttpServletResponse response) throws NoSuchEntityException, ServiceErrorException, StorageException {
-        getSingleFile(id, response, SERVICES_FOLDER);
-    }
-
-    @Override
-    public boolean serviceHasFile(int id) throws NoSuchEntityException {
-        return checkIfSingleFileExists(id, SERVICES_FOLDER);
-    }
-
     /**
      * use this if entity has a single file
      * if entity has something like gallery then this method is not for you
      *
      * @param id - entity id
      * @param file - file to be saved
-     * @param folder - entity folder
-     * @throws IOException
+     * @param type - entity type
      * @throws ServiceErrorException
      */
-    private void uploadSingleFile(int id, MultipartFile file, String folder) throws ServiceErrorException {
+    @Override
+    public Boolean uploadFile(int id, MultipartFile file, ImageEntityTypeEnum type) throws ServiceErrorException {
+        String folder = folders.get(type);
+
         File entityFolder = new File(ROOT_DIR + folder + '/' + id);
         if(!entityFolder.exists())
             entityFolder.mkdirs();
@@ -98,6 +63,26 @@ public class StorageServiceImpl implements IStorageService {
                 }
             });
         }
+
+        return true;
+    }
+
+    @Override
+    public Boolean deleteFile(int id, ImageEntityTypeEnum type) throws ServiceErrorException {
+        String folder = folders.get(type);
+
+        File entityFolder = new File(ROOT_DIR + folder + '/' + id);
+        if (!entityFolder.exists())
+            return true;
+
+        File file = fileByPartName(entityFolder, String.valueOf(id));
+        System.out.println(file.exists());
+        if (file != null) {
+            file.setWritable(true);
+            file.delete();
+        }
+        System.out.println(file.exists());
+        return true;
     }
 
     /**
@@ -106,9 +91,12 @@ public class StorageServiceImpl implements IStorageService {
      *
      * @param id - entity id
      * @param response - user response to set headers and put file
-     * @param folder - entity folder
+     * @param type - entity type
      */
-    private void getSingleFile(int id, HttpServletResponse response, String folder) throws NoSuchEntityException, StorageException {
+    @Override
+    public void getFile(int id, HttpServletResponse response, ImageEntityTypeEnum type) throws NoSuchEntityException, ServiceErrorException, StorageException {
+        String folder = folders.get(type);
+
         try {
             File entityFolder = new File(ROOT_DIR + folder + '/' + id);
             if (!entityFolder.exists())
@@ -134,14 +122,16 @@ public class StorageServiceImpl implements IStorageService {
      * check if entity has fle
      *
      * @param id - entity id
-     * @param folder - entity folder
+     * @param type - entity type
      * @return <code>true</code> if file exists, <code>false</code> otherwise
-     * @throws NoSuchEntityException
      */
-    private boolean checkIfSingleFileExists(int id, String folder) throws NoSuchEntityException {
-        File entityFolder = new File(ROOT_DIR + REQUESTS_FOLDER + '/' + id);
+    @Override
+    public Boolean hasFile(int id, ImageEntityTypeEnum type) {
+        String folder = folders.get(type);
+
+        File entityFolder = new File(ROOT_DIR + folder + '/' + id);
         if (!entityFolder.exists())
-            throw new NoSuchEntityException(folder, "id: " + id);
+            return false;
 
         return fileByPartName(entityFolder, id + "") != null;
     }
@@ -200,8 +190,17 @@ public class StorageServiceImpl implements IStorageService {
 
     private final String ROOT_DIR = System.getProperty("catalina.home") + "/cw-business-services";
 
-    private final String REQUESTS_FOLDER = "/requests";
-    private final String SERVICES_FOLDER = "/services";
+    private static final String REQUESTS_FOLDER = "/requests";
+    private static final String SERVICES_FOLDER = "/services";
+    private static final String COMPANY_FOLDER = "/companies";
+
+    private static final Map<ImageEntityTypeEnum, String> folders = new HashMap<ImageEntityTypeEnum, String>(){
+        {
+            put(ImageEntityTypeEnum.COMPANY, COMPANY_FOLDER);
+            put(ImageEntityTypeEnum.SERVICE, SERVICES_FOLDER);
+            put(ImageEntityTypeEnum.REQUEST, REQUESTS_FOLDER);
+        }
+    };
 
     @Value("${remote_storage.use}")
     private boolean useRemote;

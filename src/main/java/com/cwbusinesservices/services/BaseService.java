@@ -119,4 +119,9 @@ public abstract class BaseService<E extends GetableById<I>,V extends GetableById
         repository.delete(entity);
         return true;
     }
+
+    public boolean save(E entity){
+        entity = repository.saveAndFlush(entity);
+        return entity != null;
+    }
 }

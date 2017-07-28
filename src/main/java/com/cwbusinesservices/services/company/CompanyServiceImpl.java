@@ -4,7 +4,9 @@ import com.cwbusinesservices.criteria.Criteria;
 import com.cwbusinesservices.criteria.impl.CompanyCriteria;
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
+import com.cwbusinesservices.persistence.dao.repositories.CompanyRepository;
 import com.cwbusinesservices.pojo.entities.CompanyEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,9 @@ import java.util.Set;
 @Service
 @Transactional(propagation= Propagation.REQUIRED)
 public class CompanyServiceImpl extends ICompanyService{
+
+    @Autowired
+    private CompanyRepository repository;
 
     @Override
     public List<Map<String, Object>> getList(Set<String> fields, String restrict) throws BaseException {

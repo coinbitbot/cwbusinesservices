@@ -1,13 +1,14 @@
 package com.cwbusinesservices.pojo.view;
 
 import com.cwbusinesservices.pojo.entities.GetableById;
+import com.cwbusinesservices.pojo.entities.IHasImage;
 
 import java.io.Serializable;
 
 /**
  * Created by Andrii on 27.07.2017.
  */
-public class ServiceView implements Serializable,GetableById<Integer> {
+public class ServiceView implements Serializable,GetableById<Integer>, IHasImage {
 
     private static final long serialVersionUID = 8481507101886823362L;
 
@@ -92,5 +93,15 @@ public class ServiceView implements Serializable,GetableById<Integer> {
         sb.append(", active=").append(active);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public Boolean isHasImage() {
+        return getHas_icon();
+    }
+
+    @Override
+    public void setHasImage(boolean hasImage) {
+        setHas_icon(hasImage);
     }
 }

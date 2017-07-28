@@ -20,7 +20,7 @@ public class CompanyCriteria extends Criteria<CompanyEntity> {
     private String query;
     private List<Integer> ids;
     private Boolean active;
-    private Boolean has_logo;
+    private Boolean has_img;
 
     public CompanyCriteria(String restriction) throws WrongRestrictionException{
         this(0,0,restriction);
@@ -32,7 +32,7 @@ public class CompanyCriteria extends Criteria<CompanyEntity> {
         if (parsed != null) {
             this.query = parsed.query;
             this.ids = parsed.ids;
-            this.has_logo = parsed.has_logo;
+            this.has_img = parsed.has_img;
             this.active = parsed.active;
         }
 
@@ -45,9 +45,9 @@ public class CompanyCriteria extends Criteria<CompanyEntity> {
             Expression<Boolean> expression = root.get("active");
             predicates.add(cb.equal(expression, this.active));
         }
-        if (this.has_logo != null) {
-            Expression<Boolean> expression = root.get("hasLogo");
-            predicates.add(cb.equal(expression, this.has_logo));
+        if (this.has_img != null) {
+            Expression<Boolean> expression = root.get("hasImage");
+            predicates.add(cb.equal(expression, this.has_img));
         }
         if (this.query != null && !this.query.isEmpty()) {
             String likeQuery = '%' + this.query + '%';

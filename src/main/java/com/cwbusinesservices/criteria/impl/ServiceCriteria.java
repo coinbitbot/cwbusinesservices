@@ -44,7 +44,7 @@ public class ServiceCriteria extends Criteria<ServiceEntity>{
             predicates.add(cb.equal(expression, this.active));
         }
         if (this.has_img != null) {
-            Expression<Boolean> expression = root.get("hasImg");
+            Expression<Boolean> expression = root.get("hasImage");
             predicates.add(cb.equal(expression, this.has_img));
         }
         if (this.query != null && !this.query.isEmpty()) {

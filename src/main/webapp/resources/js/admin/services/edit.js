@@ -13,7 +13,7 @@
                         $scope.entity = response.data.result;
 
                         if ($scope.entity.has_icon) {
-                            $scope.service_icon = 'http://www.iageproject.eu/publish/pages/111858/iage.png';
+                            $scope.service_icon = '/api/image/' + $scope.entity.id + '?type=SERVICE';
                         }
                     } else {
                         showErrorMessage(response.data.error);
@@ -58,9 +58,10 @@
             var payload = new FormData();
             payload.append('id', $scope.entity.id);
             payload.append('file', file);
+            payload.append('type', 'SERVICE');
 
             var request = new XMLHttpRequest();
-            request.open('POST', '/api/service/storage');
+            request.open('POST', '/api/image/');
 
             for (var key in HEADERS) {
                 if (key.toLowerCase().indexOf('content') < 0) {
@@ -76,12 +77,10 @@
 
                 if (response.result) {
                     showSuccessMessage('uploaded');
-                    $scope.service_icon = 'http://www.iageproject.eu/publish/pages/111858/iage.png';
-
-                    $http.post('/api/service/', JSON.stringify({
-                        id: $scope.entity.id,
-                        has_icon: true
-                    }), {headers: HEADERS});
+                    $scope.service_icon = '';
+                    setTimeout(function(){
+                        $scope.service_icon = '/api/image/' + $scope.entity.id + '?type=SERVICE';
+                    }, 500);
                 } else {
 
                 }

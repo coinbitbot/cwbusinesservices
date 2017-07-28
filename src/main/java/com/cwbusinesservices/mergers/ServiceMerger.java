@@ -10,10 +10,13 @@ import org.springframework.stereotype.Component;
  * Created by Andrii on 27.07.2017.
  */
 @Component
-public class ServiceMerger extends Merger<ServiceEntity,ServiceView>{
+public class ServiceMerger implements Merger<ServiceEntity,ServiceView>{
 
     @Autowired
     private Utils utils;
+
+    @Autowired
+    private ImageMerger imageMerger;
 
     @Override
     public void merge(ServiceEntity entity, ServiceView view) {
@@ -21,8 +24,7 @@ public class ServiceMerger extends Merger<ServiceEntity,ServiceView>{
         else view.setId(entity.getId());
         if (view.getActive()!=null) entity.setActive(view.getActive());
         else view.setActive(entity.isActive());
-        if(view.getHas_icon()!=null) entity.setHasIcon(view.getHas_icon());
-        else view.setHas_icon(entity.isHasIcon());
+        imageMerger.merge(view, entity);
         if (utils.notEmpty(view.getDescription())) entity.setDescription(view.getDescription());
         else view.setDescription(entity.getDescription());
         if (utils.notEmpty(view.getName())) entity.setName(view.getName());

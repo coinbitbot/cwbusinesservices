@@ -23,7 +23,7 @@ public class ServiceConverter extends Converter<ServiceEntity>{
         if(fields.contains(ACTIVE))
             map.put(ACTIVE, object.isActive());
         if(fields.contains(HAS_IMG))
-            map.put(HAS_IMG,object.isHasIcon());
+            map.put(HAS_IMG,object.isHasImage());
         if(fields.contains(DESCRIPTION))
             map.put(DESCRIPTION,object.getDescription());
         if (fields.contains(NAME))
