@@ -21,6 +21,10 @@ public class ServiceCriteria extends Criteria<ServiceEntity>{
     private Boolean active;
     private Boolean has_img;
 
+    public ServiceCriteria() {
+        super(0, 0, ServiceEntity.class);
+    }
+
     public ServiceCriteria(String restriction) throws WrongRestrictionException{
         this(0,0,restriction);
     }
@@ -63,5 +67,37 @@ public class ServiceCriteria extends Criteria<ServiceEntity>{
             predicates.add(exception.in(this.ids));
         }
         return predicates;
+    }
+
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
+    public List<Integer> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public Boolean getHas_img() {
+        return has_img;
+    }
+
+    public void setHas_img(Boolean has_img) {
+        this.has_img = has_img;
     }
 }
