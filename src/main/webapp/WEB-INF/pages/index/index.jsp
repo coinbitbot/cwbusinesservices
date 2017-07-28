@@ -31,6 +31,17 @@
                 </div>
             </c:forEach>
         </c:if>
+        <Br />
+        <c:if test="${testimonials ne null}">
+            <h2>testimonials</h2>
+            <c:forEach var="testimonial" items="${testimonials}">
+                <div>
+                    ${testimonial.name}
+                    <Br />
+                    ${testimonial.text}
+                </div>
+            </c:forEach>
+        </c:if>
     </div>
 
     <jsp:include page="../common/footer.jsp" />

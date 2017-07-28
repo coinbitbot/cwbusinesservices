@@ -20,6 +20,10 @@ public class TestimonialCriteria extends Criteria<TestimonialEntity>{
     private List<Integer> ids;
     private Boolean active;
 
+    public TestimonialCriteria() {
+        super(0, 0, TestimonialEntity.class);
+    }
+
     public TestimonialCriteria(String restriction) throws WrongRestrictionException {
         this(0,0,restriction);
     }
@@ -32,7 +36,6 @@ public class TestimonialCriteria extends Criteria<TestimonialEntity>{
             this.ids = parsed.ids;
             this.active = parsed.active;
         }
-
     }
 
     @Override
@@ -62,5 +65,29 @@ public class TestimonialCriteria extends Criteria<TestimonialEntity>{
             predicates.add(exception.in(this.ids));
         }
         return predicates;
+    }
+
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
+    public List<Integer> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

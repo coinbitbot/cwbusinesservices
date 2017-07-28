@@ -2,9 +2,11 @@ package com.cwbusinesservices.controllers.web;
 
 import com.cwbusinesservices.criteria.impl.CompanyCriteria;
 import com.cwbusinesservices.criteria.impl.ServiceCriteria;
+import com.cwbusinesservices.criteria.impl.TestimonialCriteria;
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.services.company.ICompanyService;
 import com.cwbusinesservices.services.service.IServiceService;
+import com.cwbusinesservices.services.testimonial.ITestimonialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,9 @@ public class IndexController {
     @Autowired
     private ICompanyService companyService;
 
+    @Autowired
+    private ITestimonialService testimonialService;
+
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String indexPage(
             Model model
@@ -46,6 +51,12 @@ public class IndexController {
             model.addAttribute("companies", companyService.getList(companyCriteria, COMPANIES_FIELDS_FOR_INDEX));
         } catch (BaseException e) { }
 
+        TestimonialCriteria testimonialCriteria = new TestimonialCriteria();
+        testimonialCriteria.setActive(true);
+        try {
+            model.addAttribute("testimonials", testimonialService.getList(testimonialCriteria, TESTIMONIALS_FIELDS_FOR_INDEX));
+        } catch (BaseException e) { }
+
         return "index/index";
     }
 
@@ -61,5 +72,9 @@ public class IndexController {
 
     private final Set<String> COMPANIES_FIELDS_FOR_INDEX = new HashSet<>(
             Arrays.asList("id", "name")
+    );
+
+    private final Set<String> TESTIMONIALS_FIELDS_FOR_INDEX = new HashSet<>(
+            Arrays.asList("id", "name", "text")
     );
 }
