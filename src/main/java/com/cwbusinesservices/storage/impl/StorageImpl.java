@@ -4,6 +4,7 @@ import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.v2.DbxClientV2;
 import com.dropbox.core.v2.files.*;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.cwbusinesservices.exceptions.service_error.StorageException;
@@ -30,13 +31,23 @@ public class StorageImpl implements IStorage {
         InputStream inputStream = new ByteArrayInputStream(file);
         try {
             String path = fullPath(fileName, folder);
-            try {
-                Metadata metadata = client().files().getMetadata(path);
-                if (metadata != null && metadata.getName() != null) {
-                    client().files().delete(path);
+
+            List<FileItem> files = listFiles(folder);
+            if (!files.isEmpty()) {
+                String newFileNameWithoutExtension = FilenameUtils.getBaseName(fileName);
+                for (FileItem item : files) {
+                    String name = FilenameUtils.getBaseName(item.name);
+
+                    if (name.equals(newFileNameWithoutExtension)) {
+                        try {
+                            client().files().delete(item.path);
+
+                            break;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
-            } catch (GetMetadataErrorException e) {
-                // ignore
             }
 
             client().files().uploadBuilder(path)

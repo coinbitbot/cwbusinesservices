@@ -44,6 +44,8 @@ public class StorageServiceImpl implements IStorageService {
         if(!entityFolder.exists())
             entityFolder.mkdirs();
 
+        deleteFile(id, type);
+
         String fileName = id + "." + FilenameUtils.getExtension(file.getOriginalFilename());
         final File serverFile = new File(entityFolder.getAbsolutePath() + '/' + fileName);
         try {
@@ -76,12 +78,10 @@ public class StorageServiceImpl implements IStorageService {
             return true;
 
         File file = fileByPartName(entityFolder, String.valueOf(id));
-        System.out.println(file.exists());
         if (file != null) {
             file.setWritable(true);
             file.delete();
         }
-        System.out.println(file.exists());
         return true;
     }
 
@@ -164,22 +164,13 @@ public class StorageServiceImpl implements IStorageService {
         File[] files = folder.listFiles();
         if (files != null) {
             for (File f : files) {
-                if (f.isFile() && name.equals(fileName(f))) {
+                if (f.isFile() && name.equals(FilenameUtils.getBaseName(f.getName()))) {
                     return f;
                 }
             }
         }
 
         return null;
-    }
-
-    private String fileName(File file) {
-        int dot = file.getName().lastIndexOf('.');
-        if (dot > -1) {
-            return file.getName().substring(0, dot);
-        }
-
-        return file.getName();
     }
 
     private void close(Closeable stream) {
