@@ -22,9 +22,6 @@ import java.util.Set;
 @Transactional(propagation= Propagation.REQUIRED)
 public class CompanyServiceImpl extends ICompanyService{
 
-    @Autowired
-    private CompanyRepository repository;
-
     @Override
     public List<Map<String, Object>> getList(Set<String> fields, String restrict) throws BaseException {
         Criteria<CompanyEntity> criteria = new CompanyCriteria(restrict);

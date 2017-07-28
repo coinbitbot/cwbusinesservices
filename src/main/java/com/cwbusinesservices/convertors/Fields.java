@@ -63,5 +63,11 @@ public class Fields {
         public static final String DEFAULT = ID + ',' + NAME;
     }
 
+    public static class Block{
+        public static final String ID = "id";
+        public static final String CODE = "code";
+        public static final String TITLE = "title";
+    }
+
     public static final String DEFAULT ="id";
 }
