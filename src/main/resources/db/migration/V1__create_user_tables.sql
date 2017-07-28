@@ -76,9 +76,9 @@ insert into `ROLE` (`NAME`) values ('user');
 insert into `ROLE` (`NAME`) values ('moderator');
 insert into `ROLE` (`NAME`) values ('admin');
 
-INSERT INTO `permissions` (`NAME`) VALUES ('ROLE_USER');
-INSERT INTO `permissions` (`NAME`) VALUES ('ROLE_MODERATOR');
-INSERT INTO `permissions` (`NAME`) VALUES ('ROLE_ADMIN');
+INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('ROLE_USER');
+INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('ROLE_MODERATOR');
+INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('ROLE_ADMIN');
 
 insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('1', '1');
 insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '1');
