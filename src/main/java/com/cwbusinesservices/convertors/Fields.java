@@ -45,9 +45,9 @@ public class Fields {
 
     public static class Service{
         public static final String ID = "id";
-        public static final String NAME = "NAME";
-        public static final String HAS_IMG = "has_logo";
-        public static final String DESCRIPTION = "text";
+        public static final String NAME = "name";
+        public static final String HAS_IMG = "has_icon";
+        public static final String DESCRIPTION = "description";
         public static final String ACTIVE ="active";
 
         public static final String DEFAULT = ID + ',' + NAME;
@@ -55,8 +55,8 @@ public class Fields {
 
     public static class Testimonial{
         public static final String ID = "id";
-        public static final String NAME = "NAME";
-        public static final String TEXT = "TEXT";
+        public static final String NAME = "name";
+        public static final String TEXT = "text";
         public static final String POSITION = "position";
         public static final String ACTIVE ="active";
 

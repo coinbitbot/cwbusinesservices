@@ -13,7 +13,7 @@ public class ServiceView implements Serializable,GetableById<Integer> {
 
     private Integer id;
     private String name;
-    private Boolean hasIcon;
+    private Boolean has_icon;
     private String description;
     private Boolean active;
 
@@ -34,12 +34,12 @@ public class ServiceView implements Serializable,GetableById<Integer> {
         this.name = name;
     }
 
-    public Boolean getHasIcon() {
-        return hasIcon;
+    public Boolean getHas_icon() {
+        return has_icon;
     }
 
-    public void setHasIcon(Boolean hasIcon) {
-        this.hasIcon = hasIcon;
+    public void setHas_icon(Boolean has_icon) {
+        this.has_icon = has_icon;
     }
 
     public String getDescription() {
@@ -67,17 +67,16 @@ public class ServiceView implements Serializable,GetableById<Integer> {
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (hasIcon != null ? !hasIcon.equals(that.hasIcon) : that.hasIcon != null) return false;
+        if (has_icon != null ? !has_icon.equals(that.has_icon) : that.has_icon != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
         return active != null ? active.equals(that.active) : that.active == null;
-
     }
 
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (hasIcon != null ? hasIcon.hashCode() : 0);
+        result = 31 * result + (has_icon != null ? has_icon.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (active != null ? active.hashCode() : 0);
         return result;
@@ -85,12 +84,13 @@ public class ServiceView implements Serializable,GetableById<Integer> {
 
     @Override
     public String toString() {
-        return "ServiceView{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", hasIcon=" + hasIcon +
-                ", description='" + description + '\'' +
-                ", active=" + active +
-                '}';
+        final StringBuffer sb = new StringBuffer("ServiceView{");
+        sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", has_icon=").append(has_icon);
+        sb.append(", description='").append(description).append('\'');
+        sb.append(", active=").append(active);
+        sb.append('}');
+        return sb.toString();
     }
 }

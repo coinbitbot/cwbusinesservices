@@ -23,7 +23,7 @@ public class ServiceApiController extends BaseApiController<ServiceEntity,Servic
     @Autowired
     private IStorageService storageService;
 
-    @RequestMapping(value = "/storage", method = RequestMethod.PUT)
+    @RequestMapping(value = "/storage", method = RequestMethod.POST)
     public @ResponseBody
     Response<Boolean> uploadServiceFile(
             @RequestParam("file") MultipartFile file,

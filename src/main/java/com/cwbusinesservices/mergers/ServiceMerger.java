@@ -21,8 +21,8 @@ public class ServiceMerger extends Merger<ServiceEntity,ServiceView>{
         else view.setId(entity.getId());
         if (view.getActive()!=null) entity.setActive(view.getActive());
         else view.setActive(entity.isActive());
-        if(view.getHasIcon()!=null) entity.setHasIcon(view.getHasIcon());
-        else view.setHasIcon(entity.isHasIcon());
+        if(view.getHas_icon()!=null) entity.setHasIcon(view.getHas_icon());
+        else view.setHas_icon(entity.isHasIcon());
         if (utils.notEmpty(view.getDescription())) entity.setDescription(view.getDescription());
         else view.setDescription(entity.getDescription());
         if (utils.notEmpty(view.getName())) entity.setName(view.getName());

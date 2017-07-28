@@ -27,9 +27,10 @@
                 </li>
 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Info pages <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/admin/info_pages/all" class="active">All info pages</a></li>
+                        <li><a href="/admin/services/all" class="active">All service</a></li>
                     </ul>
                 </li>
             </ul>
