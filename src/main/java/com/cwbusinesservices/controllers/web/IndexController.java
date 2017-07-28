@@ -1,7 +1,9 @@
 package com.cwbusinesservices.controllers.web;
 
+import com.cwbusinesservices.criteria.impl.CompanyCriteria;
 import com.cwbusinesservices.criteria.impl.ServiceCriteria;
 import com.cwbusinesservices.exceptions.BaseException;
+import com.cwbusinesservices.services.company.ICompanyService;
 import com.cwbusinesservices.services.service.IServiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,6 +25,9 @@ public class IndexController {
     @Autowired
     private IServiceService serviceService;
 
+    @Autowired
+    private ICompanyService companyService;
+
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String indexPage(
             Model model
@@ -32,9 +37,14 @@ public class IndexController {
         serviceCriteria.setHas_img(true);
         try {
             model.addAttribute("services", serviceService.getList(serviceCriteria, SERVICES_FIELDS_FOR_INDEX));
-        } catch (BaseException e) {
-            e.printStackTrace();
-        }
+        } catch (BaseException e) { }
+
+        CompanyCriteria companyCriteria = new CompanyCriteria();
+        companyCriteria.setActive(true);
+        companyCriteria.setHas_img(true);
+        try {
+            model.addAttribute("companies", companyService.getList(companyCriteria, COMPANIES_FIELDS_FOR_INDEX));
+        } catch (BaseException e) { }
 
         return "index/index";
     }
@@ -46,6 +56,10 @@ public class IndexController {
     }
 
     private final Set<String> SERVICES_FIELDS_FOR_INDEX = new HashSet<>(
+            Arrays.asList("id", "name")
+    );
+
+    private final Set<String> COMPANIES_FIELDS_FOR_INDEX = new HashSet<>(
             Arrays.asList("id", "name")
     );
 }

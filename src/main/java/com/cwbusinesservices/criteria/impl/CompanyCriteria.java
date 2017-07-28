@@ -22,6 +22,10 @@ public class CompanyCriteria extends Criteria<CompanyEntity> {
     private Boolean active;
     private Boolean has_img;
 
+    public CompanyCriteria() {
+        super(0, 0, CompanyEntity.class);
+    }
+
     public CompanyCriteria(String restriction) throws WrongRestrictionException{
         this(0,0,restriction);
     }
