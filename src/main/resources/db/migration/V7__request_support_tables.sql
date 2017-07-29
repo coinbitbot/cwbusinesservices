@@ -3,7 +3,7 @@
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cwbusinesservices`.`INTERESTED_IN` (
   `ID` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `NAME` TEXT NOT NULL COMMENT '',
+  `NAME` VARCHAR(350) NOT NULL COMMENT '',
   PRIMARY KEY (`ID`)  COMMENT '',
   UNIQUE INDEX `NAME_UNIQUE` (`NAME` ASC)  COMMENT '')
 ENGINE = InnoDB;
@@ -14,7 +14,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cwbusinesservices`.`INDUSTRY` (
   `ID` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `NAME` TEXT NOT NULL COMMENT '',
+  `NAME` VARCHAR(350) NOT NULL COMMENT '',
   PRIMARY KEY (`ID`)  COMMENT '',
   UNIQUE INDEX `NAME_UNIQUE` (`NAME` ASC)  COMMENT '')
 ENGINE = InnoDB;

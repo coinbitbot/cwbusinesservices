@@ -2,9 +2,11 @@ package com.cwbusinesservices.pojo.entities;
 
 import com.cwbusinesservices.pojo.helpers.CompareIntegerId;
 import com.cwbusinesservices.pojo.helpers.GetableById;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -23,6 +25,7 @@ public class InterestEntity extends CompareIntegerId implements Serializable,Get
 
     @Column(name="NAME")
     @NotNull(message = "interest.name.required")
+    @Size(max = 350, message = "interest.name.size")
     private String name;
 
     @Override

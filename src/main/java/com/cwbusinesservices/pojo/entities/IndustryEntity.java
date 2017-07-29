@@ -5,6 +5,7 @@ import com.cwbusinesservices.pojo.helpers.GetableById;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -23,6 +24,7 @@ public class IndustryEntity extends CompareIntegerId implements Serializable, Ge
 
     @Column(name="NAME")
     @NotNull(message = "industry.name.required")
+    @Size(max = 350, message = "industry.name.size")
     private String name;
 
     @Override
