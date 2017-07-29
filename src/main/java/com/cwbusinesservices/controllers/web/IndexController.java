@@ -1,9 +1,13 @@
 package com.cwbusinesservices.controllers.web;
 
+import com.cwbusinesservices.criteria.impl.BlockCriteria;
 import com.cwbusinesservices.criteria.impl.CompanyCriteria;
 import com.cwbusinesservices.criteria.impl.ServiceCriteria;
 import com.cwbusinesservices.criteria.impl.TestimonialCriteria;
 import com.cwbusinesservices.exceptions.BaseException;
+import com.cwbusinesservices.pojo.entities.BlockEntity;
+import com.cwbusinesservices.pojo.enums.BlockCodesEnum;
+import com.cwbusinesservices.services.blocks.IBlockService;
 import com.cwbusinesservices.services.company.ICompanyService;
 import com.cwbusinesservices.services.service.IServiceService;
 import com.cwbusinesservices.services.testimonial.ITestimonialService;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -33,28 +38,47 @@ public class IndexController {
     @Autowired
     private ITestimonialService testimonialService;
 
+    @Autowired
+    private IBlockService blockService;
+
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String indexPage(
             Model model
     ){
-        ServiceCriteria serviceCriteria = new ServiceCriteria();
-        serviceCriteria.setActive(true);
-        serviceCriteria.setHas_img(true);
         try {
-            model.addAttribute("services", serviceService.getList(serviceCriteria, SERVICES_FIELDS_FOR_INDEX));
-        } catch (BaseException e) { }
+            List<BlockEntity> blocks = blockService.getList(new BlockCriteria());
+            model.addAttribute("blocks", blocks);
+            Set<BlockCodesEnum> uniqueCodes = new HashSet<>();
 
-        CompanyCriteria companyCriteria = new CompanyCriteria();
-        companyCriteria.setActive(true);
-        companyCriteria.setHas_img(true);
-        try {
-            model.addAttribute("companies", companyService.getList(companyCriteria, COMPANIES_FIELDS_FOR_INDEX));
-        } catch (BaseException e) { }
+            for (BlockEntity entity : blocks) {
+                uniqueCodes.add(entity.getCode());
+            }
 
-        TestimonialCriteria testimonialCriteria = new TestimonialCriteria();
-        testimonialCriteria.setActive(true);
-        try {
-            model.addAttribute("testimonials", testimonialService.getList(testimonialCriteria, TESTIMONIALS_FIELDS_FOR_INDEX));
+            if (uniqueCodes.contains(BlockCodesEnum.SERVICES)) {
+                ServiceCriteria serviceCriteria = new ServiceCriteria();
+                serviceCriteria.setActive(true);
+                serviceCriteria.setHas_img(true);
+                try {
+                    model.addAttribute("services", serviceService.getList(serviceCriteria, SERVICES_FIELDS_FOR_INDEX));
+                } catch (BaseException e) { }
+            }
+
+            if (uniqueCodes.contains(BlockCodesEnum.COMPANIES)) {
+                CompanyCriteria companyCriteria = new CompanyCriteria();
+                companyCriteria.setActive(true);
+                companyCriteria.setHas_img(true);
+                try {
+                    model.addAttribute("companies", companyService.getList(companyCriteria, COMPANIES_FIELDS_FOR_INDEX));
+                } catch (BaseException e) { }
+            }
+
+            if (uniqueCodes.contains(BlockCodesEnum.TESTIMONIALS)) {
+                TestimonialCriteria testimonialCriteria = new TestimonialCriteria();
+                testimonialCriteria.setActive(true);
+                try {
+                    model.addAttribute("testimonials", testimonialService.getList(testimonialCriteria, TESTIMONIALS_FIELDS_FOR_INDEX));
+                } catch (BaseException e) { }
+            }
         } catch (BaseException e) { }
 
         return "index/index";
