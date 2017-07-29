@@ -1,0 +1,3 @@
+INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('EDIT_PERMISSIONS_TO_ROLES');
+
+insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '32');

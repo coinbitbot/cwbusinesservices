@@ -20,8 +20,8 @@ public class RoleValidationServiceImpl
         implements IRoleValidationService {
 
     public RoleValidationServiceImpl() {
-        super(PermissionsEnum.CREATE_BLOCK, PermissionsEnum.EDIT_BLOCK,
-                PermissionsEnum.DELETE_BLOCK, RoleEntity.class);
+        super(PermissionsEnum.EDIT_PERMISSIONS_TO_ROLES, PermissionsEnum.EDIT_PERMISSIONS_TO_ROLES,
+                PermissionsEnum.EDIT_PERMISSIONS_TO_ROLES, RoleEntity.class);
     }
 
     @Autowired
