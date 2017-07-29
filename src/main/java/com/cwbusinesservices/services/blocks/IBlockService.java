@@ -1,6 +1,7 @@
 package com.cwbusinesservices.services.blocks;
 
 import com.cwbusinesservices.exceptions.BaseException;
+import com.cwbusinesservices.exceptions.service_error.ActionNotAllowedException;
 import com.cwbusinesservices.pojo.entities.BlockEntity;
 import com.cwbusinesservices.pojo.view.BlockView;
 import com.cwbusinesservices.services.BaseService;
@@ -18,13 +19,13 @@ public abstract class IBlockService extends BaseService<BlockEntity,BlockView,In
     }
 
     @Override
-    public Integer create(BlockView view) throws BaseException, IllegalAccessException, InstantiationException {
-        throw new UnsupportedOperationException("block.error.create");
+    public Integer create(BlockView view) throws BaseException {
+        throw new ActionNotAllowedException("block.error.create");
     }
 
     @Override
     public boolean delete(Integer id) throws BaseException {
-        throw new UnsupportedOperationException("block.error.delete");
+        throw new ActionNotAllowedException("block.error.delete");
     }
 
     public abstract Map<String,Object> getByCode(String code, Set<String> fields) throws BaseException;

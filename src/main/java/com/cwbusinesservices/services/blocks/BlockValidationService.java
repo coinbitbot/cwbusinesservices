@@ -2,6 +2,7 @@ package com.cwbusinesservices.services.blocks;
 
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.exceptions.conflict.EntityValidateException;
+import com.cwbusinesservices.exceptions.service_error.ActionNotAllowedException;
 import com.cwbusinesservices.exceptions.service_error.ForbiddenException;
 import com.cwbusinesservices.exceptions.service_error.ValidationException;
 import com.cwbusinesservices.pojo.entities.BlockEntity;
@@ -34,11 +35,11 @@ public class BlockValidationService extends BaseValidator<BlockEntity, Integer> 
 
     @Override
     public void validForCreate(BlockEntity entity) throws BaseException {
-        throw new UnsupportedOperationException("block.error.create");
+        throw new ActionNotAllowedException("block.error.create");
     }
 
     @Override
     public void validForDelete(BlockEntity entity) throws BaseException {
-        throw new UnsupportedOperationException("block.error.delete");
+        throw new ActionNotAllowedException("block.error.delete");
     }
 }
