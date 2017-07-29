@@ -69,5 +69,15 @@ public class Fields {
         public static final String TITLE = "title";
     }
 
+    public static class Industry{
+        public static final String ID = "id";
+        public static final String NAME = "name";
+    }
+
+    public static class Interest{
+        public static final String ID = "id";
+        public static final String NAME = "name";
+    }
+
     public static final String DEFAULT ="id";
 }
