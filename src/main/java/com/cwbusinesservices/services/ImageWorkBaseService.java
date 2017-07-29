@@ -1,9 +1,8 @@
 package com.cwbusinesservices.services;
 
 import com.cwbusinesservices.exceptions.BaseException;
-import com.cwbusinesservices.pojo.entities.CompanyEntity;
-import com.cwbusinesservices.pojo.entities.GetableById;
-import com.cwbusinesservices.pojo.entities.IHasImage;
+import com.cwbusinesservices.pojo.helpers.GetableById;
+import com.cwbusinesservices.pojo.helpers.IHasImage;
 
 import java.io.Serializable;
 

@@ -1,14 +1,14 @@
 package com.cwbusinesservices.pojo.view;
 
-import com.cwbusinesservices.pojo.entities.GetableById;
-import org.springframework.stereotype.Service;
+import com.cwbusinesservices.pojo.helpers.CompareIntegerId;
+import com.cwbusinesservices.pojo.helpers.GetableById;
 
 import java.io.Serializable;
 
 /**
  * Created by Andrii on 25.07.2017.
  */
-public class InfoPageView implements Serializable,GetableById<Integer>{
+public class InfoPageView  extends CompareIntegerId implements Serializable,GetableById<Integer>{
 
     private static final long serialVersionUID = -6567992192957088108L;
 

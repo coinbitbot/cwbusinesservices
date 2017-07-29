@@ -2,6 +2,7 @@ package com.cwbusinesservices.pojo.entities;
 
 
 import com.cwbusinesservices.pojo.enums.RolesEnum;
+import com.cwbusinesservices.pojo.helpers.CompareIntegerId;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,7 +13,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "ROLE")
-public class RoleEntity implements Serializable{
+public class RoleEntity  extends CompareIntegerId implements Serializable{
 
     private static final long serialVersionUID = 1733101596308114392L;
     @Id

@@ -1,13 +1,14 @@
 package com.cwbusinesservices.pojo.view;
 
-import com.cwbusinesservices.pojo.entities.GetableById;
+import com.cwbusinesservices.pojo.helpers.CompareIntegerId;
+import com.cwbusinesservices.pojo.helpers.GetableById;
 
 import java.io.Serializable;
 
 /**
  * Created by Andrii on 27.07.2017.
  */
-public class TestimonialView implements Serializable,GetableById<Integer>{
+public class TestimonialView  extends CompareIntegerId implements Serializable,GetableById<Integer>{
 
     private static final long serialVersionUID = 9176049573795597248L;
     private Integer id;

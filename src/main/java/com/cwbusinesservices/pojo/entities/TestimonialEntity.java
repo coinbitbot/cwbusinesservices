@@ -1,7 +1,7 @@
 package com.cwbusinesservices.pojo.entities;
 
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import com.cwbusinesservices.pojo.helpers.CompareIntegerId;
+import com.cwbusinesservices.pojo.helpers.GetableById;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name="TESTIMONIAL")
-public class TestimonialEntity implements Serializable,GetableById<Integer>{
+public class TestimonialEntity  extends CompareIntegerId implements Serializable,GetableById<Integer> {
 
     public static final Integer MAX_NAME_SIZE = 250;
     public static final Integer MAX_POSITION_SIZE = 300;

@@ -1,4 +1,4 @@
-package com.cwbusinesservices.pojo.entities;
+package com.cwbusinesservices.pojo.helpers;
 
 /**
  * Created by Andrii on 28.07.2017.

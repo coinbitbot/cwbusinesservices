@@ -7,8 +7,10 @@ import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;
 import com.cwbusinesservices.exceptions.service_error.ForbiddenException;
 import com.cwbusinesservices.exceptions.service_error.ServiceErrorException;
 import com.cwbusinesservices.exceptions.service_error.ValidationException;
+import com.cwbusinesservices.pojo.entities.CompanyEntity;
 import com.cwbusinesservices.pojo.entities.InfoPageEntity;
 import com.cwbusinesservices.pojo.enums.PermissionsEnum;
+import com.cwbusinesservices.services.BaseValidator;
 import com.cwbusinesservices.services.utils.SessionUtils;
 import com.cwbusinesservices.services.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +25,14 @@ import java.util.Set;
  * Created by Andrii on 25.07.2017.
  */
 @Service
-public class InfoPageValidationServiceImpl implements IInfoPageValidationService {
+public class InfoPageValidationServiceImpl extends BaseValidator<InfoPageEntity, Integer> implements IInfoPageValidationService {
+
+    public InfoPageValidationServiceImpl(){
+        super(PermissionsEnum.CREATE_INFO_PAGE, PermissionsEnum.EDIT_INFO_PAGE, PermissionsEnum.DELETE_INFO_PAGE, InfoPageEntity.class);
+    }
 
     @Autowired
     private SessionUtils sessionUtils;
-    @Autowired
-    private Validator validator;
     @Autowired
     private IInfoPageService service;
     @Autowired
@@ -36,14 +40,7 @@ public class InfoPageValidationServiceImpl implements IInfoPageValidationService
 
     @Override
     public void validForCreate(InfoPageEntity entity) throws BaseException {
-        if (!sessionUtils.isUserWithPermission(PermissionsEnum.CREATE_INFO_PAGE))
-            throw new ForbiddenException();
-        if (entity.getId()>0)
-            throw new EntityValidateException("errors.EntityCreateException.id.create");
-        Set<ConstraintViolation<InfoPageEntity>> violations = validator.validate(entity);
-        if(violations != null && !violations.isEmpty()) {
-            throw new ValidationException(InfoPageEntity.class.getName(), violations);
-        }
+        super.validForCreate(entity);
         if (!utils.validUrl(entity.getUrl()))
             throw new EntityValidateException("errors.InfoPage.url.is.not.valid");
         try{
@@ -55,14 +52,7 @@ public class InfoPageValidationServiceImpl implements IInfoPageValidationService
 
     @Override
     public void validForUpdate(InfoPageEntity entity) throws BaseException {
-        if (!sessionUtils.isUserWithPermission(PermissionsEnum.EDIT_INFO_PAGE))
-            throw new ForbiddenException();
-        if (entity.getId()==0)
-            throw new EntityValidateException("errors.EntityCreateException.id.update");
-        Set<ConstraintViolation<InfoPageEntity>> violations = validator.validate(entity);
-        if(violations != null && !violations.isEmpty()) {
-            throw new ValidationException(InfoPageEntity.class.getName(), violations);
-        }
+        super.validForUpdate(entity);
         if (!utils.validUrl(entity.getUrl()))
             throw new EntityValidateException("errors.InfoPage.url.is.not.valid");
         try{
@@ -80,18 +70,5 @@ public class InfoPageValidationServiceImpl implements IInfoPageValidationService
         if (!sessionUtils.isUserWithPermission(PermissionsEnum.EDIT_INFO_PAGE))
             throw new ForbiddenException();
     }
-
-    @Override
-    public void validForView(List<InfoPageEntity> entities) throws ForbiddenException {
-        for (InfoPageEntity entity:entities)
-            validForView(entity);
-    }
-
-    @Override
-    public void validForDelete(InfoPageEntity entity) throws BaseException {
-        if (!sessionUtils.isUserWithPermission(PermissionsEnum.DELETE_INFO_PAGE))
-            throw new ForbiddenException();
-    }
-
 
 }

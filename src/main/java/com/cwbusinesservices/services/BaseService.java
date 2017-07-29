@@ -13,13 +13,10 @@ import com.cwbusinesservices.exceptions.service_error.ServiceErrorException;
 import com.cwbusinesservices.mergers.Merger;
 import com.cwbusinesservices.persistence.criteria.ICriteriaRepository;
 import com.cwbusinesservices.persistence.dao.repositories.BaseRepository;
-import com.cwbusinesservices.pojo.entities.GetableById;
+import com.cwbusinesservices.pojo.helpers.GetableById;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;

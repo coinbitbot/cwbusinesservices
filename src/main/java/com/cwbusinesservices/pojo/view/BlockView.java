@@ -1,6 +1,7 @@
 package com.cwbusinesservices.pojo.view;
 
-import com.cwbusinesservices.pojo.entities.GetableById;
+import com.cwbusinesservices.pojo.helpers.CompareIntegerId;
+import com.cwbusinesservices.pojo.helpers.GetableById;
 import com.cwbusinesservices.pojo.enums.BlockCodesEnum;
 
 import java.io.Serializable;
@@ -8,7 +9,7 @@ import java.io.Serializable;
 /**
  * Created by Andrii on 28.07.2017.
  */
-public class BlockView implements Serializable,GetableById<Integer> {
+public class BlockView extends CompareIntegerId implements Serializable,GetableById<Integer> {
 
     private static final long serialVersionUID = -3357539158595638456L;
 

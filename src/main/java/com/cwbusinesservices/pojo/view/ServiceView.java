@@ -1,14 +1,15 @@
 package com.cwbusinesservices.pojo.view;
 
-import com.cwbusinesservices.pojo.entities.GetableById;
-import com.cwbusinesservices.pojo.entities.IHasImage;
+import com.cwbusinesservices.pojo.helpers.CompareIntegerId;
+import com.cwbusinesservices.pojo.helpers.GetableById;
+import com.cwbusinesservices.pojo.helpers.IHasImage;
 
 import java.io.Serializable;
 
 /**
  * Created by Andrii on 27.07.2017.
  */
-public class ServiceView implements Serializable,GetableById<Integer>, IHasImage {
+public class ServiceView  extends CompareIntegerId implements Serializable,GetableById<Integer>, IHasImage {
 
     private static final long serialVersionUID = 8481507101886823362L;
 

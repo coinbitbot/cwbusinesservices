@@ -1,5 +1,9 @@
 package com.cwbusinesservices.pojo.entities;
 
+import com.cwbusinesservices.pojo.helpers.CompareIntegerId;
+import com.cwbusinesservices.pojo.helpers.GetableById;
+import com.cwbusinesservices.pojo.helpers.IHasImage;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -9,7 +13,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name="SERVICE")
-public class ServiceEntity implements Serializable, GetableById<Integer>, IHasImage{
+public class ServiceEntity  extends CompareIntegerId implements Serializable, GetableById<Integer>, IHasImage {
 
     private static final long serialVersionUID = -713669045447385621L;
 

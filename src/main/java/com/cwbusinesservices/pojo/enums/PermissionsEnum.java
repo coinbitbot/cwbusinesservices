@@ -16,5 +16,7 @@ public enum PermissionsEnum {
     CREATE_TESTIMONIAL,
     EDIT_TESTIMONIAL,
     DELETE_TESTIMONIAL,
-    EDIT_BLOCK
+    CREATE_BLOCK,
+    EDIT_BLOCK,
+    DELETE_BLOCK
 }

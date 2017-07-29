@@ -2,13 +2,11 @@ package com.cwbusinesservices.controllers.rest;
 
 import com.cwbusinesservices.convertors.Fields;
 import com.cwbusinesservices.exceptions.BaseException;
-import com.cwbusinesservices.pojo.entities.GetableById;
+import com.cwbusinesservices.pojo.helpers.GetableById;
 import com.cwbusinesservices.pojo.response.Response;
 import com.cwbusinesservices.pojo.response.ResponseFactory;
-import com.cwbusinesservices.services.BaseService;
 import com.cwbusinesservices.services.IService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;

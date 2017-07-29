@@ -1,6 +1,8 @@
 package com.cwbusinesservices.pojo.entities;
 
-import org.springframework.stereotype.Component;
+import com.cwbusinesservices.pojo.helpers.CompareIntegerId;
+import com.cwbusinesservices.pojo.helpers.GetableById;
+import com.cwbusinesservices.pojo.helpers.IHasImage;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,7 +13,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name="COMPANY")
-public class CompanyEntity implements Serializable, GetableById<Integer>, IHasImage {
+public class CompanyEntity extends CompareIntegerId implements Serializable, GetableById<Integer>, IHasImage {
 
     private static final long serialVersionUID = 8132279800338374807L;
 

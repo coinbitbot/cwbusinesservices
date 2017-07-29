@@ -1,6 +1,8 @@
 package com.cwbusinesservices.pojo.entities;
 
 import com.cwbusinesservices.pojo.enums.BlockCodesEnum;
+import com.cwbusinesservices.pojo.helpers.CompareIntegerId;
+import com.cwbusinesservices.pojo.helpers.GetableById;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,7 +13,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name="BLOCKS")
-public class BlockEntity implements Serializable, GetableById<Integer>{
+public class BlockEntity extends CompareIntegerId implements Serializable, GetableById<Integer> {
 
     private static final long serialVersionUID = -8677583551496421775L;
     @Id

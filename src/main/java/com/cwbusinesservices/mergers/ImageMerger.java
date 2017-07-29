@@ -1,6 +1,6 @@
 package com.cwbusinesservices.mergers;
 
-import com.cwbusinesservices.pojo.entities.IHasImage;
+import com.cwbusinesservices.pojo.helpers.IHasImage;
 import org.springframework.stereotype.Component;
 
 /**
