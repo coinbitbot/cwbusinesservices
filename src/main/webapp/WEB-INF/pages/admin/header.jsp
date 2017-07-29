@@ -35,6 +35,7 @@
                         <li><a href="/admin/testimonials/all" class="active">All testimonials</a></li>
                         <li><a href="/admin/blocks/all" class="active">All blocks</a></li>
                         <li><a href="/admin/industries/all" class="active">All industries</a></li>
+                        <li><a href="/admin/interests/all" class="active">All interests</a></li>
                     </ul>
                 </li>
             </ul>
