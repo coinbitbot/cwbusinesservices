@@ -80,7 +80,5 @@ public class RequestMerger implements Merger<RequestEntity,RequestView>{
                 ids.add(interest.getId());
             view.setInterests(ids);
         }
-        if (view.getStatus()!=null) entity.setStatus(view.getStatus());
-        else view.setStatus(entity.getStatus());
     }
 }

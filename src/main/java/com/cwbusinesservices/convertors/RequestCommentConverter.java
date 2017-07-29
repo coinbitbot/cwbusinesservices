@@ -23,7 +23,7 @@ public class RequestCommentConverter extends Converter<RequestCommentEntity>{
         if (fields.contains(USER)&&object.getUser()!=null)
             map.put(USER,object.getUser().getId());
         if (fields.contains(REQUEST)&&object.getRequest()!=null)
-            map.put(REQUEST,object.getUser().getId());
+            map.put(REQUEST,object.getRequest().getId());
         if (fields.contains(TEXT))
             map.put(TEXT,object.getText());
         if (fields.contains(HAS_FILE))
