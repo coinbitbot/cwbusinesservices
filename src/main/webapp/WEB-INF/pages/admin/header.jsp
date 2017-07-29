@@ -33,6 +33,7 @@
                         <li><a href="/admin/services/all" class="active">All service</a></li>
                         <li><a href="/admin/companies/all" class="active">All companies</a></li>
                         <li><a href="/admin/testimonials/all" class="active">All testimonials</a></li>
+                        <li><a href="/admin/blocks/all" class="active">All blocks</a></li>
                     </ul>
                 </li>
             </ul>
