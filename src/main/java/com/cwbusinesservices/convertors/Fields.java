@@ -15,6 +15,8 @@ public class Fields {
         public static final String ROLE = "role";
         public static final String ACTIVE = "active";
         public static final String PHONE = "phone";
+        public static final String REQUESTS = "requests_ids";
+        public static final String REQUESTS_COMMENTS = "requests_comments_ids";
 
         public static final String DEFAULT = ID + ',' + EMAIL;
     }
@@ -83,6 +85,27 @@ public class Fields {
         public static final String ID = "id";
         public static final String NAME = "name";
         public static final String PERMISSIONS = "permissions";
+    }
+
+    public static class Request{
+        public static final String ID = "id";
+        public static final String USER = "user";
+        public static final String COMMENTS = "comments";
+        public static final String INDUSTRY = "industry";
+        public static final String INTEREST_ALTER = "interest_alter";
+        public static final String INTERESTS = "interests";
+        public static final String COMPANY_NAME = "company_name";
+        public static final String HAS_FILE = "has_file";
+        public static final String STATUS = "status";
+    }
+
+    public static class RequestComment{
+        public static final String ID = "id";
+        public static final String USER = "user";
+        public static final String REQUEST = "request";
+        public static final String TEXT = "text";
+        public static final String HAS_FILE = "has_file";
+        public static final String DATE = "date";
     }
 
     public static final String DEFAULT ="id";

@@ -16,7 +16,7 @@ public class ServiceMerger implements Merger<ServiceEntity,ServiceView>{
     private Utils utils;
 
     @Autowired
-    private ImageMerger imageMerger;
+    private FileMerger fileMerger;
 
     @Override
     public void merge(ServiceEntity entity, ServiceView view) {
@@ -24,7 +24,7 @@ public class ServiceMerger implements Merger<ServiceEntity,ServiceView>{
         else view.setId(entity.getId());
         if (view.getActive()!=null) entity.setActive(view.getActive());
         else view.setActive(entity.isActive());
-        imageMerger.merge(view, entity);
+        fileMerger.merge(view, entity);
         if (utils.notEmpty(view.getDescription())) entity.setDescription(view.getDescription());
         else view.setDescription(entity.getDescription());
         if (utils.notEmpty(view.getName())) entity.setName(view.getName());

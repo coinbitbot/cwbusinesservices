@@ -130,6 +130,8 @@ public class UserServiceImpl implements IUserService {
             if (!sessionUtils.isAuthorized()){
                 sessionUtils.logeInUser(entity);
             }
+
+            //TODO merge requests and comments
             return entity.getId();
     }
 

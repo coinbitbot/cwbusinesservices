@@ -1,11 +1,11 @@
 package com.cwbusinesservices.convertors;
 
+import com.cwbusinesservices.pojo.entities.RequestCommentEntity;
+import com.cwbusinesservices.pojo.entities.RequestEntity;
 import org.springframework.stereotype.Component;
 import com.cwbusinesservices.pojo.entities.UserEntity;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static com.cwbusinesservices.convertors.Fields.User.*;
 
@@ -33,6 +33,18 @@ public class UserConverter extends Converter<UserEntity> {
             map.put(ACTIVE, object.isActive());
         if(fields.contains(ROLE))
             map.put(ROLE, object.getRoleEntity().getName());
+        if(fields.contains(REQUESTS)&&object.getRequests()!=null){
+            List<Integer> ids = new LinkedList<>();
+            for (RequestEntity request:object.getRequests())
+                ids.add(request.getId());
+            map.put(REQUESTS,ids);
+        }
+        if(fields.contains(REQUESTS_COMMENTS)&&object.getRequestComments()!=null){
+            List<Integer> ids = new LinkedList<>();
+            for (RequestCommentEntity requestComment:object.getRequestComments())
+                ids.add(requestComment.getId());
+            map.put(REQUESTS_COMMENTS,ids);
+        }
         return map;
     }
 }

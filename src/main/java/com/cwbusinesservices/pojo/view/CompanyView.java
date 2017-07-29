@@ -2,6 +2,7 @@ package com.cwbusinesservices.pojo.view;
 
 import com.cwbusinesservices.pojo.helpers.CompareIntegerId;
 import com.cwbusinesservices.pojo.helpers.GetableById;
+import com.cwbusinesservices.pojo.helpers.IHasFile;
 import com.cwbusinesservices.pojo.helpers.IHasImage;
 
 import java.io.Serializable;
@@ -9,7 +10,7 @@ import java.io.Serializable;
 /**
  * Created by Andrii on 26.07.2017.
  */
-public class CompanyView  extends CompareIntegerId implements Serializable,GetableById<Integer>,IHasImage {
+public class CompanyView  extends CompareIntegerId implements Serializable,GetableById<Integer>,IHasFile {
 
     private static final long serialVersionUID = 3731762957032873019L;
 
@@ -96,12 +97,12 @@ public class CompanyView  extends CompareIntegerId implements Serializable,Getab
     }
 
     @Override
-    public Boolean isHasImage() {
+    public Boolean isHasFile() {
         return getHas_image();
     }
 
     @Override
-    public void setHasImage(boolean hasImage) {
+    public void setHasFile(boolean hasImage) {
         setHas_image(hasImage);
     }
 }

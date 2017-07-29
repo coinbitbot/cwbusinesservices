@@ -1,6 +1,6 @@
 package com.cwbusinesservices.storage.impl;
 
-import com.cwbusinesservices.pojo.enums.ImageEntityTypeEnum;
+import com.cwbusinesservices.pojo.enums.FileEntityTypeEnum;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,7 +37,7 @@ public class StorageServiceImpl implements IStorageService {
      * @throws ServiceErrorException
      */
     @Override
-    public Boolean uploadFile(int id, MultipartFile file, ImageEntityTypeEnum type) throws ServiceErrorException {
+    public Boolean uploadFile(int id, MultipartFile file, FileEntityTypeEnum type) throws ServiceErrorException {
         String folder = folders.get(type);
 
         File entityFolder = new File(ROOT_DIR + folder + '/' + id);
@@ -70,7 +70,7 @@ public class StorageServiceImpl implements IStorageService {
     }
 
     @Override
-    public Boolean deleteFile(int id, ImageEntityTypeEnum type) throws ServiceErrorException {
+    public Boolean deleteFile(int id, FileEntityTypeEnum type) throws ServiceErrorException {
         String folder = folders.get(type);
 
         File entityFolder = new File(ROOT_DIR + folder + '/' + id);
@@ -94,7 +94,7 @@ public class StorageServiceImpl implements IStorageService {
      * @param type - entity type
      */
     @Override
-    public void getFile(int id, HttpServletResponse response, ImageEntityTypeEnum type) throws NoSuchEntityException, ServiceErrorException, StorageException {
+    public void getFile(int id, HttpServletResponse response, FileEntityTypeEnum type) throws NoSuchEntityException, ServiceErrorException, StorageException {
         String folder = folders.get(type);
 
         try {
@@ -126,7 +126,7 @@ public class StorageServiceImpl implements IStorageService {
      * @return <code>true</code> if file exists, <code>false</code> otherwise
      */
     @Override
-    public Boolean hasFile(int id, ImageEntityTypeEnum type) {
+    public Boolean hasFile(int id, FileEntityTypeEnum type) {
         String folder = folders.get(type);
 
         File entityFolder = new File(ROOT_DIR + folder + '/' + id);
@@ -182,14 +182,16 @@ public class StorageServiceImpl implements IStorageService {
     private final String ROOT_DIR = System.getProperty("catalina.home") + "/cw-business-services";
 
     private static final String REQUESTS_FOLDER = "/requests";
+    private static final String REQUESTS_COMMENT_FOLDER = "/requests_comments";
     private static final String SERVICES_FOLDER = "/services";
     private static final String COMPANY_FOLDER = "/companies";
 
-    private static final Map<ImageEntityTypeEnum, String> folders = new HashMap<ImageEntityTypeEnum, String>(){
+    private static final Map<FileEntityTypeEnum, String> folders = new HashMap<FileEntityTypeEnum, String>(){
         {
-            put(ImageEntityTypeEnum.COMPANY, COMPANY_FOLDER);
-            put(ImageEntityTypeEnum.SERVICE, SERVICES_FOLDER);
-            put(ImageEntityTypeEnum.REQUEST, REQUESTS_FOLDER);
+            put(FileEntityTypeEnum.COMPANY, COMPANY_FOLDER);
+            put(FileEntityTypeEnum.SERVICE, SERVICES_FOLDER);
+            put(FileEntityTypeEnum.REQUEST, REQUESTS_FOLDER);
+            put(FileEntityTypeEnum.REQUEST_COMMENT, REQUESTS_COMMENT_FOLDER);
         }
     };
 

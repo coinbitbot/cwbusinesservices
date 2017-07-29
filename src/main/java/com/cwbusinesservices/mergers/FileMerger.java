@@ -1,5 +1,6 @@
 package com.cwbusinesservices.mergers;
 
+import com.cwbusinesservices.pojo.helpers.IHasFile;
 import com.cwbusinesservices.pojo.helpers.IHasImage;
 import org.springframework.stereotype.Component;
 
@@ -7,14 +8,14 @@ import org.springframework.stereotype.Component;
  * Created by Andrii on 28.07.2017.
  */
 @Component
-public class ImageMerger {
+public class FileMerger {
     /**
      *
      * @param view Entity view
      * @param entity Main entity
      */
-    public void merge(IHasImage view, IHasImage entity){
-        if(view.isHasImage()!=null) entity.setHasImage(view.isHasImage());
-        else view.setHasImage(entity.isHasImage());
+    public void merge(IHasFile view, IHasFile entity){
+        if(view.isHasFile()!=null) entity.setHasFile(view.isHasFile());
+        else view.setHasFile(entity.isHasFile());
     }
 }

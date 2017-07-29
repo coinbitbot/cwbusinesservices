@@ -16,7 +16,7 @@ public class CompanyMerger implements Merger<CompanyEntity,CompanyView>{
     private Utils utils;
 
     @Autowired
-    private ImageMerger imageMerger;
+    private FileMerger fileMerger;
 
     @Override
     public void merge(CompanyEntity entity, CompanyView view) {
@@ -24,7 +24,7 @@ public class CompanyMerger implements Merger<CompanyEntity,CompanyView>{
         else view.setId(entity.getId());
         if (view.getActive()!=null) entity.setActive(view.getActive());
         else view.setActive(entity.isActive());
-        imageMerger.merge(view, entity);
+        fileMerger.merge(view, entity);
         if (utils.notEmpty(view.getText())) entity.setText(view.getText());
         else view.setText(entity.getText());
         if (utils.notEmpty(view.getName())) entity.setName(view.getName());

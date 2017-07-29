@@ -2,6 +2,7 @@ package com.cwbusinesservices.pojo.entities;
 
 import com.cwbusinesservices.pojo.helpers.CompareIntegerId;
 import com.cwbusinesservices.pojo.helpers.GetableById;
+import com.cwbusinesservices.pojo.helpers.IHasFile;
 import com.cwbusinesservices.pojo.helpers.IHasImage;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name="SERVICE")
-public class ServiceEntity  extends CompareIntegerId implements Serializable, GetableById<Integer>, IHasImage {
+public class ServiceEntity  extends CompareIntegerId implements Serializable, GetableById<Integer>, IHasFile {
 
     private static final long serialVersionUID = -713669045447385621L;
 
@@ -52,12 +53,10 @@ public class ServiceEntity  extends CompareIntegerId implements Serializable, Ge
         this.name = name;
     }
 
-    @Override
     public Boolean isHasImage() {
         return hasImage;
     }
 
-    @Override
     public void setHasImage(boolean hasImage) {
         this.hasImage = hasImage;
     }
@@ -112,5 +111,15 @@ public class ServiceEntity  extends CompareIntegerId implements Serializable, Ge
                 ", description='" + description + '\'' +
                 ", active=" + active +
                 '}';
+    }
+
+    @Override
+    public Boolean isHasFile() {
+        return isHasImage();
+    }
+
+    @Override
+    public void setHasFile(boolean hasFile) {
+        setHasImage(hasFile);
     }
 }

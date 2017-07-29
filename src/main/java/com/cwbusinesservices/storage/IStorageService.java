@@ -1,6 +1,6 @@
 package com.cwbusinesservices.storage;
 
-import com.cwbusinesservices.pojo.enums.ImageEntityTypeEnum;
+import com.cwbusinesservices.pojo.enums.FileEntityTypeEnum;
 import org.springframework.web.multipart.MultipartFile;
 import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;
 import com.cwbusinesservices.exceptions.service_error.ServiceErrorException;
@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface IStorageService {
 
-    Boolean uploadFile(int id, MultipartFile file, ImageEntityTypeEnum type) throws ServiceErrorException;
+    Boolean uploadFile(int id, MultipartFile file, FileEntityTypeEnum type) throws ServiceErrorException;
 
-    Boolean deleteFile(int id, ImageEntityTypeEnum type) throws ServiceErrorException;
+    Boolean deleteFile(int id, FileEntityTypeEnum type) throws ServiceErrorException;
 
-    void getFile(int id, HttpServletResponse response, ImageEntityTypeEnum type) throws NoSuchEntityException, ServiceErrorException, StorageException;
+    void getFile(int id, HttpServletResponse response, FileEntityTypeEnum type) throws NoSuchEntityException, ServiceErrorException, StorageException;
 
-    Boolean hasFile(int id, ImageEntityTypeEnum type);
+    Boolean hasFile(int id, FileEntityTypeEnum type);
 }

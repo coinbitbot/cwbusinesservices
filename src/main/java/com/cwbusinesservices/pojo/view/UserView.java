@@ -1,11 +1,13 @@
 package com.cwbusinesservices.pojo.view;
 
 
+import com.cwbusinesservices.convertors.Fields;
 import org.hibernate.validator.constraints.Email;
 import com.cwbusinesservices.pojo.enums.RolesEnum;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * Created by oleh_kurpiak on 07.09.2016.
@@ -32,6 +34,24 @@ public class UserView {
     private Boolean active;
     private String phone;
     private RolesEnum role;
+    private List<Integer> request_ids;
+    private List<Integer> request_comment_ids;
+
+    public List<Integer> getRequest_ids() {
+        return request_ids;
+    }
+
+    public void setRequest_ids(List<Integer> request_ids) {
+        this.request_ids = request_ids;
+    }
+
+    public List<Integer> getRequest_comment_ids() {
+        return request_comment_ids;
+    }
+
+    public void setRequest_comment_ids(List<Integer> request_comment_ids) {
+        this.request_comment_ids = request_comment_ids;
+    }
 
     public int getId() {
         return id;

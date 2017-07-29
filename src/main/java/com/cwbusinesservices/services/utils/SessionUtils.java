@@ -1,6 +1,7 @@
 package com.cwbusinesservices.services.utils;
 
 import com.cwbusinesservices.pojo.enums.PermissionsEnum;
+import com.cwbusinesservices.pojo.helpers.IHasOwner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,6 +30,16 @@ public class SessionUtils {
 
     @Autowired
     private UsersRepository usersRepository;
+
+    public boolean isOwner(IHasOwner entity){
+        UserEntity owner = entity.getUser();
+        UserEntity currentUser = getCurrentUser();
+        if (owner==null||currentUser==null)
+            return false;
+        if (owner.getId()==currentUser.getId())
+            return true;
+        return false;
+    }
 
     public UserEntity getCurrentUser() {
         if (isAuthorized()) {

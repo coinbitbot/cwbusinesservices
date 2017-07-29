@@ -2,6 +2,7 @@ package com.cwbusinesservices.pojo.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * Created by Andrii on 18.08.2016.
@@ -39,9 +40,31 @@ public class UserEntity implements Serializable{
     @Column(name="PHONE")
     private String phone;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<RequestEntity> requests;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<RequestCommentEntity> requestComments;
+
     @PrePersist
     protected void onCreate() {
         active = false;
+    }
+
+    public Set<RequestEntity> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(Set<RequestEntity> requests) {
+        this.requests = requests;
+    }
+
+    public Set<RequestCommentEntity> getRequestComments() {
+        return requestComments;
+    }
+
+    public void setRequestComments(Set<RequestCommentEntity> requestComments) {
+        this.requestComments = requestComments;
     }
 
     public int getId() {
