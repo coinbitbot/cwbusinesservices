@@ -39,7 +39,7 @@ public abstract class BaseValidator<E extends GetableById<I>, I> implements IVal
 
     @Override
     public void validForCreate(E entity) throws BaseException {
-        if (!sessionUtils.isUserWithPermission(permissionCreate))
+        if (!permissionCreate.equals(PermissionsEnum.ANYONE)&&!sessionUtils.isUserWithPermission(permissionCreate))
             throw new ForbiddenException();
         GetableById<I> id = entity;
         if (id.compareId(0)>0)
@@ -52,7 +52,7 @@ public abstract class BaseValidator<E extends GetableById<I>, I> implements IVal
 
     @Override
     public void validForUpdate(E entity) throws BaseException {
-        if (!sessionUtils.isUserWithPermission(permissionEdit))
+        if (!permissionEdit.equals(PermissionsEnum.ANYONE)&&!sessionUtils.isUserWithPermission(permissionEdit))
             throw new ForbiddenException();
         GetableById<I> id = entity;
         if (id.compareId(0)==0)
@@ -76,7 +76,7 @@ public abstract class BaseValidator<E extends GetableById<I>, I> implements IVal
 
     @Override
     public void validForDelete(E entity) throws BaseException {
-        if (!sessionUtils.isUserWithPermission(permissionDelete))
+        if (!permissionDelete.equals(PermissionsEnum.ANYONE)&&!sessionUtils.isUserWithPermission(permissionDelete))
             throw new ForbiddenException();
     }
 

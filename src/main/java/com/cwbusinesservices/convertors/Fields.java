@@ -108,5 +108,10 @@ public class Fields {
         public static final String DATE = "date";
     }
 
+    public static class EmailSubscribe{
+        public static final String ID = "id";
+        public static final String EMAIL = "email";
+    }
+
     public static final String DEFAULT ="id";
 }
