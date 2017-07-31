@@ -11,7 +11,7 @@ ENGINE = InnoDB;
 
 INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('EDIT_BLOCK');
 
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '16');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '16');
 
 INSERT INTO `BLOCKS` (`CODE`,`TITLE`) VALUES ('SERVICES', 'Overview of the services');
 INSERT INTO `BLOCKS` (`CODE`,`TITLE`) VALUES ('COMPANIES', 'Logos of investee companies');

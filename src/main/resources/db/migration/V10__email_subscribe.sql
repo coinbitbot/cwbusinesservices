@@ -12,10 +12,10 @@ INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('CREATE_EMAIL_SUBSCRIBE');
 INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('EDIT_EMAIL_SUBSCRIBE');
 INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('DELETE_EMAIL_SUBSCRIBE');
 
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '33');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '34');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '35');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '33');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '34');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '35');
 
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '33');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '34');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '35');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '33');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '34');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '35');

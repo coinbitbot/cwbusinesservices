@@ -14,6 +14,6 @@ INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('CREATE_SERVICE');
 INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('EDIT_SERVICE');
 INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('DELETE_SERVICE');
 
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '10');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '11');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '12');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '10');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '11');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '12');

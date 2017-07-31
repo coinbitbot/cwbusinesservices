@@ -78,32 +78,32 @@ INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('DELETE_REQUEST');
 INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('VIEW_REQUEST');
 INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('STATUS_CHANGE_REQUEST');
 
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('1', '23');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('1', '24');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('1', '25');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('1', '23');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('1', '24');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('1', '25');
 
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '26');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '26');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '26');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '26');
 
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '27');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '27');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '27');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '27');
 
 INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('CREATE_REQUEST_COMMENT');
 INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('EDIT_REQUEST_COMMENT');
 INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('DELETE_REQUEST_COMMENT');
 INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('VIEW_REQUEST_COMMENT');
 
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('1', '28');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('1', '29');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('1', '30');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('1', '28');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('1', '29');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('1', '30');
 
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '28');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '29');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '30');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '31');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '28');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '29');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '30');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('2', '31');
 
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '28');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '29');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '30');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '31');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '28');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '29');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '30');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '31');
 

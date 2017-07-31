@@ -20,6 +20,6 @@ INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('CREATE_INFO_PAGE');
 INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('EDIT_INFO_PAGE');
 INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('DELETE_INFO_PAGE');
 
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '4');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '5');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '6');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '4');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '5');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '6');

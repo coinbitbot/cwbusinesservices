@@ -14,6 +14,6 @@ INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('CREATE_TESTIMONIAL');
 INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('EDIT_TESTIMONIAL');
 INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('DELETE_TESTIMONIAL');
 
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '13');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '14');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '15');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '13');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '14');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '15');

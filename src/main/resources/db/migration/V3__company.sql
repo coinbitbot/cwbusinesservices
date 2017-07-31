@@ -14,6 +14,6 @@ INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('CREATE_COMPANY');
 INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('EDIT_COMPANY');
 INSERT INTO `PERMISSIONS` (`NAME`) VALUES ('DELETE_COMPANY');
 
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '7');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '8');
-insert into `ROLE_permissions` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '9');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '7');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '8');
+insert into `ROLE_PERMISSIONS` (`ROLE_ID`, `PERMISSION_ID`) values ('3', '9');
