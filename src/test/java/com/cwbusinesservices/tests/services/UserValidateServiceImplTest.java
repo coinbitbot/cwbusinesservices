@@ -57,25 +57,25 @@ public class UserValidateServiceImplTest {
 
     @Test
     public void doesNotValidForCreateEmpty(){
-        UserView view = new UserView();
-        Set<ConstraintViolation<UserView>> violations = localValidator.validate(view);
+        UserEntity view = new UserEntity();
+        Set<ConstraintViolation<UserEntity>> violations = localValidator.validate(view);
         assertTrue(violations.size()>0);
     }
 
     @Test
     public void validEntity(){
-        UserView user = new UserView();
+        UserEntity user = new UserEntity();
         user.setEmail("test@test.com");
         user.setPassword("testtest");
-        Set<ConstraintViolation<UserView>> violations = localValidator.validate(user);
+        Set<ConstraintViolation<UserEntity>> violations = localValidator.validate(user);
         assertTrue(violations.size()==0);
     }
 
     @Test
     public void notValidPassword(){
-        UserView user = new UserView();
+        UserEntity user = new UserEntity();
         user.setPassword("");
-        Set<ConstraintViolation<UserView>> violations = localValidator.validateProperty(
+        Set<ConstraintViolation<UserEntity>> violations = localValidator.validateProperty(
                 user,
                 "password"
         );
@@ -84,9 +84,9 @@ public class UserValidateServiceImplTest {
 
     @Test
     public void notValidEmail(){
-        UserView user = new UserView();
+        UserEntity user = new UserEntity();
         user.setEmail("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        Set<ConstraintViolation<UserView>> violations = localValidator.validateProperty(
+        Set<ConstraintViolation<UserEntity>> violations = localValidator.validateProperty(
                 user,
                 "email"
         );
@@ -95,12 +95,12 @@ public class UserValidateServiceImplTest {
 
     @Test(expected = EmailExistsException.class)
     public void emailExist() throws NoSuchEntityException, ValidationException, EmailExistsException, ServiceErrorException {
-        UserView user = new UserView();
+        UserEntity user = new UserEntity();
         user.setEmail("test@test.com");
-        when(validator.validate(user)).then(new Answer<Set<ConstraintViolation<UserView>>>(){
+        when(validator.validate(user)).then(new Answer<Set<ConstraintViolation<UserEntity>>>(){
             @Override
-            public Set<ConstraintViolation<UserView>> answer(InvocationOnMock invocationOnMock) throws Throwable {
-                return new HashSet<ConstraintViolation<UserView>>();
+            public Set<ConstraintViolation<UserEntity>> answer(InvocationOnMock invocationOnMock) throws Throwable {
+                return new HashSet<ConstraintViolation<UserEntity>>();
             }
         });
 /*        when(userService.getByEmail("test@test,com")).then(new Answer<UserEntity>() {
@@ -114,7 +114,7 @@ public class UserValidateServiceImplTest {
 
     @Test(expected = ServiceErrorException.class)
     public void notValidIdForCreation() throws ValidationException, EmailExistsException, ServiceErrorException {
-        UserView user = new UserView();
+        UserEntity user = new UserEntity();
         user.setId(1);
         userValidateService.validForCreate(user);
     }

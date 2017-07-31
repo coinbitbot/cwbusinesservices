@@ -1,6 +1,11 @@
 package com.cwbusinesservices.pojo.entities;
 
+import com.cwbusinesservices.pojo.helpers.GetableById;
+import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -9,7 +14,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "USERS")
-public class UserEntity implements Serializable{
+public class UserEntity implements Serializable, GetableById<Integer>{
 
     private static final long serialVersionUID = 4276897615739047528L;
 
@@ -18,9 +23,14 @@ public class UserEntity implements Serializable{
     @Column(name = "ID")
     private int id;
 
+    @NotNull(message = "error.user.email.require")
+    @Size(max = MAX_EMAIL_SIZE, message = "error.user.email.max.size")
+    @Email(message = "error.user.email.format")
     @Column(name = "EMAIL")
     private String email;
 
+    @NotNull(message = "error.user.pass.require")
+    @Size(min= MIN_PASS_SIZE,max = MAX_EMAIL_SIZE, message = "error.user.pass.size")
     @Column(name = "PASSWORD")
     private String password;
 
@@ -46,6 +56,10 @@ public class UserEntity implements Serializable{
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<RequestCommentEntity> requestComments;
 
+    public static final int MAX_EMAIL_SIZE = 45;
+    public static final int MAX_PASS_SIZE = 45;
+    public static final int MIN_PASS_SIZE = 8;
+
     @PrePersist
     protected void onCreate() {
         active = false;
@@ -67,8 +81,14 @@ public class UserEntity implements Serializable{
         this.requestComments = requestComments;
     }
 
-    public int getId() {
+    @Override
+    public Integer getId() {
         return id;
+    }
+
+    @Override
+    public int compareId(int i) {
+        return getId().compareTo(i);
     }
 
     public void setId(int id) {

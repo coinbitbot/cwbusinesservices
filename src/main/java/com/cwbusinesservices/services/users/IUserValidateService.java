@@ -1,14 +1,11 @@
 package com.cwbusinesservices.services.users;
 
-import com.cwbusinesservices.exceptions.conflict.EmailExistsException;
-import com.cwbusinesservices.exceptions.service_error.ServiceErrorException;
-import com.cwbusinesservices.exceptions.service_error.ValidationException;
-import com.cwbusinesservices.pojo.view.UserView;
+import com.cwbusinesservices.pojo.entities.UserEntity;
+import com.cwbusinesservices.services.IValidator;
 
 /**
  * Created by Andrii on 10.09.2016.
  */
-public interface IUserValidateService {
+public interface IUserValidateService extends IValidator<UserEntity> {
 
-    void validForCreate(UserView user) throws ServiceErrorException, ValidationException, EmailExistsException;
 }

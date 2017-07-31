@@ -1,5 +1,6 @@
 package com.cwbusinesservices.controllers.rest;
 
+import com.cwbusinesservices.pojo.entities.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ import java.util.*;
  */
 @Controller
 @RequestMapping(value = "/api/users")
-public class UserApiController {
+public class UserApiController extends BaseApiController<UserEntity, UserView, Integer> {
 
     @Autowired
     private IUserService userService;
@@ -28,67 +29,6 @@ public class UserApiController {
     @Autowired
     private ResponseFactory responseFactory;
 
-    @RequestMapping(
-            value = "/{id}",
-            method = RequestMethod.GET
-    )
-    public
-    @ResponseBody Response<Map<String, Object>>
-    get(
-            @PathVariable("id") int userId,
-            @RequestParam(value = "fields", required = false, defaultValue = Fields.User.DEFAULT) Set<String> fields
-    ) throws BaseException {
-        return responseFactory.get(userService.getById(userId, fields));
-    }
-
-    @RequestMapping(
-            value = "/",
-            method = RequestMethod.GET
-    )
-    public @ResponseBody Response<List<Map<String, Object>>>
-    getList(
-            @RequestParam(value = "offset", required = false, defaultValue = "0") int offset,
-            @RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
-            @RequestParam(value = "fields", required = false, defaultValue = Fields.User.DEFAULT) Set<String> fields,
-            @RequestParam(value = "restrict", required = false) String restrict
-    ) throws BaseException {
-        return responseFactory.get(userService.getList(offset, limit, fields, restrict));
-    }
-
-    @RequestMapping(
-            value = "/count",
-            method = RequestMethod.GET
-    )
-    public @ResponseBody Response<Integer>
-    countUsers(
-            @RequestParam(value = "restrict", required = false) String restrict
-    ) throws BaseException {
-        return responseFactory.get(userService.count(restrict));
-    }
-
-    @RequestMapping(
-            value = "/",
-            method = RequestMethod.PUT
-    )
-    public
-    @ResponseBody Response<Integer>
-    createUser(
-            @RequestBody UserView view
-    ) throws BaseException {
-        return responseFactory.get(userService.create(view));
-    }
-
-    @RequestMapping(
-            value = "/",
-            method = RequestMethod.POST
-    )
-    public
-    @ResponseBody Response<Boolean>
-    update(
-            @RequestBody UserView view
-    ) throws BaseException {
-        return responseFactory.get(userService.update(view));
-    }
 
     @RequestMapping(
             value = "/sign_in",

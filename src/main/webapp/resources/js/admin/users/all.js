@@ -18,6 +18,8 @@
 
         $scope.moveToPage = function() {
             OFFSET = LIMIT * $('#pages').val() || 0;
+            RESTRICTION.offset = OFFSET;
+
             get($scope, $http);
         };
 
@@ -32,7 +34,7 @@
 
     function get($scope, $http) {
         $scope.entities = [];
-        $http.get('/api/users/?fields=id,email,role,name&limit=' + LIMIT + '&offset=' + OFFSET + '&restrict=' + JSON.stringify(RESTRICTION))
+        $http.get('/api/users/?fields=id,email,role,name&restrict=' + JSON.stringify(RESTRICTION))
             .then(function(response){
                 if (response.data.result) {
                     $scope.entities = response.data.result;
@@ -63,5 +65,8 @@
      */
     function buildRestriction($scope) {
         RESTRICTION = $scope.filters;
+
+        RESTRICTION.offset = OFFSET;
+        RESTRICTION.limit = LIMIT;
     }
 })();

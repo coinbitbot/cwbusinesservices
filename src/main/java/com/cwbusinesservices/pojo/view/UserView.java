@@ -1,34 +1,20 @@
 package com.cwbusinesservices.pojo.view;
 
-
-import com.cwbusinesservices.convertors.Fields;
-import org.hibernate.validator.constraints.Email;
+import com.cwbusinesservices.pojo.helpers.GetableById;
 import com.cwbusinesservices.pojo.enums.RolesEnum;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
  * Created by oleh_kurpiak on 07.09.2016.
  */
-public class UserView {
+public class UserView implements GetableById<Integer> {
 
-    public static final int MAX_EMAIL_SIZE = 45;
-    public static final int MAX_PASS_SIZE = 45;
-    public static final int MIN_PASS_SIZE = 8;
+
 
     private int id;
-
-    @NotNull(message = "error.user.email.require")
-    @Size(max = MAX_EMAIL_SIZE, message = "error.user.email.max.size")
-    @Email(message = "error.user.email.format")
     private String email;
-
-    @NotNull(message = "error.user.pass.require")
-    @Size(min= MIN_PASS_SIZE,max = MAX_EMAIL_SIZE, message = "error.user.pass.size")
     private String password;
-
     private String last_name;
     private String first_name;
     private Boolean active;
@@ -53,12 +39,18 @@ public class UserView {
         this.request_comment_ids = request_comment_ids;
     }
 
-    public int getId() {
+    @Override
+    public Integer getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public int compareId(int i) {
+        return getId().compareTo(i);
     }
 
     public String getEmail() {
