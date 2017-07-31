@@ -24,7 +24,7 @@ public class IndustryEntity extends CompareIntegerId implements Serializable, Ge
 
     @Column(name="NAME")
     @NotNull(message = "industry.name.required")
-    @Size(max = 350, message = "industry.name.size")
+    @Size(max = 250, message = "industry.name.size")
     private String name;
 
     @Override

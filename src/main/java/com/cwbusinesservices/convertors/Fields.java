@@ -113,5 +113,12 @@ public class Fields {
         public static final String EMAIL = "email";
     }
 
+    public static class EmailTemplate{
+        public static final String ID = "id";
+        public static final String CODE = "code";
+        public static final String SUBJECT = "subject";
+        public static final String TEXT = "text";
+    }
+
     public static final String DEFAULT ="id";
 }

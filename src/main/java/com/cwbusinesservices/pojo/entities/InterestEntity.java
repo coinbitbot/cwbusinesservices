@@ -25,7 +25,7 @@ public class InterestEntity extends CompareIntegerId implements Serializable,Get
 
     @Column(name="NAME")
     @NotNull(message = "interest.name.required")
-    @Size(max = 350, message = "interest.name.size")
+    @Size(max = 250, message = "interest.name.size")
     private String name;
 
     @Override
