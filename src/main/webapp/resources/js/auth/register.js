@@ -31,6 +31,15 @@ $(function(){
         });
     });
 
+    $('#login_facebook').click(function(){
+        FaceBook.getUserData(function(user){
+            if (user) {
+                for (var key in user) {
+                    $('[name=' + key + ']').val(user[key]);
+                }
+            }
+        });
+    });
     function registerUser(callback) {
         if (user_id) {
             callback();

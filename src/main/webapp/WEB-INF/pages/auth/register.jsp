@@ -11,6 +11,7 @@
 <body>
 <jsp:include page="../common/header.jsp"/>
 
+<button id="login_facebook">log in with facebook</button>
 <div>
     <form id="sign_up_form">
         <h2>Personal info</h2>
@@ -64,7 +65,7 @@
 </div>
 
 <jsp:include page="../common/footer.jsp" />
-
+<script src="/resources/js/utils/facebook.js"></script>
 <script src="/resources/js/auth/register.js"></script>
 </body>
 </html>
