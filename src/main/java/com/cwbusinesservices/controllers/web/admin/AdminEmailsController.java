@@ -8,25 +8,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Created by Oleh on 28.07.2017.
+ * Created by Oleh on 01.08.2017.
  */
 @Controller
-@PreAuthorize("hasAnyRole('CREATE_COMPANY', 'EDIT_COMPANY')")
-@RequestMapping("/admin/companies")
-public class AdminCompaniesController {
+@PreAuthorize("hasAnyRole('CREATE_EMAIL_TEMPLATE', 'EDIT_EMAIL_TEMPLATE')")
+@RequestMapping("/admin/emails")
+public class AdminEmailsController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String all() {
-        return "admin/companies/all";
+        return "admin/emails/all";
     }
 
+    /*
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String create(
             Model model
     ) {
         model.addAttribute("id", 0);
-        return "admin/companies/edit";
+        return "admin/emails/edit";
     }
+    */
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
     public String edit(
@@ -34,7 +36,7 @@ public class AdminCompaniesController {
             Model model
     ) {
         model.addAttribute("id", id);
-        return "admin/companies/edit";
+        return "admin/emails/edit";
     }
 
 }

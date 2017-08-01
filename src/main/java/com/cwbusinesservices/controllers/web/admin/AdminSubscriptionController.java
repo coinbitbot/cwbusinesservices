@@ -11,22 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by Oleh on 28.07.2017.
  */
 @Controller
-@RequestMapping("/admin/blocks")
-@PreAuthorize("hasAnyRole('CREATE_BLOCK', 'EDIT_BLOCK')")
-public class AdminBlocksController {
+@PreAuthorize("hasAnyRole('CREATE_EMAIL_SUBSCRIBE', 'EDIT_EMAIL_SUBSCRIBE')")
+@RequestMapping("/admin/subscription")
+public class AdminSubscriptionController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String all() {
-        return "admin/blocks/all";
-    }
-
-    @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
-    public String edit(
-            @PathVariable("id") int id,
-            Model model
-    ) {
-        model.addAttribute("id", id);
-        return "admin/blocks/edit";
+        return "admin/subscription/all";
     }
 
 }

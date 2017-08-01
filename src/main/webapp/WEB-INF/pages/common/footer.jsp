@@ -1,8 +1,14 @@
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<div style="height: 100px; background: #ccc">
+<div style="width: 100%; background: #ccc">
     footer
+    <br />
+    <form id="subscribe_form">
+        <h2>subscribe to get more info</h2>
+        <input type="email" name="email" placeholder="me@example.com">
+        <button>subscribe</button>
+    </form>
     <Br />
     <a href="/info_pages/catalog">All info pages</a>
     <Br />

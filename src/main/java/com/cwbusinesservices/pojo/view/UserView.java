@@ -10,8 +10,6 @@ import java.util.List;
  */
 public class UserView implements GetableById<Integer> {
 
-
-
     private int id;
     private String email;
     private String password;

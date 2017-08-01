@@ -13,7 +13,7 @@
                         $scope.entity = response.data.result;
 
                         if ($scope.entity.has_icon) {
-                            $scope.service_icon = '/api/image/' + $scope.entity.id + '?type=SERVICE';
+                            $scope.service_icon = '/api/file/' + $scope.entity.id + '?type=SERVICE';
                         }
                     } else {
                         showErrorMessage(response.data.error);
@@ -61,7 +61,7 @@
             payload.append('type', 'SERVICE');
 
             var request = new XMLHttpRequest();
-            request.open('POST', '/api/image/');
+            request.open('POST', '/api/file/');
 
             for (var key in HEADERS) {
                 if (key.toLowerCase().indexOf('content') < 0) {
@@ -79,7 +79,7 @@
                     showSuccessMessage('uploaded');
                     $scope.service_icon = '';
                     setTimeout(function(){
-                        $scope.service_icon = '/api/image/' + $scope.entity.id + '?type=SERVICE';
+                        $scope.service_icon = '/api/file/' + $scope.entity.id + '?type=SERVICE';
                     }, 500);
                 } else {
 

@@ -10,7 +10,7 @@
             <li><a href="#" id="logout">Вийти</a></li>
         </security:authorize>
         <security:authorize access="isAnonymous()">
-            <li><a href="/sign_up">Зареєструватись</a></li>
+            <li><a href="/register">Зареєструватись</a></li>
             <li><a href="#" id="sign_in">Увійти</a></li>
         </security:authorize>
     </ul>

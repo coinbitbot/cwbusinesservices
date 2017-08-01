@@ -40,7 +40,7 @@ public class RequestMerger implements Merger<RequestEntity,RequestView>{
         if (view.getId()!=null) entity.setId(view.getId());
         else view.setId(entity.getId());
         if (view.getUser_id()!=null){
-            UserEntity user = usersRepository.findOne(view.getId());
+            UserEntity user = usersRepository.findOne(view.getUser_id());
             entity.setUser(user);
         }else if (entity.getUser()!=null) view.setUser_id(entity.getUser().getId());
         if (view.getRequest_comments()!=null&&view.getRequest_comments().size()>0){
@@ -58,7 +58,7 @@ public class RequestMerger implements Merger<RequestEntity,RequestView>{
             view.setRequest_comments(ids);
         }
         if (view.getIndustry()!=null){
-            entity.setIndustry(industryRepository.findOne(view.getId()));
+            entity.setIndustry(industryRepository.findOne(view.getIndustry()));
         }else if (entity.getIndustry()!=null) view.setIndustry(entity.getIndustry().getId());
         if (utils.notEmpty(view.getInterest_alter())) entity.setInterestAlter(view.getInterest_alter());
         else view.setInterest_alter(entity.getInterestAlter());
