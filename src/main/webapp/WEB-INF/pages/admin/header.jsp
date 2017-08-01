@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 
 <nav class="navbar navbar-default">
@@ -29,16 +30,36 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/admin/info_pages/all" class="active">All info pages</a></li>
-                        <li><a href="/admin/services/all" class="active">All service</a></li>
-                        <li><a href="/admin/companies/all" class="active">All companies</a></li>
-                        <li><a href="/admin/testimonials/all" class="active">All testimonials</a></li>
-                        <li><a href="/admin/blocks/all" class="active">All blocks</a></li>
-                        <li><a href="/admin/industries/all" class="active">All industries</a></li>
-                        <li><a href="/admin/interests/all" class="active">All interests</a></li>
-                        <li><a href="/admin/roles/all" class="active">All roles</a></li>
-                        <li><a href="/admin/subscription/all" class="active">All subscriptions</a></li>
-                        <li><a href="/admin/emails/all" class="active">All email templates</a></li>
+                        <security:authorize access="hasAnyRole('CREATE_INFO_PAGE', 'EDIT_INFO_PAGE')">
+                            <li><a href="/admin/info_pages/all" class="active">All info pages</a></li>
+                        </security:authorize>
+                        <security:authorize access="hasAnyRole('CREATE_SERVICE', 'EDIT_SERVICE')">
+                            <li><a href="/admin/services/all" class="active">All service</a></li>
+                        </security:authorize>
+                        <security:authorize access="hasAnyRole('CREATE_COMPANY', 'EDIT_COMPANY')">
+                            <li><a href="/admin/companies/all" class="active">All companies</a></li>
+                        </security:authorize>
+                        <security:authorize access="hasAnyRole('CREATE_TESTIMONIAL', 'EDIT_TESTIMONIAL')">
+                            <li><a href="/admin/testimonials/all" class="active">All testimonials</a></li>
+                        </security:authorize>
+                        <security:authorize access="hasAnyRole('CREATE_BLOCK', 'EDIT_BLOCK')">
+                            <li><a href="/admin/blocks/all" class="active">All blocks</a></li>
+                        </security:authorize>
+                        <security:authorize access="hasAnyRole('CREATE_INDUSTRY', 'EDIT_INDUSTRY')">
+                            <li><a href="/admin/industries/all" class="active">All industries</a></li>
+                        </security:authorize>
+                        <security:authorize access="hasAnyRole('CREATE_INTEREST', 'EDIT_INTEREST')">
+                            <li><a href="/admin/interests/all" class="active">All interests</a></li>
+                        </security:authorize>
+                        <security:authorize access="hasAnyRole('ROLE_ADMIN')">
+                            <li><a href="/admin/roles/all" class="active">All roles</a></li>
+                        </security:authorize>
+                        <security:authorize access="hasAnyRole('CREATE_EMAIL_SUBSCRIBE', 'EDIT_EMAIL_SUBSCRIBE')">
+                            <li><a href="/admin/subscription/all" class="active">All subscriptions</a></li>
+                        </security:authorize>
+                        <security:authorize access="hasAnyRole('CREATE_EMAIL_TEMPLATE', 'EDIT_EMAIL_TEMPLATE')">
+                            <li><a href="/admin/emails/all" class="active">All email templates</a></li>
+                        </security:authorize>
                     </ul>
                 </li>
             </ul>

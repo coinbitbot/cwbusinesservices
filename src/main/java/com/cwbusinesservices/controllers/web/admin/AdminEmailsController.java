@@ -1,5 +1,6 @@
 package com.cwbusinesservices.controllers.web.admin;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by Oleh on 01.08.2017.
  */
 @Controller
+@PreAuthorize("hasAnyRole('CREATE_EMAIL_TEMPLATE', 'EDIT_EMAIL_TEMPLATE')")
 @RequestMapping("/admin/emails")
 public class AdminEmailsController {
 

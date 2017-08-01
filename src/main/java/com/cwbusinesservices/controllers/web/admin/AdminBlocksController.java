@@ -1,5 +1,6 @@
 package com.cwbusinesservices.controllers.web.admin;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping("/admin/blocks")
+@PreAuthorize("hasAnyRole('CREATE_BLOCK', 'EDIT_BLOCK')")
 public class AdminBlocksController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)

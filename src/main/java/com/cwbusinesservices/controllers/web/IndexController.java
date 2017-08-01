@@ -102,6 +102,11 @@ public class IndexController {
         return "auth/register";
     }
 
+    @RequestMapping(value = "/forbidden", method = RequestMethod.GET)
+    public String forbidden() {
+             return "index/forbidden";
+    }
+
     private final Set<String> SERVICES_FIELDS_FOR_INDEX = new HashSet<>(
             Arrays.asList("id", "name")
     );

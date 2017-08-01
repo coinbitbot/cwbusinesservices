@@ -1,6 +1,7 @@
 package com.cwbusinesservices.controllers.web.admin;
 
 import com.cwbusinesservices.pojo.enums.PermissionsEnum;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by Oleh on 28.07.2017.
  */
 @Controller
+@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 @RequestMapping("/admin/roles")
 public class AdminRolesController {
 
