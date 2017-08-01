@@ -12,7 +12,7 @@
     <jsp:include page="../common/header.jsp"/>
 
     <h1>${company.name}</h1>
-    <img src="/api/image/${company.id}?type=COMPANY" style="width: 500px;">
+    <img src="/api/file/${company.id}?type=COMPANY" style="width: 500px;">
     <br />
     ${company.text}
 

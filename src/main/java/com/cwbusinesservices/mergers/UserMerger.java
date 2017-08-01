@@ -45,7 +45,7 @@ public class UserMerger implements Merger<UserEntity, UserView> {
             entity.setPassword(view.getPassword());
         else view.setPassword(entity.getPassword());
 
-        if (sessionUtils.isAdmin()) {
+        if (sessionUtils.isAdmin() || sessionUtils.getCurrentUser() == null) {
             if (view.getRole() != null) {
                 RoleEntity role = rolesRepository.findByName(view.getRole());
                 entity.setRoleEntity(role);

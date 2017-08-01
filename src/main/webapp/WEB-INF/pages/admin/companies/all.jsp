@@ -64,7 +64,7 @@
             <tr ng-repeat="entity in entities">
                 <td>{{entity.name}}</td>
                 <td>
-                    <img ng-src="/api/image/{{entity.id}}?type=COMPANY" style="width: 300px;">
+                    <img ng-src="/api/file/{{entity.id}}?type=COMPANY" style="width: 300px;">
                 </td>
                 <td>
                     active: <input type="checkbox" ng-model="entity.active" disabled>

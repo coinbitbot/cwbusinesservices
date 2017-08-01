@@ -87,10 +87,7 @@ public class UserServiceImpl extends IUserService {
         if (view.getRole() == null)
             view.setRole(RolesEnum.user);
         view.setActive(true);
-
-        if (sessionUtils.isAdmin()) {
-            view.setPassword("default_default");
-        }
+        view.setPassword("default_default");
 
         userMerger.merge(entity, view);
         validateService.validForCreate(entity);

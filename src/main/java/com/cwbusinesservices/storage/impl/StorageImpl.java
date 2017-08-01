@@ -1,5 +1,6 @@
 package com.cwbusinesservices.storage.impl;
 
+import com.cwbusinesservices.exceptions.BaseException;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.v2.DbxClientV2;
@@ -32,22 +33,26 @@ public class StorageImpl implements IStorage {
         try {
             String path = fullPath(fileName, folder);
 
-            List<FileItem> files = listFiles(folder);
-            if (!files.isEmpty()) {
-                String newFileNameWithoutExtension = FilenameUtils.getBaseName(fileName);
-                for (FileItem item : files) {
-                    String name = FilenameUtils.getBaseName(item.name);
+            try {
+                List<FileItem> files = listFiles(folder);
+                if (!files.isEmpty()) {
+                    String newFileNameWithoutExtension = FilenameUtils.getBaseName(fileName);
+                    for (FileItem item : files) {
+                        String name = FilenameUtils.getBaseName(item.name);
 
-                    if (name.equals(newFileNameWithoutExtension)) {
-                        try {
-                            client().files().delete(item.path);
+                        if (name.equals(newFileNameWithoutExtension)) {
+                            try {
+                                client().files().delete(item.path);
 
-                            break;
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                                break;
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }
+            } catch (BaseException e) {
+
             }
 
             client().files().uploadBuilder(path)

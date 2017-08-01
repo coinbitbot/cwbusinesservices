@@ -29,10 +29,10 @@
 
             Ajax.post({
                 url: '/api/users/sign_in',
-                data: JSON.stringify({
+                data: {
                     email: self.find('[name=email]').val(),
                     password: md5(self.find('[name=password]').val())
-                }),
+                },
                 success: function(response){
                     if(response.result){
                         location.reload(true);

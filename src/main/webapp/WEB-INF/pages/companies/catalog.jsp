@@ -17,7 +17,7 @@
             <div>
                 <h1><a href="/companies/${company.id}">${company.name}</a></h1>
                 <br />
-                <img src="/api/image/${company.id}?type=COMPANY" style="width: 500px;">
+                <img src="/api/file/${company.id}?type=COMPANY" style="width: 500px;">
             </div>
         </c:forEach>
     </c:if>

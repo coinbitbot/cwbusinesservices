@@ -21,7 +21,7 @@
                                 <h2>${block.title}</h2>
                                 <c:forEach var="service" items="${services}">
                                     <div>
-                                        <img src="/api/image/${service.id}?type=SERVICE" style="width: 300px;">
+                                        <img src="/api/file/${service.id}?type=SERVICE" style="width: 300px;">
                                             ${service.name}
                                     </div>
                                 </c:forEach>
@@ -33,7 +33,7 @@
                                 <h2>${block.title}</h2>
                                 <c:forEach var="company" items="${companies}">
                                     <div>
-                                        <img src="/api/image/${company.id}?type=COMPANY" style="width: 300px;">
+                                        <img src="/api/file/${company.id}?type=COMPANY" style="width: 300px;">
                                         <a href="/companies/${company.id}">${company.name}</a>
                                     </div>
                                 </c:forEach>

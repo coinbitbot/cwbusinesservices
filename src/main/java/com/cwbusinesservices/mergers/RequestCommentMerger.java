@@ -33,7 +33,7 @@ public class RequestCommentMerger implements Merger<RequestCommentEntity,Request
         if (view.getId()!=null) entity.setId(view.getId());
         else view.setId(entity.getId());
         if (view.getUser_id()!=null){
-            UserEntity user = usersRepository.findOne(view.getId());
+            UserEntity user = usersRepository.findOne(view.getUser_id());
             entity.setUser(user);
         }else if (entity.getUser()!=null) view.setUser_id(entity.getUser().getId());
         if (view.getRequest_id()!=null){

@@ -66,6 +66,11 @@ public class UserValidateServiceImpl
 
     @Override
     public void validForUpdate(UserEntity entity) throws BaseException {
+        Set<ConstraintViolation<UserEntity>> violations = validator.validate(entity);
+        if(violations != null && !violations.isEmpty()) {
+            throw new ValidationException(UserEntity.class.getName(), violations);
+        }
+
         UserEntity current = sessionUtils.getCurrentUser();
         if (!sessionUtils.isAdmin() &&
                 (current == null || current.compareId(entity.getId()) != 0))

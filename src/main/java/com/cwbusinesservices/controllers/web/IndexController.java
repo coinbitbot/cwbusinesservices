@@ -1,14 +1,13 @@
 package com.cwbusinesservices.controllers.web;
 
-import com.cwbusinesservices.criteria.impl.BlockCriteria;
-import com.cwbusinesservices.criteria.impl.CompanyCriteria;
-import com.cwbusinesservices.criteria.impl.ServiceCriteria;
-import com.cwbusinesservices.criteria.impl.TestimonialCriteria;
+import com.cwbusinesservices.criteria.impl.*;
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.pojo.entities.BlockEntity;
 import com.cwbusinesservices.pojo.enums.BlockCodesEnum;
 import com.cwbusinesservices.services.blocks.IBlockService;
 import com.cwbusinesservices.services.company.ICompanyService;
+import com.cwbusinesservices.services.industry.IIndustryService;
+import com.cwbusinesservices.services.interests.IInterestsService;
 import com.cwbusinesservices.services.service.IServiceService;
 import com.cwbusinesservices.services.testimonial.ITestimonialService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +39,12 @@ public class IndexController {
 
     @Autowired
     private IBlockService blockService;
+
+    @Autowired
+    private IInterestsService interestsService;
+
+    @Autowired
+    private IIndustryService industryService;
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String indexPage(
@@ -85,9 +90,16 @@ public class IndexController {
     }
 
     @PreAuthorize("isAnonymous()")
-    @RequestMapping(value = "/sign_up", method = RequestMethod.GET)
-    public String signUp(){
-        return "auth/sign_up";
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String signUp(Model model) {
+        try {
+            model.addAttribute("industries", industryService.getList(new IndustryCriteria()));
+            model.addAttribute("interests", interestsService.getList(new InterestCriteria()));
+        } catch (BaseException e) {
+
+        }
+
+        return "auth/register";
     }
 
     private final Set<String> SERVICES_FIELDS_FOR_INDEX = new HashSet<>(

@@ -16,8 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  * Created by Andrii on 28.07.2017.
  */
 @Controller
-@RequestMapping(value = "/api/image")
-public class ImagesApiController {
+@RequestMapping(value = "/api/file")
+public class FileApiController {
 
     @Autowired
     private ResponseFactory responseFactory;
@@ -30,7 +30,7 @@ public class ImagesApiController {
             @RequestParam("file") MultipartFile file,
             @RequestParam("id") int id,
             @RequestParam("type") FileEntityTypeEnum type
-            ) throws BaseException {
+    ) throws BaseException {
         return responseFactory.get(imageService.uploadFile(id, file, type));
     }
 

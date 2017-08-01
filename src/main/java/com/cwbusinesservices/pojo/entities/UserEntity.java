@@ -24,7 +24,7 @@ public class UserEntity implements Serializable, GetableById<Integer>{
     private int id;
 
     @NotNull(message = "error.user.email.require")
-    @Size(max = MAX_EMAIL_SIZE, message = "error.user.email.max.size")
+    @Size(min = 1, max = MAX_EMAIL_SIZE, message = "error.user.email.max.size")
     @Email(message = "error.user.email.format")
     @Column(name = "EMAIL")
     private String email;

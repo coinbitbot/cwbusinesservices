@@ -33,7 +33,7 @@
                         tinymce.activeEditor.setContent($scope.entity.text);
 
                         if ($scope.entity.has_image) {
-                            $scope.icon = '/api/image/' + $scope.entity.id + '?type=COMPANY';
+                            $scope.icon = '/api/file/' + $scope.entity.id + '?type=COMPANY';
                         }
                     } else {
                         showErrorMessage(response.data.error);
@@ -83,7 +83,7 @@
             payload.append('type', 'COMPANY');
 
             var request = new XMLHttpRequest();
-            request.open('POST', '/api/image/');
+            request.open('POST', '/api/file/');
 
             for (var key in HEADERS) {
                 if (key.toLowerCase().indexOf('content') < 0) {
@@ -101,7 +101,7 @@
                     showSuccessMessage('uploaded');
                     $scope.icon = '';
                     setTimeout(function(){
-                        $scope.icon = '/api/image/' + $scope.entity.id + '?type=COMPANY';
+                        $scope.icon = '/api/file/' + $scope.entity.id + '?type=COMPANY';
                     }, 500);
                 } else {
 
