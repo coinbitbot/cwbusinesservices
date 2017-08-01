@@ -3,6 +3,7 @@ package com.cwbusinesservices.controllers.rest;
 import com.cwbusinesservices.convertors.Fields;
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.pojo.entities.BlockEntity;
+import com.cwbusinesservices.pojo.enums.BlockCodesEnum;
 import com.cwbusinesservices.pojo.response.Response;
 import com.cwbusinesservices.pojo.response.ResponseFactory;
 import com.cwbusinesservices.pojo.view.BlockView;
@@ -34,7 +35,7 @@ public class BlockApiController extends BaseApiController<BlockEntity,BlockView,
     @ResponseBody
     Response<Map<String, Object>>
     getByCode(
-            @PathVariable("code") String code,
+            @PathVariable("code") BlockCodesEnum code,
             @RequestParam(value = "fields", required = false, defaultValue = Fields.DEFAULT) Set<String> fields
     ) throws BaseException {
         return responseFactory.get(service.getByCode(code, fields));

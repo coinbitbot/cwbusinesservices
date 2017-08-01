@@ -3,6 +3,7 @@ package com.cwbusinesservices.services.blocks;
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.exceptions.service_error.ActionNotAllowedException;
 import com.cwbusinesservices.pojo.entities.BlockEntity;
+import com.cwbusinesservices.pojo.enums.BlockCodesEnum;
 import com.cwbusinesservices.pojo.view.BlockView;
 import com.cwbusinesservices.services.BaseService;
 
@@ -28,5 +29,5 @@ public abstract class IBlockService extends BaseService<BlockEntity,BlockView,In
         throw new ActionNotAllowedException("block.error.delete");
     }
 
-    public abstract Map<String,Object> getByCode(String code, Set<String> fields) throws BaseException;
+    public abstract Map<String,Object> getByCode(BlockCodesEnum code, Set<String> fields) throws BaseException;
 }

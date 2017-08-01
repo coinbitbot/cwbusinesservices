@@ -9,6 +9,7 @@ import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;
 import com.cwbusinesservices.exceptions.service_error.ServiceErrorException;
 import com.cwbusinesservices.persistence.dao.repositories.BlockRepository;
 import com.cwbusinesservices.pojo.entities.BlockEntity;
+import com.cwbusinesservices.pojo.enums.BlockCodesEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -29,7 +30,7 @@ public class BlockServiceImpl extends IBlockService{
     private BlockConverter converter;
 
     @Override
-    public Map<String, Object> getByCode(String code, Set<String> fields) throws BaseException  {
+    public Map<String, Object> getByCode(BlockCodesEnum code, Set<String> fields) throws BaseException  {
         BlockCriteria criteria = new BlockCriteria();
         criteria.setCode(code);
         List<BlockEntity> blocks = getList(criteria);

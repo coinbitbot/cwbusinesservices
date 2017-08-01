@@ -3,6 +3,7 @@ package com.cwbusinesservices.criteria.impl;
 import com.cwbusinesservices.criteria.Criteria;
 import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
 import com.cwbusinesservices.pojo.entities.BlockEntity;
+import com.cwbusinesservices.pojo.enums.BlockCodesEnum;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Expression;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public class BlockCriteria extends Criteria<BlockEntity>{
     private List<Integer> ids;
-    private String code;
+    private BlockCodesEnum code;
 
     public BlockCriteria(){
         super(0,0,BlockEntity.class);
@@ -33,7 +34,6 @@ public class BlockCriteria extends Criteria<BlockEntity>{
             this.code = parsed.code;
             this.ids = parsed.ids;
         }
-
     }
 
     @Override
@@ -44,7 +44,7 @@ public class BlockCriteria extends Criteria<BlockEntity>{
             predicates.add(exception.in(this.ids));
         }
         if (this.code != null) {
-            Expression<Boolean> expression = root.get("code");
+            Expression<BlockCodesEnum> expression = root.get("code");
             predicates.add(cb.equal(expression, this.code));
         }
         return predicates;
@@ -58,11 +58,11 @@ public class BlockCriteria extends Criteria<BlockEntity>{
         this.ids = ids;
     }
 
-    public String getCode() {
+    public BlockCodesEnum getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(BlockCodesEnum code) {
         this.code = code;
     }
 }
