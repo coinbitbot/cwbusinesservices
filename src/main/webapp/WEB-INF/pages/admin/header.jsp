@@ -38,6 +38,7 @@
                         <li><a href="/admin/interests/all" class="active">All interests</a></li>
                         <li><a href="/admin/roles/all" class="active">All roles</a></li>
                         <li><a href="/admin/subscription/all" class="active">All subscriptions</a></li>
+                        <li><a href="/admin/emails/all" class="active">All email templates</a></li>
                     </ul>
                 </li>
             </ul>
