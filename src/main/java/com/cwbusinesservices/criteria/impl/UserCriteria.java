@@ -5,6 +5,7 @@ import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
 import com.cwbusinesservices.pojo.entities.RoleEntity;
 import com.cwbusinesservices.pojo.entities.UserEntity;
 import com.cwbusinesservices.pojo.enums.RolesEnum;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
@@ -64,20 +65,18 @@ public class UserCriteria extends Criteria<UserEntity> {
 
         if (this.roles != null && !this.roles.isEmpty()) {
             Join<UserEntity, RoleEntity> userRole = root.join("roleEntity");
-            Expression<Boolean> expression = userRole.get("name");
-
+            Expression<RolesEnum> expression = userRole.get("name");
             predicates.add(expression.in(this.roles));
         }
 
         if (this.role != null) {
             Join<UserEntity, RoleEntity> userRole = root.join("roleEntity");
-            Expression<String> expression = userRole.get("name");
-
+            Expression<RolesEnum> expression = userRole.get("name");
             predicates.add(cb.equal(expression, this.role));
         }
 
         if (this.active != null) {
-            Expression<String> expression = root.get("active");
+            Expression<Boolean> expression = root.get("active");
 
             predicates.add(cb.equal(expression, this.active));
         }
