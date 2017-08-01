@@ -28,7 +28,7 @@ public class EmailSubscribeApiController extends BaseApiController<EmailSubscrib
     private ResponseFactory responseFactory;
 
     @RequestMapping(
-            value = "/code/{code}",
+            value = "/code/{email}",
             method = RequestMethod.GET
     )
     public

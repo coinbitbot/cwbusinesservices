@@ -13,6 +13,27 @@
                 }
             })
         });
+
+        $('#subscribe_form').submit(function(e){
+            e.preventDefault();
+
+            var $email = $(this).find('[name=email]');
+
+            Ajax.put({
+                url: '/api/subscription/',
+                data: {
+                    email: $email.val()
+                },
+                success: function(response) {
+                    if (response.result) {
+                        showSuccessMessage('you are now subscribed');
+                        $email.val('');
+                    } else {
+                        showErrorMessage(response.error);
+                    }
+                }
+            })
+        });
     });
 
     function renderSignInPopup(){
