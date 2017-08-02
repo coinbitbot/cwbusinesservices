@@ -137,5 +137,26 @@ public class Fields {
         public static final String POSITION = "position";
     }
 
+    public static class BlogCategory{
+        public static final String ID ="id";
+        public static final String NAME ="name";
+        public static final String CODE = "code";
+        public static final String POSITION = "position";
+        public static final String POSTS = "posts";
+    }
+    public static class Post{
+        public static final String ID = "id";
+        public static final String TITLE = "title";
+        public static final String URL = "url";
+        public static final String SHORT_DESCRIPTION = "short_description";
+        public static final String DATE = "date";
+        public static final String HAS_IMG = "has_img";
+        public static final String META_TITLE = "meta_title";
+        public static final String META_DESCRIPTION = "meta_description";
+        public static final String META_KEYWORDS = "meta_keywords";
+        public static final String CATEGORY = "category";
+        public static final String POST_TEXT = "post_text";
+    }
+
     public static final String DEFAULT ="id";
 }

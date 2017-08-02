@@ -2,6 +2,7 @@ package com.cwbusinesservices.pojo.entities;
 
 import com.cwbusinesservices.pojo.helpers.CompareIntegerId;
 import com.cwbusinesservices.pojo.helpers.GetableById;
+import com.cwbusinesservices.pojo.helpers.IHasFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,7 +15,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name="POST")
-public class PostEntity extends CompareIntegerId implements Serializable, GetableById<Integer> {
+public class PostEntity extends CompareIntegerId implements Serializable, GetableById<Integer>,IHasFile{
 
     private static final long serialVersionUID = 2577891271148599614L;
     @Id
@@ -53,6 +54,18 @@ public class PostEntity extends CompareIntegerId implements Serializable, Getabl
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "BLOG_CATEGORY_ID", nullable = false)
     private BlogCategoryEntity category;
+
+    @Column(name = "POST_TEXT")
+    @NotNull(message = "post.text.required")
+    private String postText;
+
+    public String getPostText() {
+        return postText;
+    }
+
+    public void setPostText(String postText) {
+        this.postText = postText;
+    }
 
     @Override
     public Integer getId() {
@@ -182,5 +195,15 @@ public class PostEntity extends CompareIntegerId implements Serializable, Getabl
                 ", metaDescription='" + metaDescription + '\'' +
                 ", metaKeywords='" + metaKeywords + '\'' +
                 '}';
+    }
+
+    @Override
+    public Boolean isHasFile() {
+        return hasImg;
+    }
+
+    @Override
+    public void setHasFile(boolean hasFile) {
+        hasImg = hasFile;
     }
 }

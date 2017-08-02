@@ -47,5 +47,11 @@ public enum PermissionsEnum {
     CREATE_MENU,
     EDIT_MENU,
     DELETE_MENU,
+    CREATE_BLOG_CATEGORY,
+    EDIT_BLOG_CATEGORY,
+    DELETE_BLOG_CATEGORY,
+    CREATE_POST,
+    EDIT_POST,
+    DELETE_POST,
     ANYONE
 }

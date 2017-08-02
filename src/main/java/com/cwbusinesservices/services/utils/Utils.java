@@ -2,6 +2,9 @@ package com.cwbusinesservices.services.utils;
 
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +33,11 @@ public class Utils {
         Pattern p = Pattern.compile("^[a-zA-Z0-9_]*$");
         Matcher m = p.matcher(str);
         return m.matches();
+    }
+
+    public static Date convertDate(String dateInUtc){
+        ZonedDateTime zdt = ZonedDateTime.parse(dateInUtc, DateTimeFormatter.RFC_1123_DATE_TIME);
+        return Date.from(java.time.ZonedDateTime.now().toInstant());
     }
 
 }

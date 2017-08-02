@@ -1,4 +1,4 @@
-package com.cwbusinesservices.criteria.impl;
+package com.cwbusinesservices.convertors;
 
 import com.cwbusinesservices.convertors.Converter;
 import com.cwbusinesservices.pojo.entities.InterestEntity;
