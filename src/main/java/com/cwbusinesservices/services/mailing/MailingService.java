@@ -1,12 +1,15 @@
 package com.cwbusinesservices.services.mailing;
 
+import com.cwbusinesservices.exceptions.BaseException;
+import com.cwbusinesservices.pojo.entities.EmailTemplateEntity;
+import com.cwbusinesservices.pojo.enums.EmailTemplateCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;
 import com.cwbusinesservices.pojo.entities.UserEntity;
-import com.cwbusinesservices.pojo.enums.EmailTypes;
 import com.cwbusinesservices.services.mailing.sendpulse.sendpulse.restapi.Sendpulse;
 
 import java.text.DateFormat;
@@ -71,29 +74,34 @@ public class MailingService implements IMailingService {
 
     @Override
     @Transactional
-    public boolean sendEmailToUser(EmailTypes typeOfEmail, String userEmail, Map<String, String> data, Locale locale) throws NoSuchEntityException {
-        String content = emailBuilder.getEmailContent(typeOfEmail, data, locale);
-
-        return send(typeOfEmail, userEmail, content, locale);
+    public boolean sendEmailToUser(EmailTemplateCodeEnum typeOfEmail, String userEmail, Map<String, String> data, Locale locale) throws BaseException {
+        EmailTemplateEntity content = emailBuilder.getEmailContent(typeOfEmail, data, locale);
+        return send(userEmail, content, locale);
     }
 
     @Override
-    public boolean sendEmailToUsers(EmailTypes typeOfEmail, List<String> userEmails, Map<String, String> data, Locale locale) throws NoSuchEntityException {
+    @Transactional
+    public boolean sendEmailToUser(EmailTemplateEntity content, String userEmail, Map<String, String> data, Locale locale) throws BaseException {
+        EmailTemplateEntity email = emailBuilder.formEmailContent(content, data);
+        return send(userEmail, content, locale);
+    }
+
+    @Override
+    public boolean sendEmailToUsers(EmailTemplateCodeEnum typeOfEmail, List<String> userEmails, Map<String, String> data, Locale locale) throws BaseException {
+        EmailTemplateEntity emailTemplate = emailBuilder.getEmailTemplate(typeOfEmail);
         for (String user : userEmails) {
             sendEmailToUser(typeOfEmail, user, data, locale);
         }
         return true;
     }
 
-    private boolean send(EmailTypes type, String toEmail, String text, Locale locale) {
+    private boolean send(String toEmail, EmailTemplateEntity content, Locale locale) {
         final ExecutorService service;
         final Future<String> task;
         service = Executors.newFixedThreadPool(1);
-        String subject = messageSource.getMessage("email.subject." + type.toString(), null, locale);
-        task = service.submit(new SenderTask("info.scisearch@gmail.com", toEmail, text, subject));
-
-        System.out.println(text);
-
+        String subject = content.getSubject();
+        task = service.submit(new SenderTask(fromEmail, toEmail, content.getText(), subject));
+        //System.out.println(content.getText());
         return executeSendTask(service, task);
     }
 
@@ -149,7 +157,7 @@ public class MailingService implements IMailingService {
 
         public String call() {
             Map<String, Object> fromSender = new HashMap<String, Object>();
-            fromSender.put("name", "SciSearch");
+            fromSender.put("name", fromName);
             fromSender.put("email", fromEmail);
             ArrayList<Map> toSend = new ArrayList<Map>();
             Map<String, Object> elementto = new HashMap<String, Object>();
@@ -166,5 +174,9 @@ public class MailingService implements IMailingService {
         }
     }
 
+    @Value("${from.email}")
+    private String fromEmail;
+    @Value("${from.email.name}")
+    private String fromName;
 
 }

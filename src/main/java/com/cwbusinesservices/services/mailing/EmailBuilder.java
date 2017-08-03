@@ -1,11 +1,16 @@
 package com.cwbusinesservices.services.mailing;
+import com.cwbusinesservices.exceptions.BaseException;
+import com.cwbusinesservices.pojo.entities.EmailTemplateEntity;
+import com.cwbusinesservices.pojo.enums.EmailTemplateCodeEnum;
+import com.cwbusinesservices.services.templates.IEmailTemplateService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
-import com.cwbusinesservices.pojo.enums.EmailTypes;
 
 import java.io.*;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 
@@ -15,50 +20,37 @@ import java.util.Map;
 @Component
 public class EmailBuilder {
 
-    @Value("${mail.host}")
-    private String host;
+    @Autowired
+    private IEmailTemplateService service;
 
-    public String getEmailContent(EmailTypes typeOfEmail, Map<String, String> data, Locale locale) {
-        try {
-            String content = readResourceText("email/" + locale.getLanguage() + "/email." + typeOfEmail.toString() + ".html");
+    public EmailTemplateEntity getEmailContent(EmailTemplateCodeEnum typeOfEmail, Map<String, String> data, Locale locale) throws BaseException {
 
-            // based on email type return email content
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
+        EmailTemplateEntity template = service.getByCode(typeOfEmail);
+        return formEmailContent(template,data);
     }
 
-    private String readResourceText(String resourceName) throws IOException {
-        FileInputStream fileInputStream = null;
-        InputStreamReader inputStreamReader = null;
-        BufferedReader reader = null;
-        try {
-            StringBuilder content = new StringBuilder();
-            Resource resource = new ClassPathResource(resourceName);
-            fileInputStream = new FileInputStream(resource.getFile().getAbsolutePath());
-            inputStreamReader = new InputStreamReader(fileInputStream, "UTF8");
-            reader = new BufferedReader(inputStreamReader);
+    public EmailTemplateEntity getEmailTemplate(EmailTemplateCodeEnum typeOfEmail) throws BaseException {
+        return service.getByCode(typeOfEmail);
+    }
 
-            String line;
-            while ((line = reader.readLine()) != null) {
-                content.append(line).append("\n");
+    public EmailTemplateEntity formEmailContent(EmailTemplateEntity template, Map<String, String> data){
+        if (data!=null&&template!=null){
+            String text = template.getText();
+            String subject = template.getSubject();
+            Iterator it = data.entrySet().iterator();
+            while (it.hasNext()){
+                Map.Entry<String,String> pair = (Map.Entry)it.next();
+                String key = "{{"+pair.getKey()+"}}";
+                if (text.contains(key))
+                    text = text.replaceAll(key,pair.getValue());
+                if (subject.contains(key))
+                    subject = subject.replaceAll(key,pair.getValue());
             }
-
-            return content.toString();
-        } finally {
-            close(reader);
-            close(inputStreamReader);
-            close(fileInputStream);
+            template.setText(text);
+            template.setSubject(subject);
         }
+        return template;
     }
 
-    private void close(Closeable closeable) {
-        if (closeable != null) {
-            try {
-                closeable.close();
-            } catch (Exception e) { }
-        }
-    }
 
 }
