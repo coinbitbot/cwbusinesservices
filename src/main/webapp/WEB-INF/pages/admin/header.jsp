@@ -63,6 +63,9 @@
                         <security:authorize access="hasPermission(1,'CREATE_BLOG_CATEGORY,EDIT_BLOG_CATEGORY')">
                             <li><a href="/admin/blog/all" class="active">All blog</a></li>
                         </security:authorize>
+                        <security:authorize access="hasPermission(1,'CREATE_POST,EDIT_POST')">
+                            <li><a href="/admin/posts/all" class="active">All blog</a></li>
+                        </security:authorize>
                     </ul>
                 </li>
             </ul>

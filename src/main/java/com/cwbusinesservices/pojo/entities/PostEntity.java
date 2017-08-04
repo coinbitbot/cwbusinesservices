@@ -51,13 +51,19 @@ public class PostEntity extends CompareIntegerId implements Serializable, Getabl
     @Column(name="META_KEYWORDS")
     private String metaKeywords;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "BLOG_CATEGORY_ID", nullable = false)
     private BlogCategoryEntity category;
 
     @Column(name = "POST_TEXT")
     @NotNull(message = "post.text.required")
     private String postText;
+
+    @PrePersist
+    public void onCreate() {
+        date = new Date();
+        hasImg = false;
+    }
 
     public String getPostText() {
         return postText;

@@ -16,6 +16,6 @@ public class FileMerger {
      */
     public void merge(IHasFile view, IHasFile entity){
         if(view.isHasFile()!=null) entity.setHasFile(view.isHasFile());
-        else view.setHasFile(entity.isHasFile());
+        else view.setHasFile(entity.isHasFile() != null && entity.isHasFile());
     }
 }

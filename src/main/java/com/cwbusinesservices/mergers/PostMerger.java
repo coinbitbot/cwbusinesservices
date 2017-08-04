@@ -36,7 +36,7 @@ public class PostMerger implements Merger<PostEntity,PostView> {
         if(utils.notEmpty(view.getShort_description())) entity.setShortDescription(view.getShort_description());
         else view.setShort_description(entity.getShortDescription());
         if (utils.notEmpty(view.getDate_of_publication()))entity.setDate(Utils.convertDate(view.getDate_of_publication()));
-        else view.setDate_of_publication(entity.getDate().toString());
+        else if (entity.getDate() != null) view.setDate_of_publication(entity.getDate().toString());
         if(utils.notEmpty(view.getMeta_description()))entity.setMetaDescription(view.getMeta_description());
         else view.setMeta_description(entity.getMetaDescription());
         if(utils.notEmpty(view.getMeta_title())) entity.setMetaTitle(view.getMeta_title());

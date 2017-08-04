@@ -7,5 +7,6 @@ public enum FileEntityTypeEnum {
     SERVICE,
     COMPANY,
     REQUEST,
-    REQUEST_COMMENT
+    REQUEST_COMMENT,
+    POST
 }
