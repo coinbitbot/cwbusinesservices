@@ -30,7 +30,7 @@ public class MenuItemMerger implements Merger<MenuItemEntity,MenuItemView>{
     public void merge(MenuItemEntity entity, MenuItemView view) {
         if (view.getId()!=null) entity.setId(view.getId());
         else view.setId(entity.getId());
-        if(!utils.notEmpty(view.getName())) entity.setName(view.getName());
+        if(utils.notEmpty(view.getName())) entity.setName(view.getName());
         else view.setName(entity.getName());
         if (view.getMenu()!=null){
             MenuEntity menu = menuRepository.findOne(view.getMenu());
@@ -56,7 +56,7 @@ public class MenuItemMerger implements Merger<MenuItemEntity,MenuItemView>{
                 ids.add(item.getId());
             view.setChild_items(ids);
         }
-        if(!utils.notEmpty(view.getUrl()))entity.setUrl(view.getUrl());
+        if(utils.notEmpty(view.getUrl()))entity.setUrl(view.getUrl());
         else view.setUrl(entity.getUrl());
         if(view.getPosition()!=null)entity.setPosition(view.getPosition());
         else view.setPosition(entity.getPosition());
