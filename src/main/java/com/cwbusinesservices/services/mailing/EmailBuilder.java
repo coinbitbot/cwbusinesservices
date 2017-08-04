@@ -41,10 +41,10 @@ public class EmailBuilder {
             while (it.hasNext()){
                 Map.Entry<String,String> pair = (Map.Entry)it.next();
                 String key = "{{"+pair.getKey()+"}}";
-                if (text.contains(key))
-                    text = text.replaceAll(key,pair.getValue());
-                if (subject.contains(key))
-                    subject = subject.replaceAll(key,pair.getValue());
+                while (text.contains(key))
+                    text = text.replace(key,pair.getValue());
+                while (subject.contains(key))
+                    subject = subject.replace(key,pair.getValue());
             }
             template.setText(text);
             template.setSubject(subject);

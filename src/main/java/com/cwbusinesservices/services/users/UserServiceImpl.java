@@ -2,8 +2,10 @@ package com.cwbusinesservices.services.users;
 
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
+import com.cwbusinesservices.exceptions.service_error.ForbiddenException;
 import com.cwbusinesservices.mergers.UserMerger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -37,6 +39,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -119,6 +125,18 @@ public class UserServiceImpl extends IUserService {
     }
 
     @Override
+    public boolean signInUser(String email, String token) throws BaseException {
+        UserEntity user = getByEmail(email);
+        if (!token.equals(getAuthorizationToken(user)))
+            throw new ForbiddenException();
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword(), getGrantedAuthorities(user));
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        securityContext.setAuthentication(authentication);
+
+        return true;
+    }
+
+    @Override
     public boolean logoutUser(HttpServletRequest request, HttpServletResponse response) {
         CookieClearingLogoutHandler cookieClearingLogoutHandler = new CookieClearingLogoutHandler(AbstractRememberMeServices.SPRING_SECURITY_REMEMBER_ME_COOKIE_KEY);
         SecurityContextLogoutHandler securityContextLogoutHandler = new SecurityContextLogoutHandler();
@@ -130,6 +148,30 @@ public class UserServiceImpl extends IUserService {
             session.invalidate();
         }
         return true;
+    }
+
+    @Override
+    public String getAuthorizationToken(UserEntity user) throws BaseException {
+        String encript = user.getEmail()+userSolt;
+        return encryptString(encript);
+    }
+
+    private String encryptString(String encript) throws ServiceErrorException {
+        try {
+            MessageDigest m = MessageDigest.getInstance("MD5");
+            m.reset();
+            m.update(encript.getBytes());
+            byte[] digest = m.digest();
+            BigInteger bigInt = new BigInteger(1,digest);
+            String hashtext = bigInt.toString(16);
+            // Now we need to zero pad it if you actually want the full 32 chars.
+            while(hashtext.length() < 32 ){
+                hashtext = "0"+hashtext;
+            }
+            return hashtext;
+        } catch (NoSuchAlgorithmException e) {
+            throw new ServiceErrorException(e.getMessage());
+        }
     }
 
     @Override
@@ -146,4 +188,9 @@ public class UserServiceImpl extends IUserService {
         }
         return authorities;
     }
+
+
+
+    @Value("${user.solt}")
+    private String userSolt;
 }
