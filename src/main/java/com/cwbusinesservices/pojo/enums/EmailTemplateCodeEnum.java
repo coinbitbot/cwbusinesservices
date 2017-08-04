@@ -6,5 +6,6 @@ package com.cwbusinesservices.pojo.enums;
 public enum  EmailTemplateCodeEnum {
     NEW_USER_REGISTER,
     NEW_REQUEST_IN_SYSTEM,
-    EMAIL_SUBSCRIPTION
+    EMAIL_SUBSCRIPTION,
+    NEW_REQUEST_TO_USER
 }
