@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by Oleh on 27.07.2017.
  */
 @Controller
-@PreAuthorize("hasAnyRole('CREATE_SERVICE', 'EDIT_SERVICE')")
+@PreAuthorize("hasPermission(1,'CREATE_SERVICE,EDIT_SERVICE')")
 @RequestMapping("/admin/services")
 public class AdminServicesController {
 

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by Oleh on 01.08.2017.
  */
 @Controller
-@PreAuthorize("hasAnyRole('CREATE_EMAIL_TEMPLATE', 'EDIT_EMAIL_TEMPLATE')")
+@PreAuthorize("hasPermission(1,'CREATE_EMAIL_TEMPLATE,EDIT_EMAIL_TEMPLATE')")
 @RequestMapping("/admin/emails")
 public class AdminEmailsController {
 

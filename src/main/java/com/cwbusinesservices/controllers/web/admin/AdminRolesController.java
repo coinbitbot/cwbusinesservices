@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by Oleh on 28.07.2017.
  */
 @Controller
-@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+@PreAuthorize("hasPermission(1,'ROLE_ADMIN')")
 @RequestMapping("/admin/roles")
 public class AdminRolesController {
 

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by Oleh on 28.07.2017.
  */
 @Controller
-@PreAuthorize("hasAnyRole('CREATE_TESTIMONIAL', 'EDIT_TESTIMONIAL')")
+@PreAuthorize("hasPermission(1,'CREATE_TESTIMONIAL,EDIT_TESTIMONIAL')")
 @RequestMapping("/admin/testimonials")
 public class AdminTestimonialsController {
 

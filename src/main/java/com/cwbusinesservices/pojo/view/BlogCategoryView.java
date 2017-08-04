@@ -86,7 +86,7 @@ public class BlogCategoryView extends CompareIntegerId implements Serializable, 
 
     @Override
     public String toString() {
-        return "PostView{" +
+        return "BlogCategoryView{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", code='" + code + '\'' +

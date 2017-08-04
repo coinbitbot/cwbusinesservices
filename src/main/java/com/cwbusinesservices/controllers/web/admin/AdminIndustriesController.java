@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by Oleh on 28.07.2017.
  */
 @Controller
-@PreAuthorize("hasAnyRole('CREATE_INDUSTRY', 'EDIT_INDUSTRY')")
+@PreAuthorize("hasPermission(1,'CREATE_INDUSTRY,EDIT_INDUSTRY')")
 @RequestMapping("/admin/industries")
 public class AdminIndustriesController {
 

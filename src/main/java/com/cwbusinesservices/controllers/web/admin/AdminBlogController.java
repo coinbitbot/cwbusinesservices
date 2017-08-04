@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Created by Oleh on 28.07.2017.
+ * Created by Oleh on 04.08.2017.
  */
 @Controller
-@RequestMapping("/admin/blocks")
-@PreAuthorize("hasPermission(1,'CREATE_BLOCK,EDIT_BLOCK')")
-public class AdminBlocksController {
+@PreAuthorize("hasPermission(1,'CREATE_BLOG_CATEGORY,EDIT_BLOG_CATEGORY')")
+@RequestMapping("/admin/blog")
+public class AdminBlogController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String all() {
-        return "admin/blocks/all";
+        return "admin/blog/all";
     }
 
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
@@ -26,7 +26,14 @@ public class AdminBlocksController {
             Model model
     ) {
         model.addAttribute("id", id);
-        return "admin/blocks/edit";
+        return "admin/blog/edit";
     }
 
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String create(
+            Model model
+    ) {
+        model.addAttribute("id", 0);
+        return "admin/blog/edit";
+    }
 }

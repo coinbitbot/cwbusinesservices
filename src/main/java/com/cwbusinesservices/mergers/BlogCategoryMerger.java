@@ -29,11 +29,9 @@ public class BlogCategoryMerger implements Merger<BlogCategoryEntity,BlogCategor
 
     @Override
     public void merge(BlogCategoryEntity entity, BlogCategoryView view) throws BaseException {
-        if (view.getId()!=null) entity.setId(view.getId());
-        else view.setId(entity.getId());
-        if (!utils.notEmpty(view.getName())) entity.setName(view.getName());
+        if (utils.notEmpty(view.getName())) entity.setName(view.getName());
         else view.setName(entity.getName());
-        if (!utils.notEmpty(view.getCode())) entity.setCode(view.getCode());
+        if (utils.notEmpty(view.getCode())) entity.setCode(view.getCode());
         else view.setCode(entity.getCode());
         if (view.getPosition()!=null) entity.setPostition(view.getPosition());
         else view.setPosition(entity.getPostition());

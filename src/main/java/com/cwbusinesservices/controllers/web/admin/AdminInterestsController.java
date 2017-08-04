@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by Oleh on 28.07.2017.
  */
 @Controller
-@PreAuthorize("hasAnyRole('CREATE_INTEREST', 'EDIT_INTEREST')")
+@PreAuthorize("hasPermission(1,'CREATE_INTEREST,EDIT_INTEREST')")
 @RequestMapping("/admin/interests")
 public class AdminInterestsController {
 
