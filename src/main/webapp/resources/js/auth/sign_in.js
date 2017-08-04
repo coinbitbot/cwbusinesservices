@@ -57,8 +57,8 @@
                 success: function(response){
                     if(response.result){
                         location.reload(true);
-                    } else if(response.error && response.error.code === 404){
-                        showErrorMessage('incorrect email or password');
+                    } else if(response.error){
+                        showErrorMessage(response.error);
                     } else {
                         showErrorMessage('service error');
                     }

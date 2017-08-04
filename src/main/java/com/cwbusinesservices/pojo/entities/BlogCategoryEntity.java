@@ -32,7 +32,7 @@ public class BlogCategoryEntity extends CompareIntegerId implements Serializable
     private String code;
 
     @Column(name="POSITION")
-    private int postition;
+    private int position;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private Set<PostEntity> posts;
@@ -70,12 +70,12 @@ public class BlogCategoryEntity extends CompareIntegerId implements Serializable
         this.code = code;
     }
 
-    public int getPostition() {
-        return postition;
+    public int getPosition() {
+        return position;
     }
 
-    public void setPostition(int postition) {
-        this.postition = postition;
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     @Override
@@ -86,7 +86,7 @@ public class BlogCategoryEntity extends CompareIntegerId implements Serializable
         BlogCategoryEntity that = (BlogCategoryEntity) o;
 
         if (id != that.id) return false;
-        if (postition != that.postition) return false;
+        if (position != that.position) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         return code != null ? code.equals(that.code) : that.code == null;
     }
@@ -96,7 +96,7 @@ public class BlogCategoryEntity extends CompareIntegerId implements Serializable
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (code != null ? code.hashCode() : 0);
-        result = 31 * result + postition;
+        result = 31 * result + position;
         return result;
     }
 
@@ -106,7 +106,7 @@ public class BlogCategoryEntity extends CompareIntegerId implements Serializable
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", code='" + code + '\'' +
-                ", postition=" + postition +
+                ", position=" + position +
                 '}';
     }
 }

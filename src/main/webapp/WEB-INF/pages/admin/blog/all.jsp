@@ -30,6 +30,9 @@
                 <td>{{entity.code}}</td>
                 <td>
                     <a href="/admin/blog/{{entity.id}}/edit" target="_blank" class="btn btn-success">Edit</a>
+                    <Br />
+                    <button class="btn btn-info" ng-click="up(entity);" ng-show="!min(entity)">up</button>
+                    <button class="btn btn-info" ng-click="down(entity);" ng-show="!max(entity)">down</button>
                 </td>
             </tr>
             </tbody>

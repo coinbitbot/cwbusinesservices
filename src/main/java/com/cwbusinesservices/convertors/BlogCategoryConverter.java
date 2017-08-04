@@ -23,7 +23,7 @@ public class BlogCategoryConverter extends Converter<BlogCategoryEntity>{
         if (fields.contains(CODE))
             map.put(CODE,object.getCode());
         if (fields.contains(POSITION))
-            map.put(POSITION,object.getPostition());
+            map.put(POSITION,object.getPosition());
         if (fields.contains(POSTS)&&object.getPosts()!=null){
             List<Integer> ids = new LinkedList<>();
             for (PostEntity post:object.getPosts())

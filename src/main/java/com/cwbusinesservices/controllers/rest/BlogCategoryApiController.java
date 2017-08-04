@@ -1,6 +1,7 @@
 package com.cwbusinesservices.controllers.rest;
 
 import com.cwbusinesservices.convertors.Fields;
+import com.cwbusinesservices.criteria.impl.BlogCategoryCriteria;
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.pojo.entities.BlogCategoryEntity;
 import com.cwbusinesservices.pojo.response.Response;
@@ -37,5 +38,16 @@ public class BlogCategoryApiController extends BaseApiController<BlogCategoryEnt
             @RequestParam(value = "fields", required = false, defaultValue = Fields.DEFAULT) Set<String> fields
     ) throws BaseException {
         return responseFactory.get(service.getByCode(code, fields));
+    }
+
+    @RequestMapping(
+            value = "/swap",
+            method = RequestMethod.POST
+    )
+    public @ResponseBody Response<Boolean>
+    swap(
+            @RequestBody BlogCategoryCriteria criteria
+    ) throws BaseException {
+        return responseFactory.get(service.swap(criteria));
     }
 }

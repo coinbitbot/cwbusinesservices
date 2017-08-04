@@ -6,8 +6,12 @@ import com.cwbusinesservices.criteria.impl.BlogCategoryCriteria;
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
 import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;
+import com.cwbusinesservices.exceptions.service_error.ServiceErrorException;
+import com.cwbusinesservices.mergers.BlogCategoryMerger;
 import com.cwbusinesservices.persistence.dao.repositories.BlogCategoryRepository;
 import com.cwbusinesservices.pojo.entities.BlogCategoryEntity;
+import com.cwbusinesservices.pojo.enums.OrderDirectionEnum;
+import com.cwbusinesservices.pojo.view.BlogCategoryView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
@@ -29,6 +33,10 @@ public class BlogCategoryServiceImpl extends IBlogCategoryService{
     private BlogCategoryRepository repository;
     @Autowired
     private BlogCategoryConverter converter;
+    @Autowired
+    private BlogCategoryMerger merger;
+    @Autowired
+    private BlogCategoryValidationServiceImpl blogCategoryValidationService;
 
     @Override
     public List<Map<String, Object>> getList(Set<String> fields, String restrict) throws BaseException {
@@ -43,6 +51,31 @@ public class BlogCategoryServiceImpl extends IBlogCategoryService{
     }
 
     @Override
+    public Integer create(BlogCategoryView view) throws BaseException, IllegalAccessException, InstantiationException {
+        BlogCategoryEntity entity = new BlogCategoryEntity();
+        merger.merge(entity,view);
+
+        try {
+            BlogCategoryCriteria criteria = new BlogCategoryCriteria();
+            criteria.setOrder_by("position");
+            criteria.setOrder_direction(OrderDirectionEnum.DESC);
+            criteria.setLimit(1);
+
+            List<BlogCategoryEntity> list = getList(criteria);
+
+            entity.setPosition(list.get(0).getPosition() + 1);
+        } catch (Exception e) {
+            entity.setPosition(1);
+        }
+
+        blogCategoryValidationService.validForCreate(entity);
+        entity = repository.saveAndFlush(entity);
+        if(entity==null)
+            throw new ServiceErrorException();
+        return entity.getId();
+    }
+
+    @Override
     public Map<String, Object> getByCode(String code, Set<String> fields) throws BaseException {
         return converter.convert(getByCode(code),fields);
     }
@@ -53,5 +86,24 @@ public class BlogCategoryServiceImpl extends IBlogCategoryService{
         if(entity==null)
             throw new NoSuchEntityException(BlogCategoryEntity.class.getName(),"code = "+code);
         return entity;
+    }
+
+    @Override
+    public boolean swap(BlogCategoryCriteria criteria) throws BaseException {
+        criteria.setLimit(2);
+
+        List<BlogCategoryEntity> list = getList(criteria);
+        if (list.size() != 2) {
+            throw new ServiceErrorException();
+        }
+
+        BlogCategoryEntity a = list.get(0);
+        BlogCategoryEntity b = list.get(1);
+
+        int temp = a.getPosition();
+        a.setPosition(b.getPosition());
+        b.setPosition(temp);
+
+        return true;
     }
 }

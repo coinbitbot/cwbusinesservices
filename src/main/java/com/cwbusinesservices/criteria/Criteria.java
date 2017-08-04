@@ -1,14 +1,12 @@
 package com.cwbusinesservices.criteria;
 
+import com.cwbusinesservices.pojo.enums.OrderDirectionEnum;
 import com.google.gson.Gson;
 import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.List;
 
 /**
@@ -18,8 +16,10 @@ public abstract class Criteria<T> {
 
     private int offset;
     private int limit;
+    private String order_by = "id";
+    private OrderDirectionEnum order_direction = OrderDirectionEnum.ASC;
 
-    private Class<T> entityClass;
+    private final Class<T> entityClass;
 
     public Criteria(int offset, int limit, Class<T> entityClass) {
         this.offset = offset;
@@ -43,12 +43,20 @@ public abstract class Criteria<T> {
         this.limit = limit;
     }
 
-    public Class<T> getEntityClass() {
-        return entityClass;
+    public String getOrder_by() {
+        return order_by;
     }
 
-    public void setEntityClass(Class<T> entityClass) {
-        this.entityClass = entityClass;
+    public void setOrder_by(String order_by) {
+        this.order_by = order_by;
+    }
+
+    public OrderDirectionEnum getOrder_direction() {
+        return order_direction;
+    }
+
+    public void setOrder_direction(OrderDirectionEnum order_direction) {
+        this.order_direction = order_direction;
     }
 
     /**
@@ -74,6 +82,8 @@ public abstract class Criteria<T> {
             query.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
         }
 
+        query.orderBy(formOrder(cb, root));
+
         return em.createQuery(query);
     }
 
@@ -89,7 +99,25 @@ public abstract class Criteria<T> {
             query.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
         }
 
+        query.orderBy(formOrder(cb, root));
+
         return em.createQuery(query);
+    }
+
+    private Order formOrder(CriteriaBuilder cb, Root<T> root) {
+        Order order;
+
+        if (order_direction != null && order_by != null && !order_by.isEmpty()) {
+            if (order_direction == OrderDirectionEnum.ASC) {
+                order = cb.asc(root.get(order_by));
+            } else {
+                order = cb.desc(root.get(order_by));
+            }
+        } else {
+            order = cb.asc(root.get("id"));
+        }
+
+        return order;
     }
 
     /**
@@ -116,6 +144,9 @@ public abstract class Criteria<T> {
             if (parsed.getOffset() > 0) {
                 setOffset(parsed.getOffset());
             }
+
+            setOrder_by(parsed.getOrder_by());
+            setOrder_direction(parsed.getOrder_direction());
 
             return parsed;
         } catch (Exception e){

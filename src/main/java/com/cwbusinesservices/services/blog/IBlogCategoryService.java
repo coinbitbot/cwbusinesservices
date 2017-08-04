@@ -1,6 +1,8 @@
 package com.cwbusinesservices.services.blog;
 
+import com.cwbusinesservices.criteria.impl.BlogCategoryCriteria;
 import com.cwbusinesservices.exceptions.BaseException;
+import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
 import com.cwbusinesservices.pojo.entities.BlogCategoryEntity;
 import com.cwbusinesservices.pojo.enums.BlockCodesEnum;
 import com.cwbusinesservices.pojo.view.BlogCategoryView;
@@ -19,4 +21,5 @@ public abstract class IBlogCategoryService extends BaseService<BlogCategoryEntit
 
     public abstract Map<String,Object> getByCode(String code, Set<String> fields) throws BaseException;
     public abstract BlogCategoryEntity getByCode(String code) throws BaseException;
+    public abstract boolean swap(BlogCategoryCriteria criteria) throws BaseException;
 }
