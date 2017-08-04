@@ -3,15 +3,15 @@
 <div>
     <ul>
         <security:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')">
-            <li><a href="/admin/cabinet">Кабінет адміна</a></li>
+            <li><a href="/admin/cabinet">Admin dashboard</a></li>
         </security:authorize>
         <security:authorize access="isAuthenticated()">
-            <li><a href="#">Профіль</a></li>
-            <li><a href="#" id="logout">Вийти</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#" id="logout">Log out</a></li>
         </security:authorize>
         <security:authorize access="isAnonymous()">
-            <li><a href="/register">Зареєструватись</a></li>
-            <li><a href="#" id="sign_in">Увійти</a></li>
+            <li><a href="/register">Sign up</a></li>
+            <li><a href="#" id="sign_in">Sign in</a></li>
         </security:authorize>
     </ul>
 </div>

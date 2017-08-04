@@ -9,6 +9,7 @@ import com.cwbusinesservices.services.utils.Utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,7 @@ import java.util.Map;
  * Created by Oleh on 05.08.2017.
  */
 @Controller
+@PreAuthorize("isAuthenticated()")
 @RequestMapping("/profile")
 public class UserProfileController {
 
@@ -36,16 +38,19 @@ public class UserProfileController {
         return "profile/profile";
     }
 
+    @PreAuthorize("isAnonymous()")
     @RequestMapping(value = "/social_network_bad", method = RequestMethod.GET)
     public String socialNetworkBad() {
         return "profile/can_not_login_sn";
     }
 
+    @PreAuthorize("isAnonymous()")
     @RequestMapping(value = "/facebook_success", method = RequestMethod.GET)
     public String faceBookSuccess() {
         return "profile/facebook_success";
     }
 
+    @PreAuthorize("isAnonymous()")
     @RequestMapping(value = "/facebook_success", method = RequestMethod.POST)
     public String faceBookSuccessPost(
             HttpServletRequest request

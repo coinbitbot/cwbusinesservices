@@ -56,7 +56,7 @@
                 },
                 success: function(response){
                     if(response.result){
-                        location.reload(true);
+                        location.href = '/profile';
                     } else if(response.error){
                         showErrorMessage(response.error);
                     } else {
