@@ -148,18 +148,4 @@ public class PostCriteria extends Criteria<PostEntity>{
     public void setCategory_code(String category_code) {
         this.category_code = category_code;
     }
-
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("PostCriteria{");
-        sb.append("query='").append(query).append('\'');
-        sb.append(", ids=").append(ids);
-        sb.append(", has_img=").append(has_img);
-        sb.append(", date_from='").append(date_from).append('\'');
-        sb.append(", date_till='").append(date_till).append('\'');
-        sb.append(", category=").append(category);
-        sb.append(", category_code='").append(category_code).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
 }

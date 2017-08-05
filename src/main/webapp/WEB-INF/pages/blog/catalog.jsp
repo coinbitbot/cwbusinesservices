@@ -12,6 +12,12 @@
             Blog <c:if test="${current_category ne null}">- ${current_category.name}</c:if>
         </title>
         <jsp:include page="../common/include_resources.jsp" />
+        <style>
+            .active-page button {
+                background: green;
+                color: white;
+            }
+        </style>
     </head>
     <body>
     <jsp:include page="../common/header.jsp"/>
@@ -42,6 +48,40 @@
                     No post
                 </c:otherwise>
             </c:choose>
+
+            <Br />
+            <div>
+                <c:set var="cat" value="" />
+                <c:if test="${current_category ne null}">
+                    <c:set var="cat" value="/${current_category.code}" />
+                </c:if>
+
+                <a href="/blog${cat}/1/page" class="page"><button>start</button></a>
+
+                <c:choose>
+                    <c:when test="${current_page > 1}">
+                        <a href="/blog${cat}/${current_page-1}/page" class="page"><button>prev</button></a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="#" class="page" disabled><button disabled>prev</button></a>
+                    </c:otherwise>
+                </c:choose>
+
+                <c:forEach begin="${min_page}" end="${max_page}" var="page">
+                    <a href="/blog${cat}/${page}/page" class="page"><button>${page}</button></a>
+                </c:forEach>
+
+                <c:choose>
+                    <c:when test="${current_page ne number_of_pages}">
+                        <a href="/blog${cat}/${current_page+1}/page" class="page"><button>Next</button></a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="#" class="page" disabled><button disabled>Next</button></a>
+                    </c:otherwise>
+                </c:choose>
+
+                <a href="/blog${cat}/${number_of_pages}/page" class="page"><button>End</button></a>
+            </div>
         </div>
         <div class="col-md-2">
             <div>
@@ -60,6 +100,16 @@
     </div>
 
     <jsp:include page="../common/footer.jsp" />
+    <script>
+        $(function(){
+            var url = location.pathname;
+            if (url.indexOf('/page') > -1) {
+                $('.page[href^="' + url + '"]').addClass('active-page');
+            } else {
+                $('.page[href="/blog${cat}/1/page"]').addClass('active-page');
+            }
+        });
+    </script>
     </body>
     </html>
 </compress:html>

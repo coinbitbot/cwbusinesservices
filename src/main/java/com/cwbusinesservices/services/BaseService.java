@@ -51,7 +51,7 @@ public abstract class BaseService<E extends GetableById<I>,V extends GetableById
     public E getById(I id) throws BaseException {
         E entity = repository.findOne(id);
         if (entity == null)
-            throw new NoSuchEntityException(persistentClass.getName() + "id: " + id);
+            throw new NoSuchEntityException(persistentClass.getName(), "id: " + id);
         validationService.validForView(entity);
         return entity;
     }
@@ -65,7 +65,7 @@ public abstract class BaseService<E extends GetableById<I>,V extends GetableById
     public List<E> getList(Criteria<E> criteria) throws BaseException {
         List<E> entities = criteriaRepository.find(criteria);
         if (entities == null || entities.isEmpty())
-            throw new NoSuchEntityException(persistentClass.getName()+" "+criteria.toString());
+            throw new NoSuchEntityException(persistentClass.getName(), criteria.toString());
         validationService.validForView(entities);
         return entities;
     }

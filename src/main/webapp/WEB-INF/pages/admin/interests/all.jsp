@@ -6,7 +6,7 @@
 <body>
 <jsp:include page="../header.jsp" />
 
-<div class="row main_row" ng-controller="all">
+<div class="main_row" ng-controller="all">
     <div class="col-md-12">
         <div class="col-md-3">
             <a href="/admin/interests/create" class="btn btn-success" target="_blank">Add new interest</a>

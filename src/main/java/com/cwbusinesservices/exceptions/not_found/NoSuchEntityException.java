@@ -16,11 +16,20 @@ public class NoSuchEntityException extends BaseException {
     private static final String NO_ENTITY_OF_TYPE = "No entity of type '%s'";
 
     public NoSuchEntityException(String className){
-        super(String.format(NO_ENTITY_OF_TYPE , className));
+        super(String.format(NO_ENTITY_OF_TYPE, processClassName(className)));
     }
 
     public NoSuchEntityException(String className, String params){
-        super(String.format(DEFAULT_MESSAGE, className, params));
+        super(String.format(DEFAULT_MESSAGE, processClassName(className), params));
+    }
+
+    private static String processClassName(String className) {
+        int dot = className.lastIndexOf('.');
+        if (dot > -1) {
+            className = className.substring(dot + 1);
+        }
+
+        return className.toLowerCase().replace("entity", "");
     }
 
     public int getCode(){

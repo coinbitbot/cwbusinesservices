@@ -68,7 +68,7 @@ public class BlogController {
         return "blog/catalog";
     }
 
-    @RequestMapping(value = "/{category}{page}/page", method = RequestMethod.GET)
+    @RequestMapping(value = "/{category}/{page}/page", method = RequestMethod.GET)
     public String catalog(
             @PathVariable("category") String category,
             @PathVariable("page") int page,
@@ -107,22 +107,30 @@ public class BlogController {
 
             try {
                 List<Map<String, Object>> list = postService.getList(criteria, CATALOG_FIELDS);
-                int count = postService.count(criteria);
-
                 model.addAttribute("posts", list);
-                model.addAttribute("total_number", count);
-                model.addAttribute("number_of_pages", utils.numberOfPages(count, POST_PER_PAGE));
-            } catch (BaseException e) {
+            } catch (BaseException e) { }
 
-            }
+            int count = postService.count(criteria);
+            long numberOfPages = utils.numberOfPages(count, POST_PER_PAGE);
+            model.addAttribute("total_number", count);
+            model.addAttribute("current_page", page);
+            model.addAttribute("number_of_pages", numberOfPages);
+
+            // create four closest pages to current
+            int minPage = 1;
+            int maxPage = (int)numberOfPages;
+            if (page > 3)
+                minPage = page - 2;
+            if (maxPage - page > 2)
+                maxPage = page + 2;
+            model.addAttribute("min_page", minPage);
+            model.addAttribute("max_page", maxPage);
 
             if (category != null) {
                 try {
                     Map<String, Object> currentCategory = blogCategoryService.getByCode(category, CATEGORY_CATALOG_FIELDS);
                     model.addAttribute("current_category", currentCategory);
-                } catch (BaseException e) {
-
-                }
+                } catch (BaseException e) {}
             }
 
             model.addAttribute("categories", getSortedCategories());
@@ -153,5 +161,5 @@ public class BlogController {
     private final Set<String> CATEGORY_CATALOG_FIELDS = new HashSet<>(Arrays.asList(
             "code", "name", "position"
     ));
-    private final int POST_PER_PAGE = 10;
+    private final int POST_PER_PAGE = 1;
 }

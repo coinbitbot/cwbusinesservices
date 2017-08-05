@@ -123,16 +123,4 @@ public class UserCriteria extends Criteria<UserEntity> {
     public void setRole(RolesEnum role) {
         this.role = role;
     }
-
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("{");
-        sb.append("query='").append(query).append('\'');
-        sb.append(", ids=").append(ids);
-        sb.append(", roles=").append(roles);
-        sb.append(", role=").append(role);
-        sb.append(", active=").append(active);
-        sb.append('}');
-        return sb.toString();
-    }
 }

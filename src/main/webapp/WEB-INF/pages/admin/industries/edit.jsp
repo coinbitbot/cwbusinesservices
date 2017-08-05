@@ -6,7 +6,7 @@
 <body>
 <div class="container-fluid">
     <jsp:include page="../header.jsp" />
-    <div class="row main_row" ng-controller="edit_forms">
+    <div class="main_row" ng-controller="edit_forms">
         <form ng-submit="save();">
             <div class="form-group">
                 <label>name</label>

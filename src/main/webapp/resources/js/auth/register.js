@@ -8,11 +8,19 @@ $(function(){
 
         registerUser(function(){
             registerRequest(function(){
+                var file = $('#request_file')[0].files[0];
+
+                if (!file) {
+                    showErrorMessage('please select file');
+
+                    return;
+                }
+
                 Ajax.uploadFile(
                     '/api/file/',
                     {
                         id: request_id,
-                        file: $('#request_file')[0].files[0],
+                        file: file,
                         type: 'REQUEST'
                     },
                     function(response) {

@@ -1,8 +1,12 @@
 package com.cwbusinesservices.criteria;
 
 import com.cwbusinesservices.pojo.enums.OrderDirectionEnum;
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -19,6 +23,8 @@ public abstract class Criteria<T> {
     private String order_by = "id";
     private OrderDirectionEnum order_direction = OrderDirectionEnum.ASC;
 
+
+    private String userCriteria;
     private final Class<T> entityClass;
 
     public Criteria(int offset, int limit, Class<T> entityClass) {
@@ -133,6 +139,8 @@ public abstract class Criteria<T> {
         if(restriction == null || restriction.isEmpty() || restriction.equals("{}"))
             return null;
 
+        this.userCriteria = restriction;
+
         try {
             Gson gson = new Gson();
             T parsed = gson.fromJson(restriction, clazz);
@@ -151,6 +159,29 @@ public abstract class Criteria<T> {
             return parsed;
         } catch (Exception e){
             throw new WrongRestrictionException();
+        }
+    }
+
+    @Override
+    public String toString() {
+        if (userCriteria != null) {
+            return userCriteria;
+        } else {
+            String s = new GsonBuilder().setExclusionStrategies(new ExclusionStrategy() {
+                @Override
+                public boolean shouldSkipField(FieldAttributes f) {
+                    String name = f.getName();
+
+                    return name.equals("userCriteria") || name.equals("entityClass");
+                }
+
+                @Override
+                public boolean shouldSkipClass(Class<?> clazz) {
+                    return false;
+                }
+            }).create().toJson(this);
+
+            return s;
         }
     }
 }

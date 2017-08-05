@@ -103,15 +103,4 @@ public class CompanyCriteria extends Criteria<CompanyEntity> {
     public void setHas_img(Boolean has_img) {
         this.has_img = has_img;
     }
-
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("CompanyCriteria{");
-        sb.append("query='").append(query).append('\'');
-        sb.append(", ids=").append(ids);
-        sb.append(", active=").append(active);
-        sb.append(", has_img=").append(has_img);
-        sb.append('}');
-        return sb.toString();
-    }
 }
