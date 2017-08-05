@@ -8,6 +8,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 /**
  * Created by Oleh on 28.07.2017.
  */
@@ -26,8 +32,13 @@ public class AdminRolesController {
             @PathVariable("id") int id,
             Model model
     ) {
+        List<String> permissions = Arrays.stream(PermissionsEnum.values())
+                .map(PermissionsEnum::toString)
+                .collect(Collectors.toList());
+        permissions.sort(String::compareTo);
+
+        model.addAttribute("permissions", permissions);
         model.addAttribute("id", id);
-        model.addAttribute("permissions", PermissionsEnum.values());
         return "admin/roles/edit";
     }
 

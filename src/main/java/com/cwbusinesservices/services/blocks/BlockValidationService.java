@@ -25,7 +25,7 @@ import java.util.Set;
 public class BlockValidationService extends BaseValidator<BlockEntity, Integer> implements IBlockValidationService{
 
     public BlockValidationService(){
-        super(PermissionsEnum.CREATE_BLOCK,PermissionsEnum.EDIT_BLOCK,PermissionsEnum.DELETE_BLOCK, BlockEntity.class);
+        super(/*PermissionsEnum.CREATE_BLOCK*/ null, PermissionsEnum.EDIT_BLOCK,PermissionsEnum.DELETE_BLOCK, BlockEntity.class);
     }
 
     @Autowired

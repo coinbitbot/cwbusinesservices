@@ -7,7 +7,10 @@
 <body>
 <div class="container-fluid">
     <jsp:include page="../header.jsp" />
-    <div class="row main_row" ng-controller="edit_forms">
+    <p style="font-size: 18px;">
+        Please note that these changes will only be applied <b>after</b> the user logs out and logs back in.
+    </p>
+    <div class="main_row" ng-controller="edit_forms">
         <div style="font-size: 20px;">
             role name: {{entity.name.toLowerCase()}}
         </div>
@@ -16,7 +19,7 @@
             <label>new permission</label>
             <select ng-model="new_permission" class="form-control">
                 <c:forEach var="permission" items="${permissions}">
-                    <option value="${permission}">${permission.toString().toLowerCase()}</option>
+                    <option value="${permission}">${permission.toString().toLowerCase().replace('_', '  ')}</option>
                 </c:forEach>
             </select>
             <button class="btn btn-success" ng-click="addPermission()">add permission</button>
