@@ -1,0 +1,147 @@
+@font-face {
+    font-family: 'Gotham';
+    src: url('/resources/fonts/Gotham/Gotham-MediumItalic.eot?#iefix') format('embedded-opentype'),
+    url('/resources/fonts/Gotham/Gotham-MediumItalic.woff') format('woff'),
+    url('/resources/fonts/Gotham/Gotham-MediumItalic.ttf')  format('truetype'),
+    url('/resources/fonts/Gotham/Gotham-MediumItalic.svg#Gotham-MediumItalic') format('svg');
+    font-weight: 800;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Gotham';
+    src: url('/resources/fonts/Gotham/Gotham-Medium.eot?#iefix') format('embedded-opentype'),
+    url('/resources/fonts/Gotham/Gotham-Medium.woff') format('woff'),
+    url('/resources/fonts/Gotham/Gotham-Medium.ttf')  format('truetype'),
+    url('/resources/fonts/Gotham/Gotham-Medium.svg#Gotham-Medium') format('svg');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Gotham';
+    src: url('/resources/fonts/Gotham/Gotham-LightItalic.eot?#iefix') format('embedded-opentype'),
+    url('/resources/fonts/Gotham/Gotham-LightItalic.woff') format('woff'),
+    url('/resources/fonts/Gotham/Gotham-LightItalic.ttf')  format('truetype'),
+    url('/resources/fonts/Gotham/Gotham-LightItalic.svg#Gotham-LightItalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Gotham';
+    src: url('/resources/fonts/Gotham/Gotham-Light.eot?#iefix') format('embedded-opentype'),
+    url('/resources/fonts/Gotham/Gotham-Light.woff') format('woff'),
+    url('/resources/fonts/Gotham/Gotham-Light.ttf')  format('truetype'),
+    url('/resources/fonts/Gotham/Gotham-Light.svg#Gotham-Light') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Gotham';
+    src: url('/resources/fonts/Gotham/Gotham-BookItalic.eot?#iefix') format('embedded-opentype'),
+    url('/resources/fonts/Gotham/Gotham-BookItalic.woff') format('woff'),
+    url('/resources/fonts/Gotham/Gotham-BookItalic.ttf')  format('truetype'),
+    url('/resources/fonts/Gotham/Gotham-BookItalic.svg#Gotham-BookItalic') format('svg');
+    font-weight: 600;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Gotham';
+    src: url('/resources/fonts/Gotham/Gotham-Book.eot?#iefix') format('embedded-opentype'),
+    url('/resources/fonts/Gotham/Gotham-Book.woff') format('woff'),
+    url('/resources/fonts/Gotham/Gotham-Book.ttf')  format('truetype'),
+    url('/resources/fonts/Gotham/Gotham-Book.svg#Gotham-Book') format('svg');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Gotham';
+    src: url('/resources/fonts/Gotham/Gotham-BoldItalic.eot?#iefix') format('embedded-opentype'),
+    url('/resources/fonts/Gotham/Gotham-BoldItalic.woff') format('woff'),
+    url('/resources/fonts/Gotham/Gotham-BoldItalic.ttf')  format('truetype'),
+    url('/resources/fonts/Gotham/Gotham-BoldItalic.svg#Gotham-BoldItalic') format('svg');
+    font-weight: bold;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Gotham';
+    src: url('/resources/fonts/Gotham/Gotham-Bold.eot?#iefix') format('embedded-opentype'),
+    url('/resources/fonts/Gotham/Gotham-Bold.woff') format('woff'),
+    url('/resources/fonts/Gotham/Gotham-Bold.ttf')  format('truetype'),
+    url('/resources/fonts/Gotham/Gotham-Bold.svg#Gotham-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+body {
+    font-family: 'Gotham', Arial, sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    padding-top: 97px;
+}
+a {
+    color: #87c877;
+    text-decoration: none;
+}
+a:hover, a:focus {
+    color: #1a3029;
+    text-decoration: none;
+}
+::selection {
+    background: #87c877;
+}
+
+/* Font styles */
+.font-theme {
+    font-family: 'Gotham', Arial, sans-serif;
+}
+.font-theme-bold {
+    font-weight: bold;
+}
+.font-theme-medium {
+    font-weight: 800;
+}
+.font-theme-book {
+    font-weight: 600;
+}
+.font-theme-normal {
+    font-weight: normal;
+}
+/* /Font styles */
+
+/* Header */
+.header {
+    background: #1a3029;
+    border-top:17px solid #87c877;
+}
+.header a {
+    color: #cac3bc;
+}
+.brand-logo {
+    padding: 20px 0 18px 0;
+}
+.brand-logo h1 {
+    display: inline-block;
+    font-size: 24px;
+    line-height: 22px;
+    margin: 0 5px 0 0;
+    vertical-align: top;
+    color: #fff;
+}
+.brand-logo h1 span {
+    font-size: 16px;
+    margin-left: 2px;
+}
+.brand-logo img {
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+/* /Header */
+
+/* Footer */
+footer {
+    background: #87c877;
+    color:#fff;
+}
+footer a {
+    color: #fff;
+}
+/* /Footer */
