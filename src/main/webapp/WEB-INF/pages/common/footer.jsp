@@ -17,6 +17,7 @@
         </div>
     </div>
 </footer>
+<div id="scroller" class="hidden-xs"></div>
 
 <script src="/resources/js/ejs.min.js"></script>
 <script src="/resources/js/ajax.js"></script>
@@ -30,7 +31,24 @@
 <script src="/resources/js/utils/notification/alertify.min.js"></script>
 <script src="/resources/js/global_utils.js"></script>
 <script src="/resources/js/utils/wow.min.js"></script>
-<script>new WOW().init();</script>
+<script>
+    new WOW().init();
+
+    // Scroll to top
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 0) {
+            $('#scroller').fadeIn();
+        } else {
+            $('#scroller').fadeOut();
+        }
+    });
+    $('#scroller').click(function () {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 400);
+        return false;
+    });
+</script>
 
 <%-- show js error mssages setup --%>
 <%

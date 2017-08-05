@@ -14,7 +14,7 @@
     <body>
         <jsp:include page="../common/header.jsp"/>
 
-        <div class="wrapper" style="min-height: 500px;">
+        <div class="wrapper">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
@@ -34,7 +34,7 @@
                                                             </div>
                                                             <h3 class="font-theme-book">${service.name}</h3>
                                                             <div class="dotdot text-desc">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                                            <a href="#" class="btn-theme btn-transp col-xs-12">More about service</a>
+                                                            <a href="#" class="btn-theme btn-transp col-xs-12"><s:message code="block.services.more"/></a>
                                                         </div>
                                                     </c:forEach>
                                                 </div>
@@ -47,13 +47,18 @@
                                         <c:if test="${companies ne null}">
                                             <section  class="wow fadeInUp" data-wow-offset="10">
                                                 <h2>${block.title}</h2>
-                                                <c:forEach var="company" items="${companies}">
-                                                    <div>
-                                                        <img src="/api/file/${company.id}?type=COMPANY" class="img-responsive" />
-                                                        <a href="/companies/${company.id}">${company.name}</a>
-                                                    </div>
-                                                </c:forEach>
+                                                <div id="companies" class="owl-carousel">
+                                                    <c:forEach var="company" items="${companies}">
+                                                        <div class="text-center block-item">
+                                                            <a href="/companies/${company.id}" title="${company.name}">
+                                                                <img src="/api/file/${company.id}?type=COMPANY" class="img-responsive" />
+                                                            </a>
+                                                        </div>
+                                                    </c:forEach>
+                                                </div>
+                                                <a href="/companies/catalog" class="text-right col-xs-12"><s:message code="block.companies.all"/> >></a>
                                             </section>
+                                            <div class="clearfix"></div>
                                         </c:if>
                                     </c:when>
 
@@ -92,13 +97,14 @@
         <script src="/resources/js/utils/jquery.dotdotdot.min.js"></script>
         <script>
             $(document).ready(function(){
+                // Carousel
                 $('#services').owlCarousel({
                     loop:true,
                     margin: 50,
                     nav: true,
                     autoplay: true,
-                    smartSpeed: 1000, //Время движения слайда
-                    autoplayTimeout: 5000, //Время смены слайда
+                    smartSpeed: 1000,
+                    autoplayTimeout: 5000,
                     autoplayHoverPause: true,
                     navText: '<>',
                     responsive:{
@@ -114,6 +120,27 @@
                     }
                 });
 
+                $('#companies').owlCarousel({
+                    loop:true,
+                    margin: 50,
+                    nav: true,
+                    smartSpeed: 1000,
+                    autoplayTimeout: 5000,
+                    navText: '<>',
+                    responsive:{
+                        0:{
+                            items:1
+                        },
+                        600:{
+                            items:2
+                        },
+                        992:{
+                            items:4
+                        }
+                    }
+                });
+
+                // Short text
                 $('.dotdot').dotdotdot();
             });
         </script>
