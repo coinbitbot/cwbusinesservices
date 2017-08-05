@@ -4,3 +4,4 @@
 
 <jsp:include page="bootstrap_include.jsp" />
 <link rel="stylesheet" href="/resources/css/style.css" />
+<link rel="stylesheet" href="/resources/css/animate.css" />

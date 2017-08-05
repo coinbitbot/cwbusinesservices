@@ -29,6 +29,8 @@
 <link rel="stylesheet" href="/resources/js/utils/notification/css/themes/default.min.css">
 <script src="/resources/js/utils/notification/alertify.min.js"></script>
 <script src="/resources/js/global_utils.js"></script>
+<script src="/resources/js/utils/wow.min.js"></script>
+<script>new WOW().init();</script>
 
 <%-- show js error mssages setup --%>
 <%

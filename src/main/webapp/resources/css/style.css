@@ -86,6 +86,12 @@ a:hover, a:focus {
 }
 ::selection {
     background: #87c877;
+    color:#44514e;
+}
+h2 {
+    font-size: 36px;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 /* Font styles */
@@ -105,6 +111,30 @@ a:hover, a:focus {
     font-weight: normal;
 }
 /* /Font styles */
+
+/* Buttons */
+.btn-theme {
+    text-transform: uppercase;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    margin: 10px auto;
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+.btn-transp {
+    background: none;
+    color: #87c877;
+    border: 2px solid #87c877;
+}
+.btn-transp:hover, .btn-transp:active, .btn-transp:focus {
+    background: #87c877;
+    color: #fff;
+}
+/* /Buttons */
 
 /* Header */
 .header {
@@ -135,6 +165,58 @@ a:hover, a:focus {
     vertical-align: middle;
 }
 /* /Header */
+
+/* Index Page */
+section h2 {
+    margin: 80px 0 35px;
+}
+/* Section services */
+#services .text-desc {
+    height: 140px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+.service-icon {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto;
+    padding: 15px;
+    background-color: #b0bdb9;
+    border-radius: 50%;
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+#services .block-item:hover > .service-icon {
+    background-color: #87c877;
+}
+.owl-nav {
+    text-align: center;
+    color: #b0bdb9;
+    font-weight: bold;
+    font-size: 54px;
+    line-height: 1em;
+    font-family: 'Times', 'Gotham', Arial, sans-serif;
+}
+.owl-nav > div {
+    display: inline-block;
+    -webkit-transform: scaleX(.5);
+    -moz-transform: scaleX(.5);
+    -ms-transform: scaleX(.5);
+    -o-transform: scaleX(.5);
+    transform: scaleX(.5);
+    margin: 15px 30px 0;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.owl-nav > div:hover {
+    color: #1a3029;
+}
+/* /Section services */
+/* /Index Page */
 
 /* Footer */
 footer {
