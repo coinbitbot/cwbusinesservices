@@ -34,6 +34,8 @@
                 }
             })
         });
+
+        cookiePopup();
     });
 
     function renderSignInPopup(){
@@ -56,7 +58,7 @@
                 },
                 success: function(response){
                     if(response.result){
-                        location.reload(true);
+                        location.href = '/profile';
                     } else if(response.error){
                         showErrorMessage(response.error);
                     } else {
@@ -73,4 +75,18 @@
         $('body').append(popup);
     }
 
+    function cookiePopup() {
+        var key = 'cookie.popup';
+        if (localStorage.getItem(key)) {
+            $('#cookie_popup').remove();
+            return;
+        } else {
+            $('#cookie_popup').show();
+        }
+
+        $('#close_cookie').click(function(){
+            localStorage.setItem(key, true);
+            $('#cookie_popup').remove();
+        });
+    }
 })(window);
