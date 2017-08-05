@@ -1,5 +1,6 @@
 package com.cwbusinesservices.convertors;
 
+import com.cwbusinesservices.pojo.entities.BlogCategoryEntity;
 import com.cwbusinesservices.pojo.entities.PostEntity;
 import org.springframework.stereotype.Component;
 
@@ -33,10 +34,18 @@ public class PostConverter extends Converter<PostEntity>{
             map.put(META_DESCRIPTION,object.getMetaDescription());
         if (fields.contains(META_KEYWORDS))
             map.put(META_KEYWORDS,object.getMetaKeywords());
-        if (fields.contains(CATEGORY)&&object.getCategory()!=null)
-            map.put(CATEGORY,object.getCategory().getId());
         if (fields.contains(POST_TEXT))
             map.put(POST_TEXT,object.getPostText());
+
+        BlogCategoryEntity category = object.getCategory();
+        if (category != null) {
+            if (fields.contains(CATEGORY))
+                map.put(CATEGORY, category.getId());
+            if (fields.contains(CATEGORY_CODE))
+                map.put(CATEGORY_CODE, category.getCode());
+            if (fields.contains(CATEGORY_NAME))
+                map.put(CATEGORY_NAME, category.getName());
+        }
         return map;
     }
 }

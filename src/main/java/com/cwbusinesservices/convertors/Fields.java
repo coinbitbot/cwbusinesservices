@@ -155,6 +155,8 @@ public class Fields {
         public static final String META_DESCRIPTION = "meta_description";
         public static final String META_KEYWORDS = "meta_keywords";
         public static final String CATEGORY = "category";
+        public static final String CATEGORY_CODE = "category_code";
+        public static final String CATEGORY_NAME = "category_name";
         public static final String POST_TEXT = "post_text";
     }
 

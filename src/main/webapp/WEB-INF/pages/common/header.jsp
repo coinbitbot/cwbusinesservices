@@ -6,7 +6,7 @@
             <li><a href="/admin/cabinet">Admin dashboard</a></li>
         </security:authorize>
         <security:authorize access="isAuthenticated()">
-            <li><a href="#">Profile</a></li>
+            <li><a href="/profile/">Profile</a></li>
             <li><a href="#" id="logout">Log out</a></li>
         </security:authorize>
         <security:authorize access="isAnonymous()">

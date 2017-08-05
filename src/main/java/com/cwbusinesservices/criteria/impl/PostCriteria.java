@@ -21,6 +21,7 @@ public class PostCriteria extends Criteria<PostEntity>{
     private String date_from;
     private String date_till; //toUTCString
     private Integer category;
+    private String category_code;
 
     public PostCriteria(){
         super(0,0,PostEntity.class);
@@ -40,6 +41,7 @@ public class PostCriteria extends Criteria<PostEntity>{
             this.date_till = parsed.date_till;
             this.has_img = parsed.has_img;
             this.category = parsed.category;
+            this.category_code = parsed.category_code;
         }
     }
 
@@ -68,6 +70,11 @@ public class PostCriteria extends Criteria<PostEntity>{
             Join<PostEntity, BlogCategoryEntity> requests = root.join("category");
             Expression<Integer> expression = requests.get("id");
             predicates.add(cb.equal(expression,category));
+        }
+        if (this.category_code != null && !this.category_code.isEmpty()){
+            Join<PostEntity, BlogCategoryEntity> requests = root.join("category");
+            Expression<String> expression = requests.get("code");
+            predicates.add(cb.equal(expression, category_code));
         }
         if (this.has_img!=null){
             Expression<Boolean> expression = root.get("hasImg");
@@ -134,4 +141,25 @@ public class PostCriteria extends Criteria<PostEntity>{
         this.category = category;
     }
 
+    public String getCategory_code() {
+        return category_code;
+    }
+
+    public void setCategory_code(String category_code) {
+        this.category_code = category_code;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("PostCriteria{");
+        sb.append("query='").append(query).append('\'');
+        sb.append(", ids=").append(ids);
+        sb.append(", has_img=").append(has_img);
+        sb.append(", date_from='").append(date_from).append('\'');
+        sb.append(", date_till='").append(date_till).append('\'');
+        sb.append(", category=").append(category);
+        sb.append(", category_code='").append(category_code).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }
