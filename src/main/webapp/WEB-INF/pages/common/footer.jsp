@@ -34,6 +34,11 @@
 <script>
     new WOW().init();
 
+    // Login block
+    $('.fa-user').click(function () {
+        $('.login-block').toggleClass('shown');
+    });
+
     // Scroll to top
     $(window).scroll(function () {
         if ($(this).scrollTop() > 0) {

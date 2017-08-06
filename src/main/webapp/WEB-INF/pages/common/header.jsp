@@ -13,21 +13,26 @@
                     </a>
                 </div>
                 <div class="col-sm-7 text-right">
-					<ul>
-						<security:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')">
-							<li><a href="/admin/cabinet">Admin dashboard</a></li>
-						</security:authorize>
-						<security:authorize access="isAuthenticated()">
-							<li><a href="/profile/">Profile</a></li>
-							<li><a href="#" id="logout">Log out</a></li>
-						</security:authorize>
-						<security:authorize access="isAnonymous()">
-							<li><a href="/register">Sign up</a></li>
-							<li><a href="#" id="sign_in">Sign in</a></li>
-						</security:authorize>
-					</ul>
                 </div>
             </div>
         </div>
     </div>
 </header>
+<div class="fixed-sidebar-right">
+    <div class="login-block">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <div class="login-block-content">
+        <security:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_MODERATOR')">
+            <a href="/admin/cabinet" class="string"><i class="fa fa-tachometer" aria-hidden="true"></i>Admin dashboard</a><br/>
+        </security:authorize>
+        <security:authorize access="isAuthenticated()">
+            <a href="/profile/" class="string"><i class="fa fa-user" aria-hidden="true"></i>Profile</a><br/>
+            <a href="#" id="logout" class="string"><i class="fa fa-sign-out" aria-hidden="true"></i>Log out</a>
+        </security:authorize>
+        <security:authorize access="isAnonymous()">
+            <a href="#" id="sign_in"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign in</a> /
+            <a href="/register">Sign up</a>
+        </security:authorize>
+        </div>
+    </div>
+</div>

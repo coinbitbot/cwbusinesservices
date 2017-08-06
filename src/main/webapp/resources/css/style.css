@@ -100,10 +100,23 @@ h3 {
     font-size: 24px;
     font-weight: 600;
 }
-input {
-    text-transform: uppercase;
+select, textarea, input,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"] {
     padding: 12px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: normal;
     margin: 10px 0;
     -webkit-transition: all .4s ease-in-out;
@@ -113,13 +126,44 @@ input {
     color: #b0bdb9;
     border: 1px solid #b0bdb9;
     outline: none;
+    border-radius: 0;
+    background: #fff;
+}
+select:focus,
+textarea:focus,
+input:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus {
+    color:#666;
+    border-color: #666;
+}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 0;
+    text-overflow: '';
+    -ms-appearance: none;
+    appearance: none!important;
+    background: #f6f6f6 url('/resources/images/select-arrow.png') no-repeat right center;
+    background-size: auto 15px;
+}
+select::-ms-expand {
+    display: none;
 }
 button, button:hover, button:focus, button:active {
     outline: none;
-}
-input:focus {
-    color:#666;
-    border-color: #666;
 }
 section {
     margin-top: 80px;
@@ -143,6 +187,17 @@ section {
 }
 /* /Font styles */
 
+/* Transition */
+.btn-theme, .login-block,
+.service-icon, #companies img,
+.login-block a {
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+/* /Transition */
+
 /* Buttons */
 .btn-theme {
     text-transform: uppercase;
@@ -151,10 +206,6 @@ section {
     font-weight: normal;
     text-align: center;
     margin: 10px auto;
-    -webkit-transition: all .4s ease-in-out;
-    -moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
 }
 .btn-transp {
     background: none;
@@ -176,7 +227,7 @@ section {
     color: #cac3bc;
 }
 .brand-logo {
-    padding: 20px 0 18px 0;
+    padding: 17px 0 15px 0;
 }
 .brand-logo h1 {
     display: inline-block;
@@ -195,6 +246,72 @@ section {
     margin-right: 5px;
     vertical-align: middle;
 }
+
+/* Login Block */
+.fixed-sidebar-right {
+    bottom: 0;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 0;
+    z-index: 1034;
+}
+.login-block {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    right: -250px;
+    position: absolute;
+    top: 130px;
+    width: 250px;
+    left: auto;
+    background: #87c877;
+    color: #fff;
+}
+.login-block a {
+    color: #fff;
+    border-bottom: 1px dotted;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+.login-block a.string {
+    display: inline-block;
+    width: 100%;
+}
+.login-block a:hover {
+    color: #1a3029;
+}
+.login-block > i.fa-user {
+    position: absolute;
+    top: 0;
+    background: #87c877;
+    color: #fff;
+    cursor: pointer;
+    font-size: 36px;
+    height: 70px;
+    left: -70px;
+    line-height: 70px;
+    text-align: center;
+    width: 70px;
+    -webkit-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.login-block > i.fa-user:hover {
+    font-size: 44px;
+}
+.login-block.shown {
+    right: 0;
+}
+.login-block-content {
+    padding: 20px;
+    min-height: 70px;
+}
+.login-block-content i {
+    margin-right: 5px;
+}
+/* /Login Block */
 /* /Header */
 
 /* Index Page */
@@ -214,10 +331,6 @@ section h2 {
     padding: 15px;
     background-color: #b0bdb9;
     border-radius: 50%;
-    -webkit-transition: all .4s ease-in-out;
-    -moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
 }
 #services .block-item:hover > .service-icon {
     background-color: #87c877;
@@ -261,10 +374,6 @@ section h2 {
 }
 #companies img {
     opacity: .6;
-    -webkit-transition: all .4s ease-in-out;
-    -moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
 }
 #companies a:hover > img {
     opacity: 1;
@@ -287,6 +396,10 @@ section h2 {
 /* /Section companies */
 
 /* Blog & Subscribe */
+.no-info {
+    font-size: 20px;
+    font-weight: 600;
+}
 #blog article {
     margin-bottom: 30px;
 }
