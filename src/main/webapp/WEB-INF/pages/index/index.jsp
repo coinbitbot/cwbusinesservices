@@ -3,6 +3,9 @@
     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+    <jsp:useBean id="dateValue" class="java.util.Date"/>
+
     <!DOCTYPE html>
     <html>
     <head>
@@ -33,7 +36,7 @@
                                                                 <img src="/api/file/${service.id}?type=SERVICE" class="img-responsive" />
                                                             </div>
                                                             <h3 class="font-theme-book">${service.name}</h3>
-                                                            <div class="dotdot text-desc">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                                                            <div class="dotdot text-desc">${service.description}</div>
                                                             <a href="#" class="btn-theme btn-transp col-xs-12"><s:message code="block.services.more"/></a>
                                                         </div>
                                                     </c:forEach>
@@ -81,37 +84,25 @@
                         </c:if>
 
                         <section>
-                            <div class="col-md-7 wow fadeInUp" data-wow-offset="10">
-                                <h2><s:message code="block.blog.name"/></h2>
-                                <div id="blog">
-                                    <article class="news-item dotdot">
-                                        <h3><a href="#">Title News 1</a></h3>
-                                        <div class="meta-info">
-                                            <i class="fa fa-calendar" aria-hidden="true"></i>01.01.2017
-                                            <i class="fa fa-bars" aria-hidden="true"></i><a href="#">Categories Name</a>
-                                        </div>
-                                        <div class="text-desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                    </article>
-                                    <article class="news-item dotdot">
-                                        <h3><a href="#">Title News 1</a></h3>
-                                        <div class="meta-info">
-                                            <i class="fa fa-calendar" aria-hidden="true"></i>01.01.2017
-                                            <i class="fa fa-bars" aria-hidden="true"></i><a href="#">Categories Name</a>
-                                        </div>
-                                        <div class="text-desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                    </article>
-                                    <article class="news-item dotdot">
-                                        <h3><a href="#">Title News 1</a></h3>
-                                        <div class="meta-info">
-                                            <i class="fa fa-calendar" aria-hidden="true"></i>01.01.2017
-                                            <i class="fa fa-bars" aria-hidden="true"></i><a href="#">Categories Name</a>
-                                        </div>
-                                        <div class="text-desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                    </article>
+                            <c:if test="${posts ne null}">
+                                <div class="col-md-7 wow fadeInUp" data-wow-offset="10">
+                                    <h2><s:message code="block.blog.name"/></h2>
+                                    <div id="blog">
+                                        <c:forEach var="post" items="${posts}">
+                                            <article class="news-item dotdot">
+                                                <h3><a href="/blog/post/${post.url}">${post.title}</a></h3>
+                                                <div class="meta-info">
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i><jsp:setProperty name="dateValue" property="time" value="${post.date}"/><fmt:formatDate value="${dateValue}" pattern="dd.MM.yyyy"/>
+                                                    <i class="fa fa-bars" aria-hidden="true"></i><a href="/blog/${post.category_code}">${post.category_name}</a>
+                                                </div>
+                                                <div class="text-desc">${post.short_description}</div>
+                                            </article>
+                                        </c:forEach>
+                                    </div>
+                                    <a href="/blog" class="text-right col-xs-12"><s:message code="block.blog.all_news"/> >></a>
+                                    <div class="clearfix"></div>
                                 </div>
-                                <a href="/blog" class="text-right col-xs-12"><s:message code="block.blog.all_news"/> >></a>
-                                <div class="clearfix"></div>
-                            </div>
+                            </c:if>
                             <div class="col-md-5 block-subscribe wow fadeInUp" data-wow-offset="10">
                                 <div class="col-xs-12 col-sm-4 col-md-12 img-subscribe">
                                     <img src="/resources/images/subscribe_img.jpg" class="img-responsive" />

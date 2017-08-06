@@ -161,5 +161,5 @@ public class BlogController {
     private final Set<String> CATEGORY_CATALOG_FIELDS = new HashSet<>(Arrays.asList(
             "code", "name", "position"
     ));
-    private final int POST_PER_PAGE = 1;
+    private final int POST_PER_PAGE = 3;
 }

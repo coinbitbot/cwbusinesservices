@@ -37,7 +37,7 @@ public class BlogCategoryMerger implements Merger<BlogCategoryEntity,BlogCategor
         else view.setCode(entity.getCode());
         if (view.getPosition()!=null) entity.setPosition(view.getPosition());
         else view.setPosition(entity.getPosition());
-        if(view.getPosts()!=null&&view.getPosts().size()>0){
+        /*if(view.getPosts()!=null&&view.getPosts().size()>0){
             PostCriteria criteria = new PostCriteria();
             criteria.setIds(view.getPosts());
             List<PostEntity> posts = postService.getList(criteria);
@@ -47,6 +47,6 @@ public class BlogCategoryMerger implements Merger<BlogCategoryEntity,BlogCategor
             for (PostEntity post:entity.getPosts())
                 ids.add(post.getId());
             view.setPosts(ids);
-        }
+        }*/
     }
 }

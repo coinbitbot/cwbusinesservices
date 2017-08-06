@@ -5,6 +5,7 @@ import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.pojo.entities.BlockEntity;
 import com.cwbusinesservices.pojo.enums.BlockCodesEnum;
 import com.cwbusinesservices.services.blocks.IBlockService;
+import com.cwbusinesservices.services.blog.IPostService;
 import com.cwbusinesservices.services.company.ICompanyService;
 import com.cwbusinesservices.services.industry.IIndustryService;
 import com.cwbusinesservices.services.interests.IInterestsService;
@@ -17,10 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Andrii on 27.07.2016.
@@ -45,6 +43,9 @@ public class IndexController {
 
     @Autowired
     private IIndustryService industryService;
+
+    @Autowired
+    private IPostService postService;
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String indexPage(
@@ -84,6 +85,13 @@ public class IndexController {
                     model.addAttribute("testimonials", testimonialService.getList(testimonialCriteria, TESTIMONIALS_FIELDS_FOR_INDEX));
                 } catch (BaseException e) { }
             }
+
+            try {
+                PostCriteria criteria = new PostCriteria(
+                        0, 3, null
+                );
+                model.addAttribute("posts", postService.getList(criteria, POST_FIELDS_FOR_INDEX));
+            } catch (BaseException e) { }
         } catch (BaseException e) { }
 
         return "index/index";
@@ -108,7 +116,7 @@ public class IndexController {
     }
 
     private final Set<String> SERVICES_FIELDS_FOR_INDEX = new HashSet<>(
-            Arrays.asList("id", "name")
+            Arrays.asList("id", "name", "description")
     );
 
     private final Set<String> COMPANIES_FIELDS_FOR_INDEX = new HashSet<>(
@@ -118,4 +126,7 @@ public class IndexController {
     private final Set<String> TESTIMONIALS_FIELDS_FOR_INDEX = new HashSet<>(
             Arrays.asList("id", "name", "text")
     );
+    private final Set<String> POST_FIELDS_FOR_INDEX = new HashSet<>(Arrays.asList(
+            "url", "title", "date", "short_description", "category_code", "category_name"
+    ));
 }
