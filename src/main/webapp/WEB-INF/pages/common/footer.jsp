@@ -39,6 +39,18 @@
         $('.login-block').toggleClass('shown');
     });
 
+    // Mobile menu
+    $('.menu-mob-button').click(function() {
+        if ($('.topmenu').is(':visible')) {
+            $('.topmenu').hide('slow');
+            $(this).html('<a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a>')
+        }
+        else {
+            $('.topmenu').show('slow');
+            $(this).html('<a href="#"><i class="fa fa-times" aria-hidden="true"></i></a>')
+        }
+    });
+
     // Scroll to top
     $(window).scroll(function () {
         if ($(this).scrollTop() > 0) {

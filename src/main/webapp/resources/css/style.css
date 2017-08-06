@@ -190,7 +190,7 @@ section {
 /* Transition */
 .btn-theme, .login-block,
 .service-icon, #companies img,
-.login-block a {
+.login-block a, .topmenu li {
     -webkit-transition: all .4s ease-in-out;
     -moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
@@ -222,6 +222,7 @@ section {
 .header {
     background: #1a3029;
     border-top:17px solid #87c877;
+    height: 97px;
 }
 .header a {
     color: #cac3bc;
@@ -247,6 +248,13 @@ section {
     vertical-align: middle;
 }
 
+/* Top Menu */
+.topmenu li:hover, .topmenu li:hover > a,
+.topmenu li.active >a {
+    color: #fff;
+}
+/* /Top Menu */
+
 /* Login Block */
 .fixed-sidebar-right {
     bottom: 0;
@@ -255,7 +263,7 @@ section {
     right: 0;
     top: 0;
     width: 0;
-    z-index: 1034;
+    z-index: 1020;
 }
 .login-block {
     -webkit-box-sizing: border-box;
@@ -543,6 +551,52 @@ footer a {
     .block-subscribe img {
         max-height: 280px;
     }
+    .header nav ul.topmenu {
+        position: absolute;
+        top: 80px;
+        right: -15px;
+        background: #666;
+        display: none;
+        list-style: none;
+        text-align: left;
+        padding: 15px 30px 30px;
+        width: 300px;
+    }
+    header .menu {
+        position: absolute;
+        top: 17px;
+        right: 0;
+    }
+    .menu-mob-button {
+        font-size: 24px;
+        padding: 20px 0;
+    }
+    .menu-mob-button:hover a {
+        color: #fff;
+    }
+    .topmenu li a {
+        padding: 5px 0;
+        border-bottom: 1px dotted;
+        width: 100%;
+        display: block;
+    }
+}
+@media screen and (min-width: 993px) {
+    .topmenu {
+        display: block !important;
+    }
+    .header nav .topmenu li {
+        display: inline-block;
+        text-transform: uppercase;
+        font-size: 16px;
+        padding: 19px 8px;
+        margin: 0 1px;
+        border-top: 7px solid transparent;
+        font-weight: 600;
+    }
+    .topmenu li.active {
+        border-top-color: #87c877 !important;
+    }
 }
 @media screen and (max-width: 768px) {
     .subscribe-form {
@@ -556,5 +610,13 @@ footer a {
     .img-subscribe {
         max-height: 500px;
         overflow: hidden;
+    }
+}
+@media screen and (max-width: 450px) {
+    .brand-logo h1 {
+        font-size: 20px;
+    }
+    .brand-logo h1 span {
+        font-size: 14px;
     }
 }
