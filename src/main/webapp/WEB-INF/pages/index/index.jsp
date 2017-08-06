@@ -80,12 +80,51 @@
                             </c:forEach>
                         </c:if>
 
-                        <section  class="wow fadeInUp" data-wow-offset="10">
-                            <form id="subscribe_form">
-                                <h2>subscribe to get more info</h2>
-                                <input type="email" name="email" placeholder="me@example.com">
-                                <button>subscribe</button>
-                            </form>
+                        <section>
+                            <div class="col-md-7 wow fadeInUp" data-wow-offset="10">
+                                <h2><s:message code="block.blog.name"/></h2>
+                                <div id="blog">
+                                    <article class="news-item dotdot">
+                                        <h3><a href="#">Title News 1</a></h3>
+                                        <div class="meta-info">
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>01.01.2017
+                                            <i class="fa fa-bars" aria-hidden="true"></i><a href="#">Categories Name</a>
+                                        </div>
+                                        <div class="text-desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                                    </article>
+                                    <article class="news-item dotdot">
+                                        <h3><a href="#">Title News 1</a></h3>
+                                        <div class="meta-info">
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>01.01.2017
+                                            <i class="fa fa-bars" aria-hidden="true"></i><a href="#">Categories Name</a>
+                                        </div>
+                                        <div class="text-desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                                    </article>
+                                    <article class="news-item dotdot">
+                                        <h3><a href="#">Title News 1</a></h3>
+                                        <div class="meta-info">
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>01.01.2017
+                                            <i class="fa fa-bars" aria-hidden="true"></i><a href="#">Categories Name</a>
+                                        </div>
+                                        <div class="text-desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                                    </article>
+                                </div>
+                                <a href="/blog" class="text-right col-xs-12"><s:message code="block.blog.all_news"/> >></a>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="col-md-5 block-subscribe wow fadeInUp" data-wow-offset="10">
+                                <div class="col-xs-12 col-sm-4 col-md-12 img-subscribe">
+                                    <img src="/resources/images/subscribe_img.jpg" class="img-responsive" />
+                                </div>
+                                <div class="subscribe-form col-xs-12 col-sm-8 col-md-12 text-center">
+                                    <form id="subscribe_form">
+                                        <h3 class="font-theme-book"><s:message code="block.subscribe.title"/></h3>
+                                        <input type="email" name="email" class="col-xs-12" placeholder="me@example.com">
+                                        <button class="btn-theme btn-transp col-xs-12"><s:message code="block.subscribe.button"/></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
                         </section>
                     </div>
                 </div>
