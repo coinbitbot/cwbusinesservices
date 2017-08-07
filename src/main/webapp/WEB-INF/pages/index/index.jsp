@@ -18,6 +18,17 @@
         <jsp:include page="../common/header.jsp"/>
 
         <div class="wrapper">
+            <div id="home_slider" class="owl-carousel wow fadeIn" data-wow-offset="10">
+                <div class="item-slide" style="background-image: url('/resources/images/slides/slide-1.jpg'); background-size: cover;">
+                    <div class="title-slider">Choosing the right trustees perspectives on wealth...</div>
+                </div>
+                <div class="item-slide" style="background-image: url('/resources/images/slides/slide-2.jpg'); background-size: cover;">
+                    <div class="title-slider">Choosing the right trustees perspectives on wealth...</div>
+                </div>
+                <div class="item-slide" style="background-image: url('/resources/images/slides/slide-3.jpg'); background-size: cover;">
+                    <div class="title-slider">Choosing the right trustees perspectives on wealth...</div>
+                </div>
+            </div>
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
@@ -133,6 +144,22 @@
         <script>
             $(document).ready(function(){
                 // Carousel
+                $('#home_slider').owlCarousel({
+                    loop:true,
+                    nav: true,
+                    smartSpeed: 1000,
+                    autoplay: true,
+                    autoplayTimeout: 10000,
+                    autoplayHoverPause: true,
+                    navText: '',
+                    center: true,
+                    responsive:{
+                        0:{
+                            items:1
+                        }
+                    }
+                });
+
                 $('#services').owlCarousel({
                     loop:true,
                     margin: 50,
@@ -141,7 +168,8 @@
                     smartSpeed: 1000,
                     autoplayTimeout: 5000,
                     autoplayHoverPause: true,
-                    navText: '<>',
+                    navText: '',
+                    dots: false,
                     responsive:{
                         0:{
                             items:1
@@ -161,7 +189,8 @@
                     nav: true,
                     smartSpeed: 1000,
                     autoplayTimeout: 5000,
-                    navText: '<>',
+                    navText: '',
+                    dots: false,
                     responsive:{
                         0:{
                             items:1

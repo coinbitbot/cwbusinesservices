@@ -190,7 +190,8 @@ section {
 /* Transition */
 .btn-theme, .login-block,
 .service-icon, #companies img,
-.login-block a, .topmenu li {
+.login-block a, .topmenu li,
+.owl-dot, .owl-dot span, .owl-next, .owl-prev {
     -webkit-transition: all .4s ease-in-out;
     -moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
@@ -323,6 +324,92 @@ section {
 /* /Header */
 
 /* Index Page */
+/* Top slider */
+#home_slider .item-slide {
+    background: no-repeat top center;
+}
+#home_slider .title-slider {
+    color: #fff;
+    font-weight: 600;
+    font-family: 'Gotham', Arial, sans-serif;
+    font-size: 72px;
+    padding: 7% 10% 10%;
+    text-align: center;
+    text-shadow: 1px 0 2px rgba(0,0,0,0.5);
+}
+#home_slider .owl-dots {
+    margin-top: -50px;
+}
+#home_slider .owl-dot {
+    border: 1px solid #fff;
+    opacity: .6;
+}
+#home_slider .owl-dot span {
+    background: #fff;
+    opacity: .6;
+}
+#home_slider .owl-dot.active,
+#home_slider .owl-dot:hover,
+#home_slider .owl-dot.active span,
+#home_slider .owl-dot:hover span{
+    opacity: 1;
+}
+.owl-dots {
+    text-align: center;
+    margin-top: 10px;
+    position: relative;
+}
+.owl-dot {
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    border: 1px solid #b0bdb9;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 5px 3px;
+}
+.owl-dot.active, .owl-dot:hover  {
+    border: 1px solid #87c877;
+}
+.owl-dot.active span, .owl-dot:hover span {
+    background: #87c877;
+}
+.owl-dot span {
+    background: #b0bdb9;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    display: block;
+    margin: 2px;
+}
+#home_slider .owl-next, #home_slider .owl-prev {
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border:2px solid #fff;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    font-size: 30px;
+    padding-top: 3px;
+}
+#home_slider .owl-next {
+    right: 5%;
+    padding-left: 5px;
+}
+#home_slider .owl-prev {
+    left: 5%;
+    padding-right: 5px;
+}
+#home_slider .owl-nav > div:hover {
+    opacity: 1;
+}
+/* /Top slider */
+
 /* Section services */
 section h2 {
     margin: 0 0 35px;
@@ -346,26 +433,29 @@ section h2 {
 .owl-nav {
     text-align: center;
     color: #b0bdb9;
-    font-weight: bold;
-    font-size: 54px;
-    line-height: 1em;
-    font-family: 'Times', 'Gotham', Arial, sans-serif;
+    font-family: 'FontAwesome';
+    font-size: 26px;
+}
+.owl-next:before {
+    content: "\f054";
+}
+.owl-prev:before {
+    content: "\f053";
 }
 .owl-nav > div {
     display: inline-block;
-    -webkit-transform: scaleX(.5);
-    -moz-transform: scaleX(.5);
-    -ms-transform: scaleX(.5);
-    -o-transform: scaleX(.5);
-    transform: scaleX(.5);
-    margin: 15px 30px 0;
-    -webkit-transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
-    transition: all .2s ease-in-out;
 }
 .owl-nav > div:hover {
     color: #1a3029;
+}
+#services .owl-nav {
+    margin-top: 20px;
+}
+#services .owl-next {
+    margin-left: 50px;
+}
+#services .owl-prev {
+    margin-right: 50px;
 }
 /* /Section services */
 
@@ -386,7 +476,8 @@ section h2 {
 #companies a:hover > img {
     opacity: 1;
 }
-#companies .owl-nav > div {
+#companies .owl-nav > div,
+#home_slider .owl-nav > div {
     position: absolute;
     top: 50%;
     margin-top: -27px;
@@ -398,7 +489,7 @@ section h2 {
 #companies .owl-nav .owl-prev {
    left: -45px;
 }
-#companies .owl-nav .owl-next {
+#companies .owl-nav .owl-next{
     right: -45px;
 }
 /* /Section companies */
@@ -580,6 +671,9 @@ footer a {
         width: 100%;
         display: block;
     }
+    #home_slider .title-slider {
+        font-size: 60px;
+    }
 }
 @media screen and (min-width: 993px) {
     .topmenu {
@@ -597,6 +691,9 @@ footer a {
     .topmenu li.active {
         border-top-color: #87c877 !important;
     }
+    #home_slider .item-slide {
+        min-height: 540px;
+    }
 }
 @media screen and (max-width: 768px) {
     .subscribe-form {
@@ -610,6 +707,9 @@ footer a {
     .img-subscribe {
         max-height: 500px;
         overflow: hidden;
+    }
+    #home_slider .title-slider {
+        font-size: 48px;
     }
 }
 @media screen and (max-width: 450px) {
