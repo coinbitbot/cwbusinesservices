@@ -60,11 +60,11 @@
                         <Br />
                         <strong>interests:</strong>
                         <span ng-if="entity.interests_name" ng-repeat="interest in entity.interests_name">
-                        {{interest}},&nbsp;
-                    </span>
+                            {{interest}},&nbsp;
+                        </span>
                         <span ng-if="entity.interest_alter">
-                        {{entity.interest_alter}}
-                    </span>
+                            {{entity.interest_alter}}
+                        </span>
                         <Br />
                         <strong>industry:</strong> {{entity.industry_name}}
                     </td>

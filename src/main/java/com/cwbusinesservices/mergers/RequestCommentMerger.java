@@ -37,12 +37,12 @@ public class RequestCommentMerger implements Merger<RequestCommentEntity,Request
             entity.setUser(user);
         }else if (entity.getUser()!=null) view.setUser_id(entity.getUser().getId());
         if (view.getRequest_id()!=null){
-            RequestEntity request = requestRepository.findOne(view.getId());
+            RequestEntity request = requestRepository.findOne(view.getRequest_id());
             entity.setRequest(request);
         }else if (entity.getRequest()!=null) view.setRequest_id(entity.getRequest().getId());
         if (utils.notEmpty(view.getText())) entity.setText(view.getText());
         else view.setText(entity.getText());
-        if (view.getHas_file()) entity.setHasFile(view.getHas_file());
+        if (view.getHas_file() != null) entity.setHasFile(view.getHas_file());
         else view.setHas_file(entity.isHasFile());
     }
 }

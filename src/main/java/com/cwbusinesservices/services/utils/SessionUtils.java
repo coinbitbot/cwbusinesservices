@@ -34,11 +34,8 @@ public class SessionUtils {
     public boolean isOwner(IHasOwner entity){
         UserEntity owner = entity.getUser();
         UserEntity currentUser = getCurrentUser();
-        if (owner==null||currentUser==null)
-            return false;
-        if (owner.getId()==currentUser.getId())
-            return true;
-        return false;
+
+        return owner != null && currentUser != null && owner.compareId(currentUser.getId()) == 0;
     }
 
     public UserEntity getCurrentUser() {

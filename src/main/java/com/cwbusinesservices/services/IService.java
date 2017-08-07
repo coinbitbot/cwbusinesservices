@@ -37,4 +37,5 @@ public interface IService<E,V,I extends Serializable> {
     int count(String restrict) throws WrongRestrictionException;
     boolean delete(I id) throws BaseException;
     int count(Criteria<E> criteria) throws WrongRestrictionException;
+    boolean save(E entity);
 }

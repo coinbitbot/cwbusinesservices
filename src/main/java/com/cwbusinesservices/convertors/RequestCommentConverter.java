@@ -20,8 +20,8 @@ public class RequestCommentConverter extends Converter<RequestCommentEntity>{
         Map<String, Object> map = new HashMap<>();
         if(fields.contains(ID))
             map.put(ID, object.getId());
-        if (fields.contains(USER)&&object.getUser()!=null)
-            map.put(USER,object.getUser().getId());
+        if (fields.contains(USER_ID)&&object.getUser()!=null)
+            map.put(USER_ID, object.getUser().getId());
         if (fields.contains(REQUEST)&&object.getRequest()!=null)
             map.put(REQUEST,object.getRequest().getId());
         if (fields.contains(TEXT))

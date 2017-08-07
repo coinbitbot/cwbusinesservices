@@ -15,6 +15,7 @@ import com.cwbusinesservices.persistence.criteria.ICriteriaRepository;
 import com.cwbusinesservices.persistence.dao.repositories.BaseRepository;
 import com.cwbusinesservices.pojo.helpers.GetableById;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
@@ -48,6 +49,7 @@ public abstract class BaseService<E extends GetableById<I>,V extends GetableById
     }
 
     @Override
+    @Transactional
     public E getById(I id) throws BaseException {
         E entity = repository.findOne(id);
         if (entity == null)
@@ -57,11 +59,13 @@ public abstract class BaseService<E extends GetableById<I>,V extends GetableById
     }
 
     @Override
+    @Transactional
     public Map<String, Object> getById(I id, Set<String> fields) throws BaseException {
         return converter.convert(getById(id),fields);
     }
 
     @Override
+    @Transactional
     public List<E> getList(Criteria<E> criteria) throws BaseException {
         List<E> entities = criteriaRepository.find(criteria);
         if (entities == null || entities.isEmpty())
@@ -73,11 +77,13 @@ public abstract class BaseService<E extends GetableById<I>,V extends GetableById
     public abstract List<Map<String, Object>> getList(Set<String> fields, String restrict) throws BaseException;
 
     @Override
+    @Transactional
     public List<Map<String, Object>> getList(Criteria<E> criteria, Set<String> fields) throws BaseException{
         return converter.convert(getList(criteria),fields);
     }
 
     @Override
+    @Transactional
     public I create(V view) throws BaseException, IllegalAccessException, InstantiationException {
         E entity = persistentClass.newInstance();
         merger.merge(entity,view);
@@ -89,6 +95,7 @@ public abstract class BaseService<E extends GetableById<I>,V extends GetableById
     }
 
     @Override
+    @Transactional
     public boolean update(V view) throws BaseException {
         E entity = repository.findOne(view.getId());
         if (entity == null)
@@ -103,11 +110,13 @@ public abstract class BaseService<E extends GetableById<I>,V extends GetableById
     public abstract int count(String restrict) throws WrongRestrictionException;
 
     @Override
+    @Transactional
     public int count(Criteria<E> criteria){
         return criteriaRepository.count(criteria);
     }
 
     @Override
+    @Transactional
     public boolean delete(I id) throws BaseException {
         E entity = repository.findOne(id);
         if (entity == null)
@@ -117,6 +126,8 @@ public abstract class BaseService<E extends GetableById<I>,V extends GetableById
         return true;
     }
 
+    @Override
+    @Transactional
     public boolean save(E entity){
         entity = repository.saveAndFlush(entity);
         return entity != null;

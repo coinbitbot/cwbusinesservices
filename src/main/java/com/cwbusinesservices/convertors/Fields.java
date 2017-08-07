@@ -103,7 +103,7 @@ public class Fields {
 
     public static class RequestComment{
         public static final String ID = "id";
-        public static final String USER = "user";
+        public static final String USER_ID = "user_id";
         public static final String REQUEST = "request";
         public static final String TEXT = "text";
         public static final String HAS_FILE = "has_file";
