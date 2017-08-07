@@ -1,5 +1,6 @@
 package com.cwbusinesservices.convertors;
 
+import com.cwbusinesservices.pojo.entities.IndustryEntity;
 import com.cwbusinesservices.pojo.entities.InterestEntity;
 import com.cwbusinesservices.pojo.entities.RequestCommentEntity;
 import com.cwbusinesservices.pojo.entities.RequestEntity;
@@ -19,23 +20,13 @@ public class RequestConverter extends Converter<RequestEntity>{
         Map<String, Object> map = new HashMap<>();
         if(fields.contains(ID))
             map.put(ID, object.getId());
-        if (fields.contains(USER)&&object.getUser()!=null)
-            map.put(USER,object.getUser().getId());
+        if (fields.contains(USER_ID)&&object.getUser()!=null)
+            map.put(USER_ID,object.getUser().getId());
         if (fields.contains(COMMENTS)&&object.getRequestComments()!=null){
             List<Integer> ids = new LinkedList<Integer>();
             for (RequestCommentEntity entity:object.getRequestComments())
                 ids.add(entity.getId());
             map.put(COMMENTS,ids);
-        }
-        if (fields.contains(INDUSTRY)&&object.getIndustry()!=null)
-            map.put(INDUSTRY,object.getIndustry().getId());
-        if (fields.contains(INTEREST_ALTER))
-            map.put(INTEREST_ALTER,object.getInterestAlter());
-        if (fields.contains(INTERESTS)&&object.getInterests()!=null){
-            List<Integer> ids = new LinkedList<Integer>();
-            for (InterestEntity entity:object.getInterests())
-                ids.add(entity.getId());
-            map.put(INTERESTS,ids);
         }
         if (fields.contains(COMPANY_NAME))
             map.put(COMPANY_NAME,object.getCompanyName());
@@ -43,6 +34,32 @@ public class RequestConverter extends Converter<RequestEntity>{
             map.put(HAS_FILE,object.isHasFile());
         if (fields.contains(STATUS))
             map.put(STATUS,object.getStatus());
+        if (fields.contains(INTEREST_ALTER))
+            map.put(INTEREST_ALTER,object.getInterestAlter());
+
+        IndustryEntity industry = object.getIndustry();
+        if (industry != null) {
+            if (fields.contains(INDUSTRY))
+                map.put(INDUSTRY, industry.getId());
+            if (fields.contains(INDUSTRY_NAME))
+                map.put(INDUSTRY_NAME, industry.getName());
+        }
+        List<InterestEntity> interests = object.getInterests();
+        if (interests != null) {
+            if (fields.contains(INTERESTS)) {
+                List<Integer> ids = new LinkedList<>();
+                for (InterestEntity entity : interests)
+                    ids.add(entity.getId());
+                map.put(INTERESTS, ids);
+            }
+            if (fields.contains(INTERESTS_NAME)) {
+                List<String> names = new LinkedList<>();
+                for (InterestEntity entity : interests)
+                    names.add(entity.getName());
+                map.put(INTERESTS_NAME, names);
+            }
+        }
+
         return map;
     }
 }

@@ -89,11 +89,13 @@ public class Fields {
 
     public static class Request{
         public static final String ID = "id";
-        public static final String USER = "user";
+        public static final String USER_ID = "user_id";
         public static final String COMMENTS = "comments";
         public static final String INDUSTRY = "industry";
+        public static final String INDUSTRY_NAME = "industry_name";
         public static final String INTEREST_ALTER = "interest_alter";
         public static final String INTERESTS = "interests";
+        public static final String INTERESTS_NAME = "interests_name";
         public static final String COMPANY_NAME = "company_name";
         public static final String HAS_FILE = "has_file";
         public static final String STATUS = "status";
