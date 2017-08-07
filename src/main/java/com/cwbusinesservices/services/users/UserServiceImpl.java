@@ -104,7 +104,7 @@ public class UserServiceImpl extends IUserService {
         }
 
         if (!sessionUtils.isAuthorized()){
-            sessionUtils.logeInUser(entity);
+            signInUser(view);
         }
 
         //TODO merge requests and comments

@@ -66,6 +66,9 @@
                         <security:authorize access="hasPermission(1,'CREATE_POST,EDIT_POST')">
                             <li><a href="/admin/posts/all" class="active">All posts</a></li>
                         </security:authorize>
+                        <security:authorize access="hasPermission(1,'CREATE_REQUEST,EDIT_REQUEST,VIEW_REQUEST')">
+                            <li><a href="/admin/requests/all" class="active">All requests</a></li>
+                        </security:authorize>
                     </ul>
                 </li>
             </ul>

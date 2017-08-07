@@ -34,26 +34,23 @@ public class SessionUtils {
     public boolean isOwner(IHasOwner entity){
         UserEntity owner = entity.getUser();
         UserEntity currentUser = getCurrentUser();
-        if (owner==null||currentUser==null)
-            return false;
-        if (owner.getId()==currentUser.getId())
-            return true;
-        return false;
+
+        return owner != null && currentUser != null && owner.compareId(currentUser.getId()) == 0;
     }
 
     public UserEntity getCurrentUser() {
         if (isAuthorized()) {
-            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            return usersRepository.findByEmail(userDetails.getUsername());
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            UserEntity entity = (UserEntity)authentication.getPrincipal();
+
+            return usersRepository.findByEmail(entity.getEmail());
         } else
             return null;
     }
     public boolean isAuthorized() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!(authentication instanceof AnonymousAuthenticationToken))
-            return true;
-        else
-            return false;
+
+        return !(authentication instanceof AnonymousAuthenticationToken);
     }
 
     public void authorized() throws AuthRequiredException {
@@ -93,17 +90,6 @@ public class SessionUtils {
         put("moderator", new SimpleGrantedAuthority("ROLE_MODERATOR"));
         put("user",   new SimpleGrantedAuthority("ROLE_USER"));
     }};
-
-    public void logeInUser(UserEntity entity) {
-        UserEntity user = usersRepository.findByEmail(entity.getEmail());
-        boolean enabled = true;
-        if (!user.isActive())
-            enabled = false;
-        UserDetails userDetails = new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
-                enabled, true, true, true, getGrantedAuthorities(user));
-        Authentication auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(auth);
-    }
 
 
     private List<GrantedAuthority> getGrantedAuthorities(UserEntity user){
