@@ -18,7 +18,7 @@
                         <ul class="topmenu">
                             <li id="home"><a href="/"><s:message code="navmenu.home"/></a></li>
                             <li id="menu-services"><a href=""><s:message code="navmenu.services"/></a></li>
-                            <li id="menu-companies"><a href="companies/all"><s:message code="navmenu.companies"/></a></li>
+                            <li id="menu-companies"><a href=""><s:message code="navmenu.companies"/></a></li>
                             <li id="menu-blog"><a href="/blog"><s:message code="navmenu.blog"/></a></li>
                             <li id="menu-contacts"><a href=""><s:message code="navmenu.contacts"/></a></li>
                         </ul>

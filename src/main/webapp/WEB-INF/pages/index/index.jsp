@@ -18,16 +18,27 @@
         <jsp:include page="../common/header.jsp"/>
 
         <div class="wrapper">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
+            <div id="home_slider" class="owl-carousel wow fadeIn" data-wow-offset="10">
+                <div class="item-slide" style="background-image: url('/resources/images/slides/slide-1.jpg'); background-size: cover;">
+                    <div class="title-slider container">Choosing the right trustees perspectives on wealth...</div>
+                </div>
+                <div class="item-slide" style="background-image: url('/resources/images/slides/slide-2.jpg'); background-size: cover;">
+                    <div class="title-slider container">Choosing the right trustees perspectives on wealth...</div>
+                </div>
+                <div class="item-slide" style="background-image: url('/resources/images/slides/slide-3.jpg'); background-size: cover;">
+                    <div class="title-slider container">Choosing the right trustees perspectives on wealth...</div>
+                </div>
+            </div>
+            <div>
+                <div class="">
+                    <div>
 
                         <c:if test="${blocks ne null}">
                             <c:forEach var="block" items="${blocks}">
                                 <c:choose>
                                     <c:when test="${block.code eq 'SERVICES'}">
                                         <c:if test="${services ne null}">
-                                            <section  class="wow fadeInUp" data-wow-offset="10">
+                                            <section  class="wow fadeInUp container" data-wow-offset="10">
                                                 <h2>${block.title}</h2>
                                                 <div id="services" class="owl-carousel">
                                                     <c:forEach var="service" items="${services}">
@@ -43,12 +54,22 @@
                                                 </div>
                                             </section>
                                             <div class="clearfix"></div>
+                                            <section  class="wow fadeInUp" data-wow-offset="10" >
+                                                <div class="get-started">
+                                                    <div class="container text-center">
+                                                    <h2 class="col-xs-12">Are You interested?</h2>
+                                                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                                                        <a href="/register" class="btn-theme btn-1 font-theme-book col-xs-12 btn-start">Let`s get started</a>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </section>
                                         </c:if>
                                     </c:when>
 
                                     <c:when test="${block.code eq 'COMPANIES'}">
                                         <c:if test="${companies ne null}">
-                                            <section  class="wow fadeInUp" data-wow-offset="10">
+                                            <section  class="wow fadeInUp container" data-wow-offset="10">
                                                 <h2>${block.title}</h2>
                                                 <div id="companies" class="owl-carousel">
                                                     <c:forEach var="company" items="${companies}">
@@ -68,6 +89,7 @@
                                     <c:when test="${block.code eq 'TESTIMONIALS'}">
                                         <c:if test="${testimonials ne null}">
                                             <section  class="wow fadeInUp" data-wow-offset="10">
+                                                <div class="container">
                                                 <h2>${block.title}</h2>
                                                 <c:forEach var="testimonial" items="${testimonials}">
                                                     <div>
@@ -76,6 +98,7 @@
                                                         ${testimonial.text}
                                                     </div>
                                                 </c:forEach>
+                                                </div>
                                             </section>
                                         </c:if>
                                     </c:when>
@@ -83,7 +106,7 @@
                             </c:forEach>
                         </c:if>
 
-                        <section>
+                        <section class="container">
                             <div class="col-md-7 wow fadeInUp" data-wow-offset="10">
                                 <h2><s:message code="block.blog.name"/></h2>
                                 <div id="blog">
@@ -122,6 +145,10 @@
                             </div>
                             <div class="clearfix"></div>
                         </section>
+                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 wow fadeInUp get-started-2" data-wow-offset="10">
+                            <a href="/register" class="btn-theme btn-2 font-theme-book col-xs-12 btn-start">Let`s get started</a>
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
             </div>
@@ -133,6 +160,22 @@
         <script>
             $(document).ready(function(){
                 // Carousel
+                $('#home_slider').owlCarousel({
+                    loop:true,
+                    nav: true,
+                    smartSpeed: 1000,
+                    autoplay: true,
+                    autoplayTimeout: 10000,
+                    autoplayHoverPause: true,
+                    navText: '',
+                    center: true,
+                    responsive:{
+                        0:{
+                            items:1
+                        }
+                    }
+                });
+
                 $('#services').owlCarousel({
                     loop:true,
                     margin: 50,
@@ -141,7 +184,8 @@
                     smartSpeed: 1000,
                     autoplayTimeout: 5000,
                     autoplayHoverPause: true,
-                    navText: '<>',
+                    navText: '',
+                    dots: false,
                     responsive:{
                         0:{
                             items:1
@@ -161,7 +205,8 @@
                     nav: true,
                     smartSpeed: 1000,
                     autoplayTimeout: 5000,
-                    navText: '<>',
+                    navText: '',
+                    dots: false,
                     responsive:{
                         0:{
                             items:1
