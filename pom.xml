@@ -421,9 +421,9 @@
                 <configuration>
                     <email>${jelastic.login}</email>
                     <password>${jelastic.pass}</password>
-                    <context>jeclastic_context</context>
-                    <environment>papaers-server</environment>
-                    <api_hoster>app.mircloud.host</api_hoster>
+                    <context>charlesworthbgs</context>
+                    <environment>charlesworthbgs</environment>
+                    <api_hoster>app.j.layershift.co.uk</api_hoster>
                 </configuration>
             </plugin>
             <plugin>
