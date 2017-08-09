@@ -437,7 +437,7 @@
                 <configuration>
                     <email>${jelastic.login}</email>
                     <password>${jelastic.pass}</password>
-                    <context>charlesworthbgs</context>
+                    <context>cwbusinesservices</context>
                     <environment>charlesworthbgs</environment>
                     <api_hoster>app.j.layershift.co.uk</api_hoster>
                 </configuration>
