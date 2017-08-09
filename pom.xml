@@ -57,7 +57,7 @@
                 <jdbc.password>4z7udO0csAnm</jdbc.password>
                 <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
                 <jdbc.database.name>cwbusinesservices</jdbc.database.name>
-                <jdbc.database.server>node156659-charlesworthbgs.j.layershift.co.uk</jdbc.database.server>
+                <jdbc.database.server>109.109.135.119</jdbc.database.server>
                 <jdbc.url>
                     <![CDATA[jdbc:mysql://${jdbc.database.server}/${jdbc.database.name}?autoReconnect=true&amp;createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]>
                 </jdbc.url>
