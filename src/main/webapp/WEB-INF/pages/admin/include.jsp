@@ -8,6 +8,8 @@
 <script src="/resources/js/ajax.js"></script>
 <link rel="stylesheet" href="/resources/js/utils/notification/css/alertify.min.css">
 <link rel="stylesheet" href="/resources/js/utils/notification/css/themes/default.min.css">
+<link rel="stylesheet" href="/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/resources/css/admin.css">
 <script src="/resources/js/utils/notification/alertify.min.js"></script>
 <script src="/resources/js/global_utils.js"></script>
 <script src="/resources/js/auth/sign_in.js"></script>
