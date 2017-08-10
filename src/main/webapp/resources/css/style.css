@@ -90,15 +90,21 @@ a:hover, a:focus {
 }
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.3em;
+    font-weight: 600;
+}
+h1 {
+    font-size: 36px;
+    text-transform: uppercase;
 }
 h2 {
-    font-size: 36px;
-    font-weight: 600;
+    font-size: 30px;
     text-transform: uppercase;
 }
 h3 {
     font-size: 24px;
-    font-weight: 600;
+}
+h4 {
+    font-size: 20px;
 }
 select, textarea, input,
 input[type="text"],
@@ -115,7 +121,7 @@ input[type="url"],
 input[type="search"],
 input[type="tel"],
 input[type="color"] {
-    padding: 12px;
+    padding: 11px 15px;
     font-size: 16px;
     font-weight: normal;
     margin: 10px 0;
@@ -123,11 +129,12 @@ input[type="color"] {
     -moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
-    color: #b0bdb9;
-    border: 1px solid #b0bdb9;
+    color: #b1bdb9;
+    border: 2px solid #b1bdb9;
     outline: none;
     border-radius: 0;
     background: #fff;
+    opacity: 0.65;
 }
 select:focus,
 textarea:focus,
@@ -147,7 +154,7 @@ input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus {
     color:#666;
-    border-color: #666;
+    opacity: 1;
 }
 select {
     -webkit-appearance: none;
@@ -156,8 +163,9 @@ select {
     text-overflow: '';
     -ms-appearance: none;
     appearance: none!important;
-    background: #f6f6f6 url('/resources/images/select-arrow.png') no-repeat right center;
+    background: #fff url('/resources/images/select-arrow.png') no-repeat right center;
     background-size: auto 15px;
+    cursor: pointer;
 }
 select::-ms-expand {
     display: none;
@@ -170,6 +178,25 @@ section {
     padding-bottom: 60px;
     background: #fff;
 }
+label {font-weight: normal;}
+
+/* Input type=["file'] */
+.inputfile {
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.inputfile + label * {
+    pointer-events: none;
+}
+.filename {
+    background: #fff;
+    border: 0;
+}
+/* /Input type=["file'] */
 
 /* Font styles */
 .font-theme {
@@ -193,7 +220,8 @@ section {
 .btn-theme, .login-block,
 .service-icon, #companies img,
 .login-block a, .topmenu li,
-.owl-dot, .owl-dot span, .owl-next, .owl-prev {
+.owl-dot, .owl-dot span, .owl-next, .owl-prev,
+label {
     -webkit-transition: all .4s ease-in-out;
     -moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
@@ -204,11 +232,12 @@ section {
 /* Buttons */
 .btn-theme {
     text-transform: uppercase;
-    padding: 12px;
+    padding: 12px 30px;
     font-size: 14px;
     font-weight: normal;
     text-align: center;
     margin: 10px auto;
+    cursor: pointer;
 }
 .btn-transp {
     background: none;
@@ -234,13 +263,37 @@ section {
     color: #fff;
     border: 2px solid #1a3029;
 }
+.btn-1, .btn-2 {
+    -webkit-box-shadow: 1px 4px 5px rgba(0,0,0,0.3);
+    -moz-box-shadow: 1px 4px 5px rgba(0,0,0,0.3);
+    box-shadow: 1px 4px 5px rgba(0,0,0,0.3);
+}
+.btn-1:hover, .btn-1:active, .btn-1:focus,
+.btn-2:hover, .btn-2:active, .btn-2:focus {
+    -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,0.3);
+    -moz-box-shadow: 1px 2px 3px rgba(0,0,0,0.3);
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.3);
+}
 .btn-2:hover, .btn-2:active, .btn-2:focus {
     background: #666;
     border-color: #666;
     color: #fff;
 }
 .btn-start {
-    font-size: 18px;
+    font-size: 16px;
+}
+.btn-fb {
+    background: #3b5998;
+    color:#fff;
+    border: 2px solid;
+    text-transform: none;
+    font-size: 16px;
+}
+.btn-fb i {
+    padding-right: 15px;
+    margin-right: 15px;
+    font-size: 20px;
+    border-right: 1px solid;
 }
 /* /Buttons */
 
@@ -351,6 +404,9 @@ section {
 /* Index Page */
 .bg-transp {
     background: transparent;
+}
+.index-page h2 {
+    font-size: 36px;
 }
 /* Top slider */
 #home_slider {padding-bottom: 15px;}
@@ -561,6 +617,9 @@ section h2 {
 .testim-item > div {
     padding: 15px 30px 30px;
     background: rgba(0,0,0,0.3);
+}
+.testim-item a:hover {
+    color:#cac3bc;
 }
 /* Slideshow */
 .cb-slideshow,
@@ -785,6 +844,7 @@ section h2 {
 }
 .subscribe-form input {
     width: 100%;
+    opacity: 1;
 }
 .subscribe-form button {
     color: #fff;
@@ -798,6 +858,56 @@ section h2 {
 }
 /* /Blog & Subscribe */
 /* /Index Page */
+
+/* Registration */
+.register-block {
+    margin: 35px 0;
+}
+.subheader {
+    color: #666;
+}
+.checkbox {
+    display: inline-block;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+.checkbox + label {
+    color: #b1bdb9;
+    display: inline-block;
+    position: relative;
+}
+.checkbox + label:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    width: 44px;
+    height: 44px;
+    border: 2px solid #b1bdb9;
+    margin-right: 15px;
+    opacity: 0.65;
+}
+.checkbox:checked + label {
+    color: #666;
+}
+.checkbox:checked + label:before {
+    opacity: 1;
+}
+.checkbox:checked + label:after {
+    content: '\f00c';
+    display: inline-block;
+    font-family: 'FontAwesome';
+    color: #87c877;
+    font-size: 40px;
+    position: absolute;
+    top:-10px;
+    left: 10px;
+    text-shadow: 1px 4px 5px rgba(0,0,0,0.3);
+}
+.interested-item:nth-child(2n+1) {
+    clear: both;
+}
+/* /Registration */
 
 /* Footer */
 footer {
@@ -993,6 +1103,10 @@ footer a {
     }
     #home_slider .title-slider {
         font-size: 48px;
+    }
+    .btn-choose-file {
+        float: none;
+        max-width: 300px;
     }
 }
 @media screen and (max-width: 450px) {
