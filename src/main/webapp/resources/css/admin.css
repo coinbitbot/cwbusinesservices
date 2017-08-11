@@ -345,6 +345,16 @@ textarea.form-control {
 .block-fileinput {
     margin-bottom: 20px;
 }
+/* Comments */
+.item-comment {
+    padding: 5px 0;
+    border-bottom: 1px dotted #ccc;
+    margin-bottom: 15px;
+}
+.item-comment:last-child {
+    border-bottom: none;
+}
+/* /Comments */
 /* Input type=["file'] */
 .inputfile {
     width: 1px;
@@ -432,7 +442,7 @@ textarea.form-control {
     .admin-nav .dropdown-menu:before {
         border: none;
     }
-    .total-count, .add-new {
+    .total-count, .add-new, .set-status {
         text-align: center;
     }
     .add-new {
