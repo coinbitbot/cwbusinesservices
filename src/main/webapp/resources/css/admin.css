@@ -357,6 +357,29 @@ textarea.form-control {
 /* /Input type=["file'] */
 /* /Forms */
 
+/* Modal window */
+.modal-theme .modal-content {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    padding: 5px 15px;
+}
+.modal-theme .modal-header {
+    border-bottom: 2px groove #fff;
+    margin-bottom: 15px;
+}
+.modal-theme h4 {
+    font-size: 20px;
+}
+.modal-theme .modal-title {
+    font-weight: 600;
+    color: #666;
+}
+.modal-theme button {
+    margin-top: 15px;
+}
+/* /Modal window */
+
 
 /* Media screen */
 @media screen and (max-width: 768px) {

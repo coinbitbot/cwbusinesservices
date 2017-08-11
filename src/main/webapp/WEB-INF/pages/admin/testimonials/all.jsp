@@ -66,8 +66,8 @@
                 <select id="pages" class="form-control">
                     <option value="0">1</option>
                 </select>
+                <button class="btn btn-theme-ok">Move to page</button>
             </div>
-            <button class="btn btn-theme-ok">Move to page</button>
         </form>
         <div class="clearfix"></div>
     </div>
