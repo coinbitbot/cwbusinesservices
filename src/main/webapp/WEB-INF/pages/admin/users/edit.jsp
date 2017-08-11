@@ -7,7 +7,10 @@
     <jsp:include page="../header.jsp" />
     <div class="container" ng-controller="user_edit_forms">
         <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
-            <div class="col-xs-12 page-title">Edit user</div>
+            <div class="top-nav">
+                <a href="/admin/users/all"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Back to all users</a>
+            </div>
+            <div class="page-title">Create / Edit user</div>
             <form ng-submit="saveUser();" class="edit-form">
                 <div class="form-group">
                     <label>Email</label>

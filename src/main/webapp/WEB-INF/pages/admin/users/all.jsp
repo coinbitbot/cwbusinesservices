@@ -8,9 +8,10 @@
 
 <div class="col-xs-12" ng-controller="all_users">
     <div class="col-xs-12 page-title">All users</div>
-    <div class="col-xs-12 total-count text-muted">
+    <div class="col-sm-6 total-count text-muted">
         Total number: {{total_count}}, on page: {{number_on_page}}
     </div>
+    <div class="col-sm-6 text-right add-new"><a href="/admin/users/create" class="btn btn-theme-ok">Add new user</a></div>
     <div class="clearfix"></div>
     <div class="col-sm-3">
         <div class="block-content bg-pattern">
