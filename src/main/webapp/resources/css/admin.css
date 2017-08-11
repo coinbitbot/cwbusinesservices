@@ -226,6 +226,10 @@ a.nav-brand {
 .table>tbody>tr:last-child>td {
     border-bottom: none;
 }
+.table td img {
+    width: 100%;
+    max-width: 80px;
+}
 .block-content {
     padding: 5px 15px 15px;
     margin-bottom: 30px;
@@ -277,6 +281,16 @@ a.nav-brand {
     background: #1a3029;
     color: #fff;
 }
+.btn-theme-dark {
+    background: #1a3029;
+    color: #fff;
+    text-shadow: 0 1px 0 #666;
+}
+.btn-theme-dark:hover, .btn-theme-dark:focus,
+.btn-theme-dark:active {
+    background: #666;
+    color: #fff;
+}
 /* /Buttons */
 
 /* Forms */
@@ -292,6 +306,9 @@ a.nav-brand {
     vertical-align: middle;
     margin-right: 5px;
 }
+textarea.form-control {
+    height: 150px;
+}
 .hr-separator {
     clear: both;
     width: 100%;
@@ -306,6 +323,35 @@ a.nav-brand {
 .top-nav .fa-long-arrow-left {
     margin-right:10px;
 }
+.form-img {
+    width: 150px;
+    margin: 0 auto 10px;
+    display: block;
+}
+.block-fileinput {
+    margin-bottom: 20px;
+}
+/* Input type=["file'] */
+.inputfile {
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.inputfile + label * {
+    pointer-events: none;
+}
+.filename {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: none;
+    border: none;
+    padding-right: 10px;
+}
+/* /Input type=["file'] */
 /* /Forms */
 
 

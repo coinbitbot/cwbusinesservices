@@ -51,5 +51,12 @@
             li.parent().parent().addClass('active');
         }
     });
+
+    $(document).ready( function() {
+        $(".inputfile").change(function(){
+            var filename = $(this).val().replace(/.*\\/, "");
+            $("#filename").val(filename);
+        });
+    });
 </script>
 
