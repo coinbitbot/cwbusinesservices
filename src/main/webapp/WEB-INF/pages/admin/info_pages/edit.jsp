@@ -4,9 +4,12 @@
     <title>Edit info page #${id}</title>
 </head>
 <body>
-<div class="container-fluid">
     <jsp:include page="../header.jsp" />
-    <div class="row main_row" ng-controller="edit_forms">
+    <div class="container col-md-10 col-md-offset-1" ng-controller="edit_forms">
+        <div class="top-nav">
+            <a href="/admin/info_pages/all"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Back to all Info pages</a>
+        </div>
+        <div class="page-title">Create / Edit Info page</div>
         <form ng-submit="save();">
             <div class="form-group">
                 <label>URL</label>
@@ -25,8 +28,8 @@
                 <textarea id="info_page_text" ng-model="entity.text" class="form-control"></textarea>
             </div>
             <div class="form-group">
+                <input type="checkbox" ng-model="entity.active" class="form-control checkbox">
                 <label>Active</label>
-                <input type="checkbox" ng-model="entity.active" class="form-control">
             </div>
             <div class="form-group">
                 <label>Meta title</label>
@@ -40,10 +43,10 @@
                 <label>Meta keywords</label>
                 <textarea ng-model="entity.meta_keywords" class="form-control"></textarea>
             </div>
-            <button class="btn btn-success">Save</button>
+            <div class="text-center"><button class="btn btn-theme-ok">Save</button></div>
         </form>
     </div>
-</div>
+    <div class="clearfix"></div>
 <jsp:include page="../include.jsp" />
 <script src="/resources/js/utils/tinymce/tinymce.min.js"></script>
 <script src="/resources/js/admin/info_pages/edit.js?id=${id}" id="loader"></script>
