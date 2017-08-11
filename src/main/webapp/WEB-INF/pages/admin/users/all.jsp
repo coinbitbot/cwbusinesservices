@@ -6,71 +6,79 @@
 <body>
 <jsp:include page="../header.jsp" />
 
-<div class="row main_row" ng-controller="all_users">
-    <div class="row">
+<div class="col-xs-12" ng-controller="all_users">
+    <div class="col-xs-12 page-title">All users</div>
+    <div class="col-xs-12 total-count text-muted">
         Total number: {{total_count}}, on page: {{number_on_page}}
     </div>
-    <div class="col-md-3">
-        <form ng-submit="moveToPage()">
-            <div class="form-group">
-                <label>page</label>
-                <select id="pages" class="form-control">
-                    <option value="0">1</option>
-                </select>
-            </div>
-            <button class="btn btn-success">Move to page</button>
-        </form>
-        <hr />
+    <div class="clearfix"></div>
+    <div class="col-sm-3">
+        <div class="block-content bg-pattern">
+        <div class="page-subtitle">User filter</div>
         <form ng-submit="filterForm()">
             <div class="form-group">
-                <label>query</label>
+                <label>Query</label>
                 <input ng-model="filters.query" class="form-control">
             </div>
             <div class="form-group">
-                <label>role</label>
+                <label>Role</label>
                 <select ng-model="filters.role" class="form-control">
-                    <option value="">all</option>
-                    <option value="user">user</option>
-                    <option value="admin">admin</option>
-                    <option value="moderator">moderator</option>
+                    <option value="">All</option>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                    <option value="moderator">Moderator</option>
                 </select>
             </div>
             <div class="form-group">
-                <label>active</label>
+                <label>Active</label>
                 <select ng-model="filters.active" class="form-control">
-                    <option value="">ignore</option>
-                    <option value="true">yes</option>
-                    <option value="false">no</option>
+                    <option value="">Ignore</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
                 </select>
             </div>
-            <button class="btn btn-success">Filter</button>
+            <div class="text-center"><button class="btn btn-theme-ok">Filter</button></div>
         </form>
+        </div>
     </div>
-    <div class="col-md-9">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>name</th>
-                <th>role</th>
-                <th>actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="user in entities">
-                <td>
-                    {{user.name}}
-                    <br />
-                    {{user.email || '-'}}
-                </td>
-                <td>{{user.role}}</td>
-                <td>
-                    <a href="/admin/users/{{user.id}}/edit" target="_blank" class="btn btn-success">Edit user</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="col-sm-9">
+        <div class="block-content">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr  ng-repeat="user in entities">
+                    <td>
+                        User name{{user.name}}
+                        <br />
+                        User email{{user.email || '-'}}
+                    </td>
+                    <td>User Role{{user.role}}</td>
+                    <td>
+                        <a href="/admin/users/{{user.id}}/edit" class="btn btn-theme-ok">Edit user</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <form ng-submit="moveToPage()">
+            <div class="form-group text-right page-nav">
+                <label>Page</label>
+                <select id="pages" class="form-control">
+                    <option value="0">1</option>
+                </select>
+                <button class="btn btn-theme-ok">Move to page</button>
+            </div>
+        </form>
+        <div class="clearfix"></div>
     </div>
 </div>
+<div class="clearfix"></div>
 
 <jsp:include page="../include.jsp" />
 <script src="/resources/js/admin/users/all.js"></script>

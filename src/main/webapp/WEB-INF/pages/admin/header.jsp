@@ -81,10 +81,3 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
-
-<style>
-    .main-container {
-        margin: auto;
-        width: 70%;
-    }
-</style>
