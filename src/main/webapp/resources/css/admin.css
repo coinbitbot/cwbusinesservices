@@ -243,6 +243,11 @@ a.nav-brand {
 .warning-message {
     color: #de9d06 !important;
 }
+.up-down {
+    display: inline-block;
+    margin-top: 10px;
+    vertical-align: bottom;
+}
 /* /Page content */
 
 /* Transition */
@@ -294,6 +299,12 @@ a.nav-brand {
     background: #666;
     color: #fff;
 }
+.btn-small {
+    width: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    min-width: 0;
+}
 /* /Buttons */
 
 /* Forms */
@@ -310,7 +321,7 @@ a.nav-brand {
     margin-right: 5px;
 }
 textarea.form-control {
-    height: 150px;
+    height: 100px;
 }
 .hr-separator {
     clear: both;
@@ -327,7 +338,7 @@ textarea.form-control {
     margin-right:10px;
 }
 .form-img {
-    width: 150px;
+    width: 200px;
     margin: 0 auto 10px;
     display: block;
 }

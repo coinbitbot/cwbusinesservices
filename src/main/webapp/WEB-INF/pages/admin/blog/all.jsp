@@ -6,37 +6,40 @@
 <body>
 <jsp:include page="../header.jsp" />
 
-<div class="row main_row" ng-controller="all">
-    <div class="col-md-12">
-        <div class="col-md-3">
-            <a href="/admin/blog/create" class="btn btn-success" target="_blank">Add new blog</a>
-        </div>
-        <div class="col-md-3">
-            total count: {{total_count}}, on page: {{number_on_page}}
-        </div>
+<div class="col-xs-12" ng-controller="all">
+    <div class="col-xs-12 page-title">All Blog</div>
+    <div class="col-sm-6 total-count text-muted">
+        total count: {{total_count}}, on page: {{number_on_page}}
     </div>
-    <div class="col-md-12">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>name</th>
-                <th>code</th>
-                <th>actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="entity in entities">
-                <td>{{entity.name}}</td>
-                <td>{{entity.code}}</td>
-                <td>
-                    <a href="/admin/blog/{{entity.id}}/edit" target="_blank" class="btn btn-success">Edit</a>
-                    <Br />
-                    <button class="btn btn-info" ng-click="up(entity);" ng-show="!min(entity)">up</button>
-                    <button class="btn btn-info" ng-click="down(entity);" ng-show="!max(entity)">down</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="col-sm-6 text-right add-new">
+        <a href="/admin/blog/create" class="btn btn-theme-ok">Add new blog</a>
+    </div>
+    <div class="clearfix"></div>
+    <div>
+        <div class="block-content">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Code</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="entity in entities">
+                    <td>{{entity.name}}</td>
+                    <td>{{entity.code}}</td>
+                    <td>
+                        <a href="/admin/blog/{{entity.id}}/edit" class="btn btn-theme-ok">Edit</a>
+                        <div class="up-down">
+                        <button class="btn btn-theme-dark btn-small" ng-click="up(entity);" ng-show="!min(entity)"><i class="fa fa-chevron-up" aria-hidden="true"></i>&nbsp;Up</button>
+                        <button class="btn btn-theme-dark btn-small" ng-click="down(entity);" ng-show="!max(entity)"><i class="fa fa-chevron-down" aria-hidden="true"></i>&nbsp;Down</button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

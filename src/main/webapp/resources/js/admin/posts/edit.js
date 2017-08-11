@@ -131,6 +131,6 @@
     }
 
     function setImage(icon) {
-        $('#image_container').html('<img src="' + icon + '" style="width: 300px;">');
+        $('#image_container').html('<img src="' + icon + '" class="form-img">');
     }
 })();
