@@ -6,32 +6,34 @@
 <body>
 <jsp:include page="../header.jsp" />
 
-<div class="main_row" ng-controller="all">
-    <div class="col-md-12">
-        <div class="col-md-3">
-            <a href="/admin/interests/create" class="btn btn-success" target="_blank">Add new interest</a>
-        </div>
-        <div class="col-md-3">
-            total count: {{total_count}}, on page: {{number_on_page}}
-        </div>
+<div class="col-xs-12" ng-controller="all">
+    <div class="col-xs-12 page-title">All Interests</div>
+    <div class="col-sm-6 total-count text-muted">
+        total count: {{total_count}}, on page: {{number_on_page}}
     </div>
-    <div class="col-md-12">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>title</th>
-                <th>actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="entity in entities">
-                <td>{{entity.name}}</td>
-                <td>
-                    <a href="/admin/interests/{{entity.id}}/edit" target="_blank" class="btn btn-success">Edit</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+    <div class="col-sm-6 text-right add-new">
+        <a href="/admin/interests/create" class="btn btn-theme-ok">Add new interest</a>
+    </div>
+    <div class="clearfix"></div>
+    <div>
+        <div class="block-content">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="entity in entities">
+                    <td>{{entity.name}}</td>
+                    <td>
+                        <a href="/admin/interests/{{entity.id}}/edit" class="btn btn-theme-ok">Edit</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

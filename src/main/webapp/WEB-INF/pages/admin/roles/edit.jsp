@@ -5,37 +5,46 @@
     <title>Edit role #${id}</title>
 </head>
 <body>
-<div class="container-fluid">
-    <jsp:include page="../header.jsp" />
-    <p style="font-size: 18px;">
-        Please note that these changes will only be applied <b>after</b> the user logs out and logs back in.
-    </p>
-    <div class="main_row" ng-controller="edit_forms">
-        <div style="font-size: 20px;">
-            role name: {{entity.name.toLowerCase()}}
+<jsp:include page="../header.jsp" />
+<div class="container">
+    <div class="col-md-10 col-md-offset-1" ng-controller="edit_forms">
+        <div class="text-center text-uppercase warning-message">
+            <i class="fa fa-exclamation-circle" aria-hidden="true"></i> Please note that these changes will only be applied <b>after</b> the user logs out and logs back in.
         </div>
-        <br />
-        <div class="form-group">
-            <label>new permission</label>
+        <div class="top-nav">
+            <a href="/admin/roles/all"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Back to all roles</a>
+        </div>
+        <div class="page-title">
+            Role name: {{entity.name.toLowerCase()}}
+        </div>
+        <div class="form-group col-sm-6 col-sm-offset-3">
+            <label>New permission</label>
             <select ng-model="new_permission" class="form-control">
                 <c:forEach var="permission" items="${permissions}">
                     <option value="${permission}">${permission.toString().toLowerCase().replace('_', '  ')}</option>
                 </c:forEach>
             </select>
-            <button class="btn btn-success" ng-click="addPermission()">add permission</button>
+            <br/>
+            <div class="text-center">
+                <button class="btn btn-theme-ok" ng-click="addPermission()">Add permission</button>
+            </div>
         </div>
-        <Br />
+        <div class="clearfix"></div>
         <table class="table">
-            <tr>
-                <th>permission name</th>
-                <th>actions</th>
-            </tr>
-            <tr ng-repeat="permission in entity.permissions">
-                <td>{{permission.name.toLowerCase()}}</td>
-                <td>
-                    <button ng-click="deletePermission(permission)" class="btn btn-danger">delete</button>
-                </td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Permission name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="permission in entity.permissions">
+                    <td>{{permission.name.toLowerCase()}}</td>
+                    <td>
+                        <button ng-click="deletePermission(permission)" class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </div>

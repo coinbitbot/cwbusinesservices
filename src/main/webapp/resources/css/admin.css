@@ -240,6 +240,9 @@ a.nav-brand {
     -moz-box-shadow: 0 3px 5px rgba(0,0,0,0.1);
     box-shadow: 0 3px 5px rgba(0,0,0,0.1);
 }
+.warning-message {
+    color: #de9d06 !important;
+}
 /* /Page content */
 
 /* Transition */
