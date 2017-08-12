@@ -129,12 +129,11 @@ input[type="color"] {
     -moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
-    color: #b1bdb9;
-    border: 2px solid #b1bdb9;
+    color: #666;
+    border: 2px solid rgba(177, 189, 185, 0.4);
     outline: none;
     border-radius: 0;
     background: #fff;
-    opacity: 0.65;
 }
 select:focus,
 textarea:focus,
@@ -153,8 +152,17 @@ input[type="url"]:focus,
 input[type="search"]:focus,
 input[type="tel"]:focus,
 input[type="color"]:focus {
-    color:#666;
-    opacity: 1;
+    border-color: #b1bdb9;
+}
+input::-webkit-input-placeholder,
+input:-moz-placeholder,
+input::-moz-placeholder,
+input:-ms-input-placeholder,
+textarea::-webkit-input-placeholder,
+textarea:-moz-placeholder,
+textarea::-moz-placeholder,
+textarea:-ms-input-placeholder {
+    color: #ccc;
 }
 select {
     -webkit-appearance: none;
@@ -613,6 +621,9 @@ section h2 {
     height: 200px;
     font-style: italic;
     margin-bottom: 30px;
+}
+#testimonials .text-desc i {
+    color: #999;
 }
 .testim-item > div {
     padding: 15px 30px 30px;
