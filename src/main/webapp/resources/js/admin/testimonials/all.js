@@ -34,7 +34,15 @@
 
     function get($scope, $http) {
         $scope.entities = [];
-        $http.get('/api/testimonial/?fields=id,name,text,active,position&restrict=' + JSON.stringify(RESTRICTION))
+        $http.get(
+            '/api/testimonial/',
+            {
+                params: {
+                    fields: 'id,name,text,active,position',
+                    restrict: JSON.stringify(RESTRICTION)
+                }
+            }
+        )
             .then(function(response){
                 if (response.data.result) {
                     $scope.entities = response.data.result;
@@ -53,7 +61,14 @@
     }
 
     function count($scope, $http) {
-        $http.get('/api/testimonial/count?restrict=' + JSON.stringify(RESTRICTION))
+        $http.get(
+            '/api/testimonial/count',
+            {
+                params: {
+                    restrict: JSON.stringify(RESTRICTION)
+                }
+            }
+        )
             .then(function(response){
                 var numberOfUsers = response.data.result || 0;
 

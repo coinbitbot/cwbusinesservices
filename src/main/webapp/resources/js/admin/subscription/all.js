@@ -59,22 +59,21 @@
 
                 var $email = $(this).find('[name=email]');
 
-                Ajax.put({
-                    url: '/api/subscription/',
-                    data: {
-                        email: $email.val()
-                    },
-                    success: function(response) {
-                        if (response.result) {
+                $http.put(
+                    '/api/blog/category/',
+                    JSON.stringify({email: $email.val()}),
+                    { headers: HEADERS }
+                )
+                    .then(function(response){
+                        if (response.data.result) {
                             $popup.remove();
 
                             showSuccessMessage('added');
                             $scope.filterForm();
                         } else {
-                            showErrorMessage(response.error);
+                            showErrorMessage(response.data.error);
                         }
-                    }
-                })
+                    });
             });
 
             $('body').append($popup);
@@ -83,7 +82,15 @@
 
     function get($scope, $http) {
         $scope.entities = [];
-        $http.get('/api/subscription/?fields=id,email&restrict=' + JSON.stringify(RESTRICTION))
+        $http.get(
+            '/api/subscription/',
+            {
+                params: {
+                    fields: 'id,email',
+                    restrict: JSON.stringify(RESTRICTION)
+                }
+            }
+        )
             .then(function(response){
                 if (response.data.result) {
                     $scope.entities = response.data.result;
@@ -98,7 +105,14 @@
     }
 
     function count($scope, $http) {
-        $http.get('/api/subscription/count?restrict=' + JSON.stringify(RESTRICTION))
+        $http.get(
+            '/api/subscription/count',
+            {
+                params: {
+                    restrict: JSON.stringify(RESTRICTION)
+                }
+            }
+        )
             .then(function(response){
                 var number = response.data.result || 0;
 

@@ -16,7 +16,15 @@
 
     function get($scope, $http) {
         $scope.entities = [];
-        $http.get('/api/industry/?fields=id,name&restrict=' + JSON.stringify(RESTRICTION))
+        $http.get(
+            '/api/industry/',
+            {
+                params: {
+                    fields: 'id,name',
+                    restrict: JSON.stringify(RESTRICTION)
+                }
+            }
+        )
             .then(function(response){
                 if (response.data.result) {
                     $scope.entities = response.data.result;
@@ -31,7 +39,9 @@
     }
 
     function count($scope, $http) {
-        $http.get('/api/industry/count')
+        $http.get(
+            '/api/industry/count'
+        )
             .then(function(response){
                 var number = response.data.result || 0;
 

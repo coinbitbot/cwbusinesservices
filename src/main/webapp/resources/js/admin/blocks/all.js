@@ -16,7 +16,15 @@
 
     function get($scope, $http) {
         $scope.entities = [];
-        $http.get('/api/block/?fields=id,title,code&restrict=' + JSON.stringify(RESTRICTION))
+        $http.get(
+            '/api/block/',
+            {
+                params: {
+                    fields: 'id,title,code',
+                    restrict: JSON.stringify(RESTRICTION)
+                }
+            }
+        )
             .then(function(response){
                 if (response.data.result) {
                     $scope.entities = response.data.result;

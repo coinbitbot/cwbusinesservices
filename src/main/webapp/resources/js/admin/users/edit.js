@@ -9,7 +9,14 @@
         };
 
         if (parseInt(params.id)) {
-            $http.get('/api/users/' + params.id + '?fields=id,email,role,nickname,active,surname,name,patronymic,birth_year,phone')
+            $http.get(
+                '/api/users/' + params.id,
+                {
+                    params: {
+                        fields: 'id,email,role,nickname,active,surname,name,patronymic,birth_year,phone'
+                    }
+                }
+            )
                 .then(function(response){
                     if (response.data.result) {
                         $scope.user = response.data.result;
