@@ -9,10 +9,6 @@
         };
     };
 
-    exports.appendCSRFtoForm = function($form) {
-        $form.append('<input type="hidden" name="'+csrf.name+'" value="'+csrf.val+'" />');
-    };
-
     exports.get = function(options){
         options = options || {};
         options.type = 'GET';

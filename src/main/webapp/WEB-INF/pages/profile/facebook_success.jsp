@@ -15,6 +15,7 @@
         <input type="hidden" name="access_token">
     </form>
 
+    <jsp:include page="../common/footer.jsp" />
     <script>
         $(function(){
             var hash = location.hash;
@@ -30,15 +31,12 @@
 
                 if (access_token) {
                     var $form = $('#facebook_token');
-                    Ajax.appendCSRFtoForm($form);
                     $form.find('[name=access_token]').val(access_token);
                     $form.submit();
                 }
             }
         });
     </script>
-
-    <jsp:include page="../common/footer.jsp" />
     </body>
     </html>
 </compress:html>

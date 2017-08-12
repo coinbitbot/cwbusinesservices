@@ -24,6 +24,11 @@
 <script src="/resources/js/ajax.js"></script>
 <script>
     Ajax.setCSRF('${_csrf.headerName}', '${_csrf.token}');
+    $(function(){
+        $('form').append('<input type="hidden"' +
+            'name="${_csrf.parameterName}"' +
+            'value="${_csrf.token}"/>');
+    });
 </script>
 <script src="/resources/js/md5.min.js"></script>
 <script src="/resources/social_networks.js"></script>
