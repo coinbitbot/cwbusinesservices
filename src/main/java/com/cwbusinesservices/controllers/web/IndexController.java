@@ -137,13 +137,11 @@ public class IndexController {
         return "profile/can_not_login_sn";
     }
 
-    @PreAuthorize("isAnonymous()")
     @RequestMapping(value = "/facebook_success", method = RequestMethod.GET)
     public String faceBookSuccess() {
         return "profile/facebook_success";
     }
 
-    @PreAuthorize("isAnonymous()")
     @RequestMapping(value = "/facebook_success", method = RequestMethod.POST)
     public String faceBookSuccessPost(
             HttpServletRequest request
@@ -185,7 +183,7 @@ public class IndexController {
         } catch (IOException | NoSuchEntityException | WrongPasswordException e) {
 
         }
-        return "redirect:/profile/social_network_bad";
+        return "redirect:/social_network_bad";
     }
 
     private final static Type MAP_RESPONSE_TYPE = new TypeToken<Map<String, Object>>(){}.getType();
