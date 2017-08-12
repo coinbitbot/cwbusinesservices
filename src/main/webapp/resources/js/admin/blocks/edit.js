@@ -7,7 +7,14 @@
         $scope.entity = { };
 
         if (parseInt(params.id)) {
-            $http.get('/api/block/' + params.id + '?fields=id,title,code')
+            $http.get(
+                '/api/block/' + params.id,
+                {
+                    params: {
+                        fields: 'id,title,code'
+                    }
+                }
+            )
                 .then(function(response){
                     if (response.data.result) {
                         $scope.entity = response.data.result;

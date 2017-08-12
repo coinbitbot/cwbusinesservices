@@ -26,6 +26,7 @@
     Ajax.setCSRF('${_csrf.headerName}', '${_csrf.token}');
 </script>
 <script src="/resources/js/md5.min.js"></script>
+<script src="/resources/social_networks.js"></script>
 <script src="/resources/js/auth/sign_in.js"></script>
 <link rel="stylesheet" href="/resources/js/utils/notification/css/alertify.min.css">
 <link rel="stylesheet" href="/resources/js/utils/notification/css/themes/default.min.css">

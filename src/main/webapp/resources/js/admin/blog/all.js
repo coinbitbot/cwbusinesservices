@@ -51,7 +51,15 @@
 
     function get($scope, $http) {
         $scope.entities = [];
-        $http.get('/api/blog/category/?fields=id,name,code,position&restrict=' + JSON.stringify(RESTRICTION))
+        $http.get(
+            '/api/blog/category/',
+            {
+                params: {
+                    fields: 'id,name,code,position',
+                    restrict: JSON.stringify(RESTRICTION)
+                }
+            }
+        )
             .then(function(response){
                 if (response.data.result) {
                     $scope.entities = response.data.result;

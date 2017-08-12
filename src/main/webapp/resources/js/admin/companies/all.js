@@ -35,7 +35,15 @@
 
     function get($scope, $http) {
         $scope.entities = [];
-        $http.get('/api/company/?fields=id,name,active&restrict=' + JSON.stringify(RESTRICTION))
+        $http.get(
+            '/api/company/',
+            {
+                params: {
+                    fields: 'id,name,active',
+                    restrict: JSON.stringify(RESTRICTION)
+                }
+            }
+        )
             .then(function(response){
                 if (response.data.result) {
                     $scope.entities = response.data.result;
@@ -50,7 +58,14 @@
     }
 
     function count($scope, $http) {
-        $http.get('/api/company/count?restrict=' + JSON.stringify(RESTRICTION))
+        $http.get(
+            '/api/company/count',
+            {
+                params: {
+                    restrict: JSON.stringify(RESTRICTION)
+                }
+            }
+        )
             .then(function(response){
                 var numberOfUsers = response.data.result || 0;
 

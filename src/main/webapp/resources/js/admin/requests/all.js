@@ -33,7 +33,15 @@
 
     function get($scope, $http) {
         $scope.entities = [];
-        $http.get('/api/request/?fields=id,user_id,company_name,status,industry_name,interests_name,interest_alter&restrict=' + JSON.stringify(RESTRICTION))
+        $http.get(
+            '/api/request/',
+            {
+                params: {
+                    fields: 'id,user_id,company_name,status,industry_name,interests_name,interest_alter',
+                    restrict: JSON.stringify(RESTRICTION)
+                }
+            }
+        )
             .then(function(response){
                 if (response.data.result) {
                     $scope.entities = response.data.result;
@@ -52,7 +60,14 @@
     }
 
     function count($scope, $http) {
-        $http.get('/api/request/count?restrict=' + JSON.stringify(RESTRICTION))
+        $http.get(
+            '/api/request/count',
+            {
+                params: {
+                    restrict: JSON.stringify(RESTRICTION)
+                }
+            }
+        )
             .then(function(response){
                 var number = response.data.result || 0;
 
@@ -78,7 +93,14 @@
     }
 
     function loadUser(entity, $http) {
-        $http.get('/api/users/' + entity.user_id + '?fields=email,first_name,last_name')
+        $http.get(
+            '/api/users/' + entity.user_id,
+            {
+                params: {
+                    fields: 'email,first_name,last_name'
+                }
+            }
+        )
             .then(function(response){
                 var user = response.data.result;
                 if (user) {
