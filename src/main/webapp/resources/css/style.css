@@ -154,13 +154,27 @@ input[type="tel"]:focus,
 input[type="color"]:focus {
     border-color: #b1bdb9;
 }
-input::-webkit-input-placeholder,
-input:-moz-placeholder,
-input::-moz-placeholder,
-input:-ms-input-placeholder,
-textarea::-webkit-input-placeholder,
-textarea:-moz-placeholder,
-textarea::-moz-placeholder,
+input::-webkit-input-placeholder {
+    color: #ccc;
+}
+input:-moz-placeholder {
+    color: #ccc;
+}
+input::-moz-placeholder {
+    color: #ccc;
+}
+input:-ms-input-placeholder {
+    color: #ccc;
+}
+textarea::-webkit-input-placeholder {
+    color: #ccc;
+}
+textarea:-moz-placeholder {
+    color: #ccc;
+}
+textarea::-moz-placeholder {
+    color: #ccc;
+}
 textarea:-ms-input-placeholder {
     color: #ccc;
 }
@@ -296,6 +310,10 @@ label {
     border: 2px solid;
     text-transform: none;
     font-size: 16px;
+}
+.btn-fb:hover, .btn-fb:focus {
+    color: #fff;
+    background-color: #383c78;
 }
 .btn-fb i {
     padding-right: 15px;
@@ -1053,6 +1071,27 @@ footer a {
 }
 /* /Parallax */
 
+/* Modal windows */
+.modal-content {
+    padding: 15px 30px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    border: none;
+}
+.modal-header {
+    padding: 15px 0;
+    border-bottom-width: 2px;
+}
+h4.modal-title {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 30px;
+}
+.modal-body {
+    padding: 15px 0;
+}
+/* /Modal windows */
 
 /* Media screen */
 @media screen and (max-width: 992px) {
@@ -1141,6 +1180,12 @@ footer a {
     .btn-choose-file {
         float: none;
         max-width: 300px;
+    }
+    .modal-body .btn-fb {
+        max-width: 250px;
+        margin: 10px auto;
+        float: none;
+        display: block;
     }
 }
 @media screen and (max-width: 450px) {
