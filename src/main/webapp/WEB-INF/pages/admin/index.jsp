@@ -7,5 +7,6 @@
 </head>
 <body>
     <jsp:include page="header.jsp" />
+    <div class="col-xs-12"></div>
 </body>
 </html>

@@ -7,58 +7,54 @@
 <body>
 <jsp:include page="../header.jsp" />
 
-<div class="row main_row" ng-controller="all">
-    <div class="col-md-12">
-        <div class="col-md-3">
-
-        </div>
-        <div class="col-md-3">
-            total count: {{total_count}}, on page: {{number_on_page}}
-        </div>
+<div class="col-xs-12" ng-controller="all">
+    <div class="col-xs-12 page-title">All Requests</div>
+    <div class="col-sm-6 total-count text-muted">
+        total count: {{total_count}}, on page: {{number_on_page}}
     </div>
-    <div class="col-md-12">
-        <div class="col-md-3">
-            <form ng-submit="moveToPage()">
-                <div class="form-group">
-                    <label>page</label>
-                    <select id="pages" class="form-control">
-                        <option value="0">1</option>
-                    </select>
-                </div>
-                <button class="btn btn-success">Move to page</button>
-            </form>
-            <hr />
+    <div class="col-sm-6 text-right add-new">
+
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-sm-3">
+        <div class="block-content bg-pattern">
+            <div class="page-subtitle">Requests filter</div>
             <form ng-submit="filterForm()">
                 <div class="form-group">
-                    <label>query</label>
+                    <label>Query</label>
                     <input ng-model="filters.query" class="form-control">
                 </div>
-                <select ng-model="filters.status" class="form-control">
-                    <option value="">all</option>
-                    <option value="NEW">new</option>
-                    <option value="IN_WORK">in work</option>
-                    <option value="FINISHED">finished</option>
-                </select>
-                <button class="btn btn-success">Filter</button>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select ng-model="filters.status" class="form-control">
+                        <option value="">All</option>
+                        <option value="NEW">New</option>
+                        <option value="IN_WORK">In work</option>
+                        <option value="FINISHED">Finished</option>
+                    </select>
+                </div>
+                <div class="text-center"><button class="btn btn-theme-ok">Filter</button></div>
             </form>
         </div>
-        <div class="col-md-9">
+    </div>
+    <div class="col-sm-9">
+        <div class="block-content">
             <table class="table">
                 <thead>
                 <tr>
-                    <th>user</th>
-                    <th>request info</th>
-                    <th>status</th>
-                    <th>actions</th>
+                    <th>User</th>
+                    <th>Request info</th>
+                    <th>Status</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="entity in entities">
                     <td>{{entity.user_full}}</td>
                     <td>
-                        <strong>company:</strong> {{entity.company_name}}
+                        <em>Company:</em> {{entity.company_name}}
                         <Br />
-                        <strong>interests:</strong>
+                        <em>Interests:</em>
                         <span ng-if="entity.interests_name" ng-repeat="interest in entity.interests_name">
                             {{interest}},&nbsp;
                         </span>
@@ -66,30 +62,39 @@
                             {{entity.interest_alter}}
                         </span>
                         <Br />
-                        <strong>industry:</strong> {{entity.industry_name}}
+                        <em>Industry:</em> {{entity.industry_name}}
                     </td>
                     <td>
                         <strong>{{entity.status.toLowerCase()}}</strong>
                         <br />
                         <security:authorize access="hasPermission(1,'STATUS_CHANGE_REQUEST')">
                             <div class="form-group">
-                                <label>new status</label>
+                                <em>New status</em>
                                 <select ng-model="entity.new_status" class="form-control">
-                                    <option value="NEW">new</option>
-                                    <option value="IN_WORK">in work</option>
-                                    <option value="FINISHED">finished</option>
+                                    <option value="NEW">New</option>
+                                    <option value="IN_WORK">In work</option>
+                                    <option value="FINISHED">Finished</option>
                                 </select>
                             </div>
-                            <button class="btn btn-info" ng-click="setStatus(entity)">set status</button>
+                            <button class="btn btn-theme-dark" ng-click="setStatus(entity)">Set status</button>
                         </security:authorize>
                     </td>
                     <td>
-                        <a href="/admin/requests/{{entity.id}}/chat" target="_blank" class="btn btn-success">Chat</a>
+                        <a href="/admin/requests/{{entity.id}}/chat" class="btn btn-theme-ok">Chat</a>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
+        <form ng-submit="moveToPage()">
+            <div class="form-group text-right page-nav">
+                <label>Page</label>
+                <select id="pages" class="form-control">
+                    <option value="0">1</option>
+                </select>
+                <button class="btn btn-theme-ok">Move to page</button>
+            </div>
+        </form>
     </div>
 </div>
 

@@ -17,7 +17,7 @@
     <body>
         <jsp:include page="../common/header.jsp"/>
 
-        <div class="wrapper">
+        <div class="wrapper index-page">
             <ul class="cb-slideshow">
                 <li><span style="background-image: url('/resources/images/backgrounds/bg-1.jpg')"></span></li>
                 <li><span style="background-image: url('/resources/images/backgrounds/bg-2.jpg')"></span></li>
