@@ -11,7 +11,7 @@
     <body>
     <jsp:include page="../common/header.jsp"/>
 
-    <form action="/profile/facebook_success" method="post" id="facebook_token">
+    <form action="/facebook_success" method="post" id="facebook_token">
         <input type="hidden" name="access_token">
     </form>
 
