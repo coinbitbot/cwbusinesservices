@@ -15,6 +15,7 @@
         <input type="hidden" name="access_token">
     </form>
 
+    <jsp:include page="../common/footer.jsp" />
     <script>
         $(function(){
             var hash = location.hash;
@@ -36,8 +37,6 @@
             }
         });
     </script>
-
-    <jsp:include page="../common/footer.jsp" />
     </body>
     </html>
 </compress:html>

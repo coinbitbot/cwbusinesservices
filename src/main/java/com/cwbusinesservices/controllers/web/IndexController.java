@@ -20,6 +20,7 @@ import com.cwbusinesservices.services.utils.Utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -152,7 +153,7 @@ public class IndexController {
             String accessToken = request.getParameter("access_token");
             String appData = utils.readResponseBody(
                     "https://graph.facebook.com/debug_token?input_token=" + accessToken +
-                            "&access_token=EAALW9H5ZAl2gBANtD9qPZARUntI1YQm1d8YPGWnnptmTKIjyUnDs6pB3sZBne3cZBbpx7ZCuGaNAlpwpwh63XWrDFF5cZCyPbpZAyoNrVwe1UfBX6CoFA1gjY4x2cxZAPgyjh8dpcqceiHRIaDqSQyivHAVz7skZCyZCWVprtfBw66pD0O34VOuoctMCZCl35MV2uwZD"
+                            "&access_token=" + appAccessToken()
             );
 
             Map<String, Object> map = gson.fromJson(appData, MAP_RESPONSE_TYPE);
@@ -185,6 +186,28 @@ public class IndexController {
         }
         return "redirect:/social_network_bad";
     }
+
+    private String appAccessToken() throws IOException, NoSuchEntityException {
+        Gson gson = new Gson();
+
+        String userResponse = utils.readResponseBody(
+                "https://graph.facebook.com/oauth/access_token?client_id=" + facebookAppId+"&client_secret=" + facebookAppSecret + "&grant_type=client_credentials"
+        );
+
+        Map<String, Object> map = gson.fromJson(userResponse, MAP_RESPONSE_TYPE);
+
+        if (map.get("access_token") != null) {
+            return map.get("access_token").toString();
+        }
+
+        throw new NoSuchEntityException("facebook app");
+    }
+
+    @Value("${facebook.app_id}")
+    private String facebookAppId;
+
+    @Value("${facebook.app_secret}")
+    private String facebookAppSecret;
 
     private final static Type MAP_RESPONSE_TYPE = new TypeToken<Map<String, Object>>(){}.getType();
 
