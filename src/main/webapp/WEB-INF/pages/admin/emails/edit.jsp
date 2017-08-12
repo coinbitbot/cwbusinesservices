@@ -4,25 +4,31 @@
     <title>Edit email #${id}</title>
 </head>
 <body>
-<div class="container-fluid">
     <jsp:include page="../header.jsp" />
-    <div class="row main_row" ng-controller="edit_forms">
+    <div class="container col-md-10 col-md-offset-1" ng-controller="edit_forms">
+        <div class="top-nav">
+            <a href="/admin/emails/all"><i class="fa fa-long-arrow-left" aria-hidden="true"></i>Back to all Emails</a>
+        </div>
+        <div class="page-title">Create / Edit email</div>
         <form ng-submit="save();">
-            <p>
-                code: {{entity.code.toLowerCase()}}
-            </p>
+            <div>
+                <label>Code:</label> {{entity.code.toLowerCase()}}
+            </div>
+
             <div class="form-group">
-                <label>subject</label>
+                <label>Subject</label>
                 <input type="text" ng-model="entity.subject" class="form-control">
             </div>
             <div class="form-group">
-                <label>text</label>
+                <label>Text</label>
                 <textarea id="text" ng-model="entity.text" class="form-control"></textarea>
             </div>
-            <button class="btn btn-success">Save</button>
+            <div class="text-center">
+                <button class="btn btn-theme-ok">Save</button>
+            </div>
         </form>
     </div>
-</div>
+    <div class="clearfix"></div>
 <jsp:include page="../include.jsp" />
 <script src="/resources/js/utils/tinymce/tinymce.min.js"></script>
 <script src="/resources/js/admin/emails/edit.js?id=${id}" id="loader"></script>

@@ -1,9 +1,10 @@
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<div id="cookie_popup" style="display: none;width: 100%; height: 60px; bottom: 0px; position: fixed; background: black; color: white; opacity: 0.8; font-size: 17px; padding: 10px;">
-    We are using you cookies.
-    <span id="close_cookie" style="width: 30px;height: 30px;border-radius: 15px;background: #ccc; position: fixed; right: 40px; bottom: 20px; text-align: center; line-height: 2;cursor: pointer;">X</span>
+<div id="cookie_popup">
+    <div class="container">We are using you cookies.
+    <span id="close_cookie" class="close-popup"><i class="fa fa-times" aria-hidden="true"></i></span>
+    </div>
 </div>
 
 <footer>

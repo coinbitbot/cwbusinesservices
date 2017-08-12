@@ -240,6 +240,14 @@ a.nav-brand {
     -moz-box-shadow: 0 3px 5px rgba(0,0,0,0.1);
     box-shadow: 0 3px 5px rgba(0,0,0,0.1);
 }
+.warning-message {
+    color: #de9d06 !important;
+}
+.up-down {
+    display: inline-block;
+    margin-top: 10px;
+    vertical-align: bottom;
+}
 /* /Page content */
 
 /* Transition */
@@ -291,6 +299,12 @@ a.nav-brand {
     background: #666;
     color: #fff;
 }
+.btn-small {
+    width: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    min-width: 0;
+}
 /* /Buttons */
 
 /* Forms */
@@ -307,7 +321,7 @@ a.nav-brand {
     margin-right: 5px;
 }
 textarea.form-control {
-    height: 150px;
+    height: 100px;
 }
 .hr-separator {
     clear: both;
@@ -324,13 +338,23 @@ textarea.form-control {
     margin-right:10px;
 }
 .form-img {
-    width: 150px;
+    width: 200px;
     margin: 0 auto 10px;
     display: block;
 }
 .block-fileinput {
     margin-bottom: 20px;
 }
+/* Comments */
+.item-comment {
+    padding: 5px 0;
+    border-bottom: 1px dotted #ccc;
+    margin-bottom: 15px;
+}
+.item-comment:last-child {
+    border-bottom: none;
+}
+/* /Comments */
 /* Input type=["file'] */
 .inputfile {
     width: 1px;
@@ -353,6 +377,29 @@ textarea.form-control {
 }
 /* /Input type=["file'] */
 /* /Forms */
+
+/* Modal window */
+.modal-theme .modal-content {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    padding: 5px 15px;
+}
+.modal-theme .modal-header {
+    border-bottom: 2px groove #fff;
+    margin-bottom: 15px;
+}
+.modal-theme h4 {
+    font-size: 20px;
+}
+.modal-theme .modal-title {
+    font-weight: 600;
+    color: #666;
+}
+.modal-theme button {
+    margin-top: 15px;
+}
+/* /Modal window */
 
 
 /* Media screen */
@@ -395,7 +442,7 @@ textarea.form-control {
     .admin-nav .dropdown-menu:before {
         border: none;
     }
-    .total-count, .add-new {
+    .total-count, .add-new, .set-status {
         text-align: center;
     }
     .add-new {
