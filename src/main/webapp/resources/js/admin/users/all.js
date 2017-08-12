@@ -38,7 +38,7 @@
             '/api/users/',
             {
                 params: {
-                    fields: 'id,email,role,name',
+                    fields: 'id,email,role,first_name,last_name',
                     restrict: JSON.stringify(RESTRICTION)
                 }
             }

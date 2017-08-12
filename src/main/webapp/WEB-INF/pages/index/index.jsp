@@ -101,7 +101,7 @@
                                                 <div class="testim-item">
                                                     <div>
                                                         <h3>${testimonial.name}</h3>
-                                                        <div class="col-xs-12 text-desc dotdot">${testimonial.text}</div>
+                                                        <div class="col-xs-12 text-desc dotdot"><i class="fa fa-quote-left" aria-hidden="true"></i>${testimonial.text}</div>
                                                         <a class="col-xs-12 text-right" href="#">Read all...</a>
                                                         <div class="clearfix"></div>
                                                     </div>

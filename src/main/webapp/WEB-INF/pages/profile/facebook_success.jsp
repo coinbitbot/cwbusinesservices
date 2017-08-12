@@ -11,10 +11,11 @@
     <body>
     <jsp:include page="../common/header.jsp"/>
 
-    <form action="/profile/facebook_success" method="post" id="facebook_token">
+    <form action="/facebook_success" method="post" id="facebook_token">
         <input type="hidden" name="access_token">
     </form>
 
+    <jsp:include page="../common/footer.jsp" />
     <script>
         $(function(){
             var hash = location.hash;
@@ -36,8 +37,6 @@
             }
         });
     </script>
-
-    <jsp:include page="../common/footer.jsp" />
     </body>
     </html>
 </compress:html>

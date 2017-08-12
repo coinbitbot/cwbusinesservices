@@ -9,7 +9,6 @@
         };
     };
 
-
     exports.get = function(options){
         options = options || {};
         options.type = 'GET';

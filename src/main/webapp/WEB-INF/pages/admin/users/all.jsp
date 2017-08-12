@@ -55,11 +55,11 @@
                 <tbody>
                 <tr  ng-repeat="user in entities">
                     <td>
-                        User name{{user.name}}
+                        {{user.first_name}} {{user.last_name}}
                         <br />
-                        User email{{user.email || '-'}}
+                        {{user.email || '-'}}
                     </td>
-                    <td>User Role{{user.role}}</td>
+                    <td>{{user.role}}</td>
                     <td>
                         <a href="/admin/users/{{user.id}}/edit" class="btn btn-theme-ok">Edit user</a>
                     </td>
