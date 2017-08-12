@@ -39,7 +39,9 @@
     });
 
     function renderSignInPopup(){
-        var popup = $(sing_in_popup_template.render({}));
+        var popup = $(sing_in_popup_template.render({
+            SocialNetworks: SocialNetworks
+        }));
 
         popup.find('.close').click(function(){
             popup.remove();

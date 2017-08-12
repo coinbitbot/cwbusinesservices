@@ -16,7 +16,15 @@
 
     function get($scope, $http) {
         $scope.entities = [];
-        $http.get('/api/role/?fields=id,name,permissions&restrict=' + JSON.stringify(RESTRICTION))
+        $http.get(
+            '/api/role/',
+            {
+                params: {
+                    restrict: JSON.stringify(RESTRICTION),
+                    fields: 'id,name,permissions'
+                }
+            }
+        )
             .then(function(response){
                 if (response.data.result) {
                     $scope.entities = response.data.result;
@@ -31,7 +39,9 @@
     }
 
     function count($scope, $http) {
-        $http.get('/api/role/count')
+        $http.get(
+            '/api/role/count'
+        )
             .then(function(response){
                 var number = response.data.result || 0;
 

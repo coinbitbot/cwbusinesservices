@@ -25,7 +25,14 @@
         $scope.entity = { };
 
         if (parseInt(params.id)) {
-            $http.get('/api/email/template/' + params.id + '?fields=id,subject,text,code')
+            $http.get(
+                '/api/email/template/' + params.id,
+                {
+                    params: {
+                        fields: 'id,subject,text,code'
+                    }
+                }
+            )
                 .then(function(response){
                     if (response.data.result) {
                         $scope.entity = response.data.result;

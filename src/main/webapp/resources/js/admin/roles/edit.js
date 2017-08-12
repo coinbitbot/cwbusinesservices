@@ -7,7 +7,14 @@
         $scope.entity = { };
 
         if (parseInt(params.id)) {
-            $http.get('/api/role/' + params.id + '?fields=id,name,permissions')
+            $http.get(
+                '/api/role/' + params.id,
+                {
+                    params: {
+                        fields: 'id,name,permissions'
+                    }
+                }
+            )
                 .then(function(response){
                     if (response.data.result) {
                         $scope.entity = response.data.result;
@@ -70,7 +77,14 @@
     function reloadPermissions($scope, $http) {
         $scope.entity.permissions = [];
 
-        $http.get('/api/role/' + $scope.entity.id + '?fields=permissions')
+        $http.get(
+            '/api/role/' + $scope.entity.id,
+            {
+                params: {
+                    fields: 'permissions'
+                }
+            }
+        )
             .then(function(response){
                 if (response.data.result) {
                     $scope.entity.permissions = response.data.result.permissions;

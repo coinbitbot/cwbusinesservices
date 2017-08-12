@@ -25,4 +25,9 @@ public class ResourcesController {
         model.addAttribute("var", file);
         return "resources/messages";
     }
+
+    @RequestMapping(value = "/social_networks.js", method = RequestMethod.GET)
+    public String getSocialNetworksData(){
+        return "resources/social_networks";
+    }
 }

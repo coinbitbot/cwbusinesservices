@@ -25,7 +25,14 @@
         $scope.entity = { };
 
         if (parseInt(params.id)) {
-            $http.get('/api/infopage/' + params.id + '?fields=id,url,header,sub_header,text,active,meta_title,meta_description,meta_keywords')
+            $http.get(
+                '/api/infopage/' + params.id,
+                {
+                    params: {
+                        fields: 'id,url,header,sub_header,text,active,meta_title,meta_description,meta_keywords'
+                    }
+                }
+            )
                 .then(function(response){
                     if (response.data.result) {
                         $scope.entity = response.data.result;

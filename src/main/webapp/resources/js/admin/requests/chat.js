@@ -3,8 +3,12 @@
     var app = angular.module('chat', []);
     var current_user_id;
 
-    var OFFSET = 0;
     var LIMIT = 20;
+    var RESTRICTION = {
+        order_direction: 'DESC',
+        offset: 0,
+        limit: LIMIT
+    };
 
     app.controller('chat', function($scope, $http) {
         var params = UrlUtil.parse(angular.element('#loader').attr('src'));
@@ -12,11 +16,20 @@
         $scope.comments = [];
 
         if (parseInt(params.id)) {
-            $http.get('/api/request/' + params.id + '?fields=id,user_id,company_name,status,industry_name,interests_name,interest_alter,has_file')
+            $http.get(
+                '/api/request/' + params.id,
+                {
+                    params: {
+                        fields: 'id,user_id,company_name,status,industry_name,interests_name,interest_alter,has_file'
+                    }
+                }
+            )
                 .then(function(response){
                     if (response.data.result) {
                         $scope.entity = response.data.result;
                         $scope.entity.new_status = $scope.entity.status;
+
+                        RESTRICTION.request_ids = [params.id];
 
                         loadUser($http, $scope.entity.user_id, function(user){
                             $scope.entity.user_full = user;
@@ -29,20 +42,27 @@
         }
 
         $scope.moreComments = function() {
-            OFFSET += LIMIT;
+            RESTRICTION.offset += LIMIT;
 
-            loadComments($scope, $http, params.id);
+            loadComments($scope, $http);
         };
 
         current_user_id = params.current_user_id;
 
-        loadComments($scope, $http, params.id);
+        loadComments($scope, $http);
         setStatus($scope, $http);
         addComment($scope, $http);
     });
 
     function loadUser($http, user_id, callback) {
-        $http.get('/api/users/' + user_id + '?fields=email,first_name,last_name')
+        $http.get(
+            '/api/users/' + user_id,
+            {
+                params: {
+                    fields: 'email,first_name,last_name'
+                }
+            }
+        )
             .then(function(response){
                 var user = response.data.result,
                     result;
@@ -87,7 +107,8 @@
             $http.put('/api/request/comment/', JSON.stringify(toSend), { headers: HEADERS })
                 .then(function (response) {
                     if (response.data.result) {
-                        ++OFFSET;
+                        ++RESTRICTION.offset;
+
                         $scope.comments.push(toSend);
                         var lastComment  = $scope.comments[$scope.comments.length - 1];
 
@@ -127,10 +148,16 @@
         };
     }
 
-    function loadComments($scope, $http, request_id) {
-        $http.get('/api/request/comment/?restrict=' +
-            JSON.stringify({order_direction: 'DESC', request_ids: [request_id], offset: OFFSET, limit: LIMIT}) +
-            '&fields=id,user_id,text,has_file')
+    function loadComments($scope, $http) {
+        $http.get(
+            '/api/request/comment/',
+            {
+                params: {
+                    restrict: JSON.stringify(RESTRICTION),
+                    fields: 'id,user_id,text,has_file'
+                }
+            }
+        )
             .then(function(response){
                 if (response.data.result) {
                     response.data.result.forEach(function(comment){

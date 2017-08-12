@@ -6,11 +6,9 @@
                 <h4 class="modal-title">Sign in</h4>
             </div>
             <div class="modal-body">
-                <a href="https://www.facebook.com/v2.10/dialog/oauth?
-                client_id=799295533586280
-                &redirect_uri=https://localhost:8080/profile/facebook_success
-                &response_type=code%20token
-                &scope=public_profile,email">login with FB</a>
+                <a href="https://www.facebook.com/v2.10/dialog/oauth?client_id=<%= SocialNetworks.Facebook.app_id %>&redirect_uri=<%= SocialNetworks.host %>/facebook_success&response_type=code%20token&scope=public_profile,email">
+                    login with FB
+                </a>
                 <form id="sign_in_form">
                     <div class="form-inline">
                         <input type="email" name="email" class="form-control" placeholder="email">
