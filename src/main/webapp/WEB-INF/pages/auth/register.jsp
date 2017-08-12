@@ -84,7 +84,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12 text-center">
-                        <button id="login_facebook" class="btn-theme btn-fb"><i class="fa fa-facebook" aria-hidden="true"></i>Log in with Facebook</button>
+                        <button id="login_facebook" class="btn-theme btn-fb" type="button"><i class="fa fa-facebook" aria-hidden="true"></i>Log in with Facebook</button>
                     </div>
                     <div class="col-xs-12 text-center">
                         <button type="submit" class="btn-theme btn-2">Register an request</button>
