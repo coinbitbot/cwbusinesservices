@@ -346,7 +346,6 @@ label, .blog-item img, .page-nav {
 .header {
     background: #1a3029;
     border-top:17px solid #87c877;
-    height: 97px;
 }
 .header a {
     color: #cac3bc;
@@ -955,6 +954,10 @@ section h2 {
 /* /Registration */
 
 /* Blog */
+.page-content .text-desc {
+    font-family: 'Gotham', Arial, sans-serif !important;
+    font-weight: normal !important;
+}
 .column-block {
     margin-bottom: 90px;
 }
@@ -1024,6 +1027,36 @@ section h2 {
     display: inline-block;
 }
 /* /Blog */
+
+/* Scrollbar */
+::-webkit-scrollbar-button {
+    background: url('') no-repeat;
+    width:6px;
+    height:0
+}
+
+::-webkit-scrollbar-track {
+    background-color:#32312e;
+    box-shadow:0 0 3px #000 inset;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow:0 1px 1px #fff inset;
+    background: #87c877 url('') no-repeat center;
+}
+
+::-webkit-resizer{
+    background: url('') no-repeat;
+    width:7px;
+    height:0
+}
+
+::-webkit-scrollbar{
+    width: 11px;
+}
+/* /Scrollbar */
 
 /* Footer */
 footer {
@@ -1194,13 +1227,15 @@ h4.modal-title {
     .header nav ul.topmenu {
         position: absolute;
         top: 80px;
-        right: -15px;
+        right: 0;
         background: #666;
         display: none;
         list-style: none;
         text-align: left;
         padding: 15px 30px 30px;
         width: 300px;
+        max-height: calc(100vh - 97px);
+        overflow-y: auto;
     }
     header .menu {
         position: absolute;

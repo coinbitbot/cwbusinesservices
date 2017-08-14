@@ -15,7 +15,7 @@
     <jsp:include page="../common/header.jsp"/>
 
     <div class="container">
-        <section>
+        <section class="page-content">
             <c:if test="${post.has_img}">
                 <div class="text-center"><img src="/api/file/${post.id}?type=POST" class="img-responsive"></div>
             </c:if>
@@ -26,7 +26,7 @@
                 <span><i class="fa fa-list" aria-hidden="true"></i><a href="/blog/${post.category_code}">${post.category_name}</a></span>
             </div>
             <h1>${post.title}</h1>
-            <div>${post.post_text}</div>
+            <div class="text-desc">${post.post_text}</div>
         </section>
         <!-- Post navigation
         <div class="bottom-nav">

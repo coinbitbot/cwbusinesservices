@@ -50,7 +50,7 @@
                     <td>{{entity.url}}</td>
                     <td>{{entity.header}}</td>
                     <td>
-                        <a href="/admin/info_pages/{{entity.id}}/edit" class="btn btn-success">Edit</a>
+                        <a href="/admin/info_pages/{{entity.id}}/edit" class="btn btn-theme-ok">Edit</a>
                     </td>
                 </tr>
                 </tbody>

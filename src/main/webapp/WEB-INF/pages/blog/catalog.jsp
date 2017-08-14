@@ -22,7 +22,7 @@
             <c:choose>
                 <c:when test="${posts ne null}">
                     <c:forEach var="post" items="${posts}">
-                        <div class="col-xs-12 col-sm-6 col-md-4 column-block">
+                        <div class="col-xs-12 col-sm-6 col-md-4 column-block page-content">
                             <div class="blog-item dotdot">
                                 <c:choose>
                                     <c:when test="${post.has_img}">
@@ -38,7 +38,7 @@
                                     <span><i class="fa fa-list" aria-hidden="true"></i><a href="/blog/${post.category_code}">${post.category_name}</a></span>
                                 </div>
                                 <h3><a href="/blog/post/${post.url}">${post.title}</a></h3>
-                                <div>
+                                <div class="text-desc">
                                     ${post.short_description}
                                 </div>
                             </div>
