@@ -95,6 +95,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
     font-size: 36px;
     text-transform: uppercase;
+    margin-bottom: 35px;
 }
 h2 {
     font-size: 30px;
@@ -243,11 +244,11 @@ label {font-weight: normal;}
 .service-icon, #companies img,
 .login-block a, .topmenu li,
 .owl-dot, .owl-dot span, .owl-next, .owl-prev,
-label {
-    -webkit-transition: all .4s ease-in-out;
-    -moz-transition: all .4s ease-in-out;
-    -o-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
+label, .blog-item img, .page-nav {
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 /* /Transition */
 
@@ -320,6 +321,24 @@ label {
     margin-right: 15px;
     font-size: 20px;
     border-right: 1px solid;
+}
+.page-nav, .page-nav[disabled]:hover, .post-nav {
+    padding: 10px 15px;
+    background: #44514e;
+    color: #fff;
+    margin: 0 3px;
+    font-size: 16px;
+}
+.page-nav:hover {
+    background: #666;
+    color: #fff;
+}
+.page-nav.active-page, .post-nav:hover {
+    background: #87c877;
+    color: #fff;
+}
+.page-nav[disabled] {
+    cursor: default;
 }
 /* /Buttons */
 
@@ -851,18 +870,15 @@ section h2 {
     margin: 15px 0;
     font-size: 16px;
 }
-.meta-info, .meta-info a {
+.meta-info {
     color:#999;
-}
-.meta-info a:hover {
-    color:#87c877;
 }
 .meta-info i {
     color: #87c877;
-    margin:0 5px 0 15px;
+    margin-right: 5px;
 }
-.meta-info i:first-child {
-    margin-left: 0;
+.meta-info span {
+    margin-right: 15px;
 }
 .img-subscribe {
     padding: 0;
@@ -937,6 +953,77 @@ section h2 {
     clear: both;
 }
 /* /Registration */
+
+/* Blog */
+.column-block {
+    margin-bottom: 90px;
+}
+.blog-item {
+    height: 500px;
+}
+.blog-item h3 a {
+    color: #333;
+}
+.blog-item h3 a:hover {
+    color: #87c877;
+}
+.blog-item img:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+    -webkit-transform-origin: 50%;
+    -moz-transform-origin: 50%;
+    -ms-transform-origin: 50%;
+    -o-transform-origin: 50%;
+    transform-origin: 50%;
+}
+.img-container {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+}
+.img-container img {
+    width: auto;
+    height: 220px;
+    left: 50%;
+    margin-left: -8%;
+}
+.read-more {
+    margin-top: 30px;
+}
+.bottom-nav {
+    margin-bottom: 60px;
+}
+.bottom-nav .post-nav {
+    margin-bottom: 15px;
+    display: inline-block;
+}
+.bottom-nav .nav-left {
+    margin-left: -15px;
+    margin-right: 10px;
+    float: left;
+}
+.bottom-nav .nav-right {
+    margin-right: -15px;
+    margin-left: 10px;
+    float: right;
+}
+.text-ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.bottom-nav .text-ellipsis {
+    width: 70%;
+    margin-top: 8px;
+    display: inline-block;
+}
+/* /Blog */
 
 /* Footer */
 footer {
@@ -1153,9 +1240,14 @@ h4.modal-title {
         margin: 0 1px;
         border-top: 7px solid transparent;
         font-weight: 600;
+        position: relative;
     }
     .topmenu li.active, .topmenu li:hover  {
         border-top-color: #87c877 !important;
+    }
+    .topmenu ul {
+        position: absolute;
+        display: none;
     }
     #home_slider .item-slide {
         min-height: 540px;
@@ -1187,6 +1279,13 @@ h4.modal-title {
         float: none;
         display: block;
     }
+    .blog-item {
+        height: 700px;
+    }
+    .img-container img {
+        width: 100%;
+        height: auto;
+    }
 }
 @media screen and (max-width: 450px) {
     .brand-logo h1 {
@@ -1194,5 +1293,8 @@ h4.modal-title {
     }
     .brand-logo h1 span {
         font-size: 14px;
+    }
+    .blog-item {
+        height: 500px;
     }
 }
