@@ -21,8 +21,9 @@
             <h1 class="col-xs-12">Blog</h1>
             <c:choose>
                 <c:when test="${posts ne null}">
+                    <div class="row">
                     <c:forEach var="post" items="${posts}">
-                        <div class="col-xs-12 col-sm-6 col-md-4 column-block page-content">
+                        <div class="col-xs-12 col-sm-6 col-md-4 column-block page-content wow fadeInUp" data-wow-offset="10">
                             <div class="blog-item dotdot">
                                 <c:choose>
                                     <c:when test="${post.has_img}">
@@ -45,6 +46,7 @@
                             <a href="/blog/post/${post.url}" class="col-xs-12 btn-theme btn-transp read-more">Read more</a>
                         </div>
                     </c:forEach>
+                    </div>
                 </c:when>
                 <c:otherwise>
                     <div class="no-info text-center">No post</div>

@@ -35,6 +35,7 @@
                     <div class="block-fileinput text-center">
                         <input type="file" id="image" accept="image/*" class="inputfile">
                         <input type="text" id="filename" class="filename" disabled />
+                        <div><em>Please upload an image width of at least 450px</em></div><br/>
                         <label for="image" class="btn-theme-dark btn">Choose file</label>
                     </div>
                     <div class="clearfix"></div>

@@ -37,6 +37,13 @@
     </div>
 
     <jsp:include page="../common/footer.jsp" />
+
+    <script>
+        $(document).ready(function() {
+            // Active menu
+            $('#menu_blog').addClass('active');
+        });
+    </script>
     </body>
     </html>
 </compress:html>
