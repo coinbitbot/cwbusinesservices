@@ -17,15 +17,15 @@
     <div class="container">
         <section class="page-content">
             <c:if test="${post.has_img}">
-                <div class="text-center"><img src="/api/file/${post.id}?type=POST" class="img-responsive"></div>
+                <div class="text-center"><img src="/api/file/${post.id}?type=POST" class="img-responsive img-center"></div>
             </c:if>
-            <div class="meta-info">
+            <div class="meta-info text-center">
                 <span><i class="fa fa-calendar" aria-hidden="true"></i><jsp:setProperty name="dateValue" property="time" value="${post.date}"/>
                     <fmt:formatDate value="${dateValue}" pattern="dd MMMM yyyy HH:mm"/>
                 </span>
                 <span><i class="fa fa-list" aria-hidden="true"></i><a href="/blog/${post.category_code}">${post.category_name}</a></span>
             </div>
-            <h1>${post.title}</h1>
+            <h1 class="text-center">${post.title}</h1>
             <div class="text-desc">${post.post_text}</div>
         </section>
         <!-- Post navigation
