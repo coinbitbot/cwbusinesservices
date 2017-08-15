@@ -11,10 +11,17 @@
     <body>
     <jsp:include page="../common/header.jsp"/>
 
-    <h1>${info_page.header}</h1>
-    <h3>${info_page.sub_header}</h3>
-    <br />
-    ${info_page.text}
+    <div class="container">
+        <section class="page-content">
+            <article>
+                <h1>${info_page.header}</h1>
+                <h3>${info_page.sub_header}</h3>
+                <div class="text-desc">
+                ${info_page.text}
+                </div>
+            </article>
+        </section>
+    </div>
 
     <jsp:include page="../common/footer.jsp" />
     </body>

@@ -263,6 +263,7 @@ label, .blog-item img, .page-nav,
     text-align: center;
     margin: 10px auto;
     cursor: pointer;
+    display: inline-block;
 }
 .btn-transp {
     background: none;
@@ -1092,8 +1093,20 @@ section h2 {
 .company-logo {
     border-top: 7px solid #87c877;
     padding-top: 30px;
+    margin-bottom: 30px;
 }
 /* /Companies */
+
+/* Info pages */
+.info-page-item {
+    margin-bottom: 50px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+.info-page-item:last-child {
+    border-bottom: none;
+}
+/* /Info pages */
 
 /* Scrollbar */
 ::-webkit-scrollbar-button {
