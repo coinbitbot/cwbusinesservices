@@ -21,7 +21,7 @@ import java.util.Map;
  * Created by Andrii on 04.08.2017.
  */
 @Service
-@Transactional(propagation = Propagation.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED, rollbackFor = BaseException.class)
 public class EmailServiceImpl implements IEmailService{
 
     @Autowired

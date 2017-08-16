@@ -23,7 +23,7 @@ import java.util.Set;
  * Created by Andrii on 01.08.2017.
  */
 @Service
-@Transactional(propagation= Propagation.REQUIRED)
+@Transactional(propagation= Propagation.REQUIRED, rollbackFor = BaseException.class)
 public class MenuServiceImpl extends IMenuService{
 
     @Autowired

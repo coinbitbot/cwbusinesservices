@@ -14,7 +14,7 @@ public class MenuView extends CompareIntegerId implements Serializable, GetableB
 
     private static final long serialVersionUID = -733033434382644800L;
     private Integer id;
-    private MenuCodeEnum code;
+    //private MenuCodeEnum code;
     private String name;
     private List<Integer> menu_items;
 
@@ -34,7 +34,7 @@ public class MenuView extends CompareIntegerId implements Serializable, GetableB
     public void setId(Integer id) {
         this.id = id;
     }
-
+/*
     public MenuCodeEnum getCode() {
         return code;
     }
@@ -42,7 +42,7 @@ public class MenuView extends CompareIntegerId implements Serializable, GetableB
     public void setCode(MenuCodeEnum code) {
         this.code = code;
     }
-
+*/
     public String getName() {
         return name;
     }
@@ -59,7 +59,7 @@ public class MenuView extends CompareIntegerId implements Serializable, GetableB
         MenuView menuView = (MenuView) o;
 
         if (id != null ? !id.equals(menuView.id) : menuView.id != null) return false;
-        if (code != menuView.code) return false;
+        //if (code != menuView.code) return false;
         return !(name != null ? !name.equals(menuView.name) : menuView.name != null);
 
     }
@@ -67,7 +67,7 @@ public class MenuView extends CompareIntegerId implements Serializable, GetableB
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (code != null ? code.hashCode() : 0);
+        //result = 31 * result + (code != null ? code.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }
@@ -76,7 +76,7 @@ public class MenuView extends CompareIntegerId implements Serializable, GetableB
     public String toString() {
         return "MenuView{" +
                 "id=" + id +
-                ", code=" + code +
+                //", code=" + code +
                 ", name='" + name + '\'' +
                 '}';
     }

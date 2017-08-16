@@ -49,7 +49,7 @@ public abstract class BaseService<E extends GetableById<I>,V extends GetableById
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = BaseException.class)
     public E getById(I id) throws BaseException {
         E entity = repository.findOne(id);
         if (entity == null)
@@ -59,13 +59,13 @@ public abstract class BaseService<E extends GetableById<I>,V extends GetableById
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = BaseException.class)
     public Map<String, Object> getById(I id, Set<String> fields) throws BaseException {
         return converter.convert(getById(id),fields);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = BaseException.class)
     public List<E> getList(Criteria<E> criteria) throws BaseException {
         List<E> entities = criteriaRepository.find(criteria);
         if (entities == null || entities.isEmpty())
@@ -77,13 +77,13 @@ public abstract class BaseService<E extends GetableById<I>,V extends GetableById
     public abstract List<Map<String, Object>> getList(Set<String> fields, String restrict) throws BaseException;
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = BaseException.class)
     public List<Map<String, Object>> getList(Criteria<E> criteria, Set<String> fields) throws BaseException{
         return converter.convert(getList(criteria),fields);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = BaseException.class)
     public I create(V view) throws BaseException, IllegalAccessException, InstantiationException {
         E entity = persistentClass.newInstance();
         merger.merge(entity,view);
@@ -95,7 +95,7 @@ public abstract class BaseService<E extends GetableById<I>,V extends GetableById
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = BaseException.class)
     public boolean update(V view) throws BaseException {
         E entity = repository.findOne(view.getId());
         if (entity == null)
@@ -110,13 +110,13 @@ public abstract class BaseService<E extends GetableById<I>,V extends GetableById
     public abstract int count(String restrict) throws WrongRestrictionException;
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = BaseException.class)
     public int count(Criteria<E> criteria){
         return criteriaRepository.count(criteria);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = BaseException.class)
     public boolean delete(I id) throws BaseException {
         E entity = repository.findOne(id);
         if (entity == null)
@@ -127,7 +127,7 @@ public abstract class BaseService<E extends GetableById<I>,V extends GetableById
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = BaseException.class)
     public boolean save(E entity){
         entity = repository.saveAndFlush(entity);
         return entity != null;

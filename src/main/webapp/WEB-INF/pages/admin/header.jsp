@@ -72,6 +72,9 @@
                         <security:authorize access="hasPermission(1,'CREATE_REQUEST,EDIT_REQUEST,VIEW_REQUEST')">
                             <li><a href="/admin/requests/all" class="active">All requests</a></li>
                         </security:authorize>
+                        <security:authorize access="hasPermission(1,'CREATE_MENU,EDIT_MENU,CREATE_MENU_ITEM,EDIT_MENU_ITEM')">
+                            <li><a href="/admin/menu/all" class="active">All menus</a></li>
+                        </security:authorize>
                     </ul>
                 </li>
             </ul>

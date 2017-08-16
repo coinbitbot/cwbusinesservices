@@ -24,7 +24,7 @@ public class MenuValidationServiceImpl extends BaseValidator<MenuEntity,Integer>
 
     @Override
     public void validForUpdate(MenuEntity entity) throws BaseException {
-        throw new ActionNotAllowedException("menu.error.edit");
+        //throw new ActionNotAllowedException("menu.error.edit");
     }
 
     @Override
