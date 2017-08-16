@@ -27,10 +27,10 @@
                             <div class="blog-item dotdot">
                                 <c:choose>
                                     <c:when test="${post.has_img}">
-                                        <a href="/blog/post/${post.url}" class="img-container"><img src="/api/file/${post.id}?type=POST"></a>
+                                        <a href="/blog/post/${post.url}" class="img-container"><img src="/api/file/${post.id}?type=POST" class="img-responsive"></a>
                                     </c:when>
                                     <c:otherwise>
-                                    <a href="/blog/post/${post.url}" class="img-container no-image"><img src="/resources/images/no-image.jpg"></a>
+                                    <a href="/blog/post/${post.url}" class="img-container no-image"><img src="/resources/images/no-image.jpg" class="img-responsive"></a>
                                     </c:otherwise>
                                 </c:choose>
                                 <div class="meta-info">
