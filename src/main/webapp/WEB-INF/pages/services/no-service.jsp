@@ -16,8 +16,9 @@
 
     <div class="container">
         <section>
-            No such service
+            <div class="no-info no-info-icon text-center">No such service</div>
         </section>
+        <div class="clearfix"></div>
     </div>
 
     <jsp:include page="../common/footer.jsp" />

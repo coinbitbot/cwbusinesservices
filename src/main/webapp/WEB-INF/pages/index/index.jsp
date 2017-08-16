@@ -146,7 +146,7 @@
                         <div class="col-xs-12 col-sm-4 col-md-12 img-subscribe">
                             <img src="/resources/images/subscribe_img.jpg" class="img-responsive" />
                         </div>
-                        <div class="subscribe-form col-xs-12 col-sm-8 col-md-12 text-center">
+                        <div class="subscribe-form col-xs-12 col-sm-8 col-md-12 text-center" id="subscribe">
                             <form id="subscribe_form">
                                 <h3 class="font-theme-book"><s:message code="block.subscribe.title"/></h3>
                                 <input type="email" name="email" class="col-xs-12" placeholder="me@example.com">

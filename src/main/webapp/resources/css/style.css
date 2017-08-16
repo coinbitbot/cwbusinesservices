@@ -858,8 +858,22 @@ section h2 {
 
 /* Blog & Subscribe */
 .no-info {
+    display: block;
     font-size: 20px;
     font-weight: 600;
+    margin-bottom: 50px;
+}
+.no-info-icon:before {
+    content: "";
+    display: block;
+    background: url("/resources/images/logo_header.png") center no-repeat #b0bdb9;
+    background-size: 60px auto;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 15px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
 }
 #blog article {
     margin-bottom: 30px;
