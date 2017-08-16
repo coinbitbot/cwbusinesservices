@@ -28,6 +28,6 @@ public class MenuConverter extends Converter<MenuEntity>{
                 ids.add(item.getId());
             map.put(MENU_ITEMS,ids);
         }
-        return null;
+        return map;
     }
 }

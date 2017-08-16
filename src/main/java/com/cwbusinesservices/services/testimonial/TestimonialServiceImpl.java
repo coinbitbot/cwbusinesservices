@@ -17,7 +17,7 @@ import java.util.Set;
  * Created by Andrii on 27.07.2017.
  */
 @Service
-@Transactional(propagation= Propagation.REQUIRED)
+@Transactional(propagation= Propagation.REQUIRED, rollbackFor = BaseException.class)
 public class TestimonialServiceImpl extends ITestimonialService{
     @Override
     public List<Map<String, Object>> getList(Set<String> fields, String restrict) throws BaseException {

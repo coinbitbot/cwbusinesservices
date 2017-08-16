@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <header class="navbar-fixed-top">
     <div class="header">
@@ -17,10 +18,10 @@
                     <nav>
                         <ul class="topmenu">
                             <li id="home"><a href="/"><s:message code="navmenu.home"/></a></li>
-                            <li id="menu-services"><a href=""><s:message code="navmenu.services"/></a></li>
-                            <li id="menu-companies"><a href="/companies/catalog"><s:message code="navmenu.companies"/></a></li>
-                            <li id="menu-blog"><a href="/blog"><s:message code="navmenu.blog"/></a></li>
-                            <li id="menu-contacts"><a href=""><s:message code="navmenu.contacts"/></a></li>
+                            <li id="menu_services"><a href=""><s:message code="navmenu.services"/></a></li>
+                            <li id="menu_companies"><a href="/companies/catalog"><s:message code="navmenu.companies"/></a></li>
+                            <li id="menu_blog"><a href="/blog"><s:message code="navmenu.blog"/></a></li>
+                            <li id="menu_contacts"><a href=""><s:message code="navmenu.contacts"/></a></li>
                         </ul>
                     </nav>
                 </div>

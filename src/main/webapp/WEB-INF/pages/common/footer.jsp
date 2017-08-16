@@ -20,6 +20,10 @@
 </footer>
 <div id="scroller" class="hidden-xs"></div>
 
+<!-- Preloader -->
+<div id="hellopreloader"><div id="hellopreloader_preload"></div></div>
+<!-- /Preloader -->
+
 <script src="/resources/js/ejs.min.js"></script>
 <script src="/resources/js/ajax.js"></script>
 <script>
@@ -38,6 +42,7 @@
 <script src="/resources/js/utils/notification/alertify.min.js"></script>
 <script src="/resources/js/global_utils.js"></script>
 <script src="/resources/js/utils/wow.min.js"></script>
+<script src="/resources/js/utils/preload.js"></script>
 <script>
     new WOW().init();
 

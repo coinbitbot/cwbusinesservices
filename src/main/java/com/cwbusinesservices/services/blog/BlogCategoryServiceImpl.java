@@ -26,7 +26,7 @@ import java.util.Set;
  * Created by Andrii on 02.08.2017.
  */
 @Service
-@Transactional(propagation= Propagation.REQUIRED)
+@Transactional(propagation= Propagation.REQUIRED, rollbackFor = BaseException.class)
 public class BlogCategoryServiceImpl extends IBlogCategoryService{
 
     @Autowired

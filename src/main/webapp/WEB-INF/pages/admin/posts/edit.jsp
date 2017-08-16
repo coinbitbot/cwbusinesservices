@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label>Short description</label>
-                    <input id="short_description" type="text" ng-model="entity.short_description" class="form-control">
+                    <input type="text" ng-model="entity.short_description" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Post text</label>

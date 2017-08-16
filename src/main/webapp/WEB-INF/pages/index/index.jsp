@@ -48,7 +48,7 @@
                                             <c:forEach var="service" items="${services}">
                                                 <div class="text-center block-item">
                                                     <div class="service-icon">
-                                                        <img src="/api/file/${service.id}?type=SERVICE" class="img-responsive" />
+                                                        <img src="/api/file/${service.id}?type=SERVICE" class="img-circle img-responsive" />
                                                     </div>
                                                     <h3 class="font-theme-book">${service.name}</h3>
                                                     <div class="dotdot text-desc">${service.description}</div>
@@ -79,7 +79,7 @@
                                             <c:forEach var="company" items="${companies}">
                                                 <div class="text-center block-item">
                                                     <a href="/companies/${company.id}" title="${company.name}">
-                                                        <img src="/api/file/${company.id}?type=COMPANY" class="img-responsive" />
+                                                        <img src="/api/file/${company.id}?type=COMPANY" />
                                                     </a>
                                                 </div>
                                             </c:forEach>
@@ -127,8 +127,8 @@
                                         <article class="news-item dotdot">
                                             <h3><a href="/blog/post/${post.url}">${post.title}</a></h3>
                                             <div class="meta-info">
-                                                <i class="fa fa-calendar" aria-hidden="true"></i><jsp:setProperty name="dateValue" property="time" value="${post.date}"/><fmt:formatDate value="${dateValue}" pattern="dd.MM.yyyy"/>
-                                                <i class="fa fa-bars" aria-hidden="true"></i><a href="/blog/${post.category_code}">${post.category_name}</a>
+                                                <span><i class="fa fa-calendar" aria-hidden="true"></i><jsp:setProperty name="dateValue" property="time" value="${post.date}"/><fmt:formatDate value="${dateValue}" pattern="dd.MM.yyyy"/></span>
+                                                <span><i class="fa fa-list" aria-hidden="true"></i><a href="/blog/${post.category_code}">${post.category_name}</a></span>
                                             </div>
                                             <div class="text-desc">${post.short_description}</div>
                                         </article>

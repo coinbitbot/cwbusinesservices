@@ -4,7 +4,7 @@
 
     app.controller('edit_forms', function($scope, $http) {
         tinymce.init({
-            selector:'#short_description, #full_text',
+            selector:'#full_text',
             relative_urls : false,
             remove_script_host : false,
             convert_urls : true,
@@ -46,8 +46,7 @@
                             $scope.entity.category = $scope.entity.category.toString();
                         }
 
-                        tinymce.get(0).setContent($scope.entity.short_description);
-                        tinymce.get(1).setContent($scope.entity.post_text);
+                        tinymce.get(0).setContent($scope.entity.post_text);
                     } else {
                         showErrorMessage(response.data.error);
                         redirectAfterFreeze('/admin/posts/all');
@@ -67,8 +66,7 @@
 
                 return;
             }
-            $scope.entity.short_description = tinymce.get(0).getContent();
-            $scope.entity.post_text = tinymce.get(1).getContent();
+            $scope.entity.post_text = tinymce.get(0).getContent();
 
             var id = $scope.entity.id;
             var method = (id ? $http.post : $http.put);
