@@ -48,7 +48,7 @@
                                             <c:forEach var="service" items="${services}">
                                                 <div class="text-center block-item">
                                                     <div class="service-icon">
-                                                        <img src="/api/file/${service.id}?type=SERVICE" class="img-responsive" />
+                                                        <img src="/api/file/${service.id}?type=SERVICE" class="img-circle img-responsive" />
                                                     </div>
                                                     <h3 class="font-theme-book">${service.name}</h3>
                                                     <div class="dotdot text-desc">${service.description}</div>

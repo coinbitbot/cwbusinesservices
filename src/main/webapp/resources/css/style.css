@@ -552,15 +552,17 @@ section h2 {
     margin-bottom: 20px;
 }
 .service-icon {
-    width: 90px;
-    height: 90px;
-    margin: 0 auto;
-    padding: 15px;
+    width: 110px;
+    margin: 2px auto;
+    border: 5px solid #fff;
     background-color: #b0bdb9;
     border-radius: 50%;
+    box-shadow: 0 0 2px #666;
 }
 #services .block-item:hover > .service-icon {
     background-color: #87c877;
+    border-color: #87c877;
+    box-shadow: 0 0 2px #87c877;
 }
 .owl-nav {
     text-align: center;
@@ -962,7 +964,7 @@ section h2 {
     font-weight: normal !important;
 }
 .column-block {
-    margin-bottom: 80px;
+    margin-bottom: 50px;
 }
 .column-block:nth-child(3n+1) {
     clear: both;
@@ -1043,7 +1045,7 @@ section h2 {
 }
 .company-item {
     border-top: 7px solid #ddd;
-    padding: 50px 20px 30px;
+    padding: 50px 20px 15px;
     position: relative;
 }
 .company-item h3 {
