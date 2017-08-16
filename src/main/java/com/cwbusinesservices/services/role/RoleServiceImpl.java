@@ -26,7 +26,7 @@ import java.util.Set;
  * Created by Oleh on 29.07.2017.
  */
 @Service
-@Transactional(propagation= Propagation.REQUIRED)
+@Transactional(propagation= Propagation.REQUIRED, rollbackFor = BaseException.class)
 public class RoleServiceImpl extends IRoleService {
 
     @Autowired

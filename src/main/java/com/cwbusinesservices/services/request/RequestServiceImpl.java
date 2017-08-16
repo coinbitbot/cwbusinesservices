@@ -27,7 +27,7 @@ import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
  * Created by Andrii on 29.07.2017.
  */
 @Service
-@Transactional(propagation= Propagation.REQUIRED)
+@Transactional(propagation= Propagation.REQUIRED, rollbackFor = BaseException.class)
 public class RequestServiceImpl extends IRequestService{
 
     @Autowired

@@ -27,8 +27,8 @@ public class MenuMerger implements Merger<MenuEntity,MenuView>{
     public void merge(MenuEntity entity, MenuView view) {
         if (view.getId()!=null) entity.setId(view.getId());
         else view.setId(entity.getId());
-        if (view.getCode()!=null) entity.setCode(view.getCode());
-        else view.setCode(entity.getCode());
+        /*if (view.getCode()!=null) entity.setCode(view.getCode());
+        else view.setCode(entity.getCode());*/
         if (view.getName()!=null) entity.setName(view.getName());
         else view.setName(entity.getName());
         if (view.getMenu_items()!=null){

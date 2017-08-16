@@ -1,5 +1,6 @@
 package com.cwbusinesservices.services.users;
 
+import com.cwbusinesservices.exceptions.BaseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,7 +24,7 @@ public class CustomUserDetailsService implements UserDetailsService{
     @Autowired
     private com.cwbusinesservices.services.users.IUserService userService;
 
-    @Transactional(readOnly=true)
+    @Transactional(readOnly=true, rollbackFor = BaseException.class)
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
         UserEntity user = null;

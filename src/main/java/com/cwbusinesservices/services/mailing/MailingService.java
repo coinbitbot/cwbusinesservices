@@ -73,14 +73,14 @@ public class MailingService implements IMailingService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = BaseException.class)
     public boolean sendEmailToUser(EmailTemplateCodeEnum typeOfEmail, String userEmail, Map<String, String> data, Locale locale) throws BaseException {
         EmailTemplateEntity content = emailBuilder.getEmailContent(typeOfEmail, data, locale);
         return send(userEmail, content, locale);
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = BaseException.class)
     public boolean sendEmailToUser(EmailTemplateEntity content, String userEmail, Map<String, String> data, Locale locale) throws BaseException {
         EmailTemplateEntity email = emailBuilder.formEmailContent(content, data);
         return send(userEmail, content, locale);

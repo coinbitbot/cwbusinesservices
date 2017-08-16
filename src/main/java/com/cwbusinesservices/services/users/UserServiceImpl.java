@@ -52,7 +52,7 @@ import java.util.Set;
  * Created by Andrii on 18.08.2016.
  */
 @Service
-@Transactional(propagation = Propagation.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED, rollbackFor = BaseException.class)
 public class UserServiceImpl extends IUserService {
 
     @Resource

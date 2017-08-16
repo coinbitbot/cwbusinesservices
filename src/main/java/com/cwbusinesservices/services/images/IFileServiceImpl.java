@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by Andrii on 28.07.2017.
  */
 @Service
-@Transactional(propagation= Propagation.REQUIRED)
+@Transactional(propagation= Propagation.REQUIRED, rollbackFor = BaseException.class)
 public class IFileServiceImpl implements IFileService {
 
     @Autowired
