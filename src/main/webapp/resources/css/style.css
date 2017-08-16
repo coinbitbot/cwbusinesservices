@@ -624,6 +624,9 @@ section h2 {
 }
 #companies img {
     opacity: .6;
+    max-height: 80px;
+    width: auto;
+    margin: 0 auto;
 }
 #companies a:hover > img {
     opacity: 1;
@@ -1076,6 +1079,9 @@ section h2 {
     -ms-transform-origin: 50%;
     -o-transform-origin: 50%;
     transform-origin: 50%;
+    max-height: 100px;
+    width: auto;
+    margin: 0 auto;
 }
 .company-item:hover img {
     -webkit-transform: scale(1.1);

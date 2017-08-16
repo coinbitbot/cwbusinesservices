@@ -79,7 +79,7 @@
                                             <c:forEach var="company" items="${companies}">
                                                 <div class="text-center block-item">
                                                     <a href="/companies/${company.id}" title="${company.name}">
-                                                        <img src="/api/file/${company.id}?type=COMPANY" class="img-responsive" />
+                                                        <img src="/api/file/${company.id}?type=COMPANY" />
                                                     </a>
                                                 </div>
                                             </c:forEach>
