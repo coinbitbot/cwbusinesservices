@@ -552,7 +552,7 @@ section h2 {
     margin-bottom: 20px;
 }
 .service-icon {
-    width: 110px;
+    width: 100px;
     margin: 2px auto;
     border: 5px solid #fff;
     background-color: #b0bdb9;
@@ -1069,7 +1069,6 @@ section h2 {
     background: #87c877;
 }
 .company-item img {
-    opacity: 0.8;
     -webkit-transform-origin: 50%;
     -moz-transform-origin: 50%;
     -ms-transform-origin: 50%;
@@ -1097,7 +1096,18 @@ section h2 {
 .company-logo {
     border-top: 7px solid #87c877;
     padding-top: 30px;
-    margin-bottom: 30px;
+    margin-right: 10%;
+    min-width: 25%;
+    max-width: 35%;
+    display: inline-block;
+    vertical-align: bottom;
+}
+.company-name {
+    display: inline-block;
+    width: 50%;
+}
+.page-content .text-desc {
+    margin-top: 50px;
 }
 /* /Companies */
 
@@ -1309,7 +1319,6 @@ h4.modal-title {
     left: 0;
     width: 100%;
     height: 100%;
-    min-width: 1000px;
     background: #1a3029 url("/resources/icons/preload.gif") center center no-repeat;
     background-size:64px;
 }
@@ -1427,6 +1436,15 @@ h4.modal-title {
     }
     .img-container {
         height: auto;
+    }
+    .company-logo {
+        min-width: 50%;
+        max-width: 100%;
+        display: block;
+        margin-bottom: 30px;
+    }
+    .company-name {
+        width: 100%;
     }
 }
 @media screen and (max-width: 450px) {
