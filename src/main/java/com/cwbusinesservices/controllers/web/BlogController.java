@@ -90,10 +90,11 @@ public class BlogController {
     ) {
         try {
             model.addAttribute("post", postService.getByUrl(url, VIEW_FIELDS));
+
+            return "blog/view";
         } catch (BaseException e) {
-            // TODO: redirect to 404?
+            return "blog/no-post";
         }
-        return "blog/view";
     }
 
     private void formCatalog(int page, String category, Model model) {
