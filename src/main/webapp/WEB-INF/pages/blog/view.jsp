@@ -17,7 +17,7 @@
     <div class="container">
         <section class="page-content">
             <c:if test="${post.has_img}">
-                <div class="text-center"><img src="/api/file/${post.id}?type=POST" class="img-responsive img-center"></div>
+                <div class="text-center"><img src="/api/file/${post.id}?type=POST" class="img-responsive img-center post-img"></div>
             </c:if>
             <div class="meta-info text-center">
                 <span><i class="fa fa-calendar" aria-hidden="true"></i><jsp:setProperty name="dateValue" property="time" value="${post.date}"/>

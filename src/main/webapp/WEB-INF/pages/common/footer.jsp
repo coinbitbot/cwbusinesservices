@@ -1,7 +1,7 @@
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<div id="cookie_popup">
+<div id="cookie_popup" class="hidden-print">
     <div class="container">We are using you cookies.
     <span id="close_cookie" class="close-popup"><i class="fa fa-times" aria-hidden="true"></i></span>
     </div>
@@ -18,7 +18,7 @@
         </div>
     </div>
 </footer>
-<div id="scroller" class="hidden-xs"></div>
+<div id="scroller" class="hidden-xs hidden-print"></div>
 
 <!-- Preloader -->
 <div id="hellopreloader"><div id="hellopreloader_preload"></div></div>
