@@ -18,6 +18,6 @@ window.onload = function(){
     setTimeout(function(){
             fadeOutnojquery(hellopreloader);
         },
-        1000
+        500
     );
 };

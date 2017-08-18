@@ -19,24 +19,29 @@
             <h1 class="col-xs-12">Services</h1>
             <c:choose>
                 <c:when test="${services ne null}">
-                    <div class="row">
+                    <div class="row page-content">
                     <c:forEach var="service" items="${services}">
-                        <div class="col-xs-12 col-sm-6 col-md-4 column-block page-content wow fadeInUp" data-wow-offset="10">
-                            <div class="blog-item dotdot">
+                        <div class="service-item col-xs-12">
+                            <div class=" col-xs-12 col-sm-3 col-md-2 icon-service">
+                                <div class="img-center">
                                 <c:choose>
                                     <c:when test="${service.has_icon}">
-                                        <a href="/services/${service.id}/view" class="img-container"><img src="/api/file/${service.id}?type=SERVICE"></a>
+                                        <!--<a href="/services/${service.id}/view">--><img src="/api/file/${service.id}?type=SERVICE" class="img-circle img-responsive"><!--</a>-->
                                     </c:when>
                                     <c:otherwise>
-                                        <a href="/services/${service.id}/view" class="img-container no-image"><img src="/resources/images/no-image.jpg"></a>
+                                        <div class="no-image"><img src="/resources/images/no-service.png" class="img-circle img-responsive"></div>
                                     </c:otherwise>
                                 </c:choose>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-9 col-md-10">
                                 <h3>${service.name}</h3>
                                 <div class="text-desc">
                                     ${service.description}
                                 </div>
                             </div>
                         </div>
+                        <div class="clearfix"></div>
                     </c:forEach>
                     </div>
                 </c:when>
@@ -46,7 +51,7 @@
             </c:choose>
 
             <div class="clearfix"></div>
-            <div class="text-center">
+            <div class="text-center page-pagination">
 
                 <a href="/services/1/page" class="page page-nav">Start</a>
 

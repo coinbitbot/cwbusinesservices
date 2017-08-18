@@ -55,7 +55,7 @@
             </c:choose>
 
             <div class="clearfix"></div>
-            <div class="text-center">
+            <div class="text-center page-pagination">
                 <c:set var="cat" value="" />
                 <c:if test="${current_category ne null}">
                     <c:set var="cat" value="/${current_category.code}" />

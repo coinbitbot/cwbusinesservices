@@ -246,7 +246,8 @@ label {font-weight: normal;}
 .owl-dot, .owl-dot span, .owl-next, .owl-prev,
 label, .blog-item img, .page-nav,
 .company-item, .company-item img,
-.company-item:before{
+.company-item:before,
+.service-item:after, .icon-service >div {
     -webkit-transition: all .4s ease-in-out;
     -moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
@@ -1136,6 +1137,61 @@ section h2 {
 }
 /* /Info pages */
 
+/* Services */
+.service-item {
+    position: relative;
+    margin-bottom: 80px;
+    padding-top: 15px;
+}
+.service-item:before,
+.service-item:after{
+    content: '';
+    display: block;
+    position: absolute;
+    top:-7px;
+    width: 33%;
+    border-top: 7px solid #ddd;
+    -webkit-transform-origin: 0;
+    -moz-transform-origin: 0;
+    -ms-transform-origin: 0;
+    -o-transform-origin: 0;
+    transform-origin: 0;
+}
+.service-item:after {
+    border-top-color: #87c877;
+    -webkit-transform: scaleX(0);
+    -moz-transform: scaleX(0);
+    -ms-transform: scaleX(0);
+    -o-transform: scaleX(0);
+    transform: scaleX(0);
+}
+.service-item:hover:after {
+    -webkit-transform: scaleX(1);
+    -moz-transform: scaleX(1);
+    -ms-transform: scaleX(1);
+    -o-transform: scaleX(1);
+    transform: scaleX(1);
+}
+.service-item:hover .icon-service >div {
+    background-color: #87c877;
+    border-color: #87c877;
+    box-shadow: 0 0 2px #87c877;
+}
+.icon-service {
+    padding-top: 20px;
+}
+.icon-service >div {
+    border: 5px solid #fff;
+    background-color: #ddd;
+    border-radius: 50%;
+    box-shadow: 0 0 2px #666;
+    max-width: 160px;
+}
+.service-item .text-desc {
+    margin-top: 20px;
+}
+/* /Services */
+
 /* Scrollbar */
 ::-webkit-scrollbar-button {
     background: url('') no-repeat;
@@ -1463,6 +1519,13 @@ h4.modal-title {
     .company-name {
         width: 100%;
     }
+    .service-item h3 {
+        text-align: center;
+    }
+    .service-item:before, .service-item:after {
+        left:33.5%;
+        transform-origin: 50%;
+    }
 }
 @media screen and (max-width: 450px) {
     .brand-logo h1 {
@@ -1473,6 +1536,18 @@ h4.modal-title {
     }
     .blog-item {
         height: 500px;
+    }
+    .page-pagination .page-nav,
+    .page-pagination .page-nav[disabled] {
+        background: none;
+        color: #87c877;
+        padding: inherit;
+    }
+    .page-pagination .page-nav:hover {
+        color: #1a3029;
+    }
+    .page-pagination .page-nav[disabled] {
+        color: #666;
     }
 }
 
