@@ -1574,6 +1574,21 @@ h4.modal-title {
     .post-img {
         max-width: 600px;
     }
+    .icon-service {
+        width: 16.66666667%;
+        display: inline-block;
+    }
+    .service-item:before {
+        border-top-color: #87c877;
+    }
+    .service-item:hover .icon-service > div {
+        background-color: rgb(221, 221, 221);
+        box-shadow: rgb(102, 102, 102) 0 0 2px;
+        border-color: #fff;
+    }
+    .service-desc {
+        width: 83.33333333%;
+    }
     footer {
         border-top: 3px solid #1a3029;
     }

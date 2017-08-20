@@ -21,7 +21,7 @@
                 <c:when test="${services ne null}">
                     <div class="row page-content">
                     <c:forEach var="service" items="${services}">
-                        <div class="service-item col-xs-12">
+                        <div class="service-item col-xs-12" id="service-${service.id}">
                             <div class=" col-xs-12 col-sm-3 col-md-2 icon-service">
                                 <div class="img-center">
                                 <c:choose>
@@ -34,7 +34,7 @@
                                 </c:choose>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-9 col-md-10">
+                            <div class="col-xs-12 col-sm-9 col-md-10 service-desc">
                                 <h3>${service.name}</h3>
                                 <div class="text-desc">
                                     ${service.description}

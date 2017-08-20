@@ -55,7 +55,7 @@
                                                     </div>
                                                     <h3 class="font-theme-book">${service.name}</h3>
                                                     <div class="dotdot text-desc">${service.description}</div>
-                                                    <a href="#" class="btn-theme btn-transp col-xs-12"><s:message code="block.services.more"/></a>
+                                                    <a href="/services#service-${service.id}" class="btn-theme btn-transp col-xs-12"><s:message code="block.services.more"/></a>
                                                 </div>
                                             </c:forEach>
                                         </div>
