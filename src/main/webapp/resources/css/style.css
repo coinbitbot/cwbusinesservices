@@ -624,19 +624,15 @@ section h2 {
     vertical-align: middle;
 }
 #companies img {
-    opacity: .6;
-    max-height: 80px;
+    max-height: 100px;
     width: auto;
     margin: 0 auto;
-}
-#companies a:hover > img {
-    opacity: 1;
 }
 #companies .owl-nav > div,
 #home_slider .owl-nav > div {
     position: absolute;
     top: 50%;
-    margin-top: -27px;
+    margin-top: -19px;
     opacity: .5;
 }
 #companies .owl-nav > div:hover {
@@ -647,6 +643,11 @@ section h2 {
 }
 #companies .owl-nav .owl-next{
     right: 0;
+}
+#companies .owl-item {
+    display: inline-block;
+    float: none;
+    vertical-align: middle;
 }
 /* /Section companies */
 
@@ -904,6 +905,7 @@ section h2 {
 }
 .img-subscribe {
     padding: 0;
+    background: #87c877;
 }
 .subscribe-form {
     background: #87c877;
@@ -1404,6 +1406,7 @@ h4.modal-title {
     }
     .block-subscribe img {
         max-height: 280px;
+        margin: 0 auto;
     }
     .header nav ul.topmenu {
         position: absolute;
@@ -1573,6 +1576,9 @@ h4.modal-title {
     }
     .post-img {
         max-width: 600px;
+    }
+    .company-item {
+        border-top-color: #87c877;
     }
     .icon-service {
         width: 16.66666667%;
