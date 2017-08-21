@@ -43,41 +43,6 @@
 <script src="/resources/js/global_utils.js"></script>
 <script src="/resources/js/utils/wow.min.js"></script>
 <script src="/resources/js/utils/preload.js"></script>
-<script>
-    new WOW().init();
-
-    // Login block
-    $('.fa-user').click(function () {
-        $('.login-block').toggleClass('shown');
-    });
-
-    // Mobile menu
-    $('.menu-mob-button').click(function() {
-        if ($('.topmenu').is(':visible')) {
-            $('.topmenu').hide('slow');
-            $(this).html('<a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a>')
-        }
-        else {
-            $('.topmenu').show('slow');
-            $(this).html('<a href="#"><i class="fa fa-times" aria-hidden="true"></i></a>')
-        }
-    });
-
-    // Scroll to top
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 0) {
-            $('#scroller').fadeIn();
-        } else {
-            $('#scroller').fadeOut();
-        }
-    });
-    $('#scroller').click(function () {
-        $('body,html').animate({
-            scrollTop: 0
-        }, 400);
-        return false;
-    });
-</script>
 
 <%-- show js error mssages setup --%>
 <%
