@@ -21,8 +21,8 @@ public class MenuItemConverter extends Converter<MenuItemEntity>{
             map.put(NAME,object.getName());
         if(fields.contains(MENU)&&object.getMenu()!=null)
             map.put(MENU,object.getMenu().getId());
-        if(fields.contains(PARENT_MENU)&&object.getParentMenuItem()!=null)
-            map.put(PARENT_MENU,object.getParentMenuItem().getId());
+        if(fields.contains(PARENT_MENU))
+            map.put(PARENT_MENU, object.getParentMenuItem() != null ? object.getParentMenuItem().getId() : 0);
         if (fields.contains(CHILD_ITEMS)&&object.getChildItems()!=null){
             List<Integer> ids = new LinkedList<>();
             for (MenuItemEntity item:object.getChildItems())

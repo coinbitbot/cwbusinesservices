@@ -38,11 +38,11 @@ public class MenuItemMerger implements Merger<MenuItemEntity,MenuItemView>{
         }else if (entity.getMenu()!=null){
             view.setMenu(entity.getMenu().getId());
         }
-        if(view.getParent_menu_item()!=null){
-            MenuItemEntity menuItemEntity = menuItemRepository.findOne(view.getParent_menu_item());
+        if(view.getParent_menu()!=null){
+            MenuItemEntity menuItemEntity = menuItemRepository.findOne(view.getParent_menu());
             entity.setParentMenuItem(menuItemEntity);
         }else if (entity.getParentMenuItem()!=null){
-            view.setParent_menu_item(entity.getParentMenuItem().getId());
+            view.setParent_menu(entity.getParentMenuItem().getId());
         }
         if (view.getChild_items()!=null){
             Set<MenuItemEntity> children = new HashSet<>();
