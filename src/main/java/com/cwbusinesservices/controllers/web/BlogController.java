@@ -1,5 +1,6 @@
 package com.cwbusinesservices.controllers.web;
 
+import com.cwbusinesservices.convertors.Fields;
 import com.cwbusinesservices.criteria.impl.BlogCategoryCriteria;
 import com.cwbusinesservices.criteria.impl.InfoPageCriteria;
 import com.cwbusinesservices.criteria.impl.PostCriteria;
@@ -9,6 +10,7 @@ import com.cwbusinesservices.services.blog.IBlogCategoryService;
 import com.cwbusinesservices.services.blog.IPostService;
 import com.cwbusinesservices.services.infopages.IInfoPageService;
 import com.cwbusinesservices.services.utils.Utils;
+import com.google.common.collect.Sets;
 import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -89,7 +94,23 @@ public class BlogController {
             Model model
     ) {
         try {
-            model.addAttribute("post", postService.getByUrl(url, VIEW_FIELDS));
+            Map<String, Object> post = postService.getByUrl(url, VIEW_FIELDS);
+            model.addAttribute("post", post);
+
+            int id = (Integer)post.get(Fields.Post.ID);
+            try {
+                model.addAttribute(
+                        "next",
+                        postService.nextTo(id, Sets.newConcurrentHashSet(Arrays.asList("url", "title")))
+                );
+            } catch (Exception e) {}
+
+            try {
+                model.addAttribute(
+                        "prev",
+                        postService.prevTo(id, Sets.newConcurrentHashSet(Arrays.asList("url", "title")))
+                );
+            } catch (Exception e) {}
 
             return "blog/view";
         } catch (BaseException e) {
@@ -162,5 +183,6 @@ public class BlogController {
     private final Set<String> CATEGORY_CATALOG_FIELDS = new HashSet<>(Arrays.asList(
             "code", "name", "position"
     ));
+
     private final int POST_PER_PAGE = 3;
 }

@@ -28,12 +28,15 @@
             <h1 class="text-center">${post.title}</h1>
             <div class="text-desc">${post.post_text}</div>
         </section>
-        <!-- Post navigation
         <div class="bottom-nav">
-            <div class="col-xs-6"><a href="#"><span class="post-nav nav-left"><< Prev</span><span class="text-ellipsis hidden-xs">Title prev post</span></a></div>
-            <div class="col-xs-6 text-right"><a href="#"><span class="post-nav nav-right">Next >></span><span class="text-ellipsis hidden-xs">Title next post</span></a></div>
+            <c:if test="${prev ne null}">
+                <div class="col-xs-6"><a href="/blog/post/${prev.url}"><span class="post-nav nav-left"><< Prev</span><span class="text-ellipsis hidden-xs">${prev.title}</span></a></div>
+            </c:if>
+            <c:if test="${next ne null}">
+                <div class="col-xs-6 text-right"><a href="/blog/post/${next.url}"><span class="post-nav nav-right">Next >></span><span class="text-ellipsis hidden-xs">${next.title}</span></a></div>
+            </c:if>
             <div class="clearfix"></div>
-        </div> -->
+        </div>
     </div>
 
     <jsp:include page="../common/footer.jsp" />

@@ -32,6 +32,9 @@ public class PostServiceImpl extends IPostService{
     @Autowired
     private PostConverter postConverter;
 
+    @Autowired
+    private IPostValidationService postValidationService;
+
     @Override
     public List<Map<String, Object>> getList(Set<String> fields, String restrict) throws BaseException {
         Criteria<PostEntity> criteria = new PostCriteria(restrict);
@@ -56,5 +59,33 @@ public class PostServiceImpl extends IPostService{
             throw new NoSuchEntityException("post", "url: " + url);
         }
         return entity;
+    }
+
+    @Override
+    public PostEntity nextTo(PostEntity entity) throws BaseException {
+        List<PostEntity> next = postRepository.findFirstByDateAfter(entity.getDate());
+        if (next == null || next.isEmpty())
+            throw new NoSuchEntityException("post");
+        postValidationService.validForView(next.get(0));
+        return next.get(0);
+    }
+
+    @Override
+    public Map<String, Object> nextTo(int id, Set<String> fields) throws BaseException {
+        return postConverter.convert(nextTo(getById(id)), fields);
+    }
+
+    @Override
+    public PostEntity prevTo(PostEntity entity) throws BaseException {
+        List<PostEntity> prev = postRepository.findFirstByDateBefore(entity.getDate());
+        if (prev == null || prev.isEmpty())
+            throw new NoSuchEntityException("post");
+        postValidationService.validForView(prev.get(0));
+        return prev.get(0);
+    }
+
+    @Override
+    public Map<String, Object> prevTo(int id, Set<String> fields) throws BaseException {
+        return postConverter.convert(prevTo(getById(id)), fields);
     }
 }
