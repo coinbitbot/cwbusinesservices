@@ -64,6 +64,7 @@
                                     if (response.result) {
                                         showSuccessMessage('file uploaded');
                                         $html.find('.file-block').show();
+                                        $('#comment_file').val('');
                                     } else {
                                         var e = response.error;
                                         showErrorMessage(e.message + buildValidationErrors(e.errors));

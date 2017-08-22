@@ -132,6 +132,7 @@
                                     if (response.result) {
                                         lastComment.has_file = true;
                                         showSuccessMessage('saved');
+                                        $('#comment_file').val('');
                                     } else {
                                         var e = response.error;
                                         showErrorMessage(e.message + buildValidationErrors(e.errors));
