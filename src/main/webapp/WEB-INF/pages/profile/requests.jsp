@@ -52,7 +52,7 @@
                                 <spring:message code="request.status.${request.status}" />
                             </td>
                             <td>
-
+                                <a href="/requests/${request.id}/chat">Chat</a>
                             </td>
                         </tr>
                     </c:forEach>
