@@ -18,7 +18,7 @@ public class UserView implements GetableById<Integer> {
     private String first_name;
     private Boolean active;
     private String phone;
-    private RolesEnum role;
+    private RolesEnum role = RolesEnum.user;
     private List<Integer> request_ids;
     private List<Integer> request_comment_ids;
 

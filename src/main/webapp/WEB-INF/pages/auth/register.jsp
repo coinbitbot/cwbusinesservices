@@ -44,7 +44,7 @@
                                     <input type="text" name="company_name" placeholder="My company" class="form-field col-xs-12">
                                 </div>
                                 <div class="col-xs-12 col-sm-8">
-                                    <input type="text" id="filename" class="filename col-xs-12" placeholder="Download Business Plan (if there is)" disabled>
+                                    <input type="text" id="filename" class="filename col-xs-12" placeholder="Download Business Plan" disabled>
                                 </div>
                                 <div class="col-xs-12 text-center col-sm-4">
                                     <input type="file" name="file" id="request_file" class="inputfile">
