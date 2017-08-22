@@ -31,4 +31,6 @@ public abstract class IUserService extends BaseService<UserEntity, UserView, Int
     public abstract boolean logoutUser(HttpServletRequest request, HttpServletResponse response);
 
     public abstract String getAuthorizationToken(UserEntity user) throws BaseException;
+
+    public abstract boolean changePassword(UserView userView) throws BaseException;
 }

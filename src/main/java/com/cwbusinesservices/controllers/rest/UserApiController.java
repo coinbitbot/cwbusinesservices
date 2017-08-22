@@ -51,4 +51,16 @@ public class UserApiController extends BaseApiController<UserEntity, UserView, I
     logout(HttpServletRequest request, HttpServletResponse response){
         return responseFactory.get(userService.logoutUser(request, response));
     }
+
+    @RequestMapping(
+            value = "/password",
+            method = RequestMethod.POST
+    )
+    public
+    @ResponseBody Response<Boolean>
+    changePassword(
+            @RequestBody UserView view
+    ) throws BaseException {
+        return responseFactory.get(userService.changePassword(view));
+    }
 }

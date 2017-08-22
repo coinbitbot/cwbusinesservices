@@ -10,7 +10,7 @@
     </head>
     <body>
     <jsp:include page="../common/header.jsp"/>
-
+    <jsp:include page="user_menu.jsp" />
     <jsp:include page="../common/footer.jsp" />
     </body>
     </html>

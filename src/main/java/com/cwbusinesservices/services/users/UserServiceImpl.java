@@ -112,6 +112,33 @@ public class UserServiceImpl extends IUserService {
     }
 
     @Override
+    @Transactional(rollbackFor = BaseException.class)
+    public boolean update(UserView view) throws BaseException {
+        UserEntity entity = repository.findOne(view.getId());
+        if (entity == null)
+            throw new NoSuchEntityException("user", "id " + view.getId());
+
+        boolean authUserOnEmailChange = false;
+        if (sessionUtils.getCurrentUser().compareId(entity.getId()) == 0) {
+            if (view.getEmail() != null && !view.getEmail().equals(entity.getEmail())) {
+                authUserOnEmailChange = true;
+            }
+        }
+
+        userMerger.merge(entity,view);
+        validateService.validForUpdate(entity);
+        entity = repository.saveAndFlush(entity);
+
+        if (entity != null && authUserOnEmailChange) {
+            view.setEmail(entity.getEmail());
+            view.setPassword(entity.getPassword());
+            signInUser(view);
+        }
+
+        return entity != null;
+    }
+
+    @Override
     public boolean signInUser(UserView view) throws NoSuchEntityException, WrongPasswordException {
         UserEntity entity = getByEmail(view.getEmail());
         if(!entity.getPassword().equals(view.getPassword()))
@@ -154,6 +181,21 @@ public class UserServiceImpl extends IUserService {
     public String getAuthorizationToken(UserEntity user) throws BaseException {
         String encript = user.getEmail()+userSolt;
         return encryptString(encript);
+    }
+
+    @Override
+    public boolean changePassword(UserView view) throws BaseException {
+        UserEntity entity = getById(view.getId());
+
+        if (!entity.getPassword().equals(view.getPassword())) {
+            throw new WrongPasswordException();
+        }
+
+        entity.setPassword(view.getPassword_new());
+        validateService.validForUpdate(entity);
+        entity = repository.saveAndFlush(entity);
+
+        return entity != null;
     }
 
     private String encryptString(String encript) throws ServiceErrorException {

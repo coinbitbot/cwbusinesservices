@@ -12,6 +12,7 @@ public class UserView implements GetableById<Integer> {
 
     private int id;
     private String email;
+    private String password_new;
     private String password;
     private String last_name;
     private String first_name;
@@ -57,6 +58,14 @@ public class UserView implements GetableById<Integer> {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword_new() {
+        return password_new;
+    }
+
+    public void setPassword_new(String password_new) {
+        this.password_new = password_new;
     }
 
     public String getPassword() {
