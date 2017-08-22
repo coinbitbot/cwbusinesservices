@@ -14,6 +14,7 @@
         var params = UrlUtil.parse(angular.element('#loader').attr('src'));
         $scope.entity = { };
         $scope.comments = [];
+        RESTRICTION.request_ids = [params.id];
 
         if (parseInt(params.id)) {
             $http.get(

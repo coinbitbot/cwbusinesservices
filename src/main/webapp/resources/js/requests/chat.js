@@ -14,6 +14,7 @@
     $(function(){
          var params = UrlUtil.parse($('#loader').attr('src'));
         current_user_id = parseInt(params.current_user_id);
+        RESTRICTION.request_ids = [params.id];
 
         loadComments();
 
@@ -64,7 +65,7 @@
                                     if (response.result) {
                                         showSuccessMessage('file uploaded');
                                         $html.find('.file-block').show();
-                                        $('#comment_file').val('');
+                                        $('#comment_file').val('').trigger('change');
                                     } else {
                                         var e = response.error;
                                         showErrorMessage(e.message + buildValidationErrors(e.errors));
@@ -79,6 +80,13 @@
                     }
                 }
             })
+        });
+
+        $(document).ready( function() {
+            $(".inputfile").change(function(){
+                var filename = $(this).val().replace(/.*\\/, "");
+                $("#filename").val(filename);
+            });
         });
     });
 

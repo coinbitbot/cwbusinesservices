@@ -1,6 +1,11 @@
 package com.cwbusinesservices.controllers.web;
 
+import com.cwbusinesservices.criteria.impl.IndustryCriteria;
+import com.cwbusinesservices.criteria.impl.InterestCriteria;
+import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.pojo.entities.UserEntity;
+import com.cwbusinesservices.services.industry.IIndustryService;
+import com.cwbusinesservices.services.interests.IInterestsService;
 import com.cwbusinesservices.services.request.IRequestService;
 import com.cwbusinesservices.services.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +34,24 @@ public class RequestsController {
 
     @Autowired
     private IRequestService requestService;
+
+    @Autowired
+    private IInterestsService interestsService;
+
+    @Autowired
+    private IIndustryService industryService;
+
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String create(Model model) {
+        model.addAttribute("current_user", sessionUtils.getCurrentUser());
+        try {
+            model.addAttribute("industries", industryService.getList(new IndustryCriteria()));
+            model.addAttribute("interests", interestsService.getList(new InterestCriteria()));
+        } catch (BaseException e) {
+
+        }
+        return "requests/create";
+    }
 
     @RequestMapping(value = "/{id}/chat", method = RequestMethod.GET)
     public String chat(

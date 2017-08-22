@@ -58,9 +58,11 @@
                     </c:forEach>
                     </tbody>
                 </table>
+                <br />
+                You can add new request <a href="/requests/create">here</a>.
             </c:when>
             <c:otherwise>
-                You still have no requests. You can create it <a href="#">here</a>.
+                You still have no requests. You can create it <a href="/requests/create">here</a>.
             </c:otherwise>
         </c:choose>
     </div>
