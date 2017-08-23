@@ -1,14 +1,16 @@
 package com.cwbusinesservices.pojo.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Andrii on 18.08.2016.
  */
 @Entity
 @Table(name = "PERMISSIONS")
-public class PermissionEntity {
+public class PermissionEntity implements Serializable{
 
+    private static final long serialVersionUID = -4259492172487886880L;
     @Id
     @Column(name = "ID")
     @GeneratedValue

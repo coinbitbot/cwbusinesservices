@@ -38,6 +38,7 @@ import com.cwbusinesservices.pojo.view.UserView;
 import com.cwbusinesservices.services.utils.SessionUtils;
 
 import javax.annotation.Resource;
+import javax.persistence.RollbackException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -196,11 +197,13 @@ public class UserServiceImpl extends IUserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.NEVER)
     public Map<String, Object> registration(UserView user, HttpServletRequest servletRequest, HttpServletResponse servletResponse)
             throws IllegalAccessException, BaseException, InstantiationException {
         try {
             final int userId = create(user);
-
+            if (userId == 0)
+                throw new ServiceErrorException();
             // request validation required immediately user sign in
             signInUser(user);
 
@@ -209,12 +212,16 @@ public class UserServiceImpl extends IUserService {
             request.setUser_id(userId);
 
             final int requestId = requestService.create(request);
+            if (requestId == 0){
+                delete(userId);
+                throw new ServiceErrorException();
+            }
 
             return new HashMap<String, Object>() {{
                 put("user_id", userId);
                 put("request_id", requestId);
             }};
-        } catch (InstantiationException | IllegalAccessException | BaseException e) {
+        } catch (InstantiationException | IllegalAccessException | BaseException e ) {
             logoutUser(servletRequest, servletResponse);
             e.printStackTrace();
             throw e;
