@@ -29,12 +29,16 @@
             <div class="text-desc">${post.post_text}</div>
         </section>
         <div class="bottom-nav">
-            <c:if test="${prev ne null}">
-                <div class="col-xs-6"><a href="/blog/post/${prev.url}"><span class="post-nav nav-left"><< Prev</span><span class="text-ellipsis hidden-xs">${prev.title}</span></a></div>
-            </c:if>
-            <c:if test="${next ne null}">
-                <div class="col-xs-6 text-right"><a href="/blog/post/${next.url}"><span class="post-nav nav-right">Next >></span><span class="text-ellipsis hidden-xs">${next.title}</span></a></div>
-            </c:if>
+            <div class="col-xs-6">
+                <c:if test="${prev ne null}">
+                    <a href="/blog/post/${prev.url}"><span class="post-nav nav-left"><< Prev</span><span class="text-ellipsis hidden-xs">${prev.title}</span></a>
+                </c:if>
+            </div>
+            <div class="col-xs-6 text-right">
+                <c:if test="${next ne null}">
+                    <a href="/blog/post/${next.url}"><span class="post-nav nav-right">Next >></span><span class="text-ellipsis hidden-xs">${next.title}</span></a>
+                </c:if>
+            </div>
             <div class="clearfix"></div>
         </div>
     </div>

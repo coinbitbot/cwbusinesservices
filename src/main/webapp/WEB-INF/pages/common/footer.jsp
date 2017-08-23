@@ -10,9 +10,7 @@
 <footer>
     <div class="container">
         <div class="row">
-            <a href="/info_pages/catalog">All info pages</a>
-            <Br />
-            <a href="/companies/catalog">All companies</a>
+            <a href="/companies/catalog">Companies</a>
 			<Br />
 			<a href="/blog">Blog</a>
         </div>
