@@ -37,7 +37,7 @@
 
         var request = new XMLHttpRequest();
         request.open('POST', url);
-        request.setRequestHeader(csrf.name, csrf.val);
+        //request.setRequestHeader(csrf.name, csrf.val);
 
         request.onload = function () {
             var response = request.response;
@@ -52,7 +52,7 @@
 
     function _ajax(options){
         options.beforeSend = function(xhr){
-            xhr.setRequestHeader(csrf.name, csrf.val);
+            //xhr.setRequestHeader(csrf.name, csrf.val);
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.setRequestHeader('Accept', 'application/json');
         };
@@ -66,7 +66,7 @@
             data: JSON.stringify(options.data),
             dataType: 'json',
             beforeSend: function(xhr){
-                xhr.setRequestHeader(csrf.name, csrf.val);
+                //xhr.setRequestHeader(csrf.name, csrf.val);
                 xhr.setRequestHeader('Accept', 'application/json');
                 xhr.setRequestHeader('Content-Type', 'application/json');
             },

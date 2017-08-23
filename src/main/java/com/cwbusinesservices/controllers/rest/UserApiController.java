@@ -30,10 +30,7 @@ public class UserApiController extends BaseApiController<UserEntity, UserView, I
     private ResponseFactory responseFactory;
 
 
-    @RequestMapping(
-            value = "/sign_in",
-            method = RequestMethod.POST
-    )
+    @RequestMapping(value = "/sign_in", method = RequestMethod.POST)
     public
     @ResponseBody Response<Boolean>
     signIn(
@@ -42,25 +39,30 @@ public class UserApiController extends BaseApiController<UserEntity, UserView, I
         return responseFactory.get(userService.signInUser(view));
     }
 
-    @RequestMapping(
-            value = "/logout",
-            method = RequestMethod.POST
-    )
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public
     @ResponseBody Response<Boolean>
     logout(HttpServletRequest request, HttpServletResponse response){
         return responseFactory.get(userService.logoutUser(request, response));
     }
 
-    @RequestMapping(
-            value = "/password",
-            method = RequestMethod.POST
-    )
+    @RequestMapping(value = "/password", method = RequestMethod.POST)
     public
     @ResponseBody Response<Boolean>
     changePassword(
             @RequestBody UserView view
     ) throws BaseException {
         return responseFactory.get(userService.changePassword(view));
+    }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.PUT)
+    public
+    @ResponseBody Response<Map<String, Object>>
+    registerFullUser(
+            @RequestBody UserView view,
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws BaseException, IllegalAccessException, InstantiationException {
+        return responseFactory.get(userService.registration(view, request, response));
     }
 }

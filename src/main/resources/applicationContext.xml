@@ -132,7 +132,7 @@
                 password-parameter="password" />-->
         <security:logout invalidate-session="true" logout-success-url="/login?logout"/>
         <!-- enable csrf protection -->
-        <!--<security:csrf disabled="true"/>-->
+        <security:csrf disabled="true"/>
     </security:http>
 
 

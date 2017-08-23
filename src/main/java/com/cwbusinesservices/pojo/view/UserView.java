@@ -22,6 +22,19 @@ public class UserView implements GetableById<Integer> {
     private List<Integer> request_ids;
     private List<Integer> request_comment_ids;
 
+    // just for full user registration
+    private Integer industry;
+    private String interest_alter;
+    private List<Integer> interests;
+    private String company_name;
+
+    public void copyRequest(RequestView view) {
+        view.setIndustry(industry);
+        view.setInterest_alter(interest_alter);
+        view.setInterests(interests);
+        view.setCompany_name(company_name);
+    }
+
     public List<Integer> getRequest_ids() {
         return request_ids;
     }
@@ -114,6 +127,38 @@ public class UserView implements GetableById<Integer> {
 
     public void setRole(RolesEnum role) {
         this.role = role;
+    }
+
+    public Integer getIndustry() {
+        return industry;
+    }
+
+    public void setIndustry(Integer industry) {
+        this.industry = industry;
+    }
+
+    public String getInterest_alter() {
+        return interest_alter;
+    }
+
+    public void setInterest_alter(String interest_alter) {
+        this.interest_alter = interest_alter;
+    }
+
+    public List<Integer> getInterests() {
+        return interests;
+    }
+
+    public void setInterests(List<Integer> interests) {
+        this.interests = interests;
+    }
+
+    public String getCompany_name() {
+        return company_name;
+    }
+
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
     }
 
     @Override
