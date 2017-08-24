@@ -10,7 +10,14 @@
     </head>
     <body>
     <jsp:include page="../common/header.jsp"/>
-    <jsp:include page="user_menu.jsp" />
+    <div class="container">
+        <section>
+            <div class="row">
+                <h1>User Profile</h1>
+                <jsp:include page="user_menu.jsp" />
+            </div>
+        </section>
+    </div>
     <jsp:include page="../common/footer.jsp" />
     </body>
     </html>
