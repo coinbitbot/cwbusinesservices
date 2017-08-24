@@ -1,5 +1,6 @@
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 
 <div id="cookie_popup" class="hidden-print">
     <div class="container">We are using you cookies.
@@ -10,12 +11,41 @@
 <footer>
     <div class="container">
         <div class="row">
-            <a href="/companies/catalog">Companies</a>
-			<Br />
-			<a href="/blog">Blog</a>
+            <div class="hidden-xs hidden-sm col-md-4 bottom-brand footer-block hidden-print">
+                <a href="/">
+                    <img src="/resources/images/logo_header.png" alt="<s:message code='brand'/>" />
+                    <h4 class="font-theme-medium text-uppercase"><s:message code="brand.name"/><br/><span class="font-theme-normal"><s:message code="brand.subheader"/></span></h4>
+                </a>
+            </div>
+            <div class="visible-print-inline-block footer-block bottom-brand col-xs-6">
+                    <img src="/resources/images/logo_grey.png" class=""/>
+                    <h4 class="font-theme-medium text-uppercase"><s:message code="brand.name"/><br/><span class="font-theme-normal"><s:message code="brand.subheader"/></span></h4>
+            </div>
+            <div class="col-sm-6 col-md-4 hidden-print footer-block">
+                <h4 class="text-uppercase font-theme-medium">Information</h4>
+                <ul>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/companies/catalog">Companies</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-md-4 hidden-print social footer-block">
+                <h4 class="text-uppercase font-theme-medium">Follow Us</h4>
+                <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            </div>
+            <address class="col-xs-6 visible-print-inline-block text-right">
+                <h4 class="text-uppercase font-theme-medium">Address</h4>
+            </address>
+            <div class="clearfix"></div>
         </div>
     </div>
 </footer>
+<div class="copyright hidden-print">
+    <div class="container text-center">
+        2017 &copy; All rights reserved
+    </div>
+</div>
 <div id="scroller" class="hidden-xs hidden-print"></div>
 
 <!-- Preloader -->
