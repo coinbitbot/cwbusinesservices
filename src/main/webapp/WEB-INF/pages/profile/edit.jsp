@@ -72,6 +72,12 @@
 
     <jsp:include page="../common/footer.jsp" />
     <script src="/resources/js/profile/edit.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Active menu
+            $('#edit_profile').addClass('active');
+        });
+    </script>
     </body>
     </html>
 </compress:html>
