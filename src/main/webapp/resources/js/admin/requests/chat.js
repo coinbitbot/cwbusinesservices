@@ -14,6 +14,7 @@
         var params = UrlUtil.parse(angular.element('#loader').attr('src'));
         $scope.entity = { };
         $scope.comments = [];
+        RESTRICTION.request_ids = [params.id];
 
         if (parseInt(params.id)) {
             $http.get(
@@ -132,6 +133,7 @@
                                     if (response.result) {
                                         lastComment.has_file = true;
                                         showSuccessMessage('saved');
+                                        $('#comment_file').val('');
                                     } else {
                                         var e = response.error;
                                         showErrorMessage(e.message + buildValidationErrors(e.errors));

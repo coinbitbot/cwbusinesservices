@@ -13,11 +13,11 @@
 
         <div class="container">
             <section class="page-content">
-                <div class="text-center">
-                    <img src="/api/file/${company.id}?type=COMPANY" class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 img-responsive company-logo">
-                </div>
+                    <h1>
+                        <img src="/api/file/${company.id}?type=COMPANY" class="company-logo">
+                        <span class="company-name">${company.name}</span>
+                    </h1>
                 <div class="clearfix"></div>
-                <h1 class="text-center">${company.name}</h1>
                 <div class="text-desc">
                     ${company.text}
                 </div>

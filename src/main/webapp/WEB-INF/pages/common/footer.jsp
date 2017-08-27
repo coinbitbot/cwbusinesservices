@@ -1,7 +1,8 @@
 <%@ page import="java.util.ResourceBundle" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 
-<div id="cookie_popup">
+<div id="cookie_popup" class="hidden-print">
     <div class="container">We are using you cookies.
     <span id="close_cookie" class="close-popup"><i class="fa fa-times" aria-hidden="true"></i></span>
     </div>
@@ -10,15 +11,42 @@
 <footer>
     <div class="container">
         <div class="row">
-            <a href="/info_pages/catalog">All info pages</a>
-            <Br />
-            <a href="/companies/catalog">All companies</a>
-			<Br />
-			<a href="/blog">Blog</a>
+            <div class="hidden-xs hidden-sm col-md-4 bottom-brand footer-block hidden-print">
+                <a href="/">
+                    <img src="/resources/images/logo_header.png" alt="<s:message code='brand'/>" />
+                    <h4 class="font-theme-medium text-uppercase"><s:message code="brand.name"/><br/><span class="font-theme-normal"><s:message code="brand.subheader"/></span></h4>
+                </a>
+            </div>
+            <div class="visible-print-inline-block footer-block bottom-brand col-xs-6">
+                    <img src="/resources/images/logo_grey.png" class=""/>
+                    <h4 class="font-theme-medium text-uppercase"><s:message code="brand.name"/><br/><span class="font-theme-normal"><s:message code="brand.subheader"/></span></h4>
+            </div>
+            <div class="col-sm-6 col-md-4 hidden-print footer-block">
+                <h4 class="text-uppercase font-theme-medium">Information</h4>
+                <ul>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/companies/catalog">Companies</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-md-4 hidden-print social footer-block">
+                <h4 class="text-uppercase font-theme-medium">Follow Us</h4>
+                <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            </div>
+            <address class="col-xs-6 visible-print-inline-block text-right">
+                <h4 class="text-uppercase font-theme-medium">Address</h4>
+            </address>
+            <div class="clearfix"></div>
         </div>
     </div>
 </footer>
-<div id="scroller" class="hidden-xs"></div>
+<div class="copyright hidden-print">
+    <div class="container text-center">
+        2017 &copy; All rights reserved
+    </div>
+</div>
+<div id="scroller" class="hidden-xs hidden-print"></div>
 
 <!-- Preloader -->
 <div id="hellopreloader"><div id="hellopreloader_preload"></div></div>
@@ -43,41 +71,6 @@
 <script src="/resources/js/global_utils.js"></script>
 <script src="/resources/js/utils/wow.min.js"></script>
 <script src="/resources/js/utils/preload.js"></script>
-<script>
-    new WOW().init();
-
-    // Login block
-    $('.fa-user').click(function () {
-        $('.login-block').toggleClass('shown');
-    });
-
-    // Mobile menu
-    $('.menu-mob-button').click(function() {
-        if ($('.topmenu').is(':visible')) {
-            $('.topmenu').hide('slow');
-            $(this).html('<a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a>')
-        }
-        else {
-            $('.topmenu').show('slow');
-            $(this).html('<a href="#"><i class="fa fa-times" aria-hidden="true"></i></a>')
-        }
-    });
-
-    // Scroll to top
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 0) {
-            $('#scroller').fadeIn();
-        } else {
-            $('#scroller').fadeOut();
-        }
-    });
-    $('#scroller').click(function () {
-        $('body,html').animate({
-            scrollTop: 0
-        }, 400);
-        return false;
-    });
-</script>
 
 <%-- show js error mssages setup --%>
 <%

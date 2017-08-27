@@ -4,6 +4,8 @@ import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
 import com.cwbusinesservices.exceptions.service_error.ForbiddenException;
 import com.cwbusinesservices.mergers.UserMerger;
+import com.cwbusinesservices.pojo.view.RequestView;
+import com.cwbusinesservices.services.request.IRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -36,6 +38,7 @@ import com.cwbusinesservices.pojo.view.UserView;
 import com.cwbusinesservices.services.utils.SessionUtils;
 
 import javax.annotation.Resource;
+import javax.persistence.RollbackException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -43,10 +46,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Andrii on 18.08.2016.
@@ -69,6 +69,9 @@ public class UserServiceImpl extends IUserService {
 
     @Autowired
     private ICriteriaRepository criteriaRepository;
+
+    @Autowired
+    private IRequestService requestService;
 
     @Override
     public UserEntity getByEmail(String email) throws NoSuchEntityException {
@@ -103,12 +106,34 @@ public class UserServiceImpl extends IUserService {
             throw new ServiceErrorException();
         }
 
-        if (!sessionUtils.isAuthorized()){
+        //TODO merge requests and comments
+        return entity.getId();
+    }
+
+    @Override
+    public boolean update(UserView view) throws BaseException {
+        UserEntity entity = repository.findOne(view.getId());
+        if (entity == null)
+            throw new NoSuchEntityException("user", "id " + view.getId());
+
+        boolean authUserOnEmailChange = false;
+        if (sessionUtils.getCurrentUser().compareId(entity.getId()) == 0) {
+            if (view.getEmail() != null && !view.getEmail().equals(entity.getEmail())) {
+                authUserOnEmailChange = true;
+            }
+        }
+
+        userMerger.merge(entity,view);
+        validateService.validForUpdate(entity);
+        entity = repository.saveAndFlush(entity);
+
+        if (entity != null && authUserOnEmailChange) {
+            view.setEmail(entity.getEmail());
+            view.setPassword(entity.getPassword());
             signInUser(view);
         }
 
-        //TODO merge requests and comments
-        return entity.getId();
+        return entity != null;
     }
 
     @Override
@@ -154,6 +179,53 @@ public class UserServiceImpl extends IUserService {
     public String getAuthorizationToken(UserEntity user) throws BaseException {
         String encript = user.getEmail()+userSolt;
         return encryptString(encript);
+    }
+
+    @Override
+    public boolean changePassword(UserView view) throws BaseException {
+        UserEntity entity = getById(view.getId());
+
+        if (!entity.getPassword().equals(view.getPassword())) {
+            throw new WrongPasswordException();
+        }
+
+        entity.setPassword(view.getPassword_new());
+        validateService.validForUpdate(entity);
+        entity = repository.saveAndFlush(entity);
+
+        return entity != null;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NEVER)
+    public Map<String, Object> registration(UserView user, HttpServletRequest servletRequest, HttpServletResponse servletResponse)
+            throws IllegalAccessException, BaseException, InstantiationException {
+        try {
+            final int userId = create(user);
+            if (userId == 0)
+                throw new ServiceErrorException();
+            // request validation required immediately user sign in
+            signInUser(user);
+
+            RequestView request = new RequestView();
+            user.copyRequest(request);
+            request.setUser_id(userId);
+
+            final int requestId = requestService.create(request);
+            if (requestId == 0){
+                delete(userId);
+                throw new ServiceErrorException();
+            }
+
+            return new HashMap<String, Object>() {{
+                put("user_id", userId);
+                put("request_id", requestId);
+            }};
+        } catch (InstantiationException | IllegalAccessException | BaseException e ) {
+            logoutUser(servletRequest, servletResponse);
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     private String encryptString(String encript) throws ServiceErrorException {

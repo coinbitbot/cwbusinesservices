@@ -20,6 +20,8 @@ public class PostCriteria extends Criteria<PostEntity>{
     private Boolean has_img;
     private String date_from;
     private String date_till; //toUTCString
+    private Date date_from_java;
+    private Date date_till_java;
     private Integer category;
     private String category_code;
 
@@ -84,11 +86,18 @@ public class PostCriteria extends Criteria<PostEntity>{
             Date date = Utils.convertDate(this.date_from);
             Expression<Date> expression = root.get("date");
             predicates.add(cb.greaterThanOrEqualTo(expression,date));
+        } else if (this.date_from_java != null) {
+            Expression<Date> expression = root.get("date");
+            predicates.add(cb.greaterThanOrEqualTo(expression, date_from_java));
         }
+
         if (this.date_till!=null&&!"".equals(date_till)){
             Date date = Utils.convertDate(this.date_till);
             Expression<Date> expression = root.get("date");
             predicates.add(cb.lessThanOrEqualTo(expression,date));
+        } else if (this.date_till_java != null) {
+            Expression<Date> expression = root.get("date");
+            predicates.add(cb.lessThanOrEqualTo(expression, date_till_java));
         }
         return predicates;
     }
@@ -147,5 +156,21 @@ public class PostCriteria extends Criteria<PostEntity>{
 
     public void setCategory_code(String category_code) {
         this.category_code = category_code;
+    }
+
+    public Date getDate_from_java() {
+        return date_from_java;
+    }
+
+    public void setDate_from_java(Date date_from_java) {
+        this.date_from_java = date_from_java;
+    }
+
+    public Date getDate_till_java() {
+        return date_till_java;
+    }
+
+    public void setDate_till_java(Date date_till_java) {
+        this.date_till_java = date_till_java;
     }
 }

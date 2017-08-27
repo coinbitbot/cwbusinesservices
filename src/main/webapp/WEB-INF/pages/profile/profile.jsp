@@ -10,8 +10,28 @@
     </head>
     <body>
     <jsp:include page="../common/header.jsp"/>
+    <div class="container">
+        <section>
+            <h1 class="col-xs-12">User Profile</h1>
+            <div class="clearfix"></div>
+            <div class="col-sm-9 col-sm-push-3">
+                <div class="row">
 
+                </div>
+            </div>
+            <div class="col-sm-3 col-sm-pull-9">
+                <jsp:include page="user_menu.jsp" />
+            </div>
+            <div class="clearfix"></div>
+        </section>
+    </div>
     <jsp:include page="../common/footer.jsp" />
+    <script>
+        $(document).ready(function() {
+            // Active menu
+            $('#user_profile').addClass('active');
+        });
+    </script>
     </body>
     </html>
 </compress:html>

@@ -27,7 +27,7 @@
     <context:annotation-config/>
     <mvc:annotation-driven/>
 
-    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <mvc:resources mapping="/resources/**" location="/resources/" cache-period="10800" />
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
@@ -132,7 +132,7 @@
                 password-parameter="password" />-->
         <security:logout invalidate-session="true" logout-success-url="/login?logout"/>
         <!-- enable csrf protection -->
-        <!--<security:csrf disabled="true"/>-->
+        <security:csrf disabled="true"/>
     </security:http>
 
 

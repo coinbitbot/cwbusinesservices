@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Map;
 
 /**
  * Created by Andrii on 18.08.2016.
@@ -31,4 +32,8 @@ public abstract class IUserService extends BaseService<UserEntity, UserView, Int
     public abstract boolean logoutUser(HttpServletRequest request, HttpServletResponse response);
 
     public abstract String getAuthorizationToken(UserEntity user) throws BaseException;
+
+    public abstract boolean changePassword(UserView view) throws BaseException;
+
+    public abstract Map<String, Object> registration(UserView view, HttpServletRequest request, HttpServletResponse response) throws BaseException, InstantiationException, IllegalAccessException;
 }

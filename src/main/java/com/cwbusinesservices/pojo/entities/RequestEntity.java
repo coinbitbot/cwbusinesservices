@@ -8,6 +8,7 @@ import com.cwbusinesservices.pojo.helpers.IHasOwner;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
@@ -43,6 +44,7 @@ public class RequestEntity extends CompareIntegerId implements Serializable, Get
     private String interestAlter;
 
     @Column(name = "COMPANY_NAME")
+    @NotNull(message = "request.company.required")
     private String companyName;
 
     @Column(name = "HAS_BUSINESS_PLAN")

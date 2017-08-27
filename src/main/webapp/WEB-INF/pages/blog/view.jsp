@@ -17,7 +17,7 @@
     <div class="container">
         <section class="page-content">
             <c:if test="${post.has_img}">
-                <div class="text-center"><img src="/api/file/${post.id}?type=POST" class="img-responsive img-center"></div>
+                <div class="text-center"><img src="/api/file/${post.id}?type=POST" class="img-responsive img-center post-img"></div>
             </c:if>
             <div class="meta-info text-center">
                 <span><i class="fa fa-calendar" aria-hidden="true"></i><jsp:setProperty name="dateValue" property="time" value="${post.date}"/>
@@ -28,12 +28,19 @@
             <h1 class="text-center">${post.title}</h1>
             <div class="text-desc">${post.post_text}</div>
         </section>
-        <!-- Post navigation
         <div class="bottom-nav">
-            <div class="col-xs-6"><a href="#"><span class="post-nav nav-left"><< Prev</span><span class="text-ellipsis hidden-xs">Title prev post</span></a></div>
-            <div class="col-xs-6 text-right"><a href="#"><span class="post-nav nav-right">Next >></span><span class="text-ellipsis hidden-xs">Title next post</span></a></div>
+            <div class="col-xs-6">
+                <c:if test="${prev ne null}">
+                    <a href="/blog/post/${prev.url}"><span class="post-nav nav-left"><< Prev</span><span class="text-ellipsis hidden-xs">${prev.title}</span></a>
+                </c:if>
+            </div>
+            <div class="col-xs-6 text-right">
+                <c:if test="${next ne null}">
+                    <a href="/blog/post/${next.url}"><span class="post-nav nav-right">Next >></span><span class="text-ellipsis hidden-xs">${next.title}</span></a>
+                </c:if>
+            </div>
             <div class="clearfix"></div>
-        </div> -->
+        </div>
     </div>
 
     <jsp:include page="../common/footer.jsp" />

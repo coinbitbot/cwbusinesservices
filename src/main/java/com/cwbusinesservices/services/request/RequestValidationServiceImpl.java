@@ -3,16 +3,19 @@ package com.cwbusinesservices.services.request;
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.exceptions.conflict.EntityValidateException;
 import com.cwbusinesservices.exceptions.service_error.ForbiddenException;
+import com.cwbusinesservices.exceptions.service_error.ValidationException;
 import com.cwbusinesservices.pojo.entities.RequestEntity;
 import com.cwbusinesservices.pojo.enums.PermissionsEnum;
 import com.cwbusinesservices.pojo.enums.RequestStatusEnum;
 import com.cwbusinesservices.pojo.view.RequestView;
 import com.cwbusinesservices.services.BaseValidator;
 import com.cwbusinesservices.services.utils.SessionUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Validator;
+import java.util.Collections;
 
 /**
  * Created by Andrii on 29.07.2017.
@@ -27,8 +30,24 @@ public class RequestValidationServiceImpl extends BaseValidator<RequestEntity,In
     private SessionUtils sessionUtils;
 
     @Override
+    public void validForCreate(RequestEntity entity) throws BaseException {
+        super.validForCreate(entity);
+
+        if ((entity.getInterests() == null || entity.getInterests().isEmpty()) &&
+                StringUtils.isBlank(entity.getInterestAlter())) {
+            throw new ValidationException("request", "request.interests.required");
+        }
+    }
+
+    @Override
     public void validForUpdate(RequestEntity entity) throws BaseException {
         super.validForUpdate(entity);
+
+        if ((entity.getInterests() == null || entity.getInterests().isEmpty()) &&
+                StringUtils.isBlank(entity.getInterestAlter())) {
+            throw new ValidationException("request", "request.interests.required");
+        }
+
         if (!sessionUtils.isOwner(entity))
             throw new ForbiddenException();
     }

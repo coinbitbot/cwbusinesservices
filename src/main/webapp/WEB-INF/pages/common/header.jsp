@@ -9,16 +9,17 @@
             <div>
                 <div class="col-xs-12 col-md-4 brand-logo text-uppercase">
                     <a href="/">
-                        <img src="/resources/images/logo_header.png" alt="<s:message code='brand'/> "/>
+                        <img src="/resources/images/logo_header.png" alt="<s:message code='brand'/>" class="hidden-print"/>
+                        <img src="/resources/images/logo_header_green.png" class="visible-print-inline-block"/>
                         <h1 class="font-theme-medium"><s:message code="brand.name"/><br/><span class="font-theme-normal"><s:message code="brand.subheader"/></span></h1>
                     </a>
                 </div>
-                <div class="col-md-8 text-right menu">
+                <div class="col-md-8 text-right menu hidden-print">
                     <div class="menu-mob-button visible-xs visible-sm"><a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a></div>
                     <nav>
                         <ul class="topmenu">
                             <li id="home"><a href="/"><s:message code="navmenu.home"/></a></li>
-                            <li id="menu_services"><a href=""><s:message code="navmenu.services"/></a></li>
+                            <li id="menu_services"><a href="/services"><s:message code="navmenu.services"/></a></li>
                             <li id="menu_companies"><a href="/companies/catalog"><s:message code="navmenu.companies"/></a></li>
                             <li id="menu_blog"><a href="/blog"><s:message code="navmenu.blog"/></a></li>
                             <li id="menu_contacts"><a href=""><s:message code="navmenu.contacts"/></a></li>
@@ -29,7 +30,7 @@
         </div>
     </div>
 </header>
-<div class="fixed-sidebar-right">
+<div class="fixed-sidebar-right hidden-print">
     <div class="login-block">
         <i class="fa fa-user" aria-hidden="true"></i>
         <div class="login-block-content">
@@ -47,3 +48,4 @@
         </div>
     </div>
 </div>
+<div class="clearfix"></div>
