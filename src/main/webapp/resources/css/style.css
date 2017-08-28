@@ -254,7 +254,7 @@ footer .social i:before,
 .request-item .action-link a:before,
 .request-item .action-link a:hover i,
 .request-item:before, .request-item .action-link a,
-.request-item strong {
+.request-item strong, .file-block a i {
     -webkit-transition: all .4s ease-in-out;
     -moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
@@ -1279,9 +1279,6 @@ section h2 {
     -o-transform: scale(1.1);
     transform: scale(1.1);
 }
-.request-item:hover strong {
-    color: #333;
-}
 .request-item .subheader {
     border-bottom: 1px dotted #ddd;
     padding-bottom: 15px;
@@ -1347,6 +1344,59 @@ section h2 {
 .request-item strong {
     color:#999;
     font-weight: 800;
+}
+.request-item:hover strong {
+    color: #333;
+}
+.chat-info {
+    background: url("/resources/images/admin/bg.png") repeat #f1f1f1;
+    padding: 30px;
+    position: relative;
+    -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.chat-info:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    margin-left: -24px;
+    border: 24px solid transparent;
+    border-bottom: none;
+    border-top-color: #f1f1f1;
+}
+.request-chat strong {
+    font-weight: 800;
+    color:#666;
+    border-left: 3px solid #87c877;
+    padding-left: 10px;
+}
+.item-comment {
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px dotted #999;
+    display: inline-block;
+    width: 100%;
+}
+.meta-info .file-block {
+    margin-right: 0;
+}
+.file-block i {
+    color: #fff;
+    background: #87c877;
+    padding: 6px;
+    text-align: center;
+    font-size: 22px;
+    width: 36px;
+    height: 36px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+.file-block a:hover i {
+    background-color: #1a3029;
 }
 /* /User requests */
 /* /Profile */
