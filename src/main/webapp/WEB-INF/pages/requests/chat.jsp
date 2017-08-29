@@ -72,7 +72,8 @@
                 <div id="comments">
 
                 </div>
-                <div class="text-center"><button class="btn-theme btn-1" id="more_comments">More comments</button></div>
+                <div class="text-center"><button class="btn-theme btn-1" id="more_comments">More comments</button></div><br/>
+                <a href="/profile/requests"><span class="post-nav nav-left"><<</span> Back to All requests</a>
             </section>
             </div>
         </div>

@@ -2,7 +2,7 @@
 <compress:html removeIntertagSpaces="true">
     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    %@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+    <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
     <!DOCTYPE html>
     <html>
     <head>
@@ -22,7 +22,7 @@
                             <div class="col-sm-12 reguest-wrapper">
                                 <div class="request-item">
                                     <div>
-                                        <h4 class="subheader">Request info</h4>
+                                        <h4 class="subheader">Your last request</h4>
                                         <p><strong>Company:</strong> ${last_request.company_name}</p>
                                         <p><strong>Industry:</strong> ${last_request.industry_name}</p>
                                         <p><strong>Interests:</strong>
@@ -52,8 +52,9 @@
                             </div>
                         </c:when>
                         <c:otherwise>
-                            <div class="text-center no-info">You still have no requests. You can create it <br/>
-                                <a href="/requests/create">Create request</a>
+                            <div class="text-center no-info">You still have no requests. You can create it </div>
+                            <div class="text-center">
+                                <a href="/requests/create" class="btn-theme btn-1">Create request</a>
                             </div>
                         </c:otherwise>
                     </c:choose>

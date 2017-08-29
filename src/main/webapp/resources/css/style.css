@@ -257,7 +257,8 @@ footer .social i:before,
 .request-item .action-link a:hover i,
 .request-item:before, .request-item .action-link a,
 .request-item strong, .file-block a i,
-.employ-info:after, .employ-photo img {
+.employ-info:after, .employ-photo img,
+.user-menu li i {
     -webkit-transition: all .4s ease-in-out;
     -moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
@@ -1289,9 +1290,23 @@ section h2 {
     padding: 13px 30px;
     font-size: 16px;
     position: relative;
-    background: #ddd;
-    color: #666;
+    background: url("/resources/images/admin/bg.png") repeat #f5f5f5;
+    color: #999;
     white-space: nowrap;
+}
+.user-menu li i {
+    padding: 3px;
+    width: 22px;
+    height: 22px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    text-align: center;
+    border: 1px solid #87c877;
+    font-size: 14px;
+    vertical-align: top;
+    color: #fff;
+    background: #87c877;
 }
 .user-menu li:hover > a,
 .user-menu li.active > a{
@@ -1317,6 +1332,9 @@ section h2 {
     border: 24px solid transparent;
     border-right: none;
     border-left: 15px solid #87c877;
+}
+.user-menu li:hover i, .user-menu li.active i {
+    border-color: #fff;
 }
 .register-block label {
     color: #999;
@@ -1427,8 +1445,9 @@ section h2 {
 .request-chat strong {
     font-weight: 800;
     color:#666;
-    border-left: 3px solid #87c877;
+    border-left: 5px solid #87c877;
     padding-left: 10px;
+    position: relative;
 }
 .item-comment {
     padding-bottom: 15px;
