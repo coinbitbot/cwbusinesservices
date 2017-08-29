@@ -1,7 +1,9 @@
 package com.cwbusinesservices.controllers.web;
 
 import com.cwbusinesservices.criteria.impl.RequestCriteria;
+import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.pojo.entities.UserEntity;
+import com.cwbusinesservices.pojo.enums.OrderDirectionEnum;
 import com.cwbusinesservices.services.request.IRequestService;
 import com.cwbusinesservices.services.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +34,17 @@ public class UserProfileController {
 
     @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
     public String profile(Model model) {
-        model.addAttribute("current_user", sessionUtils.getCurrentUser());
+        UserEntity current = sessionUtils.getCurrentUser();
+
+        model.addAttribute("current_user", current);
+
+        try {
+            RequestCriteria criteria = new RequestCriteria();
+            criteria.setLimit(1);
+            criteria.setOrder_direction(OrderDirectionEnum.DESC);
+            model.addAttribute("last_request", requestService.getList(criteria, REQUESTS_FIELDS).get(0));
+        } catch (BaseException e) { }
+
         return "profile/profile";
     }
 
