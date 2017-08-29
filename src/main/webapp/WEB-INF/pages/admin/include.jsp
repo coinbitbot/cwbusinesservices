@@ -20,7 +20,7 @@
 <script>
     Ajax.setCSRF('${_csrf.headerName}', '${_csrf.token}');
     var HEADERS = {
-        '${_csrf.headerName}': '${_csrf.token}',
+        //'${_csrf.headerName}': '${_csrf.token}',
         'Content-Type': 'application/json',
         'Accept': 'application/json'
     };
