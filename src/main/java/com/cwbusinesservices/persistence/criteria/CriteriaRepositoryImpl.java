@@ -1,5 +1,6 @@
 package com.cwbusinesservices.persistence.criteria;
 
+import org.hibernate.criterion.Projections;
 import org.springframework.stereotype.Repository;
 import com.cwbusinesservices.criteria.Criteria;
 
@@ -24,7 +25,6 @@ public class CriteriaRepositoryImpl implements ICriteriaRepository {
             query.setFirstResult(criteria.getOffset());
         if(criteria.getLimit() > 0)
             query.setMaxResults(criteria.getLimit());
-
         return query.getResultList();
     }
 

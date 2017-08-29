@@ -69,5 +69,9 @@ public enum PermissionsEnum {
     EDIT_POST,
     DELETE_POST,
 
+    CREATE_EMPLOYEE,
+    EDIT_EMPLOYEE,
+    DELETE_EMPLOYEE,
+
     ANYONE
 }
