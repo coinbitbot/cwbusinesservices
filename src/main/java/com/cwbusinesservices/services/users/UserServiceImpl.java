@@ -204,6 +204,9 @@ public class UserServiceImpl extends IUserService {
             final int userId = create(user);
             if (userId == 0)
                 throw new ServiceErrorException();
+
+            user.setId(userId);
+
             // request validation required immediately user sign in
             signInUser(user);
 
@@ -222,6 +225,13 @@ public class UserServiceImpl extends IUserService {
                 put("request_id", requestId);
             }};
         } catch (InstantiationException | IllegalAccessException | BaseException e ) {
+            if (user.getId() != null && user.getId() > 0) {
+                // user create - OK && request create - FAIL
+                // user should be deleted
+
+                repository.delete(user.getId());
+            }
+
             logoutUser(servletRequest, servletResponse);
             e.printStackTrace();
             throw e;

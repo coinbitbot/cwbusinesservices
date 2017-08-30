@@ -82,7 +82,7 @@ public abstract class Criteria<T> {
 
         Root<T> root = query.from(entityClass);
         query.select(root);
-
+        query.distinct(true);
         List<Predicate> predicates = query(root, cb);
         if (!predicates.isEmpty()) {
             query.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));
@@ -99,7 +99,7 @@ public abstract class Criteria<T> {
 
         Root<T> root = query.from(entityClass);
         query.select(cb.count(root));
-
+        query.distinct(true);
         List<Predicate> predicates = query(root, cb);
         if (!predicates.isEmpty()) {
             query.where(cb.and(predicates.toArray(new Predicate[predicates.size()])));

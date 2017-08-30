@@ -203,6 +203,8 @@ section {
 }
 label {font-weight: normal;}
 
+strong {font-weight: 800;}
+
 /* Input type=["file'] */
 .inputfile {
     width: 1px;
@@ -254,7 +256,9 @@ footer .social i:before,
 .request-item .action-link a:before,
 .request-item .action-link a:hover i,
 .request-item:before, .request-item .action-link a,
-.request-item strong {
+.request-item strong, .file-block a i,
+.employ-info:after, .employ-photo img,
+.user-menu li i {
     -webkit-transition: all .4s ease-in-out;
     -moz-transition: all .4s ease-in-out;
     -o-transition: all .4s ease-in-out;
@@ -1152,6 +1156,63 @@ section h2 {
 .info-page-item:last-child {
     border-bottom: none;
 }
+.employ-tmp {
+    margin-bottom: 80px;
+}
+.employ-tmp:last-child {
+    margin-bottom: 0;
+}
+.employ-info {
+    margin-top: 7px;
+    padding-left: 40px;
+}
+.employ-info:before, .employ-info:after {
+    width: 50%;
+}
+.employ-info h3 {
+    color: #87c877;
+}
+.employ-info strong {
+    color: #333;
+}
+.employ-photo {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+.employ-photo:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -24px;
+    border: 24px solid transparent;
+    border-left: none;
+    border-right-color: #fff;
+}
+.employ-photo img {
+    -webkit-transform-origin: 50%;
+    -moz-transform-origin: 50%;
+    -ms-transform-origin: 50%;
+    -o-transform-origin: 50%;
+    transform-origin: 50%;
+}
+.employ-photo:hover img {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.feedback {
+    width: 100%;
+    background: url("/resources/images/admin/bg.png") repeat #f2f2f2;
+    padding: 50px;
+    -webkit-box-shadow: 0 -1px 10px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0 -1px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 -1px 10px rgba(0,0,0,0.15);
+}
 /* /Info pages */
 
 /* Services */
@@ -1161,7 +1222,9 @@ section h2 {
     padding-top: 15px;
 }
 .service-item:before,
-.service-item:after{
+.service-item:after,
+.employ-info:before,
+.employ-info:after {
     content: '';
     display: block;
     position: absolute;
@@ -1174,7 +1237,8 @@ section h2 {
     -o-transform-origin: 0;
     transform-origin: 0;
 }
-.service-item:after {
+.service-item:after,
+.employ-info:after {
     border-top-color: #87c877;
     -webkit-transform: scaleX(0);
     -moz-transform: scaleX(0);
@@ -1182,7 +1246,8 @@ section h2 {
     -o-transform: scaleX(0);
     transform: scaleX(0);
 }
-.service-item:hover:after {
+.service-item:hover:after,
+.employ-info:hover:after {
     -webkit-transform: scaleX(1);
     -moz-transform: scaleX(1);
     -ms-transform: scaleX(1);
@@ -1225,9 +1290,23 @@ section h2 {
     padding: 13px 30px;
     font-size: 16px;
     position: relative;
-    background: #ddd;
-    color: #666;
+    background: url("/resources/images/admin/bg.png") repeat #f5f5f5;
+    color: #999;
     white-space: nowrap;
+}
+.user-menu li i {
+    padding: 3px;
+    width: 22px;
+    height: 22px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    text-align: center;
+    border: 1px solid #87c877;
+    font-size: 14px;
+    vertical-align: top;
+    color: #fff;
+    background: #87c877;
 }
 .user-menu li:hover > a,
 .user-menu li.active > a{
@@ -1254,6 +1333,9 @@ section h2 {
     border-right: none;
     border-left: 15px solid #87c877;
 }
+.user-menu li:hover i, .user-menu li.active i {
+    border-color: #fff;
+}
 .register-block label {
     color: #999;
     margin-bottom: 0;
@@ -1271,16 +1353,6 @@ section h2 {
     margin: 8px 0 15px;
     border-top: 7px solid #ddd;
     position: relative;
-}
-.request-item:hover .action-link a {
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -o-transform: scale(1.1);
-    transform: scale(1.1);
-}
-.request-item:hover strong {
-    color: #333;
 }
 .request-item .subheader {
     border-bottom: 1px dotted #ddd;
@@ -1347,6 +1419,60 @@ section h2 {
 .request-item strong {
     color:#999;
     font-weight: 800;
+}
+.request-item:hover strong {
+    color: #333;
+}
+.chat-info {
+    background: url("/resources/images/admin/bg.png") repeat #f1f1f1;
+    padding: 30px;
+    position: relative;
+    -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.chat-info:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    margin-left: -24px;
+    border: 24px solid transparent;
+    border-bottom: none;
+    border-top-color: #f1f1f1;
+}
+.request-chat strong {
+    font-weight: 800;
+    color:#666;
+    border-left: 5px solid #87c877;
+    padding-left: 10px;
+    position: relative;
+}
+.item-comment {
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px dotted #999;
+    display: inline-block;
+    width: 100%;
+}
+.meta-info .file-block {
+    margin-right: 0;
+}
+.file-block i {
+    color: #fff;
+    background: #87c877;
+    padding: 6px;
+    text-align: center;
+    font-size: 22px;
+    width: 36px;
+    height: 36px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+.file-block a:hover i {
+    background-color: #1a3029;
 }
 /* /User requests */
 /* /Profile */
@@ -1685,6 +1811,31 @@ h4.modal-title {
     }
     .column-block:nth-child(3n+1) {
         clear: inherit;
+    }
+    .employ-info {
+        padding-left: 15px;
+        padding-right: 15px;
+        position: relative;
+    }
+    .employ-photo {
+        width: calc(100% - 30px);
+        margin: 0 15px 30px;
+    }
+    .employ-photo:after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        height: 0;
+        width: 0;
+        top:100%;
+        left: 50%;
+        margin-left: -24px;
+        border: 24px solid transparent;
+        border-top: none;
+        border-bottom-color: #fff;
+    }
+    .employ-info h3 {
+        display: inline-block;
     }
 }
 @media screen and (min-width: 993px) {

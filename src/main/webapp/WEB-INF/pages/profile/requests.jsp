@@ -45,7 +45,9 @@
                                         </div>
                                         <div class="text-center action-link">
                                             <a href="/requests/${request.id}/chat" title="Chat"><i class="fa fa-comments" aria-hidden="true"></i></a>
-                                            <a href="/api/file/${request.id}?type=REQUEST" title="Download Business Plan"><i class="fa fa-file-text" aria-hidden="true"></i></a>
+                                            <c:if test="${request.has_file}">
+                                                <a href="/api/file/${request.id}?type=REQUEST" title="Download Business Plan"><i class="fa fa-file-text" aria-hidden="true"></i></a>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </div>
