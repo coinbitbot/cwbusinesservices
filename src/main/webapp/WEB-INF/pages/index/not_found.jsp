@@ -8,7 +8,7 @@
     </head>
     <body>
         <jsp:include page="../common/header.jsp"/>
-        You can not access this page
+        This page does not found
         <jsp:include page="../common/footer.jsp" />
     </body>
     </html>

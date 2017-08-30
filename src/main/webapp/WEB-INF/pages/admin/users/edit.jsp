@@ -17,8 +17,12 @@
                     <input type="text" ng-model="user.email" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" ng-model="user.name" class="form-control">
+                    <label>First name</label>
+                    <input type="text" ng-model="user.first_name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Last name</label>
+                    <input type="text" ng-model="user.last_name" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Role</label>

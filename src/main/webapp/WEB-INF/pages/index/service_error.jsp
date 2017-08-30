@@ -8,7 +8,7 @@
     </head>
     <body>
         <jsp:include page="../common/header.jsp"/>
-        You can not access this page
+        We faced with some error. Please try later to access this resource
         <jsp:include page="../common/footer.jsp" />
     </body>
     </html>

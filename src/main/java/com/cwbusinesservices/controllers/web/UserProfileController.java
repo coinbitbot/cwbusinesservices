@@ -42,6 +42,7 @@ public class UserProfileController {
             RequestCriteria criteria = new RequestCriteria();
             criteria.setLimit(1);
             criteria.setOrder_direction(OrderDirectionEnum.DESC);
+            criteria.setUser_ids(Arrays.asList(current.getId()));
             model.addAttribute("last_request", requestService.getList(criteria, REQUESTS_FIELDS).get(0));
         } catch (BaseException e) { }
 
