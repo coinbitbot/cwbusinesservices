@@ -8,12 +8,13 @@
     </head>
     <body>
         <jsp:include page="../common/header.jsp"/>
-        <div class="container" style="text-align: center;">
-            <section class="page-content">
-                <h2 style="margin-bottom: 40px;">This page does not found</h2>
+        <div class="container">
+            <section class="page-content text-center">
+                <h2 class="no-info no-info-icon">This page does not found</h2>
                 <br />
                 <div id="game" style="display: inline-block;"></div>
             </section>
+            <div class="clearfix"></div>
         </div>
         <jsp:include page="../common/footer.jsp" />
 

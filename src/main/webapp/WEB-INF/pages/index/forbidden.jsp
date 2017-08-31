@@ -8,17 +8,16 @@
     </head>
     <body>
         <jsp:include page="../common/header.jsp"/>
-        <div class="container" style="text-align: center;">
-            <section class="page-content">
-                <h2>
-                    You can not access this page :(
-                </h2>
+        <div class="container">
+            <section class="page-content text-center">
+                <h2 class="no-info no-info-icon">You can not access this page :(</h2>
                 <p style="margin-bottom: 40px;">
                     Don't be disappointed about access rejecting. Play this game
                 </p>
                 <br />
                 <div id="game" style="display: inline-block;"></div>
             </section>
+            <div class="clearfix"></div>
         </div>
         <jsp:include page="../common/footer.jsp" />
 

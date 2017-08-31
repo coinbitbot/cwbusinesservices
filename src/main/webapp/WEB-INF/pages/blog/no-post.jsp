@@ -16,7 +16,7 @@
 
     <div class="container">
         <section class="page-content">
-            <div class="no-info no-info-icon text-center">No such post</div>
+            <h2 class="no-info no-info-icon text-center">No such post</h2>
         </section>
         <div class="clearfix"></div>
     </div>

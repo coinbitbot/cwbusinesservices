@@ -16,19 +16,24 @@
     <div class="container">
         <section class="page-content">
             <article>
-                <h1>HEADER HERE</h1>
-                <h3>SUB HEADER HERE</h3>
+                <h1>Our Team</h1>
 
                 <!-- Repeating template -->
                 <с:if test="${employees ne null}">
                     <c:forEach var="employee" items="${employees}">
                         <div class="text-desc employ-tmp wow fadeInUp" data-wow-offset="10">
                             <div class="col-md-4 employ-photo">
-                                <img src="" class="img-responsive" />
+                                <img src="" class="img-responsive" alt="${employee.name}" />
                             </div>
                             <div class="col-md-8 employ-info">
                                 <h3 class="text-uppercase">${employee.name}</h3>
-                                ${employee.description}
+                                <h4>${employee.position}</h4><br/>
+                                <div>${employee.description}</div>
+                                <div>
+                                    <h4>Contacts:</h4>
+                                    Email: <a href="mailto:${employee.email}">${employee.email}</a><br/>
+                                    Phone: <a href="tel:${employee.phone}">${employee.phone}</a>
+                                </div>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -58,6 +63,12 @@
         </div>
 
     <jsp:include page="../common/footer.jsp" />
+    <script>
+        $(document).ready(function() {
+            // Active menu
+            $('#menu_employees').addClass('active');
+        });
+    </script>
     </body>
     </html>
 </compress:html>

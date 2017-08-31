@@ -10,7 +10,12 @@
     </head>
     <body>
     <jsp:include page="../common/header.jsp"/>
-    We can not login you using social network..
+    <div class="container">
+        <section>
+            <h2 class="no-info no-info-icon text-center">We can not login you using social network..</h2>
+        </section>
+        <div class="clearfix"></div>
+    </div>
     <jsp:include page="../common/footer.jsp" />
     </body>
     </html>

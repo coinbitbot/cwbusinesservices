@@ -8,17 +8,16 @@
     </head>
     <body>
         <jsp:include page="../common/header.jsp"/>
-        <div class="container" style="text-align: center;">
-            <section class="page-content">
-                <h2>
-                    We faced with some error. Please try later to access this resource
-                </h2>
+        <div class="container">
+            <section class="page-content text-center">
+                <h2 class="no-info no-info-icon">We faced with some error. Please try later to access this resource</h2>
                 <p style="margin-bottom: 40px;">
                     While we fix the problem show us how good you are at breakout
                 </p>
                 <br />
                 <div id="game" style="display: inline-block;"></div>
             </section>
+            <div class="clearfix"></div>
         </div>
         <jsp:include page="../common/footer.jsp" />
 

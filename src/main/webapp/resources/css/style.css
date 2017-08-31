@@ -1846,7 +1846,7 @@ h4.modal-title {
         display: inline-block;
         text-transform: uppercase;
         font-size: 16px;
-        padding: 19px 8px;
+        padding: 19px 1%;
         margin: 0 1px;
         border-top: 7px solid transparent;
         font-weight: 600;
