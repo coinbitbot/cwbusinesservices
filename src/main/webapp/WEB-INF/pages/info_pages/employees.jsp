@@ -1,4 +1,6 @@
 <%@ taglib uri="http://htmlcompressor.googlecode.com/taglib/compressor" prefix="compress"%>
+<%@ taglib prefix="с" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <compress:html removeIntertagSpaces="true">
     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -14,20 +16,24 @@
     <div class="container">
         <section class="page-content">
             <article>
-                <h1>${info_page.header}</h1>
-                <h3>${info_page.sub_header}</h3>
+                <h1>HEADER HERE</h1>
+                <h3>SUB HEADER HERE</h3>
 
                 <!-- Repeating template -->
-                <div class="text-desc employ-tmp wow fadeInUp" data-wow-offset="10">
-                    <div class="col-md-4 employ-photo">
-                        <img src="" class="img-responsive" />
-                    </div>
-                    <div class="col-md-8 employ-info">
-                        <h3 class="text-uppercase">Name & Last name</h3>
-                        ${info_page.text}
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
+                <с:if test="${employees ne null}">
+                    <c:forEach var="employee" items="${employees}">
+                        <div class="text-desc employ-tmp wow fadeInUp" data-wow-offset="10">
+                            <div class="col-md-4 employ-photo">
+                                <img src="" class="img-responsive" />
+                            </div>
+                            <div class="col-md-8 employ-info">
+                                <h3 class="text-uppercase">${employee.name}</h3>
+                                ${employee.description}
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </c:forEach>
+                </с:if>
                 <!-- /Repeating template -->
 
             </article>
