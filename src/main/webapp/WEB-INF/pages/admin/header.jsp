@@ -75,6 +75,9 @@
                         <security:authorize access="hasPermission(1,'CREATE_MENU,EDIT_MENU,CREATE_MENU_ITEM,EDIT_MENU_ITEM')">
                             <li><a href="/admin/menu/all" class="active">All menus</a></li>
                         </security:authorize>
+                        <security:authorize access="hasPermission(1,'CREATE_EMPLOYEE,EDIT_EMPLOYEE')">
+                            <li><a href="/admin/employee/all" class="active">All employees</a></li>
+                        </security:authorize>
                     </ul>
                 </li>
             </ul>

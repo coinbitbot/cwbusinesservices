@@ -112,7 +112,7 @@ public class UserServiceImpl extends IUserService {
 
     @Override
     public boolean update(UserView view) throws BaseException {
-        UserEntity entity = repository.findOne(view.getId());
+        UserEntity entity = getById(view.getId());
         if (entity == null)
             throw new NoSuchEntityException("user", "id " + view.getId());
 

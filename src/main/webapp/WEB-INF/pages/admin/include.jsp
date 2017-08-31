@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/resources/css/admin.css">
 <script src="/resources/js/utils/notification/alertify.min.js"></script>
-<script src="/resources/js/global_utils.js"></script>
 <script src="/resources/js/auth/sign_in.js"></script>
 <script src="/resources/js/utils/parse_url.js"></script>
 <script src="/resources/js/md5.min.js"></script>
@@ -58,5 +57,30 @@
             $("#filename").val(filename);
         });
     });
+
+    function showErrorMessage(error) {
+        if (typeof error === 'string') {
+            alertify.error(error);
+        } else {
+            alertify.error(error.message + buildValidationErrors(error.errors));
+        }
+    }
+
+    function showSuccessMessage(message) {
+        alertify.success(message);
+    }
+
+    function showInfoMessage(message) {
+        alertify.message(message);
+    }
+
+    function buildValidationErrors(errors) {
+        if (!errors || errors.length < 1) {
+            return '';
+        }
+
+        return '<br />[' + errors.join(', ') + ']';
+    }
+
 </script>
 

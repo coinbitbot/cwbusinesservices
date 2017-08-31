@@ -81,14 +81,17 @@
         var key = 'cookie.popup';
         if (localStorage.getItem(key)) {
             $('#cookie_popup').remove();
+            $('#cookie_policy_popup').remove();
             return;
         } else {
             $('#cookie_popup').show();
         }
 
-        $('#close_cookie').click(function(){
+        $('#cookie_popup .close-popup').click(function(){
             localStorage.setItem(key, true);
+
             $('#cookie_popup').remove();
+            $('#cookie_policy_popup').remove();
         });
     }
 })(window);

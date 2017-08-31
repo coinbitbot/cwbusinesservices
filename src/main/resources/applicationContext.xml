@@ -130,7 +130,10 @@
                 authentication-failure-url="/login?error"
                 username-parameter="username"
                 password-parameter="password" />-->
-        <security:logout invalidate-session="true" logout-success-url="/login?logout"/>
+        <security:form-login login-processing-url="/static/j_spring_security_check" login-page="/"
+                             authentication-failure-handler-ref="authenticationFailureHandler"
+                             authentication-success-handler-ref="authenticationSuccessHandler"/>
+        <security:logout invalidate-session="true" logout-success-url="/"/>
         <!-- enable csrf protection -->
         <security:csrf disabled="true"/>
     </security:http>
@@ -142,6 +145,14 @@
             <security:password-encoder hash="md5"/>
         </security:authentication-provider>
     </security:authentication-manager>
+
+    <bean name="authenticationSuccessHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+
+    </bean>
+
+    <bean name="authenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+        <property name="useForward" value="true" />
+    </bean>
 
     <bean id="customUserDetailsService" class="com.cwbusinesservices.services.users.CustomUserDetailsService"/>
 

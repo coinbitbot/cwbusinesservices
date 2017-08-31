@@ -11,10 +11,10 @@
         <div class="container" style="text-align: center;">
             <section class="page-content">
                 <h2>
-                    You can not access this page :(
+                    We faced with some error. Please try later to access this resource
                 </h2>
                 <p style="margin-bottom: 40px;">
-                    Don't be disappointed about access rejecting. Play this game
+                    While we fix the problem show us how good you are at breakout
                 </p>
                 <br />
                 <div id="game" style="display: inline-block;"></div>

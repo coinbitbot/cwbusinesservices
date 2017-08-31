@@ -13,7 +13,7 @@
                 '/api/users/' + params.id,
                 {
                     params: {
-                        fields: 'id,email,role,nickname,active,surname,name,patronymic,birth_year,phone'
+                        fields: 'id,email,role,active,phone,last_name,first_name'
                     }
                 }
             )

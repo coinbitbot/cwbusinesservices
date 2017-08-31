@@ -1,8 +1,10 @@
 package com.cwbusinesservices.controllers.web;
 
+import com.cwbusinesservices.criteria.impl.EmployeeCriteria;
 import com.cwbusinesservices.criteria.impl.InfoPageCriteria;
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
+import com.cwbusinesservices.services.employees.IEmployeeService;
 import com.cwbusinesservices.services.infopages.IInfoPageService;
 import com.cwbusinesservices.services.utils.Utils;
 import org.jsoup.Jsoup;
@@ -28,6 +30,9 @@ public class InfoPageController {
     @Autowired
     private Utils utils;
 
+    @Autowired
+    private IEmployeeService employeeService;
+
     @RequestMapping(value = "/catalog", method = RequestMethod.GET)
     public String catalog(
             Model model
@@ -49,6 +54,18 @@ public class InfoPageController {
         formCatalog(page, model);
 
         return "info_pages/catalog";
+    }
+
+    @RequestMapping(value = "/employee", method = RequestMethod.GET)
+    public String employee(
+            Model model
+    ) {
+        try {
+            model.addAttribute("employees", employeeService.getList(new EmployeeCriteria()));
+        } catch (BaseException e) {
+            // TODO: redirect to 404?
+        }
+        return "info_pages/employees";
     }
 
     @RequestMapping(value = "/{page_id}", method = RequestMethod.GET)
