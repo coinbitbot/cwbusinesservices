@@ -29,13 +29,17 @@
                 '/api/employee/' + params.id,
                 {
                     params: {
-                        fields: 'id,name,position,email,phone,description'
+                        fields: 'id,name,position,email,phone,description,has_image'
                     }
                 }
             )
                 .then(function(response){
                     if (response.data.result) {
                         $scope.entity = response.data.result;
+
+                        if ($scope.entity.has_image) {
+                            $scope.icon = '/api/file/' + $scope.entity.id + '?type=EMPLOYEE';
+                        }
 
                         tinymce.activeEditor.setContent($scope.entity.description);
                     } else {
@@ -46,6 +50,7 @@
         }
 
         save($scope, $http);
+        uploadFile($scope);
     });
 
     function save($scope, $http) {
@@ -66,6 +71,38 @@
                         showErrorMessage(response.data.error);
                     }
                 });
+        };
+    }
+
+    function uploadFile($scope) {
+        $scope.uploadFile = function() {
+            var element = angular.element('#image')[0];
+            var file = element.files[0];
+
+            if (!file) {
+                showErrorMessage('select file');
+                return;
+            }
+
+            Ajax.uploadFile(
+                '/api/file/',
+                {
+                    id: $scope.entity.id,
+                    file: file,
+                    type: 'EMPLOYEE'
+                },
+                function(response) {
+                    if (response.result) {
+                        showSuccessMessage('uploaded');
+                        $scope.icon = '';
+                        setTimeout(function(){
+                            $scope.icon = '/api/file/' + $scope.entity.id + '?type=SERVICE';
+                        }, 500);
+                    } else {
+
+                    }
+                }
+            );
         };
     }
 })();

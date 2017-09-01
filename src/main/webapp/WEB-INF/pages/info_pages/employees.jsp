@@ -23,7 +23,7 @@
                     <c:forEach var="employee" items="${employees}">
                         <div class="text-desc employ-tmp wow fadeInUp" data-wow-offset="10">
                             <div class="col-md-4 employ-photo">
-                                <img src="" class="img-responsive" alt="${employee.name}" />
+                                <img src="/api/file/${employee.id}?type=EMPLOYEE" class="img-responsive" alt="${employee.name}" />
                             </div>
                             <div class="col-md-8 employ-info">
                                 <h3 class="text-uppercase">${employee.name}</h3>

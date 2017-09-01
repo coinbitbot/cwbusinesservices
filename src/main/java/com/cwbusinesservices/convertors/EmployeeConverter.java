@@ -29,6 +29,8 @@ public class EmployeeConverter extends Converter<EmployeeEntity>{
             map.put(EMAIL,object.getEmail());
         if (fields.contains(PHONE))
             map.put(PHONE,object.getPhone());
+        if (fields.contains(HAS_IMG))
+            map.put(HAS_IMG, object.isHasFile());
         return map;
     }
 }

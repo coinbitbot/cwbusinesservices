@@ -8,6 +8,7 @@ import com.cwbusinesservices.pojo.enums.FileEntityTypeEnum;
 import com.cwbusinesservices.services.IFileWork;
 import com.cwbusinesservices.services.blog.IPostService;
 import com.cwbusinesservices.services.company.ICompanyService;
+import com.cwbusinesservices.services.employees.IEmployeeService;
 import com.cwbusinesservices.services.request.IRequestService;
 import com.cwbusinesservices.services.requestcomment.IRequestCommentService;
 import com.cwbusinesservices.services.service.IServiceService;
@@ -45,6 +46,9 @@ public class IFileServiceImpl implements IFileService {
     @Autowired
     private IPostService postService;
 
+    @Autowired
+    private IEmployeeService employeeService;
+
     @Override
     public Boolean uploadFile(int id, MultipartFile file, FileEntityTypeEnum type) throws BaseException {
         boolean res = storageService.uploadFile(id, file, type);
@@ -68,6 +72,7 @@ public class IFileServiceImpl implements IFileService {
             case REQUEST:return requestService;
             case REQUEST_COMMENT: return requestCommentService;
             case POST: return postService;
+            case EMPLOYEE:return employeeService;
         }
         return null;
     }

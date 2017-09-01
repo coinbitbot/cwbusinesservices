@@ -33,6 +33,21 @@
             </div>
             <div class="text-center"><button class="btn btn-theme-ok">Save</button></div>
         </form>
+        <div ng-show="entity.id">
+            <div class="hr-separator"></div>
+            <img ng-src="{{icon}}" class="form-img">
+            <form ng-submit="uploadFile();">
+                <div class="block-fileinput text-center">
+                    <input type="file" id="image" accept="image/*" class="inputfile">
+                    <input type="text" id="filename" class="filename" disabled />
+                    <label for="image" class="btn-theme-dark btn">Choose file</label>
+                </div>
+                <div class="clearfix"></div>
+                <div class="text-center">
+                    <button class="btn btn-theme-ok">Save</button>
+                </div>
+            </form>
+        </div>
     </div>
     <div class="clearfix"></div>
 <jsp:include page="../include.jsp" />
