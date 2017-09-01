@@ -48,13 +48,15 @@
             <div class="container">
                 <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                     <h3 class="text-uppercase text-center">You can write us a message:</h3>
-                    <form>
+                    <form id="contact_us">
                         <div class="register-block">
                             <div class="row">
+                                <form id="contact_us">
                                 <div class="col-xs-12 col-sm-6"><input type="text" name="name" placeholder="Your Name" class="form-field col-xs-12"></div>
                                 <div class="col-xs-12 col-sm-6"><input type="email" name="email" placeholder="Your Email" class="form-field col-xs-12"></div>
-                                <div class="col-xs-12"><textarea placeholder="Your Message" class="form-field col-xs-12"></textarea></div>
+                                <div class="col-xs-12"><textarea name="text" placeholder="Your Message" class="form-field col-xs-12"></textarea></div>
                                 <div class="text-center"><button class="btn-theme btn-2">Send message</button></div>
+                                </form>
                             </div>
                         </div>
                     </form>
@@ -63,12 +65,7 @@
         </div>
 
     <jsp:include page="../common/footer.jsp" />
-    <script>
-        $(document).ready(function() {
-            // Active menu
-            $('#menu_employees').addClass('active');
-        });
-    </script>
+    <script src="/resources/js/info_page/employee.js"></script>
     </body>
     </html>
 </compress:html>

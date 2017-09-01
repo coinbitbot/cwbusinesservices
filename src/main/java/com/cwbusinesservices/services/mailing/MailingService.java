@@ -73,42 +73,35 @@ public class MailingService implements IMailingService {
     }
 
     @Override
-    @Transactional(rollbackFor = BaseException.class)
     public boolean sendEmailToUser(EmailTemplateCodeEnum typeOfEmail, String userEmail, Map<String, String> data, Locale locale) throws BaseException {
         EmailTemplateEntity content = emailBuilder.getEmailContent(typeOfEmail, data, locale);
-        return send(userEmail, content, locale);
+        return send(userEmail, content);
     }
 
     @Override
-    @Transactional(rollbackFor = BaseException.class)
     public boolean sendEmailToUser(EmailTemplateEntity content, String userEmail, Map<String, String> data, Locale locale) throws BaseException {
-        EmailTemplateEntity email = emailBuilder.formEmailContent(content, data);
-        return send(userEmail, content, locale);
+        emailBuilder.formEmailContent(content, data);
+        return send(userEmail, content);
     }
 
     @Override
     public boolean sendEmailToUsers(EmailTemplateCodeEnum typeOfEmail, List<String> userEmails, Map<String, String> data, Locale locale) throws BaseException {
-        EmailTemplateEntity emailTemplate = emailBuilder.getEmailTemplate(typeOfEmail);
         for (String user : userEmails) {
             sendEmailToUser(typeOfEmail, user, data, locale);
         }
         return true;
     }
 
-    private boolean send(String toEmail, EmailTemplateEntity content, Locale locale) {
-        final ExecutorService service;
-        final Future<String> task;
-        service = Executors.newFixedThreadPool(1);
-        String subject = content.getSubject();
-        task = service.submit(new SenderTask(fromEmail, toEmail, content.getText(), subject));
-        //System.out.println(content.getText());
+    private boolean send(String toEmail, EmailTemplateEntity content) {
+        final ExecutorService service = Executors.newFixedThreadPool(1);
+        final Future<String> task = service.submit(new SenderTask(fromEmail, toEmail, content.getText(), content.getSubject()));
+
         return executeSendTask(service, task);
     }
 
     private boolean executeSendTask(final ExecutorService service, final Future<String> task) {
         try {
-            final String str;
-            str = task.get(); // this raises ExecutionException if thread dies
+            final String str = task.get(); // this raises ExecutionException if thread dies
             if (str.contains("\"result\":true"))
                 return true;
             System.out.println("CAN NOT SEND EMAIL");
@@ -144,9 +137,6 @@ public class MailingService implements IMailingService {
         String toEmail;
         String text;
         String subject;
-
-        SenderTask() {
-        }
 
         SenderTask(String fromEmail, String toEmail, String text, String subject) {
             this.fromEmail = fromEmail;
