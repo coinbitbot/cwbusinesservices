@@ -50,9 +50,20 @@ $(function(){
                         function(response) {
                             if (response.result) {
                                 showSuccessMessage('you successfully register an request');
-                                setTimeout(function(){
+                                /*setTimeout(function(){
                                     location.href = '/profile/requests';
-                                }, 1000);
+                                }, 1000);*/
+
+                                Ajax.post({
+                                    url: '/api/mail/set_password',
+                                    success: function(response) {
+                                        if (response.result) {
+                                            showSuccessMessage('We send You email with activation link');
+                                        } else {
+                                            showErrorMessage(response.error);
+                                        }
+                                    }
+                                });
                             } else {
                                 var e = response.error;
                                 showErrorMessage(e.message + buildValidationErrors(e.errors));

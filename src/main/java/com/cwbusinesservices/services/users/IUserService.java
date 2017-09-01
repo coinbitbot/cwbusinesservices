@@ -36,4 +36,6 @@ public abstract class IUserService extends BaseService<UserEntity, UserView, Int
     public abstract boolean changePassword(UserView view) throws BaseException;
 
     public abstract Map<String, Object> registration(UserView view, HttpServletRequest request, HttpServletResponse response) throws BaseException, InstantiationException, IllegalAccessException;
+
+    public abstract boolean sendActivationLinkToUser(HttpServletResponse response, HttpServletRequest request) throws BaseException;
 }

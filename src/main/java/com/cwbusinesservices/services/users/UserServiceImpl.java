@@ -4,7 +4,9 @@ import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
 import com.cwbusinesservices.exceptions.service_error.ForbiddenException;
 import com.cwbusinesservices.mergers.UserMerger;
+import com.cwbusinesservices.pojo.enums.EmailTemplateCodeEnum;
 import com.cwbusinesservices.pojo.view.RequestView;
+import com.cwbusinesservices.services.mailing.IMailingService;
 import com.cwbusinesservices.services.request.IRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -72,6 +74,9 @@ public class UserServiceImpl extends IUserService {
 
     @Autowired
     private IRequestService requestService;
+
+    @Autowired
+    private IMailingService mailingService;
 
     @Override
     public UserEntity getByEmail(String email) throws NoSuchEntityException {
@@ -154,11 +159,12 @@ public class UserServiceImpl extends IUserService {
         UserEntity user = getByEmail(email);
         if (!token.equals(getAuthorizationToken(user)))
             throw new ForbiddenException();
-        Authentication authentication = new UsernamePasswordAuthenticationToken(user, user.getPassword(), getGrantedAuthorities(user));
-        SecurityContext securityContext = SecurityContextHolder.getContext();
-        securityContext.setAuthentication(authentication);
 
-        return true;
+        UserView view = new UserView();
+        view.setEmail(user.getEmail());
+        view.setPassword(user.getPassword());
+
+        return signInUser(view);
     }
 
     @Override
@@ -238,6 +244,31 @@ public class UserServiceImpl extends IUserService {
         }
     }
 
+    @Override
+    public boolean sendActivationLinkToUser(HttpServletResponse response, HttpServletRequest request) throws BaseException {
+        sessionUtils.authorized();
+
+        UserEntity entity = sessionUtils.getCurrentUser();
+        String token = getAuthorizationToken(entity);
+
+        boolean result = mailingService.sendEmailToUser(
+                EmailTemplateCodeEnum.NEW_USER_REGISTER,
+                entity.getEmail(),
+                new HashMap<String, String>(){{
+                    put("url", hostUrl + "/helper/login/" + entity.getEmail() + "/" + token);
+                }},
+                Locale.ENGLISH
+        );
+
+        if (result) {
+            // if user after success registration have successfully get activation email
+            // we should log out him
+            logoutUser(request, response);
+        }
+
+        return result;
+    }
+
     private String encryptString(String encript) throws ServiceErrorException {
         try {
             MessageDigest m = MessageDigest.getInstance("MD5");
@@ -275,4 +306,7 @@ public class UserServiceImpl extends IUserService {
 
     @Value("${user.solt}")
     private String userSolt;
+
+    @Value("${host.url}")
+    private String hostUrl;
 }

@@ -24,7 +24,7 @@ public class HelperController {
         try {
             boolean login = userService.signInUser(email,token);
             if (login)
-                return "redirect:/";
+                return "redirect:/profile";
         } catch (BaseException e) {
             e.printStackTrace();
         }
