@@ -22,10 +22,10 @@
                 <с:if test="${employees ne null}">
                     <c:forEach var="employee" items="${employees}">
                         <div class="text-desc employ-tmp wow fadeInUp" data-wow-offset="10">
-                            <div class="col-md-4 employ-photo">
+                            <div class="col-sm-4 col-md-3 employ-photo">
                                 <img src="/api/file/${employee.id}?type=EMPLOYEE" class="img-responsive" alt="${employee.name}" />
                             </div>
-                            <div class="col-md-8 employ-info">
+                            <div class="col-sm-8 col-md-9 employ-info">
                                 <h3 class="text-uppercase">${employee.name}</h3>
                                 <h4>${employee.position}</h4><br/>
                                 <div>${employee.description}</div>
