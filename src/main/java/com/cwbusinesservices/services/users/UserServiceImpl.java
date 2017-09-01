@@ -5,6 +5,7 @@ import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
 import com.cwbusinesservices.exceptions.service_error.ForbiddenException;
 import com.cwbusinesservices.mergers.UserMerger;
 import com.cwbusinesservices.pojo.enums.EmailTemplateCodeEnum;
+import com.cwbusinesservices.pojo.enums.PermissionsEnum;
 import com.cwbusinesservices.pojo.view.RequestView;
 import com.cwbusinesservices.services.mailing.IMailingService;
 import com.cwbusinesservices.services.request.IRequestService;
@@ -189,10 +190,21 @@ public class UserServiceImpl extends IUserService {
 
     @Override
     public boolean changePassword(UserView view) throws BaseException {
-        UserEntity entity = getById(view.getId());
+        sessionUtils.authorized();
 
-        if (!entity.getPassword().equals(view.getPassword())) {
-            throw new WrongPasswordException();
+        UserEntity entity;
+
+        if (sessionUtils.isUserWithRole(RolesEnum.admin) && view.getId() != null && view.getId() > 0) {
+            entity = getById(view.getId());
+        } else {
+            entity = sessionUtils.getCurrentUser();
+
+            // if equals it means that this is first registration
+            if (! entity.getPassword().equals("default_default")) {
+                if (!entity.getPassword().equals(view.getPassword())) {
+                    throw new WrongPasswordException();
+                }
+            }
         }
 
         entity.setPassword(view.getPassword_new());
