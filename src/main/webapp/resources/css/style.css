@@ -1812,31 +1812,6 @@ h4.modal-title {
     .column-block:nth-child(3n+1) {
         clear: inherit;
     }
-    .employ-info {
-        padding-left: 15px;
-        padding-right: 15px;
-        position: relative;
-    }
-    .employ-photo {
-        width: calc(100% - 30px);
-        margin: 0 15px 30px;
-    }
-    .employ-photo:after {
-        content: '';
-        display: inline-block;
-        position: absolute;
-        height: 0;
-        width: 0;
-        top:100%;
-        left: 50%;
-        margin-left: -24px;
-        border: 24px solid transparent;
-        border-top: none;
-        border-bottom-color: #fff;
-    }
-    .employ-info h3 {
-        display: inline-block;
-    }
 }
 @media screen and (min-width: 993px) {
     .topmenu {
@@ -1933,6 +1908,31 @@ h4.modal-title {
     }
     .requests {
         margin-bottom: 50px;
+    }
+    .employ-info {
+        padding-left: 15px;
+        padding-right: 15px;
+        position: relative;
+    }
+    .employ-photo {
+        width: calc(100% - 30px);
+        margin: 0 15px 30px;
+    }
+    .employ-photo:after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        height: 0;
+        width: 0;
+        top:100%;
+        left: 50%;
+        margin-left: -24px;
+        border: 24px solid transparent;
+        border-top: none;
+        border-bottom-color: #fff;
+    }
+    .employ-info h3 {
+        display: inline-block;
     }
 }
 @media screen and (max-width: 450px) {
