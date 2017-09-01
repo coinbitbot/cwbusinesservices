@@ -15,24 +15,19 @@
 
     <div class="container">
         <section class="page-content">
-            <article>
-                <div class="feedback">
-                    <div class="container">
-                        <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                            <h3 class="text-uppercase text-center">Your password</h3>
-                            <div class="register-block">
-                                <div class="row">
-                                    <form id="set_password">
-                                        <div class="col-xs-12 col-sm-12"><input type="password" name="password" placeholder="Password" class="form-field col-xs-12"></div>
-                                        <div class="col-xs-12 col-sm-12"><input type="password" name="password_repeat" placeholder="Password repeat" class="form-field col-xs-12"></div>
-                                        <div class="text-center"><button class="btn-theme btn-2">Set password</button></div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+            <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <h3 class="text-uppercase text-center">Your password</h3>
+                <div class="register-block">
+                    <div class="row">
+                        <form id="set_password">
+                            <div class="col-xs-12 col-sm-12"><input type="password" name="password" placeholder="Password" class="form-field col-xs-12"></div>
+                            <div class="col-xs-12 col-sm-12"><input type="password" name="password_repeat" placeholder="Password repeat" class="form-field col-xs-12"></div>
+                            <div class="text-center"><button class="btn-theme btn-1">Set password</button></div>
+                        </form>
                     </div>
                 </div>
-            </article>
+            </div>
+            <div class="clearfix"></div>
         </section>
     </div>
 
