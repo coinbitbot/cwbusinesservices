@@ -3,6 +3,7 @@ package com.cwbusinesservices.controllers.web;
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.services.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +19,14 @@ public class HelperController {
     private IUserService userService;
 
     @RequestMapping(value = "/login/{email}/{token}", method = RequestMethod.GET)
-    public String signUpFromLink(@PathVariable("email")String email,
-                                 @PathVariable("token")String token,
-                                 Model model) {
+    public String signUpFromLink(
+            @PathVariable("email")String email,
+            @PathVariable("token")String token
+    ) {
         try {
             boolean login = userService.signInUser(email,token);
             if (login)
-                return "redirect:/";
+                return "/profile/set_password";
         } catch (BaseException e) {
             e.printStackTrace();
         }

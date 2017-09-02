@@ -169,6 +169,7 @@ public class Fields {
         public static final String EMAIL = "email";
         public static final String PHONE = "phone";
         public static final String DESCRIPTION = "description";
+        public static final String HAS_IMG = "has_image";
     }
 
     public static final String DEFAULT ="id";

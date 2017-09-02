@@ -2,6 +2,7 @@ package com.cwbusinesservices.pojo.entities;
 
 import com.cwbusinesservices.pojo.helpers.CompareIntegerId;
 import com.cwbusinesservices.pojo.helpers.GetableById;
+import com.cwbusinesservices.pojo.helpers.IHasFile;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name="EMPLOYEES")
-public class EmployeeEntity extends CompareIntegerId implements Serializable, GetableById<Integer>{
+public class EmployeeEntity extends CompareIntegerId implements Serializable, GetableById<Integer>, IHasFile{
 
     private static final long serialVersionUID = -723581376961829824L;
 
@@ -44,6 +45,9 @@ public class EmployeeEntity extends CompareIntegerId implements Serializable, Ge
 
     @Column(name = "DESCRIPTION")
     private String description;
+
+    @Column(name="HAS_ICON")
+    private boolean hasImage;
 
     @Override
     public Integer getId() {
@@ -95,6 +99,16 @@ public class EmployeeEntity extends CompareIntegerId implements Serializable, Ge
     }
 
     @Override
+    public Boolean isHasFile() {
+        return hasImage;
+    }
+
+    @Override
+    public void setHasFile(boolean hasFile) {
+        this.hasImage = hasFile;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -129,6 +143,7 @@ public class EmployeeEntity extends CompareIntegerId implements Serializable, Ge
                 ", position='" + position + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
+                ", hasImage='" + hasImage + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }

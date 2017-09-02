@@ -2,13 +2,14 @@ package com.cwbusinesservices.pojo.view;
 
 import com.cwbusinesservices.pojo.helpers.CompareIntegerId;
 import com.cwbusinesservices.pojo.helpers.GetableById;
+import com.cwbusinesservices.pojo.helpers.IHasFile;
 
 import java.io.Serializable;
 
 /**
  * Created by Andrii on 29.08.2017.
  */
-public class EmployeeView extends CompareIntegerId implements Serializable,GetableById<Integer> {
+public class EmployeeView extends CompareIntegerId implements Serializable,GetableById<Integer>,IHasFile {
 
     private static final long serialVersionUID = 1910696915495544735L;
 
@@ -18,6 +19,7 @@ public class EmployeeView extends CompareIntegerId implements Serializable,Getab
     private String email;
     private String phone;
     private String description;
+    private Boolean hasIcon;
 
     @Override
     public Integer getId() {
@@ -69,6 +71,16 @@ public class EmployeeView extends CompareIntegerId implements Serializable,Getab
     }
 
     @Override
+    public Boolean isHasFile() {
+        return hasIcon;
+    }
+
+    @Override
+    public void setHasFile(boolean hasFile) {
+        this.hasIcon = hasFile;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -103,6 +115,7 @@ public class EmployeeView extends CompareIntegerId implements Serializable,Getab
                 ", position='" + position + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
+                ", hasIcon='" + hasIcon + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }

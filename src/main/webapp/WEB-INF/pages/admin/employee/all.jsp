@@ -33,6 +33,7 @@
                 <thead>
                 <tr>
                     <th>Name & position</th>
+                    <th>Photo</th>
                     <th>Contacts</th>
                     <th>Actions</th>
                 </tr>
@@ -43,6 +44,9 @@
                         {{entity.name}}
                         <br />
                         {{entity.position}}
+                    </td>
+                    <td>
+                        <img ng-src="{{entity.icon}}" class="form-img">
                     </td>
                     <td>
                         {{entity.email}}

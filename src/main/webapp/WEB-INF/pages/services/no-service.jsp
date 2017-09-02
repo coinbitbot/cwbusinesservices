@@ -16,7 +16,7 @@
 
     <div class="container">
         <section>
-            <div class="no-info no-info-icon text-center">No such service</div>
+            <h2 class="no-info no-info-icon text-center">No such service</h2>
         </section>
         <div class="clearfix"></div>
     </div>

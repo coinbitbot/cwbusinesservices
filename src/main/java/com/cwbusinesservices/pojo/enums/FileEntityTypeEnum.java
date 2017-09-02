@@ -8,5 +8,6 @@ public enum FileEntityTypeEnum {
     COMPANY,
     REQUEST,
     REQUEST_COMMENT,
-    POST
+    POST,
+    EMPLOYEE
 }

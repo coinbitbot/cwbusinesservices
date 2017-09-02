@@ -119,7 +119,7 @@
 
         <security:intercept-url pattern="/resources/**" access="permitAll"/>
 
-        <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+        <!--<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />-->
 
         <!-- access denied page -->
         <security:access-denied-handler error-page="/WEB-INF/pages/index/forbidden.jsp" />
@@ -198,19 +198,10 @@
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 
 
-    <bean name="localeChangeInterceptor"
+    <!--<bean name="localeChangeInterceptor"
                   class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
         <property name="paramName" value="locale"/>
-    </bean>
-
-
-    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" >
-        <property name="interceptors">
-            <list>
-                <ref bean="localeChangeInterceptor" />
-            </list>
-        </property>
-    </bean>
+    </bean>-->
 
     <bean id="messageSource"
           class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
@@ -220,19 +211,19 @@
                 <value>classpath:admin</value>
             </list>
         </property>
-        <property name="fallbackToSystemLocale" value="true" />
+        <property name="fallbackToSystemLocale" value="false" />
         <property name="fileEncodings" value="UTF-8" />
         <property name="defaultEncoding" value="UTF-8" />
         <property name="cacheSeconds" value="3600"/>
     </bean>
 
     <!-- Locales -->
-    <bean id="localeResolver"
+    <!--<bean id="localeResolver"
           class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
         <property name="defaultLocale" value="en"/>
-        <property name="cookieName" value="papersLocaleCookie"/>
+        <property name="cookieName" value="cwbsLocaleCookie"/>
         <property name="cookieMaxAge" value="3600"/>
-    </bean>
+    </bean>-->
 
     <bean id="md5PasswordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder"/>
     <bean id="sendPulse" class="com.cwbusinesservices.services.mailing.sendpulse.sendpulse.restapi.Sendpulse">

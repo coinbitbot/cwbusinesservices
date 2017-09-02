@@ -39,7 +39,7 @@
             '/api/employee/',
             {
                 params: {
-                    fields: 'id,name,position,email,phone',
+                    fields: 'id,name,position,email,phone,has_image',
                     restrict: JSON.stringify(RESTRICTION)
                 }
             }
@@ -47,6 +47,10 @@
             .then(function(response){
                 if (response.data.result) {
                     $scope.entities = response.data.result;
+
+                    $scope.entities.forEach(function(e){
+                        e.icon = '/api/file/' + e.id + '?type=EMPLOYEE';
+                    });
 
                     $scope.number_on_page = $scope.entities.length;
                 } else {

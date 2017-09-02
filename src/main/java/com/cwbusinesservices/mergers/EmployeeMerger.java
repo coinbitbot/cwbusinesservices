@@ -16,6 +16,9 @@ public class EmployeeMerger implements Merger<EmployeeEntity,EmployeeView>{
     @Autowired
     private Utils utils;
 
+    @Autowired
+    private FileMerger fileMerger;
+
     @Override
     public void merge(EmployeeEntity entity, EmployeeView view) throws BaseException {
         if (view.getId()!=null) entity.setId(view.getId());
@@ -34,5 +37,7 @@ public class EmployeeMerger implements Merger<EmployeeEntity,EmployeeView>{
 
         if (utils.notEmpty(view.getDescription())) entity.setDescription(view.getDescription());
         else view.setDescription(entity.getDescription());
+
+        fileMerger.merge(view, entity);
     }
 }
