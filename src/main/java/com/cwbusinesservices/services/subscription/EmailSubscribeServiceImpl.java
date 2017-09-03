@@ -9,15 +9,17 @@ import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;
 import com.cwbusinesservices.persistence.dao.repositories.EmailSubscribeRepository;
 import com.cwbusinesservices.pojo.entities.EmailSubscribeEntity;
 import com.cwbusinesservices.pojo.entities.InfoPageEntity;
+import com.cwbusinesservices.pojo.enums.EmailTemplateCodeEnum;
+import com.cwbusinesservices.pojo.view.EmailSubscribeView;
 import com.cwbusinesservices.services.IValidator;
+import com.cwbusinesservices.services.mailing.IMailingService;
+import com.cwbusinesservices.services.utils.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Andrii on 31.07.2017.
@@ -32,6 +34,10 @@ public class EmailSubscribeServiceImpl extends IEmailSubscribeService{
     private IValidator<EmailSubscribeEntity> validator;
     @Autowired
     private Converter<EmailSubscribeEntity> converter;
+    @Autowired
+    private SessionUtils sessionUtils;
+    @Autowired
+    private IMailingService mailingService;
 
     @Override
     public List<Map<String, Object>> getList(Set<String> fields, String restrict) throws BaseException {
@@ -57,5 +63,24 @@ public class EmailSubscribeServiceImpl extends IEmailSubscribeService{
     @Override
     public Map<String, Object> getByEmail(String email, Set<String> fields) throws BaseException {
         return converter.convert(getByEmail(email),fields);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NEVER, rollbackFor = BaseException.class)
+    public Integer create(EmailSubscribeView view) throws BaseException, IllegalAccessException, InstantiationException {
+        Integer id = super.create(view);
+
+        if (id != null && id > 0) {
+            if (!sessionUtils.isAuthorized()) {
+                mailingService.sendEmailToUser(
+                        EmailTemplateCodeEnum.EMAIL_SUBSCRIPTION,
+                        view.getEmail(),
+                        null,
+                        Locale.ENGLISH
+                );
+            }
+        }
+
+        return id;
     }
 }
