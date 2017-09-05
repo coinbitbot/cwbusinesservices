@@ -115,6 +115,11 @@ public class IndexController {
         return "index/index";
     }
 
+    @RequestMapping(value = "contact_us", method = RequestMethod.GET)
+    public String contactUs() {
+        return "index/contact_us";
+    }
+
     @PreAuthorize("isAnonymous()")
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String signUp(Model model) {

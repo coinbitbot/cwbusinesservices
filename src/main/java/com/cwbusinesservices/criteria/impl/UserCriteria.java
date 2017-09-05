@@ -5,7 +5,6 @@ import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
 import com.cwbusinesservices.pojo.entities.RoleEntity;
 import com.cwbusinesservices.pojo.entities.UserEntity;
 import com.cwbusinesservices.pojo.enums.RolesEnum;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
