@@ -8,6 +8,7 @@ import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
 import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;
 import com.cwbusinesservices.persistence.dao.repositories.InfoPagesRepository;
 import com.cwbusinesservices.pojo.entities.InfoPageEntity;
+import com.cwbusinesservices.pojo.view.InfoPageView;
 import com.cwbusinesservices.services.IValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,5 +62,9 @@ public class InfoPageServiceImpl extends IInfoPageService{
         return converter.convert(getByUrl(url),fields);
     }
 
-
+    @Override
+    @Transactional(propagation = Propagation.NEVER)
+    public Integer create(InfoPageView view) throws BaseException, IllegalAccessException, InstantiationException {
+        return super.create(view);
+    }
 }

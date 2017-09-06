@@ -35,7 +35,7 @@ public class Utils {
     public boolean validUrl(String str){
         if (!notEmpty(str))
             return false;
-        Pattern p = Pattern.compile("^[a-zA-Z0-9_]*$");
+        Pattern p = Pattern.compile("^[a-zA-Z0-9_\\-]*$");
         Matcher m = p.matcher(str);
         return m.matches();
     }
