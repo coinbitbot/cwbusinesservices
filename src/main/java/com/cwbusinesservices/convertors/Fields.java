@@ -50,6 +50,7 @@ public class Fields {
         public static final String NAME = "name";
         public static final String HAS_IMG = "has_icon";
         public static final String DESCRIPTION = "description";
+        public static final String SHORT_DESCRIPTION = "short_description";
         public static final String ACTIVE ="active";
 
         public static final String DEFAULT = ID + ',' + NAME;

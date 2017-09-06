@@ -225,7 +225,7 @@ public class IndexController {
     private final static Type MAP_RESPONSE_TYPE = new TypeToken<Map<String, Object>>(){}.getType();
 
     private final Set<String> SERVICES_FIELDS_FOR_INDEX = new HashSet<>(
-            Arrays.asList("id", "name", "description")
+            Arrays.asList("id", "name", "short_description")
     );
 
     private final Set<String> COMPANIES_FIELDS_FOR_INDEX = new HashSet<>(

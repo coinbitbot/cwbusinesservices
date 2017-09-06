@@ -33,6 +33,9 @@ public class ServiceEntity  extends CompareIntegerId implements Serializable, Ge
     @Column(name="DESCRIPTION")
     private String description;
 
+    @Column(name = "SHORT_DESCRIPTION")
+    private String shortDescription;
+
     @Column(name="STATUS")
     private boolean active;
 
@@ -67,6 +70,14 @@ public class ServiceEntity  extends CompareIntegerId implements Serializable, Ge
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
     }
 
     public boolean isActive() {

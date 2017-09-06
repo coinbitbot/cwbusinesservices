@@ -26,6 +26,8 @@ public class ServiceConverter extends Converter<ServiceEntity>{
             map.put(HAS_IMG,object.isHasImage());
         if(fields.contains(DESCRIPTION))
             map.put(DESCRIPTION,object.getDescription());
+        if(fields.contains(SHORT_DESCRIPTION))
+            map.put(SHORT_DESCRIPTION,object.getShortDescription());
         if (fields.contains(NAME))
             map.put(NAME,object.getName());
         return map;

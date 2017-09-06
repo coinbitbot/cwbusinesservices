@@ -11,7 +11,7 @@
                 '/api/service/' + params.id,
                 {
                     params: {
-                        fields: 'id,name,description,active,has_icon'
+                        fields: 'id,name,description,short_description,active,has_icon'
                     }
                 }
             )

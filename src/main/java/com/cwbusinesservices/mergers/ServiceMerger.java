@@ -27,6 +27,8 @@ public class ServiceMerger implements Merger<ServiceEntity,ServiceView>{
         fileMerger.merge(view, entity);
         if (utils.notEmpty(view.getDescription())) entity.setDescription(view.getDescription());
         else view.setDescription(entity.getDescription());
+        if (utils.notEmpty(view.getShort_description())) entity.setShortDescription(view.getShort_description());
+        else view.setShort_description(entity.getShortDescription());
         if (utils.notEmpty(view.getName())) entity.setName(view.getName());
         else view.setName(entity.getName());
     }
