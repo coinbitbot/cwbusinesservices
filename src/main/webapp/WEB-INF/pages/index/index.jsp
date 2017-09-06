@@ -1,5 +1,5 @@
 <%@ taglib uri="http://htmlcompressor.googlecode.com/taglib/compressor" prefix="compress"%>
-<compress:html removeIntertagSpaces="true">
+<%--<compress:html removeIntertagSpaces="true">--%>
     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
@@ -18,22 +18,42 @@
         <jsp:include page="../common/header.jsp"/>
 
         <div class="wrapper index-page">
-            <ul class="cb-slideshow hidden-print">
-                <li><span style="background-image: url('/resources/images/backgrounds/bg-1.jpg')"></span></li>
-                <li><span style="background-image: url('/resources/images/backgrounds/bg-2.jpg')"></span></li>
-                <li><span style="background-image: url('/resources/images/backgrounds/bg-3.jpg')"></span></li>
-            </ul>
-            <div id="home_slider" class="owl-carousel wow fadeIn hidden-print" data-wow-offset="10">
-                <div class="item-slide" style="background-image: url('/resources/images/slides/slide-1.jpg'); background-size: cover;">
-                    <div class="title-slider container">Choosing the right trustees perspectives on wealth...</div>
-                </div>
-                <div class="item-slide" style="background-image: url('/resources/images/slides/slide-2.jpg'); background-size: cover;">
-                    <div class="title-slider container">Choosing the right trustees perspectives on wealth...</div>
-                </div>
-                <div class="item-slide" style="background-image: url('/resources/images/slides/slide-3.jpg'); background-size: cover;">
-                    <div class="title-slider container">Choosing the right trustees perspectives on wealth...</div>
-                </div>
-            </div>
+            <c:choose>
+                <c:when test="${carousel_images ne null}">
+                    <ul class="cb-slideshow hidden-print">
+                        <c:forEach var="image" items="${carousel_images}">
+                            <li><span style="background-image: url('/api/file/${image.id}?type=CAROUSEL_IMAGE')"></span></li>
+                        </c:forEach>
+                    </ul>
+                    <div id="home_slider" class="owl-carousel wow fadeIn hidden-print" data-wow-offset="10">
+                        <c:forEach var="image" items="${carousel_images}">
+                            <div class="item-slide" style="background-image: url('/api/file/${image.id}?type=CAROUSEL_IMAGE'); background-size: cover;">
+                                <div class="title-slider container">
+                                        ${image.description}
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <ul class="cb-slideshow hidden-print">
+                        <li><span style="background-image: url('/resources/images/backgrounds/bg-1.jpg')"></span></li>
+                        <li><span style="background-image: url('/resources/images/backgrounds/bg-2.jpg')"></span></li>
+                        <li><span style="background-image: url('/resources/images/backgrounds/bg-3.jpg')"></span></li>
+                    </ul>
+                    <div id="home_slider" class="owl-carousel wow fadeIn hidden-print" data-wow-offset="10">
+                        <div class="item-slide" style="background-image: url('/resources/images/slides/slide-1.jpg'); background-size: cover;">
+                            <div class="title-slider container">Choosing the right trustees perspectives on wealth...</div>
+                        </div>
+                        <div class="item-slide" style="background-image: url('/resources/images/slides/slide-2.jpg'); background-size: cover;">
+                            <div class="title-slider container">Choosing the right trustees perspectives on wealth...</div>
+                        </div>
+                        <div class="item-slide" style="background-image: url('/resources/images/slides/slide-3.jpg'); background-size: cover;">
+                            <div class="title-slider container">Choosing the right trustees perspectives on wealth...</div>
+                        </div>
+                    </div>
+                </c:otherwise>
+            </c:choose>
             <div class="visible-print-inline print-slider">
                 <img src="/resources/images/slides/slide-1.jpg" class="img-responsive visible-print" />
             </div>
@@ -261,4 +281,4 @@
         </script>
     </body>
     </html>
-</compress:html>
+<%--</compress:html>--%>

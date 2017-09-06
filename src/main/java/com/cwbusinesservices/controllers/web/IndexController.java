@@ -10,6 +10,7 @@ import com.cwbusinesservices.pojo.enums.BlockCodesEnum;
 import com.cwbusinesservices.pojo.view.UserView;
 import com.cwbusinesservices.services.blocks.IBlockService;
 import com.cwbusinesservices.services.blog.IPostService;
+import com.cwbusinesservices.services.carousel_images.ICarouselImageService;
 import com.cwbusinesservices.services.company.ICompanyService;
 import com.cwbusinesservices.services.industry.IIndustryService;
 import com.cwbusinesservices.services.interests.IInterestsService;
@@ -65,6 +66,9 @@ public class IndexController {
     @Autowired
     private Utils utils;
 
+    @Autowired
+    private ICarouselImageService carouselImageService;
+
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String indexPage(
             Model model
@@ -110,6 +114,10 @@ public class IndexController {
                 );
                 model.addAttribute("posts", postService.getList(criteria, POST_FIELDS_FOR_INDEX));
             } catch (BaseException e) { }
+        } catch (BaseException e) { }
+
+        try {
+            model.addAttribute("carousel_images", carouselImageService.getList(new CarouselImageCriteria()));
         } catch (BaseException e) { }
 
         return "index/index";

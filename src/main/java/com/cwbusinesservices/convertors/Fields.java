@@ -172,5 +172,12 @@ public class Fields {
         public static final String HAS_IMG = "has_image";
     }
 
+    public static class CarouselImage{
+        public static final String ID = "id";
+        public static final String POSITION = "position";
+        public static final String DESCRIPTION = "description";
+        public static final String HAS_IMG = "has_image";
+    }
+
     public static final String DEFAULT ="id";
 }
