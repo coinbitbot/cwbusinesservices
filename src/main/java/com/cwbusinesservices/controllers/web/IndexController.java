@@ -7,6 +7,7 @@ import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;
 import com.cwbusinesservices.pojo.entities.BlockEntity;
 import com.cwbusinesservices.pojo.entities.UserEntity;
 import com.cwbusinesservices.pojo.enums.BlockCodesEnum;
+import com.cwbusinesservices.pojo.enums.OrderDirectionEnum;
 import com.cwbusinesservices.pojo.view.UserView;
 import com.cwbusinesservices.services.blocks.IBlockService;
 import com.cwbusinesservices.services.blog.IPostService;
@@ -132,8 +133,14 @@ public class IndexController {
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String signUp(Model model) {
         try {
-            model.addAttribute("industries", industryService.getList(new IndustryCriteria()));
-            model.addAttribute("interests", interestsService.getList(new InterestCriteria()));
+            IndustryCriteria industryCriteria = new IndustryCriteria();
+            industryCriteria.setOrder_by("position");
+
+            InterestCriteria interestCriteria = new InterestCriteria();
+            interestCriteria.setOrder_by("position");
+
+            model.addAttribute("industries", industryService.getList(industryCriteria));
+            model.addAttribute("interests", interestsService.getList(interestCriteria));
         } catch (BaseException e) {
 
         }

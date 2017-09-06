@@ -42,4 +42,12 @@ public class IndustryCriteria extends Criteria<IndustryEntity> {
         }
         return predicates;
     }
+
+    public List<Integer> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
+    }
 }

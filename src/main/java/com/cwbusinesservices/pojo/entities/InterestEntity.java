@@ -28,6 +28,9 @@ public class InterestEntity extends CompareIntegerId implements Serializable,Get
     @Size(max = 250, message = "interest.name.size")
     private String name;
 
+    @Column(name="POSITION")
+    private int position;
+
     @Override
     public Integer getId() {
         return id;
@@ -43,6 +46,14 @@ public class InterestEntity extends CompareIntegerId implements Serializable,Get
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     @Override

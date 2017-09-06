@@ -1,5 +1,7 @@
 package com.cwbusinesservices.services.interests;
 
+import com.cwbusinesservices.criteria.impl.InterestCriteria;
+import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.pojo.entities.InterestEntity;
 import com.cwbusinesservices.pojo.view.InterestView;
 import com.cwbusinesservices.services.BaseService;
@@ -9,4 +11,6 @@ import com.cwbusinesservices.services.BaseService;
  */
 public abstract class IInterestsService extends BaseService<InterestEntity,InterestView,Integer> {
     public IInterestsService(){ super(InterestEntity.class);}
+
+    public abstract boolean swap(InterestCriteria criteria) throws BaseException;
 }

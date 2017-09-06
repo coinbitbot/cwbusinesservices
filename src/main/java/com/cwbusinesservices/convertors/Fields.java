@@ -75,11 +75,13 @@ public class Fields {
     public static class Industry{
         public static final String ID = "id";
         public static final String NAME = "name";
+        public static final String POSITION = "position";
     }
 
     public static class Interest{
         public static final String ID = "id";
         public static final String NAME = "name";
+        public static final String POSITION = "position";
     }
 
     public static class Role {

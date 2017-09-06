@@ -1,0 +1,7 @@
+ALTER TABLE `cwbusinesservices`.`INDUSTRY`
+  ADD COLUMN `POSITION` INT DEFAULT 0;
+UPDATE `cwbusinesservices`.`INDUSTRY` SET `POSITION`=`ID`;
+
+ALTER TABLE `cwbusinesservices`.`INTERESTED_IN`
+  ADD COLUMN `POSITION` INT DEFAULT 0;
+UPDATE `cwbusinesservices`.`INTERESTED_IN` SET `POSITION`=`ID`;

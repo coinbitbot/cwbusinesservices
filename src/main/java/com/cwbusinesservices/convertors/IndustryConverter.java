@@ -19,6 +19,8 @@ public class IndustryConverter extends Converter<IndustryEntity>{
             map.put(ID, object.getId());
         if(fields.contains(NAME))
             map.put(NAME, object.getName());
+        if (fields.contains(POSITION))
+            map.put(POSITION,object.getPosition());
         return map;
     }
 }

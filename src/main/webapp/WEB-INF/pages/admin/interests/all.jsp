@@ -29,6 +29,11 @@
                     <td>{{entity.name}}</td>
                     <td>
                         <a href="/admin/interests/{{entity.id}}/edit" class="btn btn-theme-ok">Edit</a>
+                        <div class="up-down">
+                            <button class="btn btn-theme-dark btn-small" ng-click="up(entity);" ng-show="!min(entity)"><i class="fa fa-chevron-up" aria-hidden="true"></i>&nbsp;Up</button>
+                            <button class="btn btn-theme-dark btn-small" ng-click="down(entity);" ng-show="!max(entity)"><i class="fa fa-chevron-down" aria-hidden="true"></i>&nbsp;Down</button>
+                        </div>
+                        <button class="btn btn-theme-dark btn-small" ng-click="delete(entity)">Delete</button>
                     </td>
                 </tr>
                 </tbody>

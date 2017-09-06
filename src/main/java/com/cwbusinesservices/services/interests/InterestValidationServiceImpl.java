@@ -2,6 +2,7 @@ package com.cwbusinesservices.services.interests;
 
 import com.cwbusinesservices.criteria.impl.RequestCriteria;
 import com.cwbusinesservices.exceptions.BaseException;
+import com.cwbusinesservices.exceptions.service_error.ActionNotAllowedException;
 import com.cwbusinesservices.exceptions.service_error.ForbiddenException;
 import com.cwbusinesservices.pojo.entities.InterestEntity;
 import com.cwbusinesservices.pojo.enums.PermissionsEnum;
@@ -34,7 +35,7 @@ public class InterestValidationServiceImpl extends BaseValidator<InterestEntity,
         ids.add(entity.getId());
         criteria.setInterest_ids(ids);
         Integer requestEntities =requestService.count(criteria);
-        if (requestEntities!=0)
-            throw new ForbiddenException();
+        if (! requestEntities.equals(0))
+            throw new ActionNotAllowedException("error.delete.interest.has.requests");
     }
 }

@@ -4,6 +4,7 @@ import com.cwbusinesservices.convertors.Fields;
 import com.cwbusinesservices.criteria.Criteria;
 import com.cwbusinesservices.criteria.impl.RequestCriteria;
 import com.cwbusinesservices.exceptions.BaseException;
+import com.cwbusinesservices.exceptions.service_error.ActionNotAllowedException;
 import com.cwbusinesservices.exceptions.service_error.ForbiddenException;
 import com.cwbusinesservices.pojo.entities.IndustryEntity;
 import com.cwbusinesservices.pojo.entities.RequestEntity;
@@ -36,8 +37,8 @@ public class IndustryValidationServiceImpl extends BaseValidator<IndustryEntity,
         List<Integer> ids = new ArrayList<>();
         ids.add(entity.getId());
         criteria.setIndustry_ids(ids);
-        Integer requestEntities =requestService.count(criteria);
-        if (requestEntities!=0)
-            throw new ForbiddenException();
+        Integer requestEntities = requestService.count(criteria);
+        if (! requestEntities.equals(0))
+            throw new ActionNotAllowedException("error.delete.industry.has.requests");
     }
 }
