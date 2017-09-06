@@ -7,7 +7,7 @@
     <!DOCTYPE html>
     <html>
     <head>
-        <title>${info_page.meta_title}</title>
+        <title>Our Team</title>
         <jsp:include page="../common/include_resources.jsp" />
     </head>
     <body>
@@ -63,7 +63,12 @@
         </div>
 
     <jsp:include page="../common/footer.jsp" />
-    <script src="/resources/js/info_page/employee.js"></script>
+    <script src="/resources/js/info_page/contact_us.js"></script>
+    <script>
+        (function(){
+            $('#menu_employees').addClass('active');
+        })();
+    </script>
     </body>
     </html>
 </compress:html>

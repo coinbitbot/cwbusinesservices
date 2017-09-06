@@ -1,7 +1,5 @@
 (function(){
 
-    $('#menu_employees').addClass('active');
-
     $('#contact_us').submit(function(e){
         e.preventDefault();
 
