@@ -18,13 +18,13 @@
         <jsp:include page="../common/header.jsp"/>
 
         <div class="wrapper index-page">
+            <ul class="cb-slideshow hidden-print">
+                <li><span style="background-image: url('/resources/images/backgrounds/bg-1.jpg')"></span></li>
+                <li><span style="background-image: url('/resources/images/backgrounds/bg-2.jpg')"></span></li>
+                <li><span style="background-image: url('/resources/images/backgrounds/bg-3.jpg')"></span></li>
+            </ul>
             <c:choose>
                 <c:when test="${carousel_images ne null}">
-                    <ul class="cb-slideshow hidden-print">
-                        <c:forEach var="image" items="${carousel_images}">
-                            <li><span style="background-image: url('/api/file/${image.id}?type=CAROUSEL_IMAGE')"></span></li>
-                        </c:forEach>
-                    </ul>
                     <div id="home_slider" class="owl-carousel wow fadeIn hidden-print" data-wow-offset="10">
                         <c:forEach var="image" items="${carousel_images}">
                             <div class="item-slide" style="background-image: url('/api/file/${image.id}?type=CAROUSEL_IMAGE'); background-size: cover;">
@@ -36,11 +36,6 @@
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <ul class="cb-slideshow hidden-print">
-                        <li><span style="background-image: url('/resources/images/backgrounds/bg-1.jpg')"></span></li>
-                        <li><span style="background-image: url('/resources/images/backgrounds/bg-2.jpg')"></span></li>
-                        <li><span style="background-image: url('/resources/images/backgrounds/bg-3.jpg')"></span></li>
-                    </ul>
                     <div id="home_slider" class="owl-carousel wow fadeIn hidden-print" data-wow-offset="10">
                         <div class="item-slide" style="background-image: url('/resources/images/slides/slide-1.jpg'); background-size: cover;">
                             <div class="title-slider container">Choosing the right trustees perspectives on wealth...</div>
@@ -70,11 +65,10 @@
                                         <div id="services" class="owl-carousel">
                                             <c:forEach var="service" items="${services}">
                                                 <div class="text-center block-item">
-                                                    <div class="service-icon">
-                                                        <img src="/api/file/${service.id}?type=SERVICE" class="img-circle img-responsive" />
+                                                    <div class="service-icon" style="background: url('/api/file/${service.id}?type=SERVICE') no-repeat center; background-size: cover;">
                                                     </div>
                                                     <h3 class="font-theme-book">${service.name}</h3>
-                                                    <div class="text-desc">${service.short_description}</div>
+                                                    <div class="text-desc dotdot">${service.short_description}</div>
                                                     <a href="/services#service-${service.id}" class="btn-theme btn-transp col-xs-12"><s:message code="block.services.more"/></a>
                                                 </div>
                                             </c:forEach>
@@ -103,7 +97,7 @@
                                             <c:forEach var="company" items="${companies}">
                                                 <div class="text-center block-item">
                                                     <a href="/companies/${company.id}" title="${company.name}">
-                                                        <img src="/api/file/${company.id}?type=COMPANY" />
+                                                        <img src="/api/file/${company.id}?type=COMPANY" class="img-responsive" />
                                                     </a>
                                                 </div>
                                             </c:forEach>
@@ -236,7 +230,6 @@
 
                 $('#companies').owlCarousel({
                     loop:true,
-                    margin: 50,
                     nav: true,
                     smartSpeed: 1000,
                     autoplayTimeout: 5000,

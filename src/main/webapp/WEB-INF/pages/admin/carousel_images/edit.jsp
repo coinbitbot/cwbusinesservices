@@ -25,6 +25,7 @@
                     <div><em>Please upload an image</em></div><br/>
                     <input type="file" id="image" accept="image/*" class="inputfile">
                     <input type="text" id="filename" class="filename" disabled />
+                    <div><em>Optimal image size 1920px:763px or in proportion to it</em></div><br/>
                     <label for="image" class="btn-theme-dark btn">Choose file</label>
                 </div>
                 <div class="clearfix"></div>

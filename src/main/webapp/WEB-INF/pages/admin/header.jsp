@@ -64,7 +64,7 @@
                             <li><a href="/admin/emails/all" class="active">All email templates</a></li>
                         </security:authorize>
                         <security:authorize access="hasPermission(1,'CREATE_BLOG_CATEGORY,EDIT_BLOG_CATEGORY')">
-                            <li><a href="/admin/blog/all" class="active">All blog</a></li>
+                            <li><a href="/admin/blog/all" class="active">All categories of blog</a></li>
                         </security:authorize>
                         <security:authorize access="hasPermission(1,'CREATE_POST,EDIT_POST')">
                             <li><a href="/admin/posts/all" class="active">All posts</a></li>
