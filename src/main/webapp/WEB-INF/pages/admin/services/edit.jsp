@@ -17,6 +17,10 @@
                     <input type="text" ng-model="entity.name" class="form-control">
                 </div>
                 <div class="form-group">
+                    <label>Short description</label>
+                    <textarea ng-model="entity.short_description" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
                     <label>Description</label>
                     <textarea ng-model="entity.description" class="form-control"></textarea>
                 </div>

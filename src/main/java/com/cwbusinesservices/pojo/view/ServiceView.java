@@ -18,6 +18,7 @@ public class ServiceView  extends CompareIntegerId implements Serializable,Getab
     private String name;
     private Boolean has_icon;
     private String description;
+    private String short_description;
     private Boolean active;
 
     @Override
@@ -51,6 +52,14 @@ public class ServiceView  extends CompareIntegerId implements Serializable,Getab
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getShort_description() {
+        return short_description;
+    }
+
+    public void setShort_description(String short_description) {
+        this.short_description = short_description;
     }
 
     public Boolean getActive() {

@@ -51,7 +51,7 @@
             </c:choose>
 
             <div class="clearfix"></div>
-            <div class="text-center page-pagination">
+            <%--<div class="text-center page-pagination">
 
                 <a href="/services/1/page" class="page page-nav">Start</a>
 
@@ -78,7 +78,7 @@
                 </c:choose>
 
                 <a href="/services/${number_of_pages}/page" class="page page-nav">End</a>
-            </div>
+            </div>--%>
         </section>
     </div>
 
@@ -86,11 +86,21 @@
     <script src="/resources/js/utils/jquery.dotdotdot.min.js"></script>
     <script>
         $(function(){
-            var url = location.pathname;
+            /*var url = location.pathname;
             if (url.indexOf('/page') > -1) {
                 $('.page[href^="' + url + '"]').addClass('active-page');
             } else {
                 $('.page[href="/services/1/page"]').addClass('active-page');
+            }*/
+
+            var hash = location.hash;
+            if (hash) {
+                var $element = $(hash);
+                if ($element.length > 0) {
+                    $('html, body').animate({
+                        scrollTop: $element.offset().top - 120
+                    }, 500);
+                }
             }
         });
 

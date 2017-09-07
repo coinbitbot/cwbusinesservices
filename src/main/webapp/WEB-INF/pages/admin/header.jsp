@@ -78,6 +78,9 @@
                         <security:authorize access="hasPermission(1,'CREATE_EMPLOYEE,EDIT_EMPLOYEE')">
                             <li><a href="/admin/employee/all" class="active">All employees</a></li>
                         </security:authorize>
+                        <security:authorize access="hasPermission(1,'CREATE_CAROUSEL_IMAGE,EDIT_CAROUSEL_IMAGE')">
+                            <li><a href="/admin/carousel_images/all" class="active">All carousel images</a></li>
+                        </security:authorize>
                     </ul>
                 </li>
             </ul>

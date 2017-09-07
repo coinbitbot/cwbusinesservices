@@ -7,9 +7,11 @@ import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;
 import com.cwbusinesservices.pojo.entities.BlockEntity;
 import com.cwbusinesservices.pojo.entities.UserEntity;
 import com.cwbusinesservices.pojo.enums.BlockCodesEnum;
+import com.cwbusinesservices.pojo.enums.OrderDirectionEnum;
 import com.cwbusinesservices.pojo.view.UserView;
 import com.cwbusinesservices.services.blocks.IBlockService;
 import com.cwbusinesservices.services.blog.IPostService;
+import com.cwbusinesservices.services.carousel_images.ICarouselImageService;
 import com.cwbusinesservices.services.company.ICompanyService;
 import com.cwbusinesservices.services.industry.IIndustryService;
 import com.cwbusinesservices.services.interests.IInterestsService;
@@ -65,6 +67,9 @@ public class IndexController {
     @Autowired
     private Utils utils;
 
+    @Autowired
+    private ICarouselImageService carouselImageService;
+
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String indexPage(
             Model model
@@ -112,6 +117,10 @@ public class IndexController {
             } catch (BaseException e) { }
         } catch (BaseException e) { }
 
+        try {
+            model.addAttribute("carousel_images", carouselImageService.getList(new CarouselImageCriteria()));
+        } catch (BaseException e) { }
+
         return "index/index";
     }
 
@@ -124,8 +133,14 @@ public class IndexController {
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String signUp(Model model) {
         try {
-            model.addAttribute("industries", industryService.getList(new IndustryCriteria()));
-            model.addAttribute("interests", interestsService.getList(new InterestCriteria()));
+            IndustryCriteria industryCriteria = new IndustryCriteria();
+            industryCriteria.setOrder_by("position");
+
+            InterestCriteria interestCriteria = new InterestCriteria();
+            interestCriteria.setOrder_by("position");
+
+            model.addAttribute("industries", industryService.getList(industryCriteria));
+            model.addAttribute("interests", interestsService.getList(interestCriteria));
         } catch (BaseException e) {
 
         }
@@ -217,7 +232,7 @@ public class IndexController {
     private final static Type MAP_RESPONSE_TYPE = new TypeToken<Map<String, Object>>(){}.getType();
 
     private final Set<String> SERVICES_FIELDS_FOR_INDEX = new HashSet<>(
-            Arrays.asList("id", "name", "description")
+            Arrays.asList("id", "name", "short_description")
     );
 
     private final Set<String> COMPANIES_FIELDS_FOR_INDEX = new HashSet<>(

@@ -186,7 +186,8 @@ public class StorageServiceImpl implements IStorageService {
     private static final String SERVICES_FOLDER = "/services";
     private static final String COMPANY_FOLDER = "/companies";
     private static final String POST_FOLDER = "/posts";
-    private static final String EMPLOEES_FOLDER = "/employees";
+    private static final String EMPLOYEES_FOLDER = "/employees";
+    private static final String CAROUSEL_IMAGE_FOLDER = "/carousel_image";
 
     private static final Map<FileEntityTypeEnum, String> folders = new HashMap<FileEntityTypeEnum, String>(){
         {
@@ -195,7 +196,8 @@ public class StorageServiceImpl implements IStorageService {
             put(FileEntityTypeEnum.REQUEST, REQUESTS_FOLDER);
             put(FileEntityTypeEnum.REQUEST_COMMENT, REQUESTS_COMMENT_FOLDER);
             put(FileEntityTypeEnum.POST, POST_FOLDER);
-            put(FileEntityTypeEnum.EMPLOYEE, EMPLOEES_FOLDER);
+            put(FileEntityTypeEnum.EMPLOYEE, EMPLOYEES_FOLDER);
+            put(FileEntityTypeEnum.CAROUSEL_IMAGE, CAROUSEL_IMAGE_FOLDER);
         }
     };
 

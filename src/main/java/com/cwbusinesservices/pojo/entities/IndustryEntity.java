@@ -27,6 +27,9 @@ public class IndustryEntity extends CompareIntegerId implements Serializable, Ge
     @Size(max = 250, message = "industry.name.size")
     private String name;
 
+    @Column(name="POSITION")
+    private int position;
+
     @Override
     public Integer getId() {
         return id;
@@ -42,6 +45,14 @@ public class IndustryEntity extends CompareIntegerId implements Serializable, Ge
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     @Override

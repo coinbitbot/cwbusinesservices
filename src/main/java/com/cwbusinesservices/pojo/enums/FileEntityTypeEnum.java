@@ -9,5 +9,6 @@ public enum FileEntityTypeEnum {
     REQUEST,
     REQUEST_COMMENT,
     POST,
-    EMPLOYEE
+    EMPLOYEE,
+    CAROUSEL_IMAGE
 }

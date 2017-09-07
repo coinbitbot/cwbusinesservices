@@ -31,37 +31,15 @@ public class ServicesController {
     public String catalog(
             Model model
     ) {
-        formCatalog(1, model);
+        ServiceCriteria criteria = new ServiceCriteria();
+        criteria.setActive(true);
 
-        return "services/catalog";
-    }
-
-    @RequestMapping(value = "/{page}/page", method = RequestMethod.GET)
-    public String catalog(
-            @PathVariable("page") int page,
-            Model model
-    ) {
-        if (page < 1) {
-            return "redirect:/services/1/page";
-        }
-
-        formCatalog(page, model);
-
-        return "services/catalog";
-    }
-
-    @RequestMapping(value = "/{id}/view", method = RequestMethod.GET)
-    public String view(
-            @PathVariable("id") int id,
-            Model model
-    ) {
         try {
-            model.addAttribute("service", serviceService.getById(id, CATALOG_FIELDS));
+            List<Map<String, Object>> list = serviceService.getList(criteria, CATALOG_FIELDS);
+            model.addAttribute("services", list);
+        } catch (BaseException e) { }
 
-            return "services/view";
-        } catch (BaseException e) {
-            return "services/no-service";
-        }
+        return "services/catalog";
     }
 
     private void formCatalog(int page, Model model) {
