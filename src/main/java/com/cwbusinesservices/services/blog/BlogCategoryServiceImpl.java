@@ -51,10 +51,8 @@ public class BlogCategoryServiceImpl extends IBlogCategoryService{
     }
 
     @Override
+    @Transactional(propagation = Propagation.NEVER)
     public Integer create(BlogCategoryView view) throws BaseException, IllegalAccessException, InstantiationException {
-        BlogCategoryEntity entity = new BlogCategoryEntity();
-        merger.merge(entity,view);
-
         try {
             BlogCategoryCriteria criteria = new BlogCategoryCriteria();
             criteria.setOrder_by("position");
@@ -63,16 +61,12 @@ public class BlogCategoryServiceImpl extends IBlogCategoryService{
 
             List<BlogCategoryEntity> list = getList(criteria);
 
-            entity.setPosition(list.get(0).getPosition() + 1);
+            view.setPosition(list.get(0).getPosition() + 1);
         } catch (Exception e) {
-            entity.setPosition(1);
+            view.setPosition(1);
         }
 
-        blogCategoryValidationService.validForCreate(entity);
-        entity = repository.saveAndFlush(entity);
-        if(entity==null)
-            throw new ServiceErrorException();
-        return entity.getId();
+        return super.create(view);
     }
 
     @Override
