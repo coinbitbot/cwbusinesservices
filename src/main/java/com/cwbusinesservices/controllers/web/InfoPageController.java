@@ -21,7 +21,7 @@ import java.util.*;
  * Created by Oleh on 25.07.2017.
  */
 @Controller
-@RequestMapping("/info_pages")
+//@RequestMapping("/info_pages")
 public class InfoPageController {
 
     @Autowired
@@ -33,7 +33,7 @@ public class InfoPageController {
     @Autowired
     private IEmployeeService employeeService;
 
-    @RequestMapping(value = "/catalog", method = RequestMethod.GET)
+    @RequestMapping(value = "/info_pages/catalog", method = RequestMethod.GET)
     public String catalog(
             Model model
     ) {
@@ -42,7 +42,7 @@ public class InfoPageController {
         return "info_pages/catalog";
     }
 
-    @RequestMapping(value = "/catalog/{page}/page", method = RequestMethod.GET)
+    @RequestMapping(value = "/info_pages/catalog/{page}/page", method = RequestMethod.GET)
     public String catalog(
             @PathVariable("page") int page,
             Model model

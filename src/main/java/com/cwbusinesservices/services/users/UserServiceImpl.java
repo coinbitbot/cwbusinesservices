@@ -97,23 +97,14 @@ public class UserServiceImpl extends IUserService {
     }
 
     @Override
-    public Integer create(UserView view) throws BaseException {
-        UserEntity entity = new UserEntity();
+    @Transactional(propagation = Propagation.NEVER)
+    public Integer create(UserView view) throws BaseException, InstantiationException, IllegalAccessException {
         if (view.getRole() == null)
             view.setRole(RolesEnum.user);
         view.setActive(true);
         view.setPassword("default_default");
 
-        userMerger.merge(entity, view);
-        validateService.validForCreate(entity);
-
-        entity = repository.saveAndFlush(entity);
-        if(entity == null){
-            throw new ServiceErrorException();
-        }
-
-        //TODO merge requests and comments
-        return entity.getId();
+        return super.create(view);
     }
 
     @Override
