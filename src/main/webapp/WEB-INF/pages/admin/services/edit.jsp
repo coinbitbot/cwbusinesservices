@@ -18,7 +18,8 @@
                 </div>
                 <div class="form-group">
                     <label>Short description</label>
-                    <textarea ng-model="entity.short_description" class="form-control"></textarea>
+                    <div><em>An optimal short description of no more than 150 characters</em></div>
+                    <textarea ng-model="entity.short_description" class="form-control" maxlength="150"></textarea>
                 </div>
                 <div class="form-group">
                     <label>Description</label>
@@ -39,6 +40,7 @@
                     <div class="block-fileinput text-center">
                         <input type="file" id="image" accept="image/*" class="inputfile">
                         <input type="text" id="filename" class="filename" disabled />
+                        <div><em>The optimal aspect ratio is 1:1 (for example, 200px:200px, 385px:385px, etc.)</em></div><br/>
                         <label for="image" class="btn-theme-dark btn">Choose file</label>
                     </div>
                     <div class="clearfix"></div>

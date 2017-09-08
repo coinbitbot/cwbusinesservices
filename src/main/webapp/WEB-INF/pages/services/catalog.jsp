@@ -26,7 +26,8 @@
                                 <div class="img-center">
                                 <c:choose>
                                     <c:when test="${service.has_icon}">
-                                        <!--<a href="/services/${service.id}/view">--><img src="/api/file/${service.id}?type=SERVICE" class="img-circle img-responsive"><!--</a>-->
+                                        <!--<a href="/services/${service.id}/view">--><img src="/api/file/${service.id}?type=SERVICE" class="img-circle img-responsive visible-print"><!--</a>-->
+                                        <div style="background: url('/api/file/${service.id}?type=SERVICE') no-repeat center; background-size: cover" class="img-service img-circle hidden-print"></div>
                                     </c:when>
                                     <c:otherwise>
                                         <div class="no-image"><img src="/resources/images/no-service.png" class="img-circle img-responsive"></div>
@@ -43,6 +44,10 @@
                         </div>
                         <div class="clearfix"></div>
                     </c:forEach>
+                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 hidden-print">
+                            <a href="/register" class="btn-theme btn-1 font-theme-book col-xs-12 btn-start">Let`s get started</a>
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
                 </c:when>
                 <c:otherwise>
@@ -83,7 +88,6 @@
     </div>
 
     <jsp:include page="../common/footer.jsp" />
-    <script src="/resources/js/utils/jquery.dotdotdot.min.js"></script>
     <script>
         $(function(){
             /*var url = location.pathname;
@@ -105,9 +109,6 @@
         });
 
         $(document).ready(function() {
-            // Short text
-            $('.dotdot').dotdotdot();
-
             // Active menu
             $('#menu_services').addClass('active');
         });
