@@ -5,7 +5,7 @@ $(function(){
 
         var file = $('#request_file')[0].files[0];
         if (!file) {
-            showErrorMessage('please select file');
+            showErrorMessage('Please select file');
 
             return;
         }
@@ -49,7 +49,7 @@ $(function(){
                         },
                         function(response) {
                             if (response.result) {
-                                showSuccessMessage('you successfully register an request');
+                                showSuccessMessage('Thank you for your request.<br />We will be in contact shortly');
                                 /*setTimeout(function(){
                                     location.href = '/profile/requests';
                                 }, 1000);*/
