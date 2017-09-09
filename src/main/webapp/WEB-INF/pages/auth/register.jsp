@@ -41,7 +41,7 @@
                                 <input type="text" name="company_name" placeholder="My company" class="form-field col-xs-12">
                             </div>
                             <div class="col-xs-12 col-sm-8">
-                                <input type="text" id="filename" class="filename col-xs-12" placeholder="Download Business Plan" disabled>
+                                <input type="text" id="filename" class="filename col-xs-12" placeholder="Attach Business Plan" disabled>
                             </div>
                             <div class="col-xs-12 text-center col-sm-4">
                                 <input type="file" name="file" id="request_file" class="inputfile">
@@ -63,7 +63,7 @@
                                 <div class="clearfix"></div>
                             </c:if>
                             <div class="col-xs-12">
-                                <input type="text" name="interest_alter" class="form-field col-xs-12" placeholder="Does not find your interest? Enter it here">
+                                <input type="text" name="interest_alter" class="form-field col-xs-12" placeholder="Please enter if you are interested in a service not list above">
                             </div>
                         </div>
                         <h4 class="subheader">Industry</h4>
