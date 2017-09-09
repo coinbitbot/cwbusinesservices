@@ -73,21 +73,21 @@ public class MailingService implements IMailingService {
     }
 
     @Override
-    public boolean sendEmailToUser(EmailTemplateCodeEnum typeOfEmail, String userEmail, Map<String, String> data, Locale locale) throws BaseException {
-        EmailTemplateEntity content = emailBuilder.getEmailContent(typeOfEmail, data, locale);
+    public boolean sendEmailToUser(EmailTemplateCodeEnum typeOfEmail, String userEmail, Map<String, String> data) throws BaseException {
+        EmailTemplateEntity content = emailBuilder.getEmailContent(typeOfEmail, data);
         return send(userEmail, content);
     }
 
     @Override
-    public boolean sendEmailToUser(EmailTemplateEntity content, String userEmail, Map<String, String> data, Locale locale) throws BaseException {
+    public boolean sendEmailToUser(EmailTemplateEntity content, String userEmail, Map<String, String> data) throws BaseException {
         emailBuilder.formEmailContent(content, data);
         return send(userEmail, content);
     }
 
     @Override
-    public boolean sendEmailToUsers(EmailTemplateCodeEnum typeOfEmail, List<String> userEmails, Map<String, String> data, Locale locale) throws BaseException {
+    public boolean sendEmailToUsers(EmailTemplateCodeEnum typeOfEmail, List<String> userEmails, Map<String, String> data) throws BaseException {
         for (String user : userEmails) {
-            sendEmailToUser(typeOfEmail, user, data, locale);
+            sendEmailToUser(typeOfEmail, user, data);
         }
         return true;
     }

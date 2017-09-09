@@ -1,6 +1,7 @@
 (function(){
 
-    var sing_in_popup_template = new EJS({url: '/resources/template/auth/sign_in_popup.ejs'});
+    var sing_in_popup_template,
+        forget_password_popup_template;
 
     $(function(){
         $('#sign_in').click(renderSignInPopup);
@@ -39,12 +40,21 @@
     });
 
     function renderSignInPopup(){
+        if (!sing_in_popup_template) {
+            sing_in_popup_template = new EJS({url: '/resources/template/auth/sign_in_popup.ejs'});
+        }
+
         var popup = $(sing_in_popup_template.render({
             SocialNetworks: SocialNetworks
         }));
 
         popup.find('.close').click(function(){
             popup.remove();
+        });
+
+        popup.find('.recover-password').click(function(){
+            popup.remove();
+            recoverPasswordPopup();
         });
 
         popup.find('#sign_in_form').submit(function(e){
@@ -62,7 +72,58 @@
                     if(response.result){
                         location.href = '/profile';
                     } else if(response.error){
-                        showErrorMessage(response.error);
+                        var error = response.error;
+                        if (error.code === 404) {
+                            showErrorMessage('This email does not exists');
+                        } else {
+                            showErrorMessage(error);
+                        }
+                    } else {
+                        showErrorMessage('service error');
+                    }
+                },
+                error: function(xhr){
+                    showErrorMessage('service error');
+                    console.log(xhr);
+                }
+            })
+        });
+
+        $('body').append(popup);
+    }
+
+    function recoverPasswordPopup(){
+        if (!forget_password_popup_template) {
+            forget_password_popup_template = new EJS({url: '/resources/template/auth/forget_password_popup.ejs'});
+        }
+
+        var popup = $(forget_password_popup_template.render({ }));
+
+        popup.find('.close').click(function(){
+            popup.remove();
+        });
+
+        popup.find('form').submit(function(e){
+            e.preventDefault();
+
+            var self = $(this);
+
+            Ajax.post({
+                url: '/api/mail/recover_password',
+                data: {
+                    email: self.find('[name=email]').val()
+                },
+                success: function(response){
+                    if(response.result){
+                        popup.remove();
+                        showSuccessMessage('We send You email with Your new password');
+                    } else if(response.error){
+                        var error = response.error;
+                        if (error.code === 404) {
+                            showErrorMessage('This email does not exists');
+                        } else {
+                            showErrorMessage(error);
+                        }
                     } else {
                         showErrorMessage('service error');
                     }

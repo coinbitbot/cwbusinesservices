@@ -23,7 +23,7 @@ public class EmailBuilder {
     @Autowired
     private IEmailTemplateService service;
 
-    public EmailTemplateEntity getEmailContent(EmailTemplateCodeEnum typeOfEmail, Map<String, String> data, Locale locale) throws BaseException {
+    public EmailTemplateEntity getEmailContent(EmailTemplateCodeEnum typeOfEmail, Map<String, String> data) throws BaseException {
 
         EmailTemplateEntity template = service.getByCode(typeOfEmail);
         return formEmailContent(template,data);

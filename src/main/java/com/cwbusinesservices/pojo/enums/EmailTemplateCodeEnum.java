@@ -3,10 +3,11 @@ package com.cwbusinesservices.pojo.enums;
 /**
  * Created by Andrii on 31.07.2017.
  */
-public enum  EmailTemplateCodeEnum {
+public enum EmailTemplateCodeEnum {
     NEW_USER_REGISTER,
     NEW_REQUEST_IN_SYSTEM,
     EMAIL_SUBSCRIPTION,
     NEW_REQUEST_TO_USER,
-    EMAIL_FROM_CONTACT_PAGE
+    EMAIL_FROM_CONTACT_PAGE,
+    RECOVER_PASSWORD
 }

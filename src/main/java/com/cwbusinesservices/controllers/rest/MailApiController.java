@@ -1,15 +1,18 @@
 package com.cwbusinesservices.controllers.rest;
 
 import com.cwbusinesservices.exceptions.BaseException;
+import com.cwbusinesservices.exceptions.bad_request.EmailRequiredException;
 import com.cwbusinesservices.pojo.enums.EmailTemplateCodeEnum;
 import com.cwbusinesservices.pojo.response.Response;
 import com.cwbusinesservices.pojo.response.ResponseFactory;
 import com.cwbusinesservices.pojo.view.ContactUsView;
+import com.cwbusinesservices.pojo.view.UserView;
 import com.cwbusinesservices.services.mailing.IMailingService;
 import com.cwbusinesservices.services.users.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,8 +53,7 @@ public class MailApiController {
                     put("USER_NAME", view.getName());
                     put("EMAIL", view.getEmail());
                     put("TEXT", view.getText());
-                }},
-                LocaleContextHolder.getLocale()
+                }}
         );
 
         return responseFactory.get(result);
@@ -67,6 +69,17 @@ public class MailApiController {
             HttpServletRequest request
     ) throws BaseException {
         return responseFactory.get(userService.sendActivationLinkToUser(response, request));
+    }
+
+    @RequestMapping(
+            value = "/recover_password",
+            method = RequestMethod.POST
+    )
+    public @ResponseBody
+    Response<Boolean> recoverPassword(
+            @RequestBody UserView view
+    ) throws BaseException {
+        return responseFactory.get(userService.sendForgetPasswordEmail(view));
     }
 
 }

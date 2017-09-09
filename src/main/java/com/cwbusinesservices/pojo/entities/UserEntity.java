@@ -151,6 +151,15 @@ public class UserEntity implements Serializable, GetableById<Integer>{
         this.phone = phone;
     }
 
+    public String getFullName() {
+        if (firstName == null)
+            return lastName;
+        if (lastName == null)
+            return firstName;
+
+        return firstName + " " + lastName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

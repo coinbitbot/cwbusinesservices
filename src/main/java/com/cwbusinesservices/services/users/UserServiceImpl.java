@@ -1,6 +1,7 @@
 package com.cwbusinesservices.services.users;
 
 import com.cwbusinesservices.exceptions.BaseException;
+import com.cwbusinesservices.exceptions.bad_request.EmailRequiredException;
 import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
 import com.cwbusinesservices.exceptions.service_error.ForbiddenException;
 import com.cwbusinesservices.mergers.UserMerger;
@@ -9,6 +10,8 @@ import com.cwbusinesservices.pojo.enums.PermissionsEnum;
 import com.cwbusinesservices.pojo.view.RequestView;
 import com.cwbusinesservices.services.mailing.IMailingService;
 import com.cwbusinesservices.services.request.IRequestService;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -39,6 +42,7 @@ import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;
 import com.cwbusinesservices.pojo.enums.RolesEnum;
 import com.cwbusinesservices.pojo.view.UserView;
 import com.cwbusinesservices.services.utils.SessionUtils;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import javax.persistence.RollbackException;
@@ -131,6 +135,10 @@ public class UserServiceImpl extends IUserService {
         }
 
         return entity != null;
+    }
+
+    public void update(UserEntity entity) {
+        repository.saveAndFlush(entity);
     }
 
     @Override
@@ -259,8 +267,7 @@ public class UserServiceImpl extends IUserService {
                 entity.getEmail(),
                 new HashMap<String, String>(){{
                     put("url", hostUrl + "/helper/login/" + entity.getEmail() + "/" + token);
-                }},
-                Locale.ENGLISH
+                }}
         );
 
         if (result) {
@@ -268,6 +275,31 @@ public class UserServiceImpl extends IUserService {
             // we should log out him
             logoutUser(request, response);
         }
+
+        return result;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.NEVER)
+    public boolean sendForgetPasswordEmail(UserView view) throws BaseException {
+        if (StringUtils.isEmpty(view.getEmail()))
+            throw new EmailRequiredException();
+
+        UserEntity entity = getByEmail(view.getEmail());
+
+        String randomAlphabetic = RandomStringUtils.randomAlphabetic(15);
+        String password = DigestUtils.md5Hex(randomAlphabetic);
+        entity.setPassword(password);
+        update(entity);
+
+        boolean result = mailingService.sendEmailToUser(
+                EmailTemplateCodeEnum.RECOVER_PASSWORD,
+                view.getEmail(),
+                new HashMap<String, String>(){{
+                    put("NAME", entity.getFirstName());
+                    put("PASSWORD", randomAlphabetic);
+                }}
+        );
 
         return result;
     }

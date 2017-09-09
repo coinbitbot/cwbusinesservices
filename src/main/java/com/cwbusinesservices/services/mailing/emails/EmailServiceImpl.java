@@ -40,6 +40,6 @@ public class EmailServiceImpl implements IEmailService{
         params.put(EmailFieldsEnum.LINK.toString(),url);
         if (user.getFirstName()!=null)
             params.put(EmailFieldsEnum.NAME.toString(),user.getFirstName());
-        mailingService.sendEmailToUser(EmailTemplateCodeEnum.NEW_REQUEST_TO_USER,user.getEmail(),params,null);
+        mailingService.sendEmailToUser(EmailTemplateCodeEnum.NEW_REQUEST_TO_USER,user.getEmail(),params);
     }
 }
