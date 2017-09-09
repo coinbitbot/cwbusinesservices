@@ -26,13 +26,23 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Andrii on 27.07.2016.
@@ -124,9 +134,46 @@ public class IndexController {
         return "index/index";
     }
 
-    @RequestMapping(value = "contact_us", method = RequestMethod.GET)
+    @RequestMapping(value = "/contact_us", method = RequestMethod.GET)
     public String contactUs() {
         return "index/contact_us";
+    }
+
+    @RequestMapping(value = "/robots.txt", method = RequestMethod.GET, produces = "text/plain")
+    public @ResponseBody String robotsTxt() throws IOException {
+        ClassLoader classLoader = getClass().getClassLoader();
+        String path = classLoader.getResource("robots.txt").getFile();
+        File file = new File(path);
+
+
+        String line;
+        StringBuilder result = new StringBuilder();
+
+        FileReader fileReader = null;
+        BufferedReader reader = null;
+
+        try {
+            fileReader = new FileReader(file);
+            reader = new BufferedReader(fileReader);
+
+            while ((line = reader.readLine()) != null) {
+                result.append(line).append("\n");
+            }
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (Exception e) { }
+            }
+
+            if (fileReader != null) {
+                try {
+                    fileReader.close();
+                } catch (Exception e) { }
+            }
+        }
+
+        return result.toString();
     }
 
     @PreAuthorize("isAnonymous()")

@@ -54,7 +54,7 @@
                     <li><a href="/services">Services</a></li>
                     <li><a href="/companies/catalog">Companies</a></li>
                     <li><a href="/blog">Blog</a></li>
-                    <li><a href="/info_pages/employee">Employees</a></li>
+                    <li><a href="/employee">Employees</a></li>
                 </ul>
             </div>
             <div class="col-sm-6 col-md-4 hidden-print social footer-block">
