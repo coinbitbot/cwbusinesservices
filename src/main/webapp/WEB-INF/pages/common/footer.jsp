@@ -59,11 +59,14 @@
             </div>
             <div class="col-sm-6 col-md-4 hidden-print social footer-block">
                 <h4 class="text-uppercase font-theme-medium">Follow Us</h4>
-                <a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                <a href="https://www.linkedin.com/company/11132848/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                <a href="https://twitter.com/CWBusServ?lang=en"><i class="fa fa-twitter" aria-hidden="true"></i></a>
             </div>
             <address class="col-xs-6 visible-print-inline-block text-right">
                 <h4 class="text-uppercase font-theme-medium">Address</h4>
+                <p>250 Deighton Road, Huddersfield, HD2 1JJ</p>
+                <p>Phone - +44(0) 1484 506250</p>
+                <p>Email – cbs@charlesworth-group.com</p>
             </address>
             <div class="clearfix"></div>
         </div>
