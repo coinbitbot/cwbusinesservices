@@ -13,14 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Oleh on 01.09.2017.
@@ -82,4 +81,14 @@ public class MailApiController {
         return responseFactory.get(userService.sendForgetPasswordEmail(view));
     }
 
+    @RequestMapping(
+            value = "/{email_type}/email_fields",
+            method = RequestMethod.GET
+    )
+    public @ResponseBody
+    Response<List<Map<String, String>>> getEmailFields(
+        @PathVariable("email_type") EmailTemplateCodeEnum type
+    ) {
+        return responseFactory.get(type.getEmailFields());
+    }
 }
