@@ -1,6 +1,7 @@
 package com.cwbusinesservices.services.service;
 
 import com.cwbusinesservices.pojo.entities.ServiceEntity;
+import com.cwbusinesservices.pojo.enums.FileEntityTypeEnum;
 import com.cwbusinesservices.pojo.view.ServiceView;
 import com.cwbusinesservices.services.FileWorkBaseService;
 
@@ -9,6 +10,6 @@ import com.cwbusinesservices.services.FileWorkBaseService;
  */
 public abstract class IServiceService extends FileWorkBaseService<ServiceEntity,ServiceView,Integer> {
     public IServiceService(){
-        super(ServiceEntity.class);
+        super(ServiceEntity.class, FileEntityTypeEnum.SERVICE);
     }
 }

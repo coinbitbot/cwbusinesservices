@@ -33,6 +33,27 @@
 
         $scope.format = function(date) {
             return new Date(date).format('d MMMM yyyy HH:mm:ss');
+        };
+
+        $scope.delete = function(entity) {
+            if (confirm('You really want to delete this post?')) {
+                $http.delete('/api/blog/post/'+entity.id, {headers: HEADERS})
+                    .then(function (response) {
+                        if (response.data.result) {
+                            showSuccessMessage('deleted');
+
+                            for (var i = 0; i < $scope.entities.length; ++i) {
+                                if (entity.id === $scope.entities[i].id) {
+                                    $scope.entities.splice(i, 1);
+
+                                    break;
+                                }
+                            }
+                        } else {
+                            showErrorMessage(response.data.error);
+                        }
+                    });
+            }
         }
     });
 
