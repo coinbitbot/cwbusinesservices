@@ -24,6 +24,24 @@
                             <li id="menu_blog"><a href="/blog"><s:message code="navmenu.blog"/></a></li>
                             <li id="menu_employees"><a href="/employee">Employees</a></li>
                             <li id="menu_contacts"><a href="/contact_us"><s:message code="navmenu.contacts"/></a></li>
+                            <!-- Example item menu with submenu
+                            <li>
+                                <a href="#" data-toggle="collapse" data-target="#1">Top Menu Item <span class="caret"></span></a>
+                                <ul id="1">
+                                    <li><a>Item submenu</a></li>
+                                    <li><a>Item submenu</a></li>
+                                    <li>
+                                        <a href="#" data-toggle="collapse" data-target="#2">Item submenu <span class="caret"></span></a>
+                                        <ul id="2">
+                                            <li><a>Item submenu</a></li>
+                                            <li><a>Item submenu</a></li>
+                                            <li><a>Item submenu</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a>Item submenu</a></li>
+                                </ul>
+                            </li>
+                            -->
                         </ul>
                     </nav>
                 </div>

@@ -345,11 +345,14 @@ footer .social i:before,
 }
 
 .page-nav, .page-nav[disabled]:hover, .post-nav {
-    padding: 10px 15px;
+    padding: 5px 10px;
     background: #44514e;
     color: #fff;
     margin: 0 3px;
-    font-size: 16px;
+    font-size: 14px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
 }
 .page-nav:hover {
     background: #666;
@@ -394,9 +397,16 @@ footer .social i:before,
 }
 
 /* Top Menu */
+.topmenu {
+    margin-bottom: 0;
+}
 .topmenu li:hover, .topmenu li:hover > a,
 .topmenu li.active >a {
     color: #fff;
+}
+.topmenu ul {
+    list-style: none;
+    padding-left: 20px;
 }
 /* /Top Menu */
 
@@ -1847,7 +1857,7 @@ h4.modal-title {
     .topmenu {
         display: block !important;
     }
-    .header nav .topmenu li {
+    .topmenu li {
         display: inline-block;
         text-transform: uppercase;
         font-size: 16px;
@@ -1862,6 +1872,65 @@ h4.modal-title {
     }
     .topmenu ul {
         position: absolute;
+        top: 100%;
+        right: 0;
+        height: 0;
+        transform-origin: 50% 0;
+        width: auto;
+        background: #666;
+        color:#fff;
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+        padding:0 30px;
+    }
+    .topmenu ul li a {
+        padding: 5px 0;
+        border-bottom: 1px dotted;
+        width: 100%;
+        display: block;
+    }
+    .topmenu > li > ul > li:first-child {
+        padding-top: 15px;
+    }
+    .topmenu > li > ul > li:last-child {
+        padding-bottom: 30px;
+    }
+
+    .topmenu ul ul {
+        max-height: none;
+        position: relative;
+        overflow-y: hidden;
+        padding: 0 0 0 20px;
+    }
+    .topmenu ul li {
+        padding: 0;
+        text-transform: none;
+        border-top: none;
+        text-align: left;
+        display: block;
+        width: auto;
+        font-size: 18px;
+        white-space: nowrap;
+        cursor: pointer;
+    }
+    .topmenu ul.collapse {
+        display: block;
+        height: 0;
+    }
+    .topmenu ul.collapse.in {
+        height: auto;
+    }
+    .topmenu ul.collapse.in:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 30px;
+        border: 10px solid transparent;
+        border-bottom: none;
+        border-top-color: #1a3029;
+    }
+    .topmenu ul ul.collapse.in:before {
         display: none;
     }
     #home_slider .item-slide {
