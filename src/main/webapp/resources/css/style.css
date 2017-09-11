@@ -340,6 +340,10 @@ footer .social i:before,
     font-size: 20px;
     border-right: 1px solid;
 }
+.soc-login .btn-fb {
+    margin-top: 15px;
+}
+
 .page-nav, .page-nav[disabled]:hover, .post-nav {
     padding: 10px 15px;
     background: #44514e;
@@ -1831,6 +1835,12 @@ h4.modal-title {
     }
     .icon-service >div {
         height: 150px;
+    }
+    .soc-login {
+        text-align: center;
+    }
+    .soc-login .btn-fb {
+        margin-top: 10px;
     }
 }
 @media screen and (min-width: 993px) {
