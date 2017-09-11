@@ -15,6 +15,8 @@ import com.cwbusinesservices.storage.IStorageService;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -107,7 +109,11 @@ public class StorageServiceImpl implements IStorageService {
                 throw new NoSuchEntityException(folder, "no file with id: " + id);
             }
 
+            Date lastModified = new Date(file.lastModified());
+            SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
+
             response.setContentType("application/force-download");
+            response.setHeader("Last-Modified", format.format(lastModified));
             response.setHeader("Content-Disposition", "attachment; filename=" + file.getName());
             response.setHeader("Cache-Control","must-revalidate, post-check=0, pre-check=0");
 

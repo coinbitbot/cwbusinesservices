@@ -235,4 +235,28 @@
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="256000000"/>
     </bean>
+
+    <bean id="synchronizeJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="readDatabaseScheduler" />
+        <property name="targetMethod" value="sync" />
+    </bean>
+
+    <bean id="synchronizeCronJob" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="synchronizeJobDetail" />
+        <property name="cronExpression" value="0/30 * * * * ?" />
+    </bean>
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="jobDetails">
+            <list>
+                <ref bean="synchronizeJobDetail"/>
+            </list>
+        </property>
+        <property name="triggers">
+            <list>
+                <ref bean="synchronizeCronJob"/>
+            </list>
+        </property>
+    </bean>
+
 </beans>

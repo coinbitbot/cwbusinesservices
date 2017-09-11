@@ -19,6 +19,7 @@ import com.cwbusinesservices.services.service.IServiceService;
 import com.cwbusinesservices.services.testimonial.ITestimonialService;
 import com.cwbusinesservices.services.users.IUserService;
 import com.cwbusinesservices.services.utils.Utils;
+import com.cwbusinesservices.shedule.ReadDatabaseScheduler;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,25 +52,10 @@ import java.util.stream.Collectors;
 public class IndexController {
 
     @Autowired
-    private IServiceService serviceService;
-
-    @Autowired
-    private ICompanyService companyService;
-
-    @Autowired
-    private ITestimonialService testimonialService;
-
-    @Autowired
-    private IBlockService blockService;
-
-    @Autowired
     private IInterestsService interestsService;
 
     @Autowired
     private IIndustryService industryService;
-
-    @Autowired
-    private IPostService postService;
 
     @Autowired
     private IUserService userService;
@@ -80,52 +66,18 @@ public class IndexController {
     @Autowired
     private ICarouselImageService carouselImageService;
 
+    @Autowired
+    private ReadDatabaseScheduler scheduler;
+
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
     public String indexPage(
             Model model
     ){
-        try {
-            List<BlockEntity> blocks = blockService.getList(new BlockCriteria());
-            model.addAttribute("blocks", blocks);
-            Set<BlockCodesEnum> uniqueCodes = new HashSet<>();
-
-            for (BlockEntity entity : blocks) {
-                uniqueCodes.add(entity.getCode());
-            }
-
-            if (uniqueCodes.contains(BlockCodesEnum.SERVICES)) {
-                ServiceCriteria serviceCriteria = new ServiceCriteria();
-                serviceCriteria.setActive(true);
-                serviceCriteria.setHas_img(true);
-                try {
-                    model.addAttribute("services", serviceService.getList(serviceCriteria, SERVICES_FIELDS_FOR_INDEX));
-                } catch (BaseException e) { }
-            }
-
-            if (uniqueCodes.contains(BlockCodesEnum.COMPANIES)) {
-                CompanyCriteria companyCriteria = new CompanyCriteria();
-                companyCriteria.setActive(true);
-                companyCriteria.setHas_img(true);
-                try {
-                    model.addAttribute("companies", companyService.getList(companyCriteria, COMPANIES_FIELDS_FOR_INDEX));
-                } catch (BaseException e) { }
-            }
-
-            if (uniqueCodes.contains(BlockCodesEnum.TESTIMONIALS)) {
-                TestimonialCriteria testimonialCriteria = new TestimonialCriteria();
-                testimonialCriteria.setActive(true);
-                try {
-                    model.addAttribute("testimonials", testimonialService.getList(testimonialCriteria, TESTIMONIALS_FIELDS_FOR_INDEX));
-                } catch (BaseException e) { }
-            }
-
-            try {
-                PostCriteria criteria = new PostCriteria(
-                        0, 3, null
-                );
-                model.addAttribute("posts", postService.getList(criteria, POST_FIELDS_FOR_INDEX));
-            } catch (BaseException e) { }
-        } catch (BaseException e) { }
+        model.addAttribute("blocks", scheduler.BLOCKS);
+        model.addAttribute("services", scheduler.SERVICES);
+        model.addAttribute("companies", scheduler.COMPANIES);
+        model.addAttribute("testimonials", scheduler.TESTIMONIALS);
+        model.addAttribute("posts", scheduler.LAST_POSTS);
 
         try {
             model.addAttribute("carousel_images", carouselImageService.getList(new CarouselImageCriteria()));
