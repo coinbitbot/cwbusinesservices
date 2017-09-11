@@ -3,6 +3,7 @@ package com.cwbusinesservices.storage.impl;
 import com.cwbusinesservices.pojo.enums.FileEntityTypeEnum;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.aspectj.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * Created by Andrii on 05.10.2016.
@@ -117,15 +119,30 @@ public class StorageServiceImpl implements IStorageService {
             String lastModifiedFormatted = format.format(lastModified);
 
             response.setContentType("application/force-download");
-            response.setHeader("ETag", DigestUtils.md5Hex(lastModifiedFormatted));
+            response.setContentLength((int)file.length());
             response.setHeader("Last-Modified", lastModifiedFormatted);
-            response.setHeader("Content-Disposition", "attachment; filename=" + file.getName());
-            response.setHeader("Cache-Control","must-revalidate, post-check=0, pre-check=0");
+            response.setHeader("Content-Disposition", "attachment; filename=" + type + "_" + file.getName());
+
+            if (isFileImage(file)) {
+                response.setContentType("image/"+FilenameUtils.getExtension(file.getName()));
+                response.setDateHeader("Expires", new Date(new Date().getTime() + MAX_IMAGE_LIVE).getTime());
+                response.setHeader("Cache-Control", "max-age=" + MAX_IMAGE_LIVE);
+                response.setHeader("Pragma", "max-age=" + MAX_IMAGE_LIVE);
+            } else {
+                response.setHeader("Cache-Control", "must-revalidate, post-check=0, pre-check=0");
+            }
 
             response.getOutputStream().write(Files.readAllBytes(file.toPath()));
         } catch (IOException e) {
             throw new StorageException("problems while loading file");
         }
+    }
+
+    private boolean isFileImage(File file) {
+        Pattern pattern = Pattern.compile("(png|jpg|jpeg)$");
+        String extension = FilenameUtils.getExtension(file.getName());
+
+        return pattern.matcher(extension).matches();
     }
 
     /**
@@ -189,6 +206,9 @@ public class StorageServiceImpl implements IStorageService {
             stream.close();
         } catch (Exception e) { }
     }
+
+    //30 minutes
+    private static final int MAX_IMAGE_LIVE = 1000 * 60 * 30;
 
     private final String ROOT_DIR = System.getProperty("catalina.home") + "/cw-business-services";
 
