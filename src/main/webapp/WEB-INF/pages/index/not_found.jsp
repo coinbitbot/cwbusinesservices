@@ -10,7 +10,7 @@
         <jsp:include page="../common/header.jsp"/>
         <div class="container">
             <section class="page-content text-center">
-                <h2 class="no-info no-info-icon">This page does not found</h2>
+                <h2 class="no-info no-info-icon">We are sorry, we can’t seem to find this page</h2>
                 <br />
                 <div id="game" style="display: inline-block;"></div>
             </section>

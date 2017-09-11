@@ -22,7 +22,7 @@
                             <li id="menu_services"><a href="/services"><s:message code="navmenu.services"/></a></li>
                             <li id="menu_companies"><a href="/companies/catalog"><s:message code="navmenu.companies"/></a></li>
                             <li id="menu_blog"><a href="/blog"><s:message code="navmenu.blog"/></a></li>
-                            <li id="menu_employees"><a href="/info_pages/employee">Employees</a></li>
+                            <li id="menu_employees"><a href="/employee">Employees</a></li>
                             <li id="menu_contacts"><a href="/contact_us"><s:message code="navmenu.contacts"/></a></li>
                         </ul>
                     </nav>

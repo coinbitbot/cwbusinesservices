@@ -75,8 +75,7 @@ public class EmailSubscribeServiceImpl extends IEmailSubscribeService{
                 mailingService.sendEmailToUser(
                         EmailTemplateCodeEnum.EMAIL_SUBSCRIPTION,
                         view.getEmail(),
-                        null,
-                        Locale.ENGLISH
+                        null
                 );
             }
         }

@@ -352,6 +352,21 @@
             <version>1.8.9</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.github.dfabulich/sitemapgen4j -->
+        <dependency>
+            <groupId>com.github.dfabulich</groupId>
+            <artifactId>sitemapgen4j</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.4</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

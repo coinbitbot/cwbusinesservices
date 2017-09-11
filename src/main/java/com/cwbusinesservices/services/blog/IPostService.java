@@ -3,6 +3,7 @@ package com.cwbusinesservices.services.blog;
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;
 import com.cwbusinesservices.pojo.entities.PostEntity;
+import com.cwbusinesservices.pojo.enums.FileEntityTypeEnum;
 import com.cwbusinesservices.pojo.view.PostView;
 import com.cwbusinesservices.services.FileWorkBaseService;
 
@@ -14,7 +15,7 @@ import java.util.Set;
  */
 public abstract class IPostService extends FileWorkBaseService<PostEntity,PostView,Integer> {
     public IPostService(){
-        super(PostEntity.class);
+        super(PostEntity.class, FileEntityTypeEnum.POST);
     }
 
     public abstract Map<String,Object> getByUrl(String url, Set<String> fields) throws BaseException;

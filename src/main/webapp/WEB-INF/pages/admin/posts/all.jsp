@@ -66,6 +66,8 @@
                     </td>
                     <td>
                         <a href="/admin/posts/{{entity.id}}/edit" class="btn btn-theme-ok">Edit</a>
+                        <br />
+                        <button class="btn btn-theme-dark btn-small" ng-click="delete(entity)">Delete</button>
                     </td>
                 </tr>
                 </tbody>

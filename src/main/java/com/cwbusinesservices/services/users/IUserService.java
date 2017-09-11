@@ -1,6 +1,7 @@
 package com.cwbusinesservices.services.users;
 
 import com.cwbusinesservices.exceptions.BaseException;
+import com.cwbusinesservices.exceptions.bad_request.EmailRequiredException;
 import com.cwbusinesservices.exceptions.bad_request.WrongPasswordException;
 import com.cwbusinesservices.exceptions.service_error.ServiceErrorException;
 import com.cwbusinesservices.pojo.entities.UserEntity;
@@ -38,4 +39,6 @@ public abstract class IUserService extends BaseService<UserEntity, UserView, Int
     public abstract Map<String, Object> registration(UserView view, HttpServletRequest request, HttpServletResponse response) throws BaseException, InstantiationException, IllegalAccessException;
 
     public abstract boolean sendActivationLinkToUser(HttpServletResponse response, HttpServletRequest request) throws BaseException;
+
+    public abstract boolean sendForgetPasswordEmail(UserView view) throws BaseException;
 }

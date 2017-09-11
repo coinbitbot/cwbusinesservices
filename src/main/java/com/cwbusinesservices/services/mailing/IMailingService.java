@@ -13,8 +13,8 @@ import java.util.Map;
  * Created by KutsykV on 24.01.2016.
  */
 public interface IMailingService {
-    boolean sendEmailToUser(EmailTemplateCodeEnum typeOfEmail, String userEmail, Map<String, String> data, Locale locale) throws BaseException;
-    boolean sendEmailToUsers(EmailTemplateCodeEnum typeOfEmail, List<String> users, Map<String, String> data, Locale locale) throws BaseException;
+    boolean sendEmailToUser(EmailTemplateCodeEnum typeOfEmail, String userEmail, Map<String, String> data) throws BaseException;
+    boolean sendEmailToUsers(EmailTemplateCodeEnum typeOfEmail, List<String> users, Map<String, String> data) throws BaseException;
     String smtpListEmails(int limit, int offset, String from, String to, String sender, String recipient);
-    boolean sendEmailToUser(EmailTemplateEntity content, String userEmail, Map<String, String> data, Locale locale) throws BaseException;
+    boolean sendEmailToUser(EmailTemplateEntity content, String userEmail, Map<String, String> data) throws BaseException;
 }

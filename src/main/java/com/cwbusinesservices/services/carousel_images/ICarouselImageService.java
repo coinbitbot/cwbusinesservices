@@ -2,6 +2,7 @@ package com.cwbusinesservices.services.carousel_images;
 
 import com.cwbusinesservices.pojo.entities.CarouselImageEntity;
 import com.cwbusinesservices.pojo.entities.EmployeeEntity;
+import com.cwbusinesservices.pojo.enums.FileEntityTypeEnum;
 import com.cwbusinesservices.pojo.view.CarouselImageView;
 import com.cwbusinesservices.pojo.view.EmployeeView;
 import com.cwbusinesservices.services.FileWorkBaseService;
@@ -11,5 +12,5 @@ import com.cwbusinesservices.services.FileWorkBaseService;
  */
 public abstract class ICarouselImageService
         extends FileWorkBaseService<CarouselImageEntity, CarouselImageView, Integer> {
-    public ICarouselImageService(){super(CarouselImageEntity.class);}
+    public ICarouselImageService(){super(CarouselImageEntity.class, FileEntityTypeEnum.CAROUSEL_IMAGE);}
 }

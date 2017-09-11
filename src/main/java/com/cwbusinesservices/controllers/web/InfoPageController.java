@@ -75,10 +75,11 @@ public class InfoPageController {
     ) {
         try {
             model.addAttribute("info_page", infoPageService.getByUrl(url, VIEW_PAGE_FIELDS));
+            return "info_pages/view";
         } catch (BaseException e) {
-            // TODO: redirect to 404?
+            return "index/not_found";
         }
-        return "info_pages/view";
+
     }
 
     private void formCatalog(int page, Model model) {
