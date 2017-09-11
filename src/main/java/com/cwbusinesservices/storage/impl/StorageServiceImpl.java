@@ -1,6 +1,7 @@
 package com.cwbusinesservices.storage.impl;
 
 import com.cwbusinesservices.pojo.enums.FileEntityTypeEnum;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,8 +17,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -110,10 +113,12 @@ public class StorageServiceImpl implements IStorageService {
             }
 
             Date lastModified = new Date(file.lastModified());
-            SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
+            SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US);
+            String lastModifiedFormatted = format.format(lastModified);
 
             response.setContentType("application/force-download");
-            response.setHeader("Last-Modified", format.format(lastModified));
+            response.setHeader("ETag", DigestUtils.md5Hex(lastModifiedFormatted));
+            response.setHeader("Last-Modified", lastModifiedFormatted);
             response.setHeader("Content-Disposition", "attachment; filename=" + file.getName());
             response.setHeader("Cache-Control","must-revalidate, post-check=0, pre-check=0");
 
