@@ -12,7 +12,18 @@
     </head>
     <body>
     <jsp:include page="../common/header.jsp"/>
-
+    <div class="container">
+        <section class="page-content">
+            <article class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                <h1>Contact Us</h1>
+                <p class="subheader">If you do have any queries please do not hesitate to get in contact with us. We will get back to you as soon as possible.</p>
+                <p><strong>Address: </strong> 250 Deighton Road, Huddersfield, HD2 1JJ</p>
+                <p><strong>Phone: </strong> <a href="tel:+4401484506250">+44(0) 1484 506250</a></p>
+                <p><strong>Email: </strong> <a href="mailto:cbs@charlesworth-group.com">cbs@charlesworth-group.com</a></p>
+            </article>
+            <div class="clearfix"></div>
+        </section>
+    </div>
     <div class="feedback">
         <div class="container">
             <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">

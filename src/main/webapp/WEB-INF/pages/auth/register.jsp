@@ -15,11 +15,12 @@
     <div class="container">
         <section>
             <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                <h1>Registration</h1>
-                <div class="col-xs-12 text-center">
+                <h1 class="col-md-6">Registration</h1>
+                <div class="col-md-6 text-right soc-login">
                     <button id="login_facebook" class="btn-theme btn-fb" type="button"><i class="fa fa-facebook" aria-hidden="true"></i>Continue with Facebook</button>
                 </div>
-                <form id="sign_up_form">
+                <div class="clearfix"></div>
+                <form id="sign_up_form" class="col-sm-12">
                     <div class="register-block">
                         <h4 class="subheader">Personal info</h4>
                         <div class="row">
