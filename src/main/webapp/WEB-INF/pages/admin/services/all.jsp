@@ -15,35 +15,7 @@
         <a href="/admin/services/create" class="btn btn-theme-ok">Add new service</a>
     </div>
     <div class="clearfix"></div>
-    <div class="col-sm-3">
-        <div class="block-content bg-pattern">
-            <div class="page-subtitle">Services filter</div>
-            <form ng-submit="filterForm()">
-                <div class="form-group">
-                    <label>Query</label>
-                    <input ng-model="filters.query" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label>Active</label>
-                    <select ng-model="filters.active" class="form-control">
-                        <option value="">Ignore</option>
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Has image</label>
-                    <select ng-model="filters.has_img" class="form-control">
-                        <option value="">Ignore</option>
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
-                    </select>
-                </div>
-                <div class="text-center"><button class="btn btn-theme-ok">Filter</button></div>
-            </form>
-        </div>
-    </div>
-    <div class="col-sm-9">
+    <div class="col-sm-12">
         <div class="block-content">
             <table class="table">
                 <thead>
@@ -61,24 +33,20 @@
                         <img ng-src="/api/file/{{entity.id}}?type=SERVICE">
                     </td>
                     <td>
-                        Active: <input type="checkbox" ng-model="entity.active" class="form-control checkbox" disabled>
+                        <input type="checkbox" ng-model="entity.active" class="form-control checkbox" disabled>
                     </td>
                     <td>
                         <a href="/admin/services/{{entity.id}}/edit" class="btn btn-theme-ok">Edit</a>
+                        <div class="up-down">
+                            <button class="btn btn-theme-dark btn-small" ng-click="up(entity);" ng-show="!min(entity)"><i class="fa fa-chevron-up" aria-hidden="true"></i>&nbsp;Up</button>
+                            <button class="btn btn-theme-dark btn-small" ng-click="down(entity);" ng-show="!max(entity)"><i class="fa fa-chevron-down" aria-hidden="true"></i>&nbsp;Down</button>
+                        </div>
+                        <button class="btn btn-theme-dark btn-small" ng-click="delete(entity)">Delete</button>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <form ng-submit="moveToPage()">
-            <div class="form-group text-right page-nav">
-                <label>Page</label>
-                <select id="pages" class="form-control">
-                    <option value="0">1</option>
-                </select>
-                <button class="btn btn-theme-ok">Move to page</button>
-            </div>
-        </form>
         <div class="clearfix"></div>
     </div>
 </div>

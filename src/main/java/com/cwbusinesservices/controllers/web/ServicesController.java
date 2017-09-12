@@ -1,5 +1,6 @@
 package com.cwbusinesservices.controllers.web;
 
+import com.cwbusinesservices.criteria.impl.InterestCriteria;
 import com.cwbusinesservices.criteria.impl.ServiceCriteria;
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
@@ -33,6 +34,7 @@ public class ServicesController {
     ) {
         ServiceCriteria criteria = new ServiceCriteria();
         criteria.setActive(true);
+        criteria.setOrder_by("position");
 
         try {
             List<Map<String, Object>> list = serviceService.getList(criteria, CATALOG_FIELDS);

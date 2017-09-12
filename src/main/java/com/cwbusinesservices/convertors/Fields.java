@@ -52,6 +52,7 @@ public class Fields {
         public static final String DESCRIPTION = "description";
         public static final String SHORT_DESCRIPTION = "short_description";
         public static final String ACTIVE ="active";
+        public static final String POSITION = "position";
 
         public static final String DEFAULT = ID + ',' + NAME;
     }
