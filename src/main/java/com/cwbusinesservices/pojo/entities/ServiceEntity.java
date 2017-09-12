@@ -39,6 +39,9 @@ public class ServiceEntity  extends CompareIntegerId implements Serializable, Ge
     @Column(name="STATUS")
     private boolean active;
 
+    @Column(name = "POSITION")
+    private int position;
+
     @Override
     public Integer getId() {
         return id;
@@ -86,6 +89,14 @@ public class ServiceEntity  extends CompareIntegerId implements Serializable, Ge
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     @Override

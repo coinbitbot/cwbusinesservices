@@ -1,8 +1,5 @@
 (function(){
-
-    const LIMIT = 20;
-    var OFFSET = 0;
-    var RESTRICTION = {};
+    var RESTRICTION = {offset: 0, limit: 0};
 
     var app = angular.module('all', []);
 
@@ -11,26 +8,64 @@
         $scope.number_on_page = 0;
         $scope.total_count = 0;
 
-
-        buildRestriction($scope);
         count($scope, $http);
         get($scope, $http);
 
-        $scope.moveToPage = function() {
-            OFFSET = LIMIT * $('#pages').val() || 0;
-
-            RESTRICTION.offset = OFFSET;
-
-            get($scope, $http);
+        $scope.min = function(entity) {
+            var min = true;
+            $scope.entities.forEach(function(e){
+                if (e.position < entity.position) {
+                    min = false;
+                }
+            });
+            return min;
         };
 
-        $scope.filterForm = function(){
-            OFFSET = 0;
-            buildRestriction($scope);
-            get($scope, $http);
-            count($scope, $http);
+        $scope.max = function(entity) {
+            var max = true;
+            $scope.entities.forEach(function(e){
+                if (e.position > entity.position) {
+                    max = false;
+                }
+            });
+            return max;
         };
 
+        $scope.up = function(entity){
+            var index = $scope.entities.indexOf(entity);
+            if (index > 0) {
+                swap(index, index-1, $scope, $http);
+            }
+        };
+
+        $scope.down = function(entity){
+            var index = $scope.entities.indexOf(entity);
+            if (index > -1 && index < $scope.entities.length - 1) {
+                swap(index, index+1, $scope, $http);
+            }
+        };
+
+        $scope.delete = function(entity) {
+            if (confirm('You really want to delete this service?')) {
+                $http.delete('/api/service/'+entity.id, JSON.stringify($scope.entity), {headers: HEADERS})
+                    .then(function (response) {
+                        if (response.data.result) {
+                            showSuccessMessage('deleted');
+
+                            for (var i = 0; i < $scope.entities.length; ++i) {
+                                if (entity.id === $scope.entities[i].id) {
+                                    $scope.entities.splice(i, 1);
+
+                                    break;
+                                }
+                            }
+
+                        } else {
+                            showErrorMessage(response.data.error);
+                        }
+                    });
+            }
+        }
     });
 
     function get($scope, $http) {
@@ -39,7 +74,7 @@
             '/api/service/',
             {
                 params: {
-                    fields: 'id,name,active,has_icon',
+                    fields: 'id,name,active,has_icon,position',
                     restrict: JSON.stringify(RESTRICTION)
                 }
             }
@@ -47,6 +82,10 @@
             .then(function(response){
                 if (response.data.result) {
                     $scope.entities = response.data.result;
+
+                    $scope.entities.sort(function(a, b){
+                        return a.position - b.position;
+                    });
 
                     $scope.number_on_page = $scope.entities.length;
                 } else {
@@ -70,28 +109,26 @@
                 var numberOfUsers = response.data.result || 0;
 
                 $scope.total_count = numberOfUsers;
-                formPages(numberOfUsers, LIMIT, $('#pages'));
             })
     }
 
-    /**
-     * use this to temporary save filters
-     *
-     * @param $scope - angular app scope
-     */
-    function buildRestriction($scope) {
-        RESTRICTION = $scope.filters;
+    function swap(i, j, $scope, $http) {
+        var a = $scope.entities[i],
+            b = $scope.entities[j];
 
-        // Gson on server side transfer empty string to 'false'
-        // TODO: find a better solution
-        if (!RESTRICTION.active) {
-            delete RESTRICTION.active;
-        }
-        if (!RESTRICTION.has_img) {
-            delete RESTRICTION.has_img;
-        }
+        $http.post('/api/service/swap', JSON.stringify({ids: [a.id, b.id]}), {headers: HEADERS})
+            .then(function (response) {
+                if (response.data.result) {
+                    var temp = a.position;
+                    a.position = b.position;
+                    b.position = temp;
 
-        RESTRICTION.offset = OFFSET;
-        RESTRICTION.limit = LIMIT;
+                    $scope.entities.sort(function(a, b){
+                        return a.position - b.position;
+                    });
+                } else {
+                    showErrorMessage(response.data.error);
+                }
+            });
     }
 })();

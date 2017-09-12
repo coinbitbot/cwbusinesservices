@@ -30,6 +30,8 @@ public class ServiceConverter extends Converter<ServiceEntity>{
             map.put(SHORT_DESCRIPTION,object.getShortDescription());
         if (fields.contains(NAME))
             map.put(NAME,object.getName());
+        if (fields.contains(POSITION))
+            map.put(POSITION,object.getPosition());
         return map;
     }
 }
