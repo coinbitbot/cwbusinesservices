@@ -36,6 +36,17 @@
     });
 
     function setupTinyMCE(email_code) {
+        function urlConverter(url){
+            var openBracket = url.indexOf('{{'),
+                closeBracket = url.indexOf('}}') + 1;   // add 1 cause indexOf return index of first substring element
+
+            if (openBracket > -1 && closeBracket > -1) {
+                url = url.substr(openBracket, closeBracket + 1);
+            }
+
+            return url;
+        }
+
         tinymce.init({
             selector:'#text',
             relative_urls : false,
@@ -46,6 +57,7 @@
                 "insertdatetime media table contextmenu paste imagetools"
             ],
             toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | email_fields",
+            urlconverter_callback: urlConverter,
             setup: function(editor) {
                 Ajax.get({
                     url: '/api/mail/' + email_code + '/email_fields',

@@ -268,6 +268,7 @@ public class UserServiceImpl extends IUserService {
                 entity.getEmail(),
                 new HashMap<String, String>(){{
                     put("url", hostUrl + "/helper/login/" + entity.getEmail() + "/" + token);
+                    put("NAME", entity.getFullName());
                 }}
         );
 
