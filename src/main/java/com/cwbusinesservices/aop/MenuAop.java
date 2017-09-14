@@ -3,6 +3,7 @@ package com.cwbusinesservices.aop;
 import com.cwbusinesservices.criteria.impl.MenuItemCriteria;
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.pojo.entities.MenuItemEntity;
+import com.cwbusinesservices.pojo.enums.MenuCodeEnum;
 import com.cwbusinesservices.pojo.enums.OrderDirectionEnum;
 import com.cwbusinesservices.services.menu.IMenuItemService;
 import com.cwbusinesservices.services.menu.IMenuService;
@@ -35,6 +36,7 @@ public class MenuAop {
     @After("plainWeb()")
     public void addMenuToModel() {
         MenuItemCriteria criteria = new MenuItemCriteria();
+        criteria.setMenu_code(MenuCodeEnum.MAIN);
 
         try {
             List<MenuItemEntity> all = menuItemService.getList(criteria);
