@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Registration</title>
+    <title>Register</title>
     <jsp:include page="../common/include_resources.jsp" />
 </head>
 <body>
@@ -84,7 +84,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12 text-center">
-                        <button type="submit" class="btn-theme btn-2">Register an request</button>
+                        <button type="submit" class="btn-theme btn-2">Register request</button>
                     </div>
                     <div class="clearfix"></div>
                 </form>
