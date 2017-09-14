@@ -224,6 +224,7 @@ strong {font-weight: 800;}
 /* /Input type=["file'] */
 
 /* Font styles */
+.text-error {color:#ff0000;}
 .font-theme {
     font-family: 'Gotham', Arial, sans-serif;
 }

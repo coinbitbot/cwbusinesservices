@@ -21,28 +21,29 @@
                 </div>
                 <div class="clearfix"></div>
                 <form id="sign_up_form" class="col-sm-12">
+                    <p class="text-error">* Required information</p>
                     <div class="register-block">
-                        <h4 class="subheader">Personal info</h4>
+                        <h4 class="subheader">Personal info <span class="text-error">*</span></h4>
                         <div class="row">
                             <div class="col-xs-12 col-sm-6">
-                                <input type="text" name="first_name" placeholder="First Name" class="form-field col-xs-12" />
+                                <input type="text" name="first_name" placeholder="First Name *" class="form-field col-xs-12" />
                             </div>
                             <div class="col-xs-12 col-sm-6">
-                                <input type="text" name="last_name" placeholder="Last Name" class="form-field col-xs-12" />
+                                <input type="text" name="last_name" placeholder="Last Name *" class="form-field col-xs-12" />
                             </div>
                             <div class="col-xs-12 col-sm-6">
-                                <input type="email" name="email" placeholder="Email" class="form-field col-xs-12" />
+                                <input type="email" name="email" placeholder="Email *" class="form-field col-xs-12" />
                             </div>
                             <div class="col-xs-12 col-sm-6">
-                                <input type="tel" name="phone" placeholder="Phone: +23453452345234" class="form-field col-xs-12">
+                                <input type="tel" name="phone" placeholder="Phone: +23453452345234 *" class="form-field col-xs-12">
                             </div>
                         </div>
                     </div>
                     <div class="register-block">
-                        <h4 class="subheader">Company info</h4>
+                        <h4 class="subheader">Company info <span class="text-error">*</span></h4>
                         <div class="row">
                             <div class="col-xs-12">
-                                <input type="text" name="company_name" placeholder="My company" class="form-field col-xs-12">
+                                <input type="text" name="company_name" placeholder="My company *" class="form-field col-xs-12">
                             </div>
                             <div class="col-xs-12 col-sm-8">
                                 <input type="text" id="filename" class="filename col-xs-12" placeholder="Attach Business Plan" disabled>
@@ -54,7 +55,7 @@
                         </div>
                     </div>
                     <div class="register-block">
-                        <h4 class="subheader">Your interests</h4>
+                        <h4 class="subheader">Your interests <span class="text-error">*</span></h4>
                         <div class="row">
                             <c:if test="${interests ne null}">
                                 <div class="">
@@ -70,7 +71,7 @@
                                 <input type="text" name="interest_alter" class="form-field col-xs-12" placeholder="Please enter if you are interested in a service not list above">
                             </div>
                         </div>
-                        <h4 class="subheader">Industry</h4>
+                        <h4 class="subheader">Industry <span class="text-error">*</span></h4>
                         <div class="row">
                             <c:if test="${industries ne null}">
                                 <div class="col-xs-12">
