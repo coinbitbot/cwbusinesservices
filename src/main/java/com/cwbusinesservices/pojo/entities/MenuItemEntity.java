@@ -106,20 +106,12 @@ public class MenuItemEntity extends CompareIntegerId implements Serializable, Ge
 
         MenuItemEntity that = (MenuItemEntity) o;
 
-        if (id != that.id) return false;
-        if (position != that.position) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return !(url != null ? !url.equals(that.url) : that.url != null);
-
+        return id == that.id;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (url != null ? url.hashCode() : 0);
-        result = 31 * result + position;
-        return result;
+        return id;
     }
 
     @Override
