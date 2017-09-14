@@ -1,5 +1,6 @@
 package com.cwbusinesservices.controllers.web.admin;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping("/admin")
+@PreAuthorize("hasPermission(1,'ROLE_ADMIN,ROLE_MODERATOR')")
 public class IndexAdminController {
 
     @RequestMapping(value = "/cabinet", method = RequestMethod.GET)
