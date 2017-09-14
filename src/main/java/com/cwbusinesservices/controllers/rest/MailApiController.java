@@ -47,7 +47,7 @@ public class MailApiController {
     ) throws BaseException {
         boolean result = mailingService.sendEmailToUser(
                 EmailTemplateCodeEnum.EMAIL_FROM_CONTACT_PAGE,
-                "oleh.kurpiak@gmail.com",
+                "cbs@charlesworth-group.com",
                 new HashMap<String, String>(){{
                     put("USER_NAME", view.getName());
                     put("EMAIL", view.getEmail());

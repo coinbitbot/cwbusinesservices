@@ -256,6 +256,7 @@ public class UserServiceImpl extends IUserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.NEVER)
     public boolean sendActivationLinkToUser(HttpServletResponse response, HttpServletRequest request) throws BaseException {
         sessionUtils.authorized();
 
@@ -267,14 +268,12 @@ public class UserServiceImpl extends IUserService {
                 entity.getEmail(),
                 new HashMap<String, String>(){{
                     put("url", hostUrl + "/helper/login/" + entity.getEmail() + "/" + token);
+                    put("NAME", entity.getFullName());
                 }}
         );
 
-        if (result) {
-            // if user after success registration have successfully get activation email
-            // we should log out him
-            logoutUser(request, response);
-        }
+        // after registration have we should log out current user
+        logoutUser(request, response);
 
         return result;
     }

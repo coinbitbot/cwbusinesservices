@@ -10,6 +10,10 @@ public enum EmailTemplateCodeEnum {
             new HashMap<String, String>(){{
                 put("value", "url");
                 put("label", "Url to set password page");
+            }},
+            new HashMap<String, String>(){{
+                put("value", "NAME");
+                put("label", "User name");
             }}
     )),
     NEW_REQUEST_IN_SYSTEM(new ArrayList<>()),

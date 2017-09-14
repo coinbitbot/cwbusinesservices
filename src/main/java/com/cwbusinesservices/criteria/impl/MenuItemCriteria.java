@@ -5,6 +5,7 @@ import com.cwbusinesservices.exceptions.bad_request.WrongRestrictionException;
 import com.cwbusinesservices.pojo.entities.BlockEntity;
 import com.cwbusinesservices.pojo.entities.MenuEntity;
 import com.cwbusinesservices.pojo.entities.MenuItemEntity;
+import com.cwbusinesservices.pojo.enums.MenuCodeEnum;
 
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.List;
 public class MenuItemCriteria extends Criteria<MenuItemEntity> {
     private List<Integer> ids;
     private Integer menu_id;
+    private MenuCodeEnum menu_code;
     private Integer parent_menu_item_id;
     private String query;
 
@@ -32,6 +34,7 @@ public class MenuItemCriteria extends Criteria<MenuItemEntity> {
         MenuItemCriteria parsed = parse(restriction, MenuItemCriteria.class);
         if (parsed != null) {
             this.menu_id = parsed.menu_id;
+            this.menu_code = parsed.menu_code;
             this.ids = parsed.ids;
             this.parent_menu_item_id = parsed.parent_menu_item_id;
             this.query = parsed.query;
@@ -61,11 +64,56 @@ public class MenuItemCriteria extends Criteria<MenuItemEntity> {
             Expression<Integer> expression = menu.get("id");
             predicates.add(cb.equal(expression, this.menu_id));
         }
+        if(this.menu_code!=null){
+            Join<MenuItemEntity, MenuEntity> menu = root.join("menu");
+            Expression<MenuCodeEnum> expression = menu.get("code");
+            predicates.add(cb.equal(expression, this.menu_code));
+        }
         if(this.parent_menu_item_id!=null){
             Join<MenuItemEntity, MenuItemEntity> parentMenuItem = root.join("parentMenuItem");
             Expression<Integer> expression = parentMenuItem.get("id");
             predicates.add(cb.equal(expression, this.parent_menu_item_id));
         }
         return predicates;
+    }
+
+    public List<Integer> getIds() {
+        return ids;
+    }
+
+    public void setIds(List<Integer> ids) {
+        this.ids = ids;
+    }
+
+    public Integer getMenu_id() {
+        return menu_id;
+    }
+
+    public void setMenu_id(Integer menu_id) {
+        this.menu_id = menu_id;
+    }
+
+    public MenuCodeEnum getMenu_code() {
+        return menu_code;
+    }
+
+    public void setMenu_code(MenuCodeEnum menu_code) {
+        this.menu_code = menu_code;
+    }
+
+    public Integer getParent_menu_item_id() {
+        return parent_menu_item_id;
+    }
+
+    public void setParent_menu_item_id(Integer parent_menu_item_id) {
+        this.parent_menu_item_id = parent_menu_item_id;
+    }
+
+    public String getQuery() {
+        return query;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
     }
 }

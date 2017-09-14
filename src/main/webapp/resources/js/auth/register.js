@@ -4,11 +4,6 @@ $(function(){
         e.preventDefault();
 
         var file = $('#request_file')[0].files[0];
-        if (!file) {
-            showErrorMessage('Please select file');
-
-            return;
-        }
 
         var data = {
             role: 'user'
@@ -38,38 +33,50 @@ $(function(){
             data: data,
             success: function(response) {
                 if (response.result) {
-                    var request_id = response.result.request_id;
+                    if (file) {
+                        var request_id = response.result.request_id;
 
-                    Ajax.uploadFile(
-                        '/api/file/',
-                        {
-                            id: request_id,
-                            file: file,
-                            type: 'REQUEST'
-                        },
-                        function(response) {
-                            if (response.result) {
-                                showSuccessMessage('Thank you for your request.<br />We will be in contact shortly');
-                                /*setTimeout(function(){
-                                    location.href = '/profile/requests';
-                                }, 1000);*/
+                        Ajax.uploadFile(
+                            '/api/file/',
+                            {
+                                id: request_id,
+                                file: file,
+                                type: 'REQUEST'
+                            },
+                            function (response) {
+                                if (response.result) {
+                                    showSuccessMessage('Thank you for your request.<br />We will be in contact shortly');
 
-                                Ajax.post({
-                                    url: '/api/mail/set_password',
-                                    success: function(response) {
-                                        if (response.result) {
-                                            showSuccessMessage('We send You email with activation link');
-                                        } else {
-                                            showErrorMessage(response.error);
+                                    Ajax.post({
+                                        url: '/api/mail/set_password',
+                                        success: function (response) {
+                                            if (response.result) {
+                                                showSuccessMessage('We send You email with activation link');
+                                            } else {
+                                                showErrorMessage('If you have not received email, please, click "Forgot password" in Sign in form to resend activation link');
+                                            }
                                         }
-                                    }
-                                });
-                            } else {
-                                var e = response.error;
-                                showErrorMessage(e.message + buildValidationErrors(e.errors));
+                                    });
+                                } else {
+                                    var e = response.error;
+                                    showErrorMessage(e.message + buildValidationErrors(e.errors));
+                                }
                             }
-                        }
-                    )
+                        );
+                    } else {
+                        showSuccessMessage('Thank you for your request.<br />We will be in contact shortly');
+
+                        Ajax.post({
+                            url: '/api/mail/set_password',
+                            success: function (response) {
+                                if (response.result) {
+                                    showSuccessMessage('We send You email with activation link');
+                                } else {
+                                    showErrorMessage('If you have not received email, please, click "Forgot password" in Sign in form to resend activation link');
+                                }
+                            }
+                        });
+                    }
                 } else {
                     showErrorMessage(response.error);
                 }

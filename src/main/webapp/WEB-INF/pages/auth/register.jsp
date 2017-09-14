@@ -5,10 +5,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Registration</title>
+    <jsp:include page="../common/include_external_head_top.jsp" />
+    <title>Register</title>
     <jsp:include page="../common/include_resources.jsp" />
 </head>
 <body>
+<jsp:include page="../common/include_external_body_top.jsp" />
 <jsp:include page="../common/header.jsp"/>
 
 <div class="wrapper">
@@ -85,7 +87,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12 text-center">
-                        <button type="submit" class="btn-theme btn-2">Register an request</button>
+                        <button type="submit" class="btn-theme btn-2">Register request</button>
                     </div>
                     <div class="clearfix"></div>
                 </form>

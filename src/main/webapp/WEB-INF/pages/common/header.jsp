@@ -18,30 +18,25 @@
                     <div class="menu-mob-button visible-xs visible-sm"><a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a></div>
                     <nav>
                         <ul class="topmenu">
-                            <li id="home"><a href="/"><s:message code="navmenu.home"/></a></li>
-                            <li id="menu_services"><a href="/services"><s:message code="navmenu.services"/></a></li>
-                            <li id="menu_companies"><a href="/companies/catalog"><s:message code="navmenu.companies"/></a></li>
-                            <li id="menu_blog"><a href="/blog"><s:message code="navmenu.blog"/></a></li>
-                            <li id="menu_employees"><a href="/employee">Employees</a></li>
-                            <li id="menu_contacts"><a href="/contact_us"><s:message code="navmenu.contacts"/></a></li>
-                            <!-- Example item menu with submenu
-                            <li>
-                                <a href="#" data-toggle="collapse" data-target="#1">Top Menu Item <span class="caret"></span></a>
-                                <ul id="1">
-                                    <li><a>Item submenu</a></li>
-                                    <li><a>Item submenu</a></li>
-                                    <li>
-                                        <a href="#" data-toggle="collapse" data-target="#2">Item submenu <span class="caret"></span></a>
-                                        <ul id="2">
-                                            <li><a>Item submenu</a></li>
-                                            <li><a>Item submenu</a></li>
-                                            <li><a>Item submenu</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a>Item submenu</a></li>
-                                </ul>
-                            </li>
-                            -->
+                        <c:choose>
+                            <c:when test="${menu eq null}">
+                                <li id="home"><a href="/"><s:message code="navmenu.home"/></a></li>
+                                <li id="menu_services"><a href="/services"><s:message code="navmenu.services"/></a></li>
+                                <li id="menu_companies"><a href="/companies/catalog"><s:message code="navmenu.companies"/></a></li>
+                                <li id="menu_blog"><a href="/blog"><s:message code="navmenu.blog"/></a></li>
+                                <li id="menu_employees"><a href="/employee">Employees</a></li>
+                                <li id="menu_contacts"><a href="/contact_us"><s:message code="navmenu.contacts"/></a></li>
+                            </c:when>
+                            <c:otherwise>
+                                <jsp:include page="menu_node.jsp" />
+
+                                <script>
+                                    $(function(){
+                                        $('.topmenu [href="' + location.pathname + '"]').parent('li').addClass('active');
+                                    });
+                                </script>
+                            </c:otherwise>
+                        </c:choose>
                         </ul>
                     </nav>
                 </div>
