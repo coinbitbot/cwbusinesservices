@@ -6,10 +6,12 @@
     <!DOCTYPE html>
     <html>
     <head>
+        <jsp:include page="../common/include_external_head_top.jsp" />
         <title>All companies</title>
         <jsp:include page="../common/include_resources.jsp" />
     </head>
     <body>
+    <jsp:include page="../common/include_external_body_top.jsp" />
     <jsp:include page="../common/header.jsp"/>
 
     <div class="container">

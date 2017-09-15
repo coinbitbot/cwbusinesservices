@@ -5,10 +5,12 @@
     <!DOCTYPE html>
     <html>
     <head>
+        <jsp:include page="../common/include_external_head_top.jsp" />
         <title>Facebook success</title>
         <jsp:include page="../common/include_resources.jsp" />
     </head>
     <body>
+    <jsp:include page="../common/include_external_body_top.jsp" />
     <jsp:include page="../common/header.jsp"/>
 
     <form action="/facebook_success" method="post" id="facebook_token">

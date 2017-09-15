@@ -90,3 +90,16 @@
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+
+<script>
+    $('#logout').click(function(e){
+        e.preventDefault();
+
+        Ajax.post({
+            url: '/api/users/logout',
+            success: function(){
+                location.reload();
+            }
+        });
+    });
+</script>

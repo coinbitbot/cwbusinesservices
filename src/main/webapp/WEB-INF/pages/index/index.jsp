@@ -9,12 +9,14 @@
     <!DOCTYPE html>
     <html>
     <head>
+        <jsp:include page="../common/include_external_head_top.jsp" />
         <title><s:message code="brand"/></title>
         <jsp:include page="../common/include_resources.jsp" />
         <link rel="stylesheet" href="/resources/js/utils/owl_carousel2/owl.carousel.min.css" />
         <link rel="stylesheet" href="/resources/js/utils/owl_carousel2/owl.theme.default.min.css" />
     </head>
     <body>
+    <jsp:include page="../common/include_external_body_top.jsp" />
         <jsp:include page="../common/header.jsp"/>
 
         <div class="wrapper index-page">
