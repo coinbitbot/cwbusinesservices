@@ -29,7 +29,7 @@
                     <select ng-model="filters.status" class="form-control">
                         <option value="">All</option>
                         <option value="NEW">New</option>
-                        <option value="IN_WORK">In work</option>
+                        <option value="IN_WORK">In progress</option>
                         <option value="FINISHED">Finished</option>
                     </select>
                 </div>
@@ -72,7 +72,7 @@
                                 <em>New status</em>
                                 <select ng-model="entity.new_status" class="form-control">
                                     <option value="NEW">New</option>
-                                    <option value="IN_WORK">In work</option>
+                                    <option value="IN_WORK">In progress</option>
                                     <option value="FINISHED">Finished</option>
                                 </select>
                             </div>

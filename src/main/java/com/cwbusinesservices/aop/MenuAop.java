@@ -13,9 +13,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -40,14 +38,11 @@ public class MenuAop {
 
         try {
             List<MenuItemEntity> all = menuItemService.getList(criteria);
-            Set<MenuItemEntity> rootItems = all.stream()
+            List<MenuItemEntity> rootItems = all.stream()
                     .filter(item -> item.getParentMenuItem() == null)
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toList());
 
-            MenuItemEntity root = new MenuItemEntity();
-            root.setChildItems(rootItems);
-
-            request.setAttribute("menu", root);
+            request.setAttribute("menuItems", rootItems);
         } catch (BaseException e) { }
     }
 }
