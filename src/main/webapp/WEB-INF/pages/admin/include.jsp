@@ -49,6 +49,17 @@
         if(li.parent().hasClass('dropdown-menu')){
             li.parent().parent().addClass('active');
         }
+
+        $('#logout').click(function(e){
+            e.preventDefault();
+
+            Ajax.post({
+                url: '/api/users/logout',
+                success: function(){
+                    location.href = '/';
+                }
+            });
+        });
     });
 
     $(document).ready( function() {

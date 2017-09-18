@@ -35,7 +35,7 @@
                         <strong>New status&nbsp</strong>
                         <select ng-model="entity.new_status" class="form-control">
                             <option value="NEW">new</option>
-                            <option value="IN_WORK">in work</option>
+                            <option value="IN_WORK">in progress</option>
                             <option value="FINISHED">finished</option>
                         </select>
                     </div><br/>

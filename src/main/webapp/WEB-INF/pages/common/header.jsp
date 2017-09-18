@@ -2,6 +2,7 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <header class="navbar-fixed-top">
     <div class="header">
@@ -19,7 +20,7 @@
                     <nav>
                         <ul class="topmenu">
                         <c:choose>
-                            <c:when test="${menu eq null}">
+                            <c:when test="${menuItems eq null}">
                                 <li id="home"><a href="/"><s:message code="navmenu.home"/></a></li>
                                 <li id="menu_services"><a href="/services"><s:message code="navmenu.services"/></a></li>
                                 <li id="menu_companies"><a href="/companies/catalog"><s:message code="navmenu.companies"/></a></li>
@@ -28,7 +29,22 @@
                                 <li id="menu_contacts"><a href="/contact_us"><s:message code="navmenu.contacts"/></a></li>
                             </c:when>
                             <c:otherwise>
-                                <jsp:include page="menu_node.jsp" />
+                                <c:forEach var="menu" items="${menuItems}">
+                                    <li>
+                                        <c:choose>
+                                            <c:when test="${fn:length(menu.childItems) > 0}">
+                                                <a href="#" data-toggle="collapse" data-target="#${menu.id}">${menu.name} <span class="caret"></span></a>
+                                                <ul id="${menu.id}">
+                                                    <c:set var="menu" value="${menu}" scope="request"/>
+                                                    <jsp:include page="menu_node.jsp"/>
+                                                </ul>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <a href="${menu.url}">${menu.name}</a>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </li>
+                                </c:forEach>
 
                                 <script>
                                     $(function(){

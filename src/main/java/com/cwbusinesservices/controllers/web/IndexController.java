@@ -42,6 +42,7 @@ import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Principal;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -128,9 +129,12 @@ public class IndexController {
         return result.toString();
     }
 
-    @PreAuthorize("isAnonymous()")
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String signUp(Model model) {
+    public String signUp(Principal principal, Model model) {
+        if (principal != null) {
+            return "redirect:/requests/create";
+        }
+
         try {
             IndustryCriteria industryCriteria = new IndustryCriteria();
             industryCriteria.setOrder_by("position");
