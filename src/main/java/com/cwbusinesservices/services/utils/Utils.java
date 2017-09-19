@@ -42,7 +42,7 @@ public class Utils {
 
     public static Date convertDate(String dateInUtc){
         ZonedDateTime zdt = ZonedDateTime.parse(dateInUtc, DateTimeFormatter.RFC_1123_DATE_TIME);
-        return Date.from(java.time.ZonedDateTime.now().toInstant());
+        return Date.from(zdt.toInstant());
     }
 
     public String readResponseBody(final String url) throws IOException {

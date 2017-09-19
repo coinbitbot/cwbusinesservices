@@ -36,7 +36,7 @@ public class PostEntity extends CompareIntegerId implements Serializable, Getabl
     private String shortDescription;
 
     @Column(name = "DATE_OF_PUBLICATION")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
     @Column(name="HAS_IMG")

@@ -4,6 +4,7 @@ import com.cwbusinesservices.criteria.impl.*;
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.pojo.entities.BlockEntity;
 import com.cwbusinesservices.pojo.enums.BlockCodesEnum;
+import com.cwbusinesservices.pojo.enums.OrderDirectionEnum;
 import com.cwbusinesservices.services.blocks.IBlockService;
 import com.cwbusinesservices.services.blog.IPostService;
 import com.cwbusinesservices.services.company.ICompanyService;
@@ -96,6 +97,8 @@ public class ReadDatabaseScheduler implements InitializingBean {
             PostCriteria criteria = new PostCriteria(
                     0, 3, null
             );
+            criteria.setOrder_direction(OrderDirectionEnum.DESC);
+            criteria.setOrder_by("date");
             LAST_POSTS = postService.getList(criteria, POST_FIELDS_FOR_INDEX);
         } catch (BaseException e) {
             LAST_POSTS = new ArrayList<>();

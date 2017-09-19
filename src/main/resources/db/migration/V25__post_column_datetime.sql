@@ -1,0 +1,2 @@
+ALTER TABLE `cwbusinesservices`.`POST`
+    MODIFY `DATE_OF_PUBLICATION` DATETIME;
