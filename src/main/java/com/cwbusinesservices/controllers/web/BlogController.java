@@ -184,5 +184,5 @@ public class BlogController {
             "code", "name", "position"
     ));
 
-    private final int POST_PER_PAGE = 3;
+    private final int POST_PER_PAGE = 12;
 }

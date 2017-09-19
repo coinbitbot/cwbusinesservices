@@ -63,7 +63,7 @@
                     <c:set var="cat" value="/${current_category.code}" />
                 </c:if>
 
-                <c:if test="${posts ne null}">
+                <c:if test="${posts ne null && number_of_pages > 1}">
                     <a href="/blog${cat}/1/page" class="page page-nav">Start</a>
 
                     <c:choose>
