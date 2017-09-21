@@ -1,4 +1,4 @@
-package com.cwbusinesservices.services.images;
+package com.cwbusinesservices.services.files;
 
 import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.exceptions.not_found.NoSuchEntityException;

@@ -4,7 +4,7 @@ import com.cwbusinesservices.exceptions.BaseException;
 import com.cwbusinesservices.pojo.enums.FileEntityTypeEnum;
 import com.cwbusinesservices.pojo.response.Response;
 import com.cwbusinesservices.pojo.response.ResponseFactory;
-import com.cwbusinesservices.services.images.IFileService;
+import com.cwbusinesservices.services.files.IFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
