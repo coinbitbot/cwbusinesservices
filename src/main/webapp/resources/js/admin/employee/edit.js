@@ -13,12 +13,15 @@
                 "searchreplace visualblocks code fullscreen",
                 "insertdatetime media table contextmenu paste imagetools"
             ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | " + TinyMCEUtil.images_fields,
             content_css: [
                 '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
                 '//www.tinymce.com/css/codepen.min.css'
             ],
-            height: 400
+            height: 400,
+            setup: function(editor) {
+                TinyMCEUtil.append_images_buttons(editor);
+            }
         });
 
         var params = UrlUtil.parse(angular.element('#loader').attr('src'));

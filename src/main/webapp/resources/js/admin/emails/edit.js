@@ -56,7 +56,7 @@
                 "searchreplace visualblocks code fullscreen",
                 "insertdatetime media table contextmenu paste imagetools"
             ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | email_fields",
+            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | email_fields| " + TinyMCEUtil.images_fields,
             urlconverter_callback: urlConverter,
             setup: function(editor) {
                 Ajax.get({
@@ -82,6 +82,8 @@
                         });
                     }
                 });
+
+                TinyMCEUtil.append_images_buttons(editor);
             },
             content_css: [
                 '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',

@@ -16,6 +16,7 @@
 <script src="/resources/js/md5.min.js"></script>
 
 <script src="/resources/js/angular.min.js"></script>
+<script src="/resources/js/admin/tinymce_image_util.js"></script>
 <script>
     Ajax.setCSRF('${_csrf.headerName}', '${_csrf.token}');
     var HEADERS = {

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Andrii on 28.07.2017.
@@ -58,5 +60,43 @@ public class FileApiController {
             @RequestParam("type") FileEntityTypeEnum type
     ) throws BaseException {
         imageService.hasFile(id, type);
+    }
+
+    @RequestMapping(value = "/images", method = RequestMethod.POST)
+    public @ResponseBody
+    Response<Boolean> uploadImage(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam(value = "name", required = false) String name
+    ) throws BaseException {
+        return responseFactory.get(imageService.uploadImage(file, name));
+    }
+
+    @RequestMapping(value = "/images", method = RequestMethod.GET)
+    public @ResponseBody
+    Response<List<String>> getImagesData() throws BaseException {
+        return responseFactory.get(imageService.getImagesData());
+    }
+
+    @RequestMapping(value = "/images/{number}", method = RequestMethod.DELETE)
+    public @ResponseBody
+    Response<Boolean> deleteImage(
+            @PathVariable("number") int number
+    ) throws BaseException {
+        return responseFactory.get(imageService.deleteImage(number));
+    }
+
+    @RequestMapping(value = "/images/{name}", method = RequestMethod.GET)
+    public void getImage(
+            @PathVariable("name") String name,
+            HttpServletResponse response
+    ) throws BaseException {
+        imageService.getImage(name, response);
+    }
+
+    @RequestMapping(value = "/images/count", method = RequestMethod.GET)
+    public @ResponseBody
+    Response<Integer> countImages(
+    ) throws BaseException {
+        return responseFactory.get(imageService.countImages());
     }
 }

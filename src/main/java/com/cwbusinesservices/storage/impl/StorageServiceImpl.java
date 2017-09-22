@@ -3,6 +3,7 @@ package com.cwbusinesservices.storage.impl;
 import com.cwbusinesservices.pojo.enums.FileEntityTypeEnum;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.StringUtils;
 import org.aspectj.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,11 +20,9 @@ import java.io.*;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * Created by Andrii on 05.10.2016.
@@ -114,23 +113,7 @@ public class StorageServiceImpl implements IStorageService {
                 throw new NoSuchEntityException(folder, "no file with id: " + id);
             }
 
-            Date lastModified = new Date(file.lastModified());
-            SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US);
-            String lastModifiedFormatted = format.format(lastModified);
-
-            response.setContentType("application/force-download");
-            response.setContentLength((int)file.length());
-            response.setHeader("Last-Modified", lastModifiedFormatted);
-            response.setHeader("Content-Disposition", "attachment; filename=" + type + "_" + file.getName());
-
-            if (isFileImage(file)) {
-                response.setContentType("image/"+FilenameUtils.getExtension(file.getName()));
-                response.setDateHeader("Expires", new Date(new Date().getTime() + MAX_IMAGE_LIVE).getTime());
-                response.setHeader("Cache-Control", "max-age=" + MAX_IMAGE_LIVE);
-                response.setHeader("Pragma", "max-age=" + MAX_IMAGE_LIVE);
-            } else {
-                response.setHeader("Cache-Control", "must-revalidate, post-check=0, pre-check=0");
-            }
+            setHeaders(file, response);
 
             response.getOutputStream().write(Files.readAllBytes(file.toPath()));
         } catch (IOException e) {
@@ -162,6 +145,102 @@ public class StorageServiceImpl implements IStorageService {
             return false;
 
         return fileByPartName(entityFolder, id + "") != null;
+    }
+
+    @Override
+    public Boolean uploadImage(MultipartFile file, String name) throws ServiceErrorException {
+        File entityFolder = new File(ROOT_DIR + PLAIN_IMAGES_FOLDER);
+        if(!entityFolder.exists())
+            entityFolder.mkdirs();
+
+        if (StringUtils.isBlank(name)) {
+            name = file.getOriginalFilename();
+        } else {
+            name += "." + FilenameUtils.getExtension(file.getOriginalFilename());
+        }
+
+        final File serverFile = new File(entityFolder.getAbsolutePath() + '/' + name);
+        try {
+            file.transferTo(serverFile);
+        } catch (IOException e) {
+            throw new ServiceErrorException();
+        }
+
+        if (useRemote) {
+            async(() -> {
+                try {
+                    storage.upload(Files.readAllBytes(serverFile.toPath()), serverFile.getName(), PLAIN_IMAGES_FOLDER);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (StorageException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+
+        return true;
+    }
+
+    @Override
+    public Boolean deleteImage(int number) throws ServiceErrorException {
+        File rootFolder = new File(ROOT_DIR + PLAIN_IMAGES_FOLDER);
+        if (!rootFolder.exists())
+            return true;
+
+        File[] files = rootFolder.listFiles();
+        if (files != null && number >= 0 && number < files.length) {
+            File image = files[number];
+
+            image.setWritable(true);
+            return image.delete();
+        }
+
+        return true;
+    }
+
+    @Override
+    public void getImage(String name, HttpServletResponse response) throws NoSuchEntityException, ServiceErrorException, StorageException {
+        try {
+            File rootFolder = new File(ROOT_DIR + PLAIN_IMAGES_FOLDER);
+            if (!rootFolder.exists())
+                return;
+
+            File image = fileByPartName(rootFolder, FilenameUtils.getBaseName(name));
+            if (image != null) {
+                setHeaders(image, response);
+
+                response.getOutputStream().write(Files.readAllBytes(image.toPath()));
+            }
+        } catch (IOException e) {
+            throw new StorageException("problems while loading file");
+        }
+    }
+
+    @Override
+    public int countImages() {
+        File rootFolder = new File(ROOT_DIR + PLAIN_IMAGES_FOLDER);
+        if (!rootFolder.exists())
+            return 0;
+
+        File[] files = rootFolder.listFiles();
+
+        return files != null ? files.length : 0;
+    }
+
+    @Override
+    public List<String> getImagesData() {
+        File rootFolder = new File(ROOT_DIR + PLAIN_IMAGES_FOLDER);
+        if (!rootFolder.exists())
+            return new ArrayList<>();
+
+        File[] files = rootFolder.listFiles();
+        if (files == null) {
+            return new ArrayList<>();
+        }
+
+        return Arrays.stream(files)
+                .map(File::getName)
+                .collect(Collectors.toList());
     }
 
     private void copyFile(MultipartFile source, File result) throws IOException, ServiceErrorException {
@@ -201,6 +280,27 @@ public class StorageServiceImpl implements IStorageService {
         return null;
     }
 
+    private void setHeaders(File file, HttpServletResponse response) {
+        Date lastModified = new Date(file.lastModified());
+        SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.US);
+        String lastModifiedFormatted = format.format(lastModified);
+
+        response.setContentLength((int)file.length());
+        response.setHeader("Last-Modified", lastModifiedFormatted);
+        response.setHeader("Content-Disposition", "attachment; filename=" + file.getName());
+
+        if (isFileImage(file)) {
+            response.setContentType("image/"+FilenameUtils.getExtension(file.getName()));
+            response.setDateHeader("Expires", new Date(new Date().getTime() + MAX_IMAGE_LIVE).getTime());
+            response.setHeader("Cache-Control", "max-age=" + MAX_IMAGE_LIVE);
+            response.setHeader("Pragma", "max-age=" + MAX_IMAGE_LIVE);
+            response.setHeader("Location", file.getName());
+        } else {
+            response.setContentType("application/force-download");
+            response.setHeader("Cache-Control", "must-revalidate, post-check=0, pre-check=0");
+        }
+    }
+
     private void close(Closeable stream) {
         try {
             stream.close();
@@ -219,6 +319,7 @@ public class StorageServiceImpl implements IStorageService {
     private static final String POST_FOLDER = "/posts";
     private static final String EMPLOYEES_FOLDER = "/employees";
     private static final String CAROUSEL_IMAGE_FOLDER = "/carousel_image";
+    private static final String PLAIN_IMAGES_FOLDER = "/plain_images";
 
     private static final Map<FileEntityTypeEnum, String> folders = new HashMap<FileEntityTypeEnum, String>(){
         {
