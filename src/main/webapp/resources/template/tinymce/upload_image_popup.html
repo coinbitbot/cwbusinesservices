@@ -10,6 +10,9 @@
 
 <script src="/resources/js/jquery-3.1.0.min.js"></script>
 <script src="/resources/js/ajax.js"></script>
+<script src="/resources/js/utils/notification/alertify.min.js"></script>
+<link rel="stylesheet" href="/resources/js/utils/notification/css/alertify.min.css">
+<link rel="stylesheet" href="/resources/js/utils/notification/css/themes/default.min.css">
 <script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
 <script>
     $('#name').inputmask('Regex', {
@@ -29,10 +32,12 @@
             },
             function(response){
                 if (response.result) {
-                    alert('saved');
-                    top.tinymce.activeEditor.windowManager.close();
+                    alertify.success('saved');
+                    setInterval(function(){
+                        top.tinymce.activeEditor.windowManager.close();
+                    }, 1500);
                 } else {
-                    alert(response.error.message);
+                    alertify.error(response.error.message);
                 }
             }
         )
