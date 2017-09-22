@@ -77,6 +77,9 @@ public enum PermissionsEnum {
     EDIT_CAROUSEL_IMAGE,
     DELETE_CAROUSEL_IMAGE,
 
+    CREATE_PLAIN_IMAGE,
+    DELETE_PLAIN_IMAGE,
+
     ANYONE,
 
     ROLE_USER,
