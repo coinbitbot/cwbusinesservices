@@ -30,6 +30,7 @@
             function(response){
                 if (response.result) {
                     alert('saved');
+                    top.tinymce.activeEditor.windowManager.close();
                 } else {
                     alert(response.error.message);
                 }
