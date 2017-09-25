@@ -1,9 +1,14 @@
 <html>
+<head>
+    <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/resources/css/admin.css" />
+</head>
 <body>
-<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
-filter images by name: <input id="file_name">
-<div class="row" id="images_container" style="overflow: auto; max-height: 500px; max-width: 700px;">
+<div class="col-xs-12 select-img">
+    <div class="text-center"><label for="file_name">Filter images by name:</label> <input id="file_name" type="text"><br/><br/></div>
+    <div id="images_container" style="overflow: auto; max-height: calc(100vh - 150px);">
 
+    </div>
 </div>
 
 <script src="/resources/js/jquery-3.1.0.min.js"></script>
@@ -14,10 +19,10 @@ filter images by name: <input id="file_name">
         success: function(response) {
             if (response.result) {
                 response.result.forEach(function(name){
-                    var html = '<div class="col-md-3 image-container" data-name="' + name + '"><img style="max-width: 200px; max-height: 200px;" src="/api/file/images/' + name + '" /><br/>link: ' +
+                    var html = '<div class="col-xs-6 col-sm-4 col-md-3 image-container text-center" data-name="' + name + '"><img src="/api/file/images/' + name + '" /><br/><span>link: ' +
                         '<a target="_blank" href="/api/file/images/' + name + '">' +
                         '/api/file/images/' + name +
-                        '</a><button class="copy-link">Copy</button></div>';
+                        '</a></span><div class="text-center"><button class="btn btn-theme-ok copy-link">Copy</button></div></div>';
 
                     $('#images_container').append(html);
                 });
