@@ -1,15 +1,24 @@
 <html>
+<head>
+    <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/resources/css/admin.css" />
+    <link rel="stylesheet" href="/resources/js/utils/notification/css/alertify.min.css">
+    <link rel="stylesheet" href="/resources/js/utils/notification/css/themes/default.min.css">
+</head>
 <body>
 <form id="image_upload">
-    <input type="file" name="file" accept="image/*">
-    <br />
-    file name for better search experience(not required): <input id="name" name="name">
-    <br />
-    <button type="submit">Upload</button>
+    <div class="block-fileinput text-center col-xs-12">
+        <input type="file" id="image-upload" name="file" accept="image/*" class="inputfile">
+        <input type="text" id="filename" class="filename" disabled />
+        <label for="image-upload" class="btn-theme-dark btn">Choose file</label>
+        <div>File name for better search experience(not required):</div><input id="name" name="name" type="text" class="col-xs-12"><br/><br/>
+        <button type="submit" class="btn btn-theme-ok">Upload</button>
+    </div>
 </form>
 
 <script src="/resources/js/jquery-3.1.0.min.js"></script>
 <script src="/resources/js/ajax.js"></script>
+<script src="/resources/js/utils/notification/alertify.min.js"></script>
 <script src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
 <script>
     $('#name').inputmask('Regex', {
@@ -29,12 +38,22 @@
             },
             function(response){
                 if (response.result) {
-                    alert('saved');
+                    alertify.success('saved');
+                    setInterval(function(){
+                        top.tinymce.activeEditor.windowManager.close();
+                    }, 1500);
                 } else {
-                    alert(response.error.message);
+                    alertify.error(response.error.message);
                 }
             }
         )
+    });
+
+    $(document).ready( function() {
+        $(".inputfile").change(function(){
+            var filename = $(this).val().replace(/.*\\/, "");
+            $("#filename").val(filename);
+        });
     });
 </script>
 </body>

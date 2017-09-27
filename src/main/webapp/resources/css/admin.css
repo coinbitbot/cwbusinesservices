@@ -422,6 +422,24 @@ textarea.form-control {
 }
 /* /Modal window */
 
+/* Tinymce popups */
+.select-img {
+    padding: 20px 0;
+}
+.select-img .image-container {
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.select-img .image-container span {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.select-img .image-container img {
+    height: 200px;
+    width: auto;
+    margin: 10px auto;
+}
+/* /Tinymce popups */
 
 /* Media screen */
 @media screen and (max-width: 992px) {
