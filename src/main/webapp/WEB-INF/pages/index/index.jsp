@@ -194,6 +194,7 @@
                 $('#home_slider').owlCarousel({
                     loop:true,
                     nav: true,
+                    autoHeight:true,
                     smartSpeed: 1000,
                     autoplay: true,
                     autoplayTimeout: 10000,

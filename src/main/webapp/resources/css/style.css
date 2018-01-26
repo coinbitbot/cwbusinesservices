@@ -74,7 +74,7 @@ body {
     font-family: 'Gotham', Arial, sans-serif;
     font-weight: normal;
     font-size: 18px;
-    padding-top: 97px;
+    padding-top: 95px;
 }
 a {
     color: #87c877;
@@ -401,6 +401,9 @@ footer .social i:before,
 .topmenu {
     margin-bottom: 0;
 }
+.topmenu li {
+    text-transform: uppercase;
+}
 .topmenu li:hover, .topmenu li:hover > a,
 .topmenu li.active >a {
     color: #fff;
@@ -408,6 +411,15 @@ footer .social i:before,
 .topmenu ul {
     list-style: none;
     padding-left: 20px;
+}
+.panel {
+    margin-bottom: 0;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
 /* /Top Menu */
 
@@ -1880,8 +1892,7 @@ h4.modal-title {
         width: auto;
         background: #666;
         color:#fff;
-        max-height: calc(100vh - 100px);
-        overflow-y: auto;
+        overflow: hidden;
         padding:0 30px;
     }
     .topmenu ul li a {
