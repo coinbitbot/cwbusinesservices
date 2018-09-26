@@ -38,15 +38,22 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="hidden-xs hidden-sm col-md-4 bottom-brand footer-block hidden-print">
+            <div class="col-xs-12 col-md-4 bottom-brand footer-block hidden-print">
                 <a href="/">
                     <img src="/resources/images/logo_header.png" alt="<s:message code='brand'/>" />
                     <h4 class="font-theme-medium text-uppercase"><s:message code="brand.name"/><br/><span class="font-theme-normal"><s:message code="brand.subheader"/></span></h4>
                 </a>
+                <address>Phone: <a href="tel:+4401484506250">+44(0) 1484 506250</a><br>
+                Email: <a href="mailto:cbs@charlesworth-group.com">cbs@charlesworth-group.com</a></address>
             </div>
-            <div class="visible-print-inline-block footer-block bottom-brand col-xs-6">
-                    <img src="/resources/images/logo_grey.png" class=""/>
-                    <h4 class="font-theme-medium text-uppercase"><s:message code="brand.name"/><br/><span class="font-theme-normal"><s:message code="brand.subheader"/></span></h4>
+            <div class="visible-print-inline-block footer-block bottom-brand col-xs-12">
+                <img src="/resources/images/logo_grey.png" class=""/>
+                <h4 class="font-theme-medium text-uppercase"><s:message code="brand.name"/><br/><span class="font-theme-normal"><s:message code="brand.subheader"/></span></h4>
+                <address>
+                    Address: 250 Deighton Road, Huddersfield, HD2 1JJ<br>
+                    Phone: +44(0) 1484 506250<br>
+                    Email: cbs@charlesworth-group.com
+                </address>
             </div>
             <div class="col-sm-6 col-md-4 hidden-print footer-block">
                 <h4 class="text-uppercase font-theme-medium">Information</h4>
@@ -62,19 +69,13 @@
                 <a href="https://www.linkedin.com/company/11132848/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                 <a href="https://twitter.com/CWBusServ?lang=en"><i class="fa fa-twitter" aria-hidden="true"></i></a>
             </div>
-            <address class="col-xs-6 visible-print-inline-block text-right">
-                <h4 class="text-uppercase font-theme-medium">Address</h4>
-                <p>250 Deighton Road, Huddersfield, HD2 1JJ</p>
-                <p>Phone - +44(0) 1484 506250</p>
-                <p>Email – cbs@charlesworth-group.com</p>
-            </address>
             <div class="clearfix"></div>
         </div>
     </div>
 </footer>
 <div class="copyright hidden-print">
     <div class="container text-center">
-        2017 &copy; All rights reserved
+        <script type="text/javascript">var mdate = new Date(); document.write(mdate.getFullYear());</script> &copy; All rights reserved
     </div>
 </div>
 <div id="scroller" class="hidden-xs hidden-print"></div>

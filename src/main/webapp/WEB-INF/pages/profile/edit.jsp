@@ -16,7 +16,7 @@
         <section>
         <h1 class="col-xs-12">Edit profile</h1>
             <div class="clearfix"></div>
-            <div class="col-sm-9 col-sm-push-3">
+            <div class="col-sm-8 col-sm-push-4 col-md-9 col-md-push-3">
                 <div class="row">
                     <h4 class="subheader col-xs-12">Mail profile info</h4>
                     <form id="main_info_form">
@@ -65,7 +65,7 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <div class="col-sm-3 col-sm-pull-9">
+            <div class="col-sm-4 col-sm-pull-8 col-md-3 col-md-pull-9">
                 <jsp:include page="user_menu.jsp" />
             </div>
             <div class="clearfix"></div>

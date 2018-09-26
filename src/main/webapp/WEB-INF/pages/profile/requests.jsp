@@ -17,7 +17,7 @@
         <section>
             <h1 class="col-xs-12">Requests</h1>
             <div class="clearfix"></div>
-            <div class="col-sm-9 col-sm-push-3">
+            <div class="col-sm-8 col-sm-push-4 col-md-9 col-md-push-3">
                 <div class="row requests">
                     <c:choose>
                         <c:when test="${requests ne null}">
@@ -65,7 +65,7 @@
                     </c:choose>
                 </div>
             </div>
-            <div class="col-sm-3 col-sm-pull-9">
+            <div class="col-sm-4 col-sm-pull-8 col-md-3 col-md-pull-9">
                 <jsp:include page="user_menu.jsp" />
             </div>
             <div class="clearfix"></div>

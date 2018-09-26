@@ -86,6 +86,16 @@
                             </c:if>
                         </div>
                     </div>
+                    <div class="clearfix"></div>
+                    <div class="row">
+                    <div class="col-xs-12">
+                        <input type="checkbox" id="terms" class="form-field checkbox" checked required> <label for="terms">I agree with <a href="" target="_blank">the terms of registration</a></label>&nbsp;<span class="text-error">*</span>
+                    </div>
+                    <div class="col-xs-12">
+                        <input type="checkbox" id="marketing_content" class="form-field checkbox"> <label for="marketing_content">Receive newsletter</label>
+                    </div>
+                    </div>
+
                     <div class="col-xs-12 text-center">
                         <button type="submit" class="btn-theme btn-2">Register request</button>
                     </div>

@@ -431,7 +431,7 @@ footer .social i:before,
     right: 0;
     top: 0;
     width: 0;
-    z-index: 1020;
+    z-index: 1040;
 }
 .login-block {
     -webkit-box-sizing: border-box;
@@ -634,6 +634,10 @@ section h2 {
 }
 #services .owl-prev {
     margin-right: 50px;
+}
+
+.block-desc {
+    margin-top: 30px;
 }
 /* /Section services */
 
@@ -1619,6 +1623,12 @@ footer .social i:before {
 footer .social a:hover i:before {
     color: #fff;
 }
+.bottom-brand {
+    margin-bottom: 15px;
+}
+.bottom-brand address {
+    margin-top: 15px;
+}
 .copyright {
     background: #1a3029;
     padding: 15px 0;
@@ -1811,6 +1821,10 @@ h4.modal-title {
     .block-subscribe img {
         max-height: 280px;
         margin: 0 auto;
+    }
+    .header .container {
+        width: 100%;
+        padding: 0 15px;
     }
     .header nav ul.topmenu {
         position: absolute;
@@ -2008,7 +2022,7 @@ h4.modal-title {
         margin-bottom: 0;
     }
     .user-menu {
-        max-width: 300px;
+        /*max-width: 300px;*/
         margin: 0 auto;
     }
     .user-menu li {

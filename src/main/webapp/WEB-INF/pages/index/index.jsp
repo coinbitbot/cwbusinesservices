@@ -63,18 +63,19 @@
                                 <c:if test="${services ne null}">
                                     <section>
                                         <div class="container wow fadeInUp" data-wow-offset="10">
-                                        <h2>${block.title}</h2>
-                                        <div id="services" class="owl-carousel">
-                                            <c:forEach var="service" items="${services}">
-                                                <div class="text-center block-item">
-                                                    <div class="service-icon" style="background: url('/api/file/${service.id}?type=SERVICE') no-repeat center; background-size: cover;">
+                                            <h2>${block.title}</h2>
+                                            <div id="services" class="owl-carousel">
+                                                <c:forEach var="service" items="${services}">
+                                                    <div class="text-center block-item">
+                                                        <div class="service-icon" style="background: url('/api/file/${service.id}?type=SERVICE') no-repeat center; background-size: cover;">
+                                                        </div>
+                                                        <h3 class="font-theme-book">${service.name}</h3>
+                                                        <div class="text-desc dotdot">${service.short_description}</div>
+                                                        <a href="/services#service-${service.id}" class="btn-theme btn-transp col-xs-12"><s:message code="block.services.more"/></a>
                                                     </div>
-                                                    <h3 class="font-theme-book">${service.name}</h3>
-                                                    <div class="text-desc dotdot">${service.short_description}</div>
-                                                    <a href="/services#service-${service.id}" class="btn-theme btn-transp col-xs-12"><s:message code="block.services.more"/></a>
-                                                </div>
-                                            </c:forEach>
-                                        </div>
+                                                </c:forEach>
+                                            </div>
+                                            <!--<div class="block-desc services-desc"><s:message code="block.services.text"/></div>-->
                                         </div>
                                     </section>
                                     <div class="clearfix"></div>
