@@ -34,7 +34,7 @@
                                         <c:choose>
                                             <c:when test="${fn:length(menu.childItems) > 0}">
                                                 <a href="#" data-toggle="collapse" data-target="#${menu.id}" data-parent=".topmenu">${menu.name} <span class="caret"></span></a>
-                                                <ul id="${menu.id}">
+                                                <ul id="${menu.id}" class="collapse">
                                                     <c:set var="menu" value="${menu}" scope="request"/>
                                                     <jsp:include page="menu_node.jsp"/>
                                                 </ul>

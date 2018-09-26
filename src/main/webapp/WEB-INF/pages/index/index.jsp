@@ -165,8 +165,8 @@
                             </div>
                         </div>
                         <div class="col-md-5 block-subscribe wow fadeInUp hidden-print" data-wow-offset="10">
-                            <div class="col-xs-12 col-sm-4 col-md-12 img-subscribe">
-                                <img src="/resources/images/subscribe_img.jpg" class="img-responsive img-center" />
+                            <div class="col-xs-12 col-sm-4 col-md-12 img-subscribe" style="background: url('/resources/images/subscribe_img.jpg'); background-size: cover;">
+                                <img src="/resources/images/subscribe_img.jpg" class="img-responsive img-center hidden-sm" />
                             </div>
                             <div class="subscribe-form col-xs-12 col-sm-8 col-md-12 text-center" id="subscribe">
                                 <form id="subscribe_form">

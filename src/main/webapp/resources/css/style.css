@@ -1811,16 +1811,23 @@ h4.modal-title {
     }
 }
 
+@media screen and (max-width: 991px) {
+    .block-subscribe {
+        margin-top: 50px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+}
+
 @media screen and (max-width: 992px) {
     .subscribe-form {
         min-height: 280px;
     }
-    .block-subscribe {
-        margin-top: 50px;
-    }
     .block-subscribe img {
         max-height: 280px;
         margin: 0 auto;
+        display: none;
     }
     .header .container {
         width: 100%;
@@ -1967,6 +1974,9 @@ h4.modal-title {
     }
 }
 @media screen and (max-width: 768px) {
+    .block-subscribe {
+        display: block;
+    }
     .subscribe-form {
         min-height: 0;
     }
@@ -1976,7 +1986,7 @@ h4.modal-title {
         margin-top: -5%;
     }
     .img-subscribe {
-        max-height: 500px;
+        /*max-height: 500px;*/
         overflow: hidden;
     }
     #home_slider .title-slider {
